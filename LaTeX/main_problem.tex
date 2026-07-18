@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+
+\begin{document}
+
+Let \(A\) be an \(n \times n\) complex matrix, and define its numerical range by
+\[
+W(A)
+=
+\left\{
+x^{*} A x :
+x \in \mathbb{C}^{n}
+\text{ and }
+\|x\|_{2}=1
+\right\},
+\]
+where \(x^{*}\) denotes the conjugate transpose of \(x\). Then, for every complex polynomial \(p\),
+\[
+\|p(A)\|_{2}
+\leq
+2 \max_{z \in W(A)} |p(z)|,
+\]
+where \(\|p(A)\|_{2}\) is the operator norm induced by the Euclidean norm. Equivalently, the closure of the numerical range \(W(A)\) is a \(2\)-spectral set for \(A\).
+
+\end{document}

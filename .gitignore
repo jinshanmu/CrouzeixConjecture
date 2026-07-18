@@ -1,0 +1,12 @@
+.DS_Store
+
+# LaTeX build products
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# Locally collected third-party papers are not redistributed.
+Literature/*.pdf
