@@ -20,6 +20,7 @@ finite-dimensional scalar form of Crouzeix's conjecture.
   manuscript.
 - `AnnMath/aomart.cls`: Annals of Mathematics document class used for the
   submission build.
+- `Lean/`: Lean 4 formalization, verification entry point, and axiom audit.
 - `LaTeX/crouzeix_conjecture_proof.tex`: candidate proof manuscript.
 - `LaTeX/crouzeix_conjecture_proof.pdf`: compiled manuscript.
 - `LaTeX/main_problem.tex`: statement of the problem.
@@ -37,9 +38,16 @@ From the `AnnMath` directory, run:
 latexmk -pdf -interaction=nonstopmode -halt-on-error the_numerical_range_is_a_2_spectral_set.tex
 ```
 
+## Lean verification
+
+From the `Lean` directory, run:
+
+```sh
+lake run
+```
+
+This builds the complete library and runs the exported-theorem axiom audit.
+
 ## AI assistance
 
-OpenAI ChatGPT contributed to proof development, manuscript preparation, and
-adversarial checking. Any human author or submitter must independently verify
-the complete argument, accurately disclose the assistance under the target
-journal's policy, and assume responsibility for every claim and citation.
+OpenAI ChatGPT contributed to proof development, manuscript preparation, and adversarial checking.

@@ -1,0 +1,52 @@
+module
+
+public import CrouzeixConjecture.DoubleLayerCayley
+public import CrouzeixConjecture.MainPerturbationReduction
+
+@[expose] public section
+
+noncomputable section
+
+open MeasureTheory
+open scoped BoundedContinuousFunction ComplexOrder Matrix Matrix.Norms.L2Operator
+
+namespace CrouzeixConjecture
+
+variable {i n : Type*} [TopologicalSpace i] [MeasurableSpace i]
+  [OpensMeasurableSpace i] [Fintype n] [DecidableEq n] [Nonempty n]
+  {mu : Measure i}
+
+/-- A fixed positive boundary density together with the exact boundary restriction and companion
+coefficient data proves the double-layer provider used by the perturbation argument.  The
+coefficient identity is the formal form of Cauchy's formula plus manuscript equation (308), and
+`hCompanionMem` is the finite-dimensional holomorphic-calculus conclusion at lines 343--345. -/
+theorem hasDoubleLayerCompletionProvider_of_boundary_data
+    (B : SquareMatrix n) (s : Set ℂ)
+    (hspectrum : matrixSpectrum B ⊆ s)
+    (D : PositiveBoundaryDensity (n := n) mu)
+    (boundaryFunction : ∀ (q : Polynomial ℂ),
+      (∀ z ∈ s, ‖Polynomial.eval z q‖ ≤ 1) → ContractiveBoundaryFunction i)
+    (companion : ∀ (q : Polynomial ℂ)
+      (_hq : ∀ z ∈ s, ‖Polynomial.eval z q‖ ≤ 1),
+      ℕ → SquareMatrix n)
+    (hCompanionMem : ∀ (q : Polynomial ℂ)
+      (hq : ∀ z ∈ s, ‖Polynomial.eval z q‖ ≤ 1) (m : ℕ),
+      companion q hq (m + 1) ∈ generatedAlgebra B)
+    (hCoefficient : ∀ (q : Polynomial ℂ)
+      (hq : ∀ z ∈ s, ‖Polynomial.eval z q‖ ≤ 1) (m : ℕ),
+      doubleLayerCayleySeriesCoefficient D (boundaryFunction q hq) (m + 1) =
+        polynomialEval q B ^ (m + 1) + (companion q hq (m + 1))ᴴ) :
+    HasDoubleLayerCompletionProvider B s := by
+  intro q hq hAlg
+  let f := boundaryFunction q hq
+  let G := companion q hq
+  refine ⟨doubleLayerCayleySeries D f, ?_⟩
+  apply doubleLayerCayleySeries_isPositiveRealCompletion D f B (polynomialEval q B) G
+  · exact matrixSpectrum_polynomialEval_subset_closedUnitDisk B q s hspectrum hq
+  · exact hAlg
+  · intro m
+    exact hCompanionMem q hq m
+  · intro m
+    exact hCoefficient q hq m
+
+end CrouzeixConjecture

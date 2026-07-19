@@ -13,5 +13,8 @@
 AnnMath/aomart/
 AnnMath/aomart.zip
 
-# Locally collected third-party papers are not redistributed.
-Literature/*.pdf
+# Lean build products and downloaded dependencies.
+Lean/.lake/
+
+# Locally collected literature is not redistributed.
+Literature/
