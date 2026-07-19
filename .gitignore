@@ -6,7 +6,12 @@
 *.fls
 *.log
 *.out
+*.rpi
 *.synctex.gz
+
+# Local Annals class distribution (the required class file is kept separately).
+AnnMath/aomart/
+AnnMath/aomart.zip
 
 # Locally collected third-party papers are not redistributed.
 Literature/*.pdf

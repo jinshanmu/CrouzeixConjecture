@@ -14,6 +14,12 @@ finite-dimensional scalar form of Crouzeix's conjecture.
 
 ## Contents
 
+- `AnnMath/the_numerical_range_is_a_2_spectral_set.tex`: Annals-formatted
+  submission manuscript.
+- `AnnMath/the_numerical_range_is_a_2_spectral_set.pdf`: compiled submission
+  manuscript.
+- `AnnMath/aomart.cls`: Annals of Mathematics document class used for the
+  submission build.
 - `LaTeX/crouzeix_conjecture_proof.tex`: candidate proof manuscript.
 - `LaTeX/crouzeix_conjecture_proof.pdf`: compiled manuscript.
 - `LaTeX/main_problem.tex`: statement of the problem.
@@ -25,15 +31,15 @@ excluded from version control and redistribution.
 
 ## Build
 
-From the `LaTeX` directory, run:
+From the `AnnMath` directory, run:
 
 ```sh
-latexmk -pdf -interaction=nonstopmode -halt-on-error crouzeix_conjecture_proof.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error the_numerical_range_is_a_2_spectral_set.tex
 ```
 
 ## AI assistance
 
-OpenAI Codex contributed to proof development, manuscript preparation, and
+OpenAI ChatGPT contributed to proof development, manuscript preparation, and
 adversarial checking. Any human author or submitter must independently verify
 the complete argument, accurately disclose the assistance under the target
 journal's policy, and assume responsibility for every claim and citation.
