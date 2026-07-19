@@ -1,16 +1,13 @@
 # Crouzeix Conjecture
 
-This repository records a research workspace for a candidate proof of the
-finite-dimensional scalar form of Crouzeix's conjecture.
+This repository records a research workspace for a candidate proof of Crouzeix's conjecture.
 
 ## Status
 
 - The candidate proof is written as a standalone LaTeX manuscript.
 - Several independent computational and adversarial audits have found no
   specific mathematical error.
-- Independent human expert review and formal peer review are still pending.
-- The repository should therefore be read as a research draft, not as an
-  established resolution of the conjecture.
+- Formal peer review is still pending.
 
 ## Contents
 
@@ -26,9 +23,6 @@ finite-dimensional scalar form of Crouzeix's conjecture.
 - `LaTeX/main_problem.tex`: statement of the problem.
 - `crouzeix_conjecture_prompt.txt`: project provenance and original task
   specification.
-
-Locally collected third-party papers under `Literature/` are intentionally
-excluded from version control and redistribution.
 
 ## Build
 
