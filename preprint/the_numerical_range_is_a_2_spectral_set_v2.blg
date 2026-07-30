@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: the_numerical_range_is_a_2_spectral_set_v2.aux
+The style file: preprints-template/preprints_template_latex/Definitions/mdpi.bst
+Database file #1: the_numerical_range_is_a_2_spectral_set.bib
+You've used 37 entries,
+            2887 wiz_defined-function locations,
+            837 strings with 10856 characters,
+and the built_in function-call counts, 15530 in all, are:
+= -- 1491
+> -- 712
+< -- 26
++ -- 315
+- -- 185
+* -- 1383
+:= -- 2313
+add.period$ -- 143
+call.type$ -- 37
+change.case$ -- 37
+chr.to.int$ -- 37
+cite$ -- 37
+duplicate$ -- 673
+empty$ -- 1295
+format.name$ -- 288
+if$ -- 3262
+int.to.chr$ -- 1
+int.to.str$ -- 37
+missing$ -- 32
+newline$ -- 219
+num.names$ -- 113
+pop$ -- 267
+preamble$ -- 0
+purify$ -- 37
+quote$ -- 0
+skip$ -- 399
+stack$ -- 0
+substring$ -- 1136
+swap$ -- 146
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 259
+warning$ -- 0
+while$ -- 135
+width$ -- 0
+write$ -- 512

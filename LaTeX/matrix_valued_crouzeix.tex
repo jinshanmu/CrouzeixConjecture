@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+
+\begin{document}
+
+Let \(A\in\mathbb{M}_n(\mathbb{C})\), and define its numerical range by
+\[
+W(A)=\left\{x^*Ax:\ x\in\mathbb{C}^n,\ \|x\|_2=1\right\}.
+\]
+Then, for every \(m\geq1\) and every matrix-valued polynomial
+\[
+F(z)=\sum_{k=0}^d F_k z^k,
+\qquad F_k\in\mathbb{M}_m(\mathbb{C}),
+\]
+one has
+\[
+\boxed{
+\left\|F(A)\right\|
+\leq
+2\max_{z\in W(A)}\left\|F(z)\right\|,
+}
+\]
+where
+\[
+F(A)=\sum_{k=0}^d F_k\otimes A^k
+\in\mathbb{M}_m(\mathbb{C})\otimes\mathbb{M}_n(\mathbb{C}).
+\]
+Equivalently, \(W(A)\) is a complete \(2\)-spectral set for \(A\), uniformly
+over all matrix sizes \(m\).
+
+\end{document}

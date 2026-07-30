@@ -1,8 +1,9 @@
 module
 
-public import CrouzeixConjecture.Perturbation
 public import CrouzeixConjecture.SimpleSpectrumBridge
+public import Mathlib.Analysis.SpecificLimits.Normed
 public import Mathlib.FieldTheory.Separable
+public import Mathlib.Order.Interval.Set.Infinite
 public import Mathlib.RingTheory.Polynomial.Resultant.Basic
 
 @[expose] public section

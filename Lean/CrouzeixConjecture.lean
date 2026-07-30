@@ -8,7 +8,6 @@ public import CrouzeixConjecture.NumericalRangeConvexity
 public import CrouzeixConjecture.Spectrum
 public import CrouzeixConjecture.GeneratedAlgebra
 public import CrouzeixConjecture.HolomorphicMatrixAlgebra
-public import CrouzeixConjecture.Perturbation
 public import CrouzeixConjecture.SimpleSpectrum
 public import CrouzeixConjecture.SimpleSpectrumBridge
 public import CrouzeixConjecture.SimpleSpectrumDensity

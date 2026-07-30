@@ -287,19 +287,21 @@ theorem exists_completionDiagonalCorrection
     · simpa [d, hz, hzero, completionDiagonalCorrection] using
         (Classical.choose_spec (hexists z hz))
 
-/-- The generated-algebra condition in a positive-real completion produces exactly the
-manuscript model `G(I-zΛ)⁻¹ + D(z)G` after pulling back by the diagonalizing basis. -/
+/-- The auxiliary generated-algebra condition in a positive-real completion produces exactly
+the model `G(I-zΛ)⁻¹ + D(z)G` after pulling back by the common diagonalizing basis.  The
+diagonal entries of the target matrix need not be distinct. -/
 theorem exists_completionKernelModel_of_isPositiveRealCompletion
-    {B : SquareMatrix n} (hB : SimpleDiagonalization B)
-    (hspectrum : matrixSpectrum B ⊆ closedUnitDisk)
-    {H : ℂ → SquareMatrix n} (hcompletion : IsPositiveRealCompletion B H) :
+    {B T : SquareMatrix n} (hB : SimpleDiagonalization B) (lambda : n → ℂ)
+    (hT : T = innerConjugation hB.changeBasis (Matrix.diagonal lambda))
+    (hlambda : ∀ i, ‖lambda i‖ ≤ 1)
+    {H : ℂ → SquareMatrix n} (hcompletion : IsPositiveRealCompletion B T H) :
     ∃ d : ℂ → n → ℂ, d 0 = 0 ∧
       ∀ z ∈ unitDisk,
         completionPullbackFunction hB.changeBasis.val H z =
           completionKernelModel
-            (completionGramMatrix hB.changeBasis.val) hB.eigenvalues d z := by
+            (completionGramMatrix hB.changeBasis.val) lambda d z := by
   rcases hcompletion with ⟨_, hH0, _, hgenerated⟩
-  let X : ℂ → SquareMatrix n := fun z ↦ H z - (1 - z • B)⁻¹
+  let X : ℂ → SquareMatrix n := fun z ↦ H z - (1 - z • T)⁻¹
   have hX0 : X 0 = 0 := by simp [X, hH0]
   have hX : ∀ z ∈ unitDisk, X z ∈ generatedAlgebra Bᴴ := by
     intro z hz
@@ -307,42 +309,43 @@ theorem exists_completionKernelModel_of_isPositiveRealCompletion
   obtain ⟨d, hd0, hd⟩ := exists_completionDiagonalCorrection hB X hX0 hX
   refine ⟨d, hd0, ?_⟩
   intro z hz
-  have hlambda := hB.eigenvalues_norm_le_one hspectrum
   have hS : IsUnit hB.changeBasis.val := hB.changeBasis.isUnit
-  have hmatrix : B = completionDiagonalizableMatrix
-      hB.changeBasis.val hB.eigenvalues := hB.eq_completionDiagonalizableMatrix
+  have hmatrix : T = completionDiagonalizableMatrix
+      hB.changeBasis.val lambda := by
+    simpa [completionDiagonalizableMatrix, completionEigenvalueDiagonal,
+      innerConjugation] using hT
   have hresolvent :
-      hB.changeBasis.valᴴ * (1 - z • B)⁻¹ * hB.changeBasis.val =
+      hB.changeBasis.valᴴ * (1 - z • T)⁻¹ * hB.changeBasis.val =
         completionResolventModel (completionGramMatrix hB.changeBasis.val)
-          hB.eigenvalues z := by
+          lambda z := by
     have harg :
-        1 - z • B =
+        1 - z • T =
           1 - z • completionDiagonalizableMatrix
-            hB.changeBasis.val hB.eigenvalues :=
+            hB.changeBasis.val lambda :=
       congrArg (fun A : SquareMatrix n ↦ 1 - z • A) hmatrix
     have hinv :
-        (1 - z • B)⁻¹ =
+        (1 - z • T)⁻¹ =
           (1 - z • completionDiagonalizableMatrix
-            hB.changeBasis.val hB.eigenvalues)⁻¹ := by
+            hB.changeBasis.val lambda)⁻¹ := by
       exact congrArg (fun A : SquareMatrix n ↦ A⁻¹) harg
     rw [hinv]
     exact completion_resolvent_pullback hB.changeBasis.val hS
-      hB.eigenvalues hlambda hz
+      lambda hlambda hz
   have hcorrection := hd z hz
   change hB.changeBasis.valᴴ * H z * hB.changeBasis.val = _
   calc
     hB.changeBasis.valᴴ * H z * hB.changeBasis.val =
-        hB.changeBasis.valᴴ * (1 - z • B)⁻¹ * hB.changeBasis.val +
+        hB.changeBasis.valᴴ * (1 - z • T)⁻¹ * hB.changeBasis.val +
           hB.changeBasis.valᴴ * X z * hB.changeBasis.val := by
       dsimp [X]
       noncomm_ring
     _ = completionResolventModel (completionGramMatrix hB.changeBasis.val)
-          hB.eigenvalues z +
+          lambda z +
         completionDiagonalCorrection d z *
           completionGramMatrix hB.changeBasis.val := by
       rw [hresolvent, hcorrection]
     _ = completionKernelModel (completionGramMatrix hB.changeBasis.val)
-          hB.eigenvalues d z := by
+          lambda d z := by
       rfl
 
 omit [Fintype n] [DecidableEq n] in
@@ -362,55 +365,55 @@ theorem matrixHerglotzKernel_positive_congr_on
     rw [hKL (z p.1) (hz p.1), hKL (z q.1) (hz q.1)]
   rwa [← heq]
 
-/-- The positive-real completion lemma exactly as stated in manuscript lines 30--42.  All
-diagonalization, kernel, Gramian, eigenvector, Stein, square-root, and polar-decomposition
-inputs have been discharged by preceding declarations. -/
+/-- The auxiliary-basis positive-real completion theorem.  All kernel, Gramian, eigenvector,
+Stein, square-root, and polar-decomposition inputs have been discharged by preceding
+declarations, without any distinctness requirement on the target diagonal entries. -/
 theorem positiveRealCompletionStatement [Nonempty n] :
     PositiveRealCompletionStatement (n := n) := by
-  intro T H hdistinct hspectrum hcompletion
-  let hdiag := simpleDiagonalization_of_hasDistinctEigenvalues T hdistinct
-  have hlambda : ∀ i, ‖hdiag.eigenvalues i‖ ≤ 1 :=
-    hdiag.eigenvalues_norm_le_one hspectrum
-  have hS : IsUnit hdiag.changeBasis.val := hdiag.changeBasis.isUnit
+  intro B T H hB lambda hT hlambda hcompletion
+  have hS : IsUnit hB.changeBasis.val := hB.changeBasis.isUnit
   obtain ⟨d, hd0, hmodel⟩ :=
     exists_completionKernelModel_of_isPositiveRealCompletion
-      hdiag hspectrum hcompletion
+      hB lambda hT hlambda hcompletion
   have hpullbackAnalytic :
-      AnalyticOnNhd ℂ (completionPullbackFunction hdiag.changeBasis.val H)
+      AnalyticOnNhd ℂ (completionPullbackFunction hB.changeBasis.val H)
         openUnitDisk := by
-    have h := completionPullbackFunction_analyticOnNhd hdiag.changeBasis.val
+    have h := completionPullbackFunction_analyticOnNhd hB.changeBasis.val
       hcompletion.1
     simpa only [unitDisk, openUnitDisk] using h
   have hpullbackPositive :
       ∀ z ∈ openUnitDisk,
-        (rePart (completionPullbackFunction hdiag.changeBasis.val H z)).PosSemidef := by
+        (rePart (completionPullbackFunction hB.changeBasis.val H z)).PosSemidef := by
     intro z hz
     apply completionPullbackFunction_rePart_posSemidef
     exact hcompletion.2.2.1 z (by simpa only [unitDisk, openUnitDisk] using hz)
   have hpullbackKernel :
       IsPositiveMatrixKernelOn openUnitDisk
         (matrixHerglotzKernel
-          (completionPullbackFunction hdiag.changeBasis.val H)) :=
+          (completionPullbackFunction hB.changeBasis.val H)) :=
     matrixHerglotzKernel_isPositiveMatrixKernelOn
       hpullbackAnalytic hpullbackPositive
   have hmodelOn :
       ∀ z ∈ openUnitDisk,
-        completionPullbackFunction hdiag.changeBasis.val H z =
-          completionKernelModel (completionGramMatrix hdiag.changeBasis.val)
-            hdiag.eigenvalues d z := by
+        completionPullbackFunction hB.changeBasis.val H z =
+          completionKernelModel (completionGramMatrix hB.changeBasis.val)
+            lambda d z := by
     intro z hz
     exact hmodel z (by simpa only [unitDisk, openUnitDisk] using hz)
   have hmodelKernel :
       IsPositiveMatrixKernelOn openUnitDisk
         (matrixHerglotzKernel
-          (completionKernelModel (completionGramMatrix hdiag.changeBasis.val)
-            hdiag.eigenvalues d)) :=
+          (completionKernelModel (completionGramMatrix hB.changeBasis.val)
+            lambda d)) :=
     matrixHerglotzKernel_positive_congr_on hpullbackKernel hmodelOn
   have hbound :
-      ‖completionDiagonalizableMatrix hdiag.changeBasis.val hdiag.eigenvalues‖ ≤ 2 :=
+      ‖completionDiagonalizableMatrix hB.changeBasis.val lambda‖ ≤ 2 :=
     norm_completionDiagonalizableMatrix_le_two_of_positiveKernelModel
-      hdiag.changeBasis.val hS hdiag.eigenvalues hlambda d hd0 hmodelKernel
-  rw [hdiag.eq_completionDiagonalizableMatrix]
+      hB.changeBasis.val hS lambda hlambda d hd0 hmodelKernel
+  have hmatrix : T = completionDiagonalizableMatrix hB.changeBasis.val lambda := by
+    simpa [completionDiagonalizableMatrix, completionEigenvalueDiagonal,
+      innerConjugation] using hT
+  rw [hmatrix]
   exact hbound
 
 end CrouzeixConjecture

@@ -1,0 +1,249 @@
+\begin{thebibliography}{999}
+
+\bibitem[Crouzeix(2004)]{Crouzeix2004}
+Crouzeix, M.
+\newblock Bounds for analytical functions of matrices.
+\newblock {\em Integral Equations Operator Theory} {\bf 2004}, {\em
+  48},~461--477.
+\newblock {\url{https://doi.org/10.1007/s00020-002-1188-6}}.
+
+\bibitem[Crouzeix(2007)]{Crouzeix2007}
+Crouzeix, M.
+\newblock Numerical range and functional calculus in {Hilbert} space.
+\newblock {\em J. Funct. Anal.} {\bf 2007}, {\em 244},~668--690.
+\newblock {\url{https://doi.org/10.1016/j.jfa.2006.10.013}}.
+
+\bibitem[Crouzeix(2016)]{Crouzeix2016}
+Crouzeix, M.
+\newblock Some constants related to numerical ranges.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2016}, {\em 37},~420--442.
+\newblock {\url{https://doi.org/10.1137/15M1020411}}.
+
+\bibitem[Crouzeix and Palencia(2017)]{CrouzeixPalencia2017}
+Crouzeix, M.; Palencia, C.
+\newblock The numerical range is a {$(1+\sqrt{2})$}-spectral set.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2017}, {\em 38},~649--655.
+\newblock {\url{https://doi.org/10.1137/17M1116672}}.
+
+\bibitem[Ransford and Schwenninger(2018)]{RansfordSchwenninger2018}
+Ransford, T.; Schwenninger, F.L.
+\newblock Remarks on the {Crouzeix--Palencia} proof that the numerical range is
+  a {$(1+\sqrt{2})$}-spectral set.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2018}, {\em 39},~342--345.
+\newblock {\url{https://doi.org/10.1137/17M1143757}}.
+
+\bibitem[Caldwell et~al.(2018)Caldwell, Greenbaum, and
+  Li]{CaldwellGreenbaumLi2018}
+Caldwell, T.; Greenbaum, A.; Li, K.
+\newblock Some extensions of the {Crouzeix--Palencia} result.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2018}, {\em 39},~769--780.
+\newblock {\url{https://doi.org/10.1137/17M1140832}}.
+
+\bibitem[Crouzeix and Greenbaum(2019)]{CrouzeixGreenbaum2019}
+Crouzeix, M.; Greenbaum, A.
+\newblock Spectral sets: Numerical range and beyond.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2019}, {\em 40},~1087--1101.
+\newblock {\url{https://doi.org/10.1137/18M1198417}}.
+
+\bibitem[Greenbaum and Choi(2012)]{ChoiGreenbaum2012}
+Greenbaum, A.; Choi, D.
+\newblock {Crouzeix}'s conjecture and perturbed {Jordan} blocks.
+\newblock {\em Linear Algebra Appl.} {\bf 2012}, {\em 436},~2342--2352.
+\newblock {\url{https://doi.org/10.1016/j.laa.2011.12.005}}.
+
+\bibitem[Choi(2013)]{Choi2013}
+Choi, D.
+\newblock A proof of {Crouzeix}'s conjecture for a class of matrices.
+\newblock {\em Linear Algebra Appl.} {\bf 2013}, {\em 438},~3247--3257.
+\newblock {\url{https://doi.org/10.1016/j.laa.2012.12.045}}.
+
+\bibitem[Glader et~al.(2018)Glader, Kurula, and
+  Lindstr{\"o}m]{GladerKurulaLindstrom2018}
+Glader, C.; Kurula, M.; Lindstr{\"o}m, M.
+\newblock {Crouzeix}'s conjecture holds for tridiagonal {$3\times3$} matrices
+  with elliptic numerical range centered at an eigenvalue.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2018}, {\em 39},~346--364.
+\newblock {\url{https://doi.org/10.1137/17M1110663}}.
+
+\bibitem[Greenbaum and Overton(2018)]{GreenbaumOverton2018}
+Greenbaum, A.; Overton, M.L.
+\newblock Numerical investigation of {Crouzeix}'s conjecture.
+\newblock {\em Linear Algebra Appl.} {\bf 2018}, {\em 542},~225--245.
+\newblock {\url{https://doi.org/10.1016/j.laa.2017.04.035}}.
+
+\bibitem[Li(2020)]{Li2020}
+Li, K.
+\newblock On the uniqueness of functions that maximize the {Crouzeix} ratio.
+\newblock {\em Linear Algebra Appl.} {\bf 2020}, {\em 599},~105--120.
+\newblock {\url{https://doi.org/10.1016/j.laa.2020.03.045}}.
+
+\bibitem[Bickel et~al.(2020)Bickel, Gorkin, Greenbaum, Ransford, Schwenninger,
+  and Wegert]{BickelEtAl2020}
+Bickel, K.; Gorkin, P.; Greenbaum, A.; Ransford, T.; Schwenninger, F.L.;
+  Wegert, E.
+\newblock {Crouzeix}'s conjecture and related problems.
+\newblock {\em Comput. Methods Funct. Theory} {\bf 2020}, {\em 20},~701--728.
+\newblock {\url{https://doi.org/10.1007/s40315-020-00350-9}}.
+
+\bibitem[Bickel and Gorkin(2024)]{BickelGorkin2024}
+Bickel, K.; Gorkin, P.
+\newblock {Blaschke} products, level sets, and {Crouzeix}'s conjecture.
+\newblock {\em J. Anal. Math.} {\bf 2024}, {\em 152},~217--254.
+\newblock {\url{https://doi.org/10.1007/s11854-023-0295-y}}.
+
+\bibitem[O'Loughlin and Virtanen(2024)]{OLoughlinVirtanen2024}
+O'Loughlin, R.; Virtanen, J.
+\newblock {Crouzeix}'s conjecture for classes of matrices.
+\newblock {\em Linear Algebra Appl.} {\bf 2024}, {\em 697},~277--292.
+\newblock {\url{https://doi.org/10.1016/j.laa.2023.12.008}}.
+
+\bibitem[Bickel et~al.(2024)Bickel, Corbett, Glenning, Guan, and
+  Vollmayr-Lee]{BickelEtAl2024}
+Bickel, K.; Corbett, G.; Glenning, A.; Guan, C.; Vollmayr-Lee, M.
+\newblock {Crouzeix}'s conjecture, compressions of shifts, and classes of
+  nilpotent matrices.
+\newblock {\em Concrete Operators} {\bf 2024}, {\em 11},~Paper No.~20240004,
+  26~pp.
+\newblock {\url{https://doi.org/10.1515/conop-2024-0004}}.
+
+\bibitem[Crouzeix et~al.(2024)Crouzeix, Greenbaum, and
+  Li]{CrouzeixGreenbaumLi2024}
+Crouzeix, M.; Greenbaum, A.; Li, K.
+\newblock Numerical bounds on the {Crouzeix} ratio for a class of matrices.
+\newblock {\em Calcolo} {\bf 2024}, {\em 61},~Paper No.~32, 18~pp.
+\newblock {\url{https://doi.org/10.1007/s10092-024-00580-6}}.
+
+\bibitem[Crouzeix and Greenbaum(2025)]{CrouzeixGreenbaum2025}
+Crouzeix, M.; Greenbaum, A.
+\newblock A new proof that the numerical range is a complete {$2$}-spectral set
+  for weighted shift matrices.
+\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2508.12768}}.
+
+\bibitem[Delyon and Delyon(1999)]{DelyonDelyon1999}
+Delyon, B.; Delyon, F.
+\newblock Generalization of von {Neumann}'s spectral sets and integral
+  representation of operators.
+\newblock {\em Bull. Soc. Math. France} {\bf 1999}, {\em 127},~25--41.
+\newblock {\url{https://doi.org/10.24033/bsmf.2340}}.
+
+\bibitem[Badea et~al.(2006)Badea, Crouzeix, and
+  Delyon]{BadeaCrouzeixDelyon2006}
+Badea, C.; Crouzeix, M.; Delyon, B.
+\newblock Convex domains and {$K$}-spectral sets.
+\newblock {\em Math. Z.} {\bf 2006}, {\em 252},~345--365.
+\newblock {\url{https://doi.org/10.1007/s00209-005-0857-y}}.
+
+\bibitem[Clou{\^a}tre et~al.(2023)Clou{\^a}tre, Ostermann, and
+  Ransford]{ClouatreOstermannRansford2023}
+Clou{\^a}tre, R.; Ostermann, M.; Ransford, T.
+\newblock An abstract approach to the {Crouzeix} conjecture.
+\newblock {\em J. Operator Theory} {\bf 2023}, {\em 90},~209--221.
+\newblock {\url{https://doi.org/10.7900/jot.2021nov15.2364}}.
+
+\bibitem[Schwenninger and de~Vries(2025)]{SchwenningerDeVries2025}
+Schwenninger, F.L.; de~Vries, J.
+\newblock The double-layer potential for spectral constants revisited.
+\newblock {\em Integral Equations Operator Theory} {\bf 2025}, {\em
+  97},~Article~13, 22~pp.
+\newblock {\url{https://doi.org/10.1007/s00020-025-02800-2}}.
+
+\bibitem[Malman et~al.(2025)Malman, Mashreghi, O'Loughlin, and
+  Ransford]{MalmanEtAl2025}
+Malman, B.; Mashreghi, J.; O'Loughlin, R.; Ransford, T.
+\newblock Double-layer potentials, configuration constants, and applications to
+  numerical ranges.
+\newblock {\em Int. Math. Res. Not. IMRN} {\bf 2025}, {\em 2025},~Paper
+  No.~rnaf084, 34~pp.
+\newblock {\url{https://doi.org/10.1093/imrn/rnaf084}}.
+
+\bibitem[Malman et~al.(2024)Malman, Mashreghi, O'Loughlin, and
+  Ransford]{MalmanRatio2024}
+Malman, B.; Mashreghi, J.; O'Loughlin, R.; Ransford, T.
+\newblock On the {Crouzeix} ratio for {$N\times N$} matrices.
+\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2409.14127}}.
+
+\bibitem[Choi and Greenbaum(2015)]{ChoiGreenbaum2015}
+Choi, D.; Greenbaum, A.
+\newblock Roots of matrices in the study of {GMRES} convergence and
+  {Crouzeix}'s conjecture.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2015}, {\em 36},~289--301.
+\newblock {\url{https://doi.org/10.1137/140961742}}.
+
+\bibitem[Chen et~al.(2025)Chen, Greenbaum, and
+  Trogdon]{ChenGreenbaumTrogdon2025}
+Chen, T.; Greenbaum, A.; Trogdon, T.
+\newblock {GMRES}, pseudospectra, and {Crouzeix}'s conjecture for shifted and
+  scaled {Ginibre} matrices.
+\newblock {\em Math. Comp.} {\bf 2025}, {\em 94},~241--261.
+\newblock {\url{https://doi.org/10.1090/mcom/3963}}.
+
+\bibitem[Okubo and Ando(1975)]{OkuboAndo1975}
+Okubo, K.; Ando, T.
+\newblock Constants related to operators of class {$C_\rho$}.
+\newblock {\em Manuscripta Math.} {\bf 1975}, {\em 16},~385--394.
+\newblock {\url{https://doi.org/10.1007/BF01323467}}.
+
+\bibitem[Davidson et~al.(2018)Davidson, Paulsen, and
+  Woerdeman]{DavidsonPaulsenWoerdeman2018}
+Davidson, K.R.; Paulsen, V.I.; Woerdeman, H.J.
+\newblock Complete spectral sets and numerical range.
+\newblock {\em Proc. Amer. Math. Soc.} {\bf 2018}, {\em 146},~1189--1195.
+\newblock {\url{https://doi.org/10.1090/proc/13801}}.
+
+\bibitem[Hartz and McCarthy(2026)]{HartzMcCarthy2026}
+Hartz, M.; McCarthy, J.E.
+\newblock From {Clou{\^a}tre--Ostermann--Ransford} to {Okubo--Ando}.
+\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2606.02922}}.
+
+\bibitem[Schwenninger and de~Vries(2025)]{SchwenningerDeVriesRho2025}
+Schwenninger, F.L.; de~Vries, J.
+\newblock A sharp bound for the functional calculus of {$\rho$}-contractions.
+\newblock {\em Proc. Amer. Math. Soc.} {\bf 2025}, {\em 153},~4759--4768.
+\newblock {\url{https://doi.org/10.1090/proc/17346}}.
+
+\bibitem[Crouzeix(2025)]{CrouzeixUnbounded2025}
+Crouzeix, M.
+\newblock Numerical ranges and spectral sets: the unbounded case.
+\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2509.19792}}.
+
+\bibitem[Schwenninger and de~Vries(2024)]{SchwenningerDeVries2024}
+Schwenninger, F.L.; de~Vries, J.
+\newblock On abstract spectral constants. In {\em Operator and Matrix Theory,
+  Function Spaces, and Applications}; Ptak, M.; Woerdeman, H.J.; Wojtylak, M.,
+  Eds.; Birkh{\"a}user/Springer: Cham,  2024; Vol. 295, {\em Operator Theory:
+  Advances and Applications}, pp. 335--350.
+\newblock {\url{https://doi.org/10.1007/978-3-031-50613-0_15}}.
+
+\bibitem[Blazhko et~al.(2025)Blazhko, Homza, Schwenninger, de~Vries, and
+  Wojtylak]{BlazhkoEtAl2025}
+Blazhko, H.; Homza, D.; Schwenninger, F.L.; de~Vries, J.; Wojtylak, M.
+\newblock The algebraic numerical range as a spectral set in {Banach} algebras.
+\newblock {\em Canad. J. Math.} {\bf 2025}, pp. 1--25.
+\newblock {\url{https://doi.org/10.4153/S0008414X25000124}}.
+
+\bibitem[Jury and Tsikalas(2024)]{JuryTsikalas2024}
+Jury, M.T.; Tsikalas, G.
+\newblock Positivity conditions on the annulus via the double-layer potential
+  kernel.
+\newblock {\em Studia Math.} {\bf 2024}, {\em 278},~233--265.
+\newblock {\url{https://doi.org/10.4064/sm231023-2-8}}.
+
+\bibitem[Agler et~al.(2025)Agler, Lykova, and Young]{AglerLykovaYoung2025}
+Agler, J.; Lykova, Z.A.; Young, N.J.
+\newblock Function theory on the annulus in the {dp}-norm.
+\newblock {\em Integral Equations Operator Theory} {\bf 2025}, {\em
+  97},~Article~30, 32~pp.
+\newblock {\url{https://doi.org/10.1007/s00020-025-02814-w}}.
+
+\bibitem[Agler et~al.(2024)Agler, Lykova, and Young]{AglerLykovaYoung2024}
+Agler, J.; Lykova, Z.A.; Young, N.J.
+\newblock On the operators with numerical range in an ellipse.
+\newblock {\em J. Funct. Anal.} {\bf 2024}, {\em 287},~Article~110556, 62~pp.
+\newblock {\url{https://doi.org/10.1016/j.jfa.2024.110556}}.
+
+\bibitem[O'Loughlin and Rani(2026)]{OLoughlinRani2026}
+O'Loughlin, R.; Rani, J.
+\newblock {$q$}-numerical ranges and spectral sets.
+\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2603.15536}}.
+
+\end{thebibliography}

@@ -208,16 +208,6 @@ theorem conjTranspose_mem_generatedAlgebra_conjTranspose
   rw [generatedAlgebra, Subalgebra.star_adjoin_comm] at hstar
   simpa only [Set.star_singleton, Matrix.star_eq_conjTranspose] using hstar
 
-/-- Manuscript line 346: equality of the two generated algebras moves a companion
-adjoint from `alg(B)` into `alg(Tᴴ)`. -/
-theorem conjTranspose_mem_generatedAlgebra_conjTranspose_of_eq
-    {n : Type*} [Fintype n] [DecidableEq n] {B T X : SquareMatrix n}
-    (hAlg : generatedAlgebra T = generatedAlgebra B)
-    (hX : X ∈ generatedAlgebra B) : Xᴴ ∈ generatedAlgebra Tᴴ := by
-  apply conjTranspose_mem_generatedAlgebra_conjTranspose
-  rw [hAlg]
-  exact hX
-
 /-- Coefficient in the norm-convergent expansion of `H` in manuscript equation (333). -/
 def doubleLayerCompletionCoefficient
     {n : Type*} [Fintype n] [DecidableEq n]
@@ -288,32 +278,30 @@ theorem companionTailTerm_hasSum_completion_sub_resolvent
   · exact
       (sub_sub_sub_cancel_right H ((1 : SquareMatrix n) - z • T)⁻¹ 1).symm
 
-/-- Each companion tail term lies in `alg(Tᴴ)` once the corresponding unstarred
-companion value lies in the algebra shared by `B` and `T`. -/
+/-- Each companion tail term lies in `alg(Bᴴ)` once the corresponding unstarred
+companion value lies in `alg(B)`. -/
 theorem companionTailTerm_mem_generatedAlgebra_conjTranspose
     {n : Type*} [Fintype n] [DecidableEq n]
-    (z : ℂ) {B T : SquareMatrix n} (G : ℕ → SquareMatrix n)
-    (hAlg : generatedAlgebra T = generatedAlgebra B)
+    (z : ℂ) {B : SquareMatrix n} (G : ℕ → SquareMatrix n)
     (hG : ∀ m : ℕ, G (m + 1) ∈ generatedAlgebra B) (m : ℕ) :
-    companionTailTerm z G m ∈ generatedAlgebra Tᴴ := by
-  apply (generatedAlgebra Tᴴ).smul_mem
-  exact conjTranspose_mem_generatedAlgebra_conjTranspose_of_eq hAlg (hG m)
+    companionTailTerm z G m ∈ generatedAlgebra Bᴴ := by
+  apply (generatedAlgebra Bᴴ).smul_mem
+  exact conjTranspose_mem_generatedAlgebra_conjTranspose (hG m)
 
-/-- Algebraic and topological conclusion of manuscript lines 343--352.  The geometric
-resolvent and holomorphic-calculus work is isolated in the two `HasSum` hypotheses and
-the exact generated-algebra membership hypothesis for positive degrees. -/
+/-- Algebraic and topological conclusion for the auxiliary-basis completion.  The geometric
+resolvent and holomorphic-calculus work is isolated in the two `HasSum` hypotheses, while
+the companion coefficients remain directly in the adjoint algebra of the auxiliary matrix. -/
 theorem completion_sub_resolvent_mem_generatedAlgebra_conjTranspose
     {n : Type*} [Fintype n] [DecidableEq n]
     (z : ℂ) (B T H : SquareMatrix n) (G : ℕ → SquareMatrix n)
-    (hAlg : generatedAlgebra T = generatedAlgebra B)
     (hG : ∀ m : ℕ, G (m + 1) ∈ generatedAlgebra B)
     (hH : HasSum (doubleLayerCompletionTailTerm z T G) (H - 1))
     (hResolvent : HasSum (resolventSeriesTerm z T)
       ((1 : SquareMatrix n) - z • T)⁻¹) :
-    H - ((1 : SquareMatrix n) - z • T)⁻¹ ∈ generatedAlgebra Tᴴ := by
-  apply generatedAlgebra_hasSum_mem Tᴴ (companionTailTerm z G)
+    H - ((1 : SquareMatrix n) - z • T)⁻¹ ∈ generatedAlgebra Bᴴ := by
+  apply generatedAlgebra_hasSum_mem Bᴴ (companionTailTerm z G)
     (H - ((1 : SquareMatrix n) - z • T)⁻¹)
     (companionTailTerm_hasSum_completion_sub_resolvent z T H G hH hResolvent)
-  exact companionTailTerm_mem_generatedAlgebra_conjTranspose z G hAlg hG
+  exact companionTailTerm_mem_generatedAlgebra_conjTranspose z G hG
 
 end CrouzeixConjecture

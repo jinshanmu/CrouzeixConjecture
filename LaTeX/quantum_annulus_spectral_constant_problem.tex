@@ -1,0 +1,681 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.08in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{conjecture}[theorem]{Conjectural sharp value}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\BH}{\mathcal B(\mathcal H)}
+\newcommand{\AR}{\mathbb A_R}
+\newcommand{\QAR}{\mathbb Q\mathbb A_R}
+\newcommand{\Rat}{\operatorname{Rat}}
+\newcommand{\cb}{\mathrm{cb}}
+\newcommand{\fd}{\mathrm{fd}}
+\newcommand{\Mat}{\mathrm M}
+\newcommand{\id}{I}
+\newcommand{\spec}{\sigma}
+
+\title{The Quantum Annulus Spectral Constant Problem}
+\author{}
+\date{Status as of July 23, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Fix \(R>1\).  The quantum annulus of type \(R\) is the class of
+invertible Hilbert-space operators \(T\) satisfying
+\(\|T\|\leq R\) and \(\|T^{-1}\|\leq R\).  The associated spectral
+constant \(K(R)\) is the least universal constant for which
+\[
+ \|f(T)\|
+ \leq K(R)\max_{R^{-1}\leq |z|\leq R}|f(z)|
+\]
+holds for every operator in this class and every rational function
+with no pole on the closed annulus.  This note gives a self-contained
+formulation of the problem, its scaling normalization, its scalar,
+finite-dimensional, and completely bounded variants, the known
+bounds, and exact criteria for a solution.  The sharp value for a
+fixed finite \(R>1\) remains unknown.  The natural candidate is
+\(K(R)=2\).
+\end{abstract}
+
+\section{The annulus and its quantum operator class}
+
+For \(R>1\), write
+\[
+ \AR=\{z\in\C:R^{-1}<|z|<R\},
+ \qquad
+ \overline{\AR}=\{z\in\C:R^{-1}\leq |z|\leq R\}.
+\]
+If \(\mathcal H\) is a complex Hilbert space, define
+\begin{equation}
+ \QAR(\mathcal H)
+ =
+ \left\{
+ T\in\mathcal B(\mathcal H):
+ T\text{ is invertible},\
+ \|T\|\leq R,\
+ \|T^{-1}\|\leq R
+ \right\}.
+ \label{eq:quantum-annulus}
+\end{equation}
+When the underlying Hilbert space is understood, it will be suppressed
+from the notation.
+
+Every \(T\in\QAR(\mathcal H)\) satisfies
+\[
+ \spec(T)\subseteq\overline{\AR}.
+\]
+Indeed, \(|\lambda|\leq R\) for \(\lambda\in\spec(T)\), while
+\(\lambda^{-1}\in\spec(T^{-1})\) gives \(|\lambda|\geq R^{-1}\).
+
+The following positive-operator condition is another useful
+description of the class \cite{McCulloughPascoe2023}.
+
+\begin{proposition}[Defect characterization]
+\label{prop:defect-characterization}
+For an invertible \(T\in\mathcal B(\mathcal H)\), the following are
+equivalent:
+\begin{enumerate}
+ \item \(T\in\QAR(\mathcal H)\);
+ \item
+ \begin{equation}
+  \beta_R(T^*,T)
+  :=
+  (R^2+R^{-2})\id
+  -T^*T-(T^*T)^{-1}
+  \succeq0.
+  \label{eq:beta-defect}
+ \end{equation}
+\end{enumerate}
+\end{proposition}
+
+An invertible operator satisfying \(\beta_R(T^*,T)=0\) is called a
+\emph{quantum annulus unitary}.  Such an operator need not be normal;
+this terminology should not be confused with a normal operator whose
+spectrum lies on the boundary of the classical annulus.
+
+\subsection{Reduction of a general annulus to the symmetric form}
+
+Let \(0<a<b\), and set
+\[
+ \mathbb A(a,b)=\{z\in\C:a<|z|<b\}.
+\]
+The natural quantum class associated with this annulus is
+\[
+ \mathbb Q\mathbb A(a,b;\mathcal H)
+ =
+ \left\{
+ T\in\mathcal B(\mathcal H):
+ T\text{ is invertible},\
+ \|T\|\leq b,\
+ \|T^{-1}\|\leq a^{-1}
+ \right\}.
+\]
+Put
+\begin{equation}
+ c=\sqrt{ab},
+ \qquad
+ R=\sqrt{\frac ba},
+ \qquad
+ S=c^{-1}T.
+ \label{eq:scaling-parameters}
+\end{equation}
+Then
+\[
+ T\in\mathbb Q\mathbb A(a,b;\mathcal H)
+ \quad\Longleftrightarrow\quad
+ S\in\QAR(\mathcal H),
+\]
+and \(z\mapsto c^{-1}z\) maps \(\mathbb A(a,b)\) onto \(\AR\).
+Moreover, if \(g(w)=f(cw)\), then \(f(T)=g(S)\) and
+\[
+ \max_{a\leq|z|\leq b}|f(z)|
+ =
+ \max_{R^{-1}\leq|w|\leq R}|g(w)|.
+\]
+Consequently, the spectral constant for a general concentric annulus
+depends only on the ratio \(b/a\), equivalently on its conformal
+modulus.  It is therefore enough to study the symmetric one-parameter
+family \(\AR\).
+
+\begin{remark}[A second convention]
+Some papers use \(0<\rho<1\) and write the symmetric annulus as
+\(\{\rho<|z|<\rho^{-1}\}\), with
+\(\|\rho T\|,\|\rho T^{-1}\|\leq1\).  This is exactly the convention
+above with \(\rho=R^{-1}\).
+\end{remark}
+
+\section{Spectral and complete spectral constants}
+
+For a compact set \(X\subseteq\C\), let \(\Rat(X)\) be the algebra of
+rational functions whose poles lie outside \(X\), equipped with
+\[
+ \|f\|_X=\max_{z\in X}|f(z)|.
+\]
+If \(\spec(T)\subseteq X\), then \(f(T)\) is defined by the rational
+functional calculus.
+
+\begin{definition}[\(K\)-spectral set]
+\label{def:spectral-set}
+A compact set \(X\subseteq\C\) is a \(K\)-spectral set for \(T\) if
+\[
+ \|f(T)\|\leq K\|f\|_X
+ \qquad
+ \bigl(f\in\Rat(X)\bigr).
+\]
+For a fixed \(T\in\QAR(\mathcal H)\), define
+\[
+ \kappa_R(T)
+ =
+ \sup_{\substack{f\in\Rat(\overline{\AR})\\
+                  \|f\|_{\overline{\AR}}\leq1}}
+ \|f(T)\|.
+\]
+\end{definition}
+
+\begin{definition}[Universal scalar constant]
+\label{def:universal-constant}
+The spectral constant of the quantum annulus is
+\begin{equation}
+ K(R)
+ =
+ \sup_{\mathcal H}
+ \ \sup_{T\in\QAR(\mathcal H)}
+ \kappa_R(T).
+ \label{eq:K-def}
+\end{equation}
+Equivalently, \(K(R)\) is the least constant \(K\) such that
+\(\overline{\AR}\) is a \(K\)-spectral set for every
+\(T\in\QAR(\mathcal H)\), on every complex Hilbert space
+\(\mathcal H\).
+\end{definition}
+
+There is also a matrix-valued version.  If
+\(F=[f_{ij}]\in\Mat_m(\Rat(X))\), define
+\[
+ F(T)=[f_{ij}(T)]
+ \quad\text{on }\mathcal H^{\oplus m},
+ \qquad
+ \|F\|_X=\max_{z\in X}\|F(z)\|_{\Mat_m}.
+\]
+
+\begin{definition}[Universal complete constant]
+\label{def:complete-constant}
+The completely bounded, or complete spectral, constant is
+\begin{equation}
+ K_{\cb}(R)
+ =
+ \sup_{\mathcal H}
+ \ \sup_{T\in\QAR(\mathcal H)}
+ \ \sup_{m\geq1}
+ \ \sup_{\substack{F\in\Mat_m(\Rat(\overline{\AR}))\\
+                   \|F\|_{\overline{\AR}}\leq1}}
+ \|F(T)\|.
+ \label{eq:Kcb-def}
+\end{equation}
+Necessarily,
+\[
+ K(R)\leq K_{\cb}(R).
+\]
+\end{definition}
+
+\subsection{Finite-dimensional constants}
+
+For \(n\geq1\), set
+\[
+ K_n(R)
+ =
+ \sup_{\substack{T\in\Mat_n(\C)\ {\rm invertible}\\
+                  \|T\|,\|T^{-1}\|\leq R}}
+ \kappa_R(T),
+ \qquad
+ K_{\fd}(R)=\sup_{n\geq1}K_n(R).
+\]
+Then
+\begin{equation}
+ 1\leq K_n(R)\leq K_{\fd}(R)\leq K(R)\leq K_{\cb}(R).
+ \label{eq:constant-hierarchy}
+\end{equation}
+The distinction between \(K_{\fd}(R)\) and \(K(R)\) is substantive:
+some of the strongest matrix estimates currently use
+finite-dimensional extremal-function arguments whose validity on an
+arbitrary Hilbert space is not known.
+
+\section{The sharp-constant problem}
+
+\begin{problem}[General quantum annulus spectral constant]
+\label{prob:general-constant}
+For each fixed \(R>1\), determine the exact functions
+\[
+ R\longmapsto K(R)
+ \qquad\text{and}\qquad
+ R\longmapsto K_{\cb}(R).
+\]
+In particular:
+\begin{enumerate}
+ \item determine whether \(K(R)=2\) for every \(R>1\);
+ \item determine whether \(K_{\cb}(R)=2\) for every \(R>1\);
+ \item determine whether
+ \[
+  K_{\fd}(R)=K(R)=K_{\cb}(R);
+ \]
+ \item identify extremal or asymptotically extremal pairs
+ \((T,f)\), and decide whether extremality can always be witnessed in
+ finite dimension.
+\end{enumerate}
+\end{problem}
+
+\begin{conjecture}
+\label{conj:sharp-two}
+For every \(R>1\),
+\begin{equation}
+ K(R)=2.
+ \label{eq:conjectural-two}
+\end{equation}
+The stronger complete form asks whether \(K_{\cb}(R)=2\).
+\end{conjecture}
+
+Equation \eqref{eq:conjectural-two} is the natural sharp-value
+candidate because \(2\) is already a universal lower bound and is the
+exact limiting value as the annulus becomes thick.  It is not
+currently a theorem for a general fixed finite \(R>1\).
+
+\subsection{Equivalent Laurent-polynomial targets}
+
+Laurent polynomials are uniformly dense in
+\(\Rat(\overline{\AR})\).  Therefore the scalar assertion
+\(K(R)\leq2\) is equivalent to the following concrete family of
+inequalities:
+\begin{problem}[Sharp scalar Laurent inequality]
+\label{prob:scalar-laurent}
+Prove that, for every complex Hilbert space \(\mathcal H\), every
+\(T\in\QAR(\mathcal H)\), every \(N\geq0\), and every
+\(a_{-N},\ldots,a_N\in\C\),
+\begin{equation}
+ \left\|
+  \sum_{k=-N}^{N}a_kT^k
+ \right\|
+ \leq
+ 2
+ \max_{R^{-1}\leq|z|\leq R}
+ \left|
+  \sum_{k=-N}^{N}a_kz^k
+ \right|.
+ \label{eq:scalar-laurent-target}
+\end{equation}
+\end{problem}
+
+Likewise, the complete assertion \(K_{\cb}(R)\leq2\) is equivalent to
+the matrix-valued version:
+\begin{problem}[Sharp matricial Laurent inequality]
+\label{prob:matrix-laurent}
+Prove that, for every \(m,N\geq1\), every
+\(A_{-N},\ldots,A_N\in\Mat_m(\C)\), and every
+\(T\in\QAR(\mathcal H)\),
+\begin{equation}
+ \left\|
+  \sum_{k=-N}^{N}A_k\otimes T^k
+ \right\|
+ \leq
+ 2
+ \max_{R^{-1}\leq|z|\leq R}
+ \left\|
+  \sum_{k=-N}^{N}A_kz^k
+ \right\|_{\Mat_m}.
+ \label{eq:matrix-laurent-target}
+\end{equation}
+\end{problem}
+
+The negative powers in
+\eqref{eq:scalar-laurent-target}--\eqref{eq:matrix-laurent-target}
+are essential.  A polynomial estimate alone does not solve the
+annulus problem, because the rational functional calculus must see
+both boundary components.
+
+\section{What is known}
+
+Define
+\begin{equation}
+ K_{\mathrm{Tom}}(R)
+ =
+ 2\left(
+  1+
+  \frac{2R^2}
+  {(R^2+1)\sqrt{R^4-1}}
+ \right).
+ \label{eq:Tomar-bound}
+\end{equation}
+Also set
+\begin{equation}
+ K_{\mathrm{BBC}}(R)
+ =
+ 2+
+ \min\left\{
+ \frac{R+1}{\sqrt{R^2+R+1}},\,
+ \sqrt{\frac{R^2+1}{R^2-1}}
+ \right\}.
+ \label{eq:BBC-bound}
+\end{equation}
+
+\par\medskip
+\begin{theorem}[Current universal bounds]
+\label{thm:known-universal-bounds}
+For every \(R>1\),
+\begin{align}
+ 2
+ &\leq K(R)
+ \leq
+ \min\left\{
+  1+\sqrt2,\,
+  K_{\mathrm{Tom}}(R)
+ \right\},
+ \label{eq:scalar-bounds}\\
+ 2
+ &\leq K_{\cb}(R)
+ \leq
+ \min\left\{
+  K_{\mathrm{BBC}}(R),\,
+  K_{\mathrm{Tom}}(R)
+ \right\}.
+ \label{eq:complete-bounds}
+\end{align}
+Consequently,
+\begin{equation}
+ \lim_{R\to\infty}K(R)
+ =
+ \lim_{R\to\infty}K_{\cb}(R)
+ =2.
+ \label{eq:asymptotic-two}
+\end{equation}
+\end{theorem}
+
+\noindent
+The ingredients of Theorem~\ref{thm:known-universal-bounds} are:
+\begin{itemize}
+ \item Tsikalas's lower bound \(K(R)\geq2\)
+ \cite{Tsikalas2022};
+ \item the uniform scalar estimate \(K(R)\leq1+\sqrt2\) of
+ Crouzeix and Greenbaum \cite{CrouzeixGreenbaum2019};
+ \item the complete intersection-of-disks estimate
+ \(K_{\cb}(R)\leq K_{\mathrm{BBC}}(R)\leq2+2/\sqrt3\) of
+ Badea, Beckermann, and Crouzeix \cite{BadeaBeckermannCrouzeix2009};
+ \item Tomar's complete estimate
+ \(K_{\cb}(R)\leq K_{\mathrm{Tom}}(R)\)
+ \cite{Tomar2026}.
+\end{itemize}
+Pascoe first established the exact asymptotic value
+\(\lim_{R\to\infty}K(R)=2\) through a degeneration to the quantum
+cross \cite{Pascoe2025}.  The complete estimate
+\eqref{eq:complete-bounds} now also yields the complete asymptotic
+statement in \eqref{eq:asymptotic-two}.
+
+The unresolved scalar gap can be displayed as
+\begin{equation}
+ 0\leq K(R)-2
+ \leq
+ \min\left\{
+  \sqrt2-1,\,
+  \frac{4R^2}{(R^2+1)\sqrt{R^4-1}}
+ \right\}.
+ \label{eq:unresolved-gap}
+\end{equation}
+In particular,
+\[
+ K_{\mathrm{Tom}}(R)
+ =
+ 2+\frac{4}{R^2}+O(R^{-4})
+ \qquad(R\to\infty).
+\]
+
+\begin{theorem}[Finite-dimensional bounds]
+\label{thm:finite-dimensional-bound}
+For matrices of arbitrary finite size,
+\begin{equation}
+ 2\leq K_{\fd}(R)
+ \leq
+ 1+\sqrt{1+\frac{2}{R^2+1}}.
+ \label{eq:Crouzeix-matrix-bound}
+\end{equation}
+\end{theorem}
+
+The lower bound for the all-finite-sizes constant is recorded in
+\cite{Tsikalas2026}; it does not assert that every fixed dimension has
+constant at least \(2\) (indeed \(K_1(R)=1\)).  The upper bound is
+Crouzeix's finite-dimensional estimate \cite{Crouzeix2025}.  It is
+stated there under the strict assumptions
+\(\|T\|<R\) and \(\|T^{-1}\|<R\); the non-strict version for rational
+functions follows by applying the result with \(R'>R\), chosen close
+enough that the function has no pole on
+\(\overline{\mathbb A}_{R'}\), and then letting \(R'\downarrow R\).
+The argument producing \eqref{eq:Crouzeix-matrix-bound} is not
+presently known to extend to arbitrary Hilbert-space operators or to
+the completely bounded setting.
+
+\begin{remark}[Status]
+The exact value at a fixed finite modulus remains open; this is
+stated explicitly in the recent literature
+\cite{PalPascoeTomar2026,Tsikalas2026}.  The equality
+\(K(R)=2\) should therefore be described as the sharp candidate, not
+as an established result.  The quantum cross has exact constant
+\(2\), but it is a limiting problem and does not settle any fixed
+finite \(R\) \cite{Pascoe2025}.
+\end{remark}
+
+\begin{remark}[The degenerate endpoint]
+If the parameter is formally extended to \(R=1\), the operator class
+consists of unitaries and the corresponding constant is \(1\).
+Thus the lower bound \(K(R)\geq2\) for every \(R>1\) forces a jump at
+the degenerate endpoint.  The behavior as \(R\downarrow1\) from the
+nondegenerate side is itself an interesting sharp-constant question.
+\end{remark}
+
+\section{Why the problem is not two separate disk inequalities}
+
+The two norm assumptions in \eqref{eq:quantum-annulus} separately
+give contraction estimates:
+\[
+ \|R^{-1}T\|\leq1,
+ \qquad
+ \|R^{-1}T^{-1}\|\leq1.
+\]
+Thus the outer disk controls analytic powers of \(T\), and the inner
+disk controls analytic powers of \(T^{-1}\).  A general Laurent
+polynomial, however, couples these two parts.  Intersections of
+spectral sets need not remain spectral sets with constant \(1\).
+The quantum annulus problem asks for the optimal cost of this
+coupling.
+
+McCullough and Pascoe proved that every \(T\in\QAR\) dilates to a
+quantum annulus unitary \(J\) in such a way that
+\[
+ T^n=P_{\mathcal H}J^n|_{\mathcal H}
+ \qquad(n\in\mathbb Z)
+\]
+\cite{McCulloughPascoe2023}.  This is a powerful reduction, but
+\(J\) need not be a normal operator supported on
+\(\partial\AR\).  Hence the dilation does not by itself give the
+constant \(1\), or determine the sharp constant.
+
+Analytic proofs face the same two-boundary phenomenon.  On a convex
+domain, positivity of the double-layer kernel is a central source of
+spectral-set bounds.  For an annulus, the inner boundary has the
+opposite orientation and produces an additional term.  A sharp proof
+must preserve enough interaction between the two boundaries to reach
+the lower bound \(2\), rather than estimate the two contributions
+independently.
+
+\section{Exact requirements for a complete solution}
+
+A proof of the scalar conjecture for a fixed \(R>1\) must establish
+\eqref{eq:scalar-laurent-target} uniformly in all of the following:
+\[
+ \text{Hilbert space dimension},\qquad
+ T\in\QAR,\qquad
+ \text{Laurent degree},\qquad
+ \text{scalar coefficients}.
+\]
+Because \(K(R)\geq2\), such an upper bound would immediately imply
+\(K(R)=2\).
+
+A proof restricted to matrices would determine
+\(K_{\fd}(R)\), but an additional approximation, compactness, or
+dilation argument would be needed to identify that value with the
+all-Hilbert-space constant.  Similarly, a scalar proof does not
+automatically establish the complete constant: the latter requires
+the uniform matricial inequality \eqref{eq:matrix-laurent-target}.
+
+The following are therefore clean intermediate targets.
+
+\begin{problem}[Finite-dimensional sharp constant]
+\label{prob:finite-dimensional}
+Determine \(K_n(R)\) for each \(n\), and determine
+\[
+ K_{\fd}(R)=\sup_{n\geq1}K_n(R).
+\]
+In particular, decide whether \(K_{\fd}(R)=2\).
+\end{problem}
+
+\begin{problem}[Finite-to-infinite transfer]
+\label{prob:finite-infinite}
+Determine whether
+\[
+ K_{\fd}(R)=K(R)
+\]
+for every \(R>1\), and, if so, construct a transfer principle that
+preserves both bounds
+\(\|T\|\leq R\) and \(\|T^{-1}\|\leq R\).
+\end{problem}
+
+\begin{problem}[Scalar-to-complete transfer]
+\label{prob:scalar-complete}
+Determine whether
+\[
+ K_{\cb}(R)=K(R)
+\]
+for every \(R>1\).  Equivalently, determine whether a sharp scalar
+annulus inequality automatically amplifies to all matrix levels
+without loss.
+\end{problem}
+
+\begin{problem}[Extremal structure]
+\label{prob:extremals}
+Classify exact or asymptotic extremizers.  In particular, determine
+whether the lower value \(2\) can be approached, for fixed \(R\), by
+matrices of bounded dimension, or whether increasing dimension is
+intrinsic.
+\end{problem}
+
+\section{A concise master formulation}
+
+The complete research problem may be compressed into one statement.
+
+\begin{problem}[Master problem]
+\label{prob:master}
+Fix \(R>1\).  Find the least constants \(K_{\mathrm{sc}}(R)\) and
+\(K_{\mathrm{mat}}(R)\) such that, for every complex Hilbert space
+\(\mathcal H\), every invertible
+\(T\in\mathcal B(\mathcal H)\) with
+\(\|T\|,\|T^{-1}\|\leq R\), and every Laurent polynomial
+\[
+ F(z)=\sum_{k=-N}^{N}A_kz^k,
+\]
+one has
+\[
+ \left\|\sum_{k=-N}^{N}A_k\otimes T^k\right\|
+ \leq
+ K_{\mathrm{mat}}(R)
+ \max_{R^{-1}\leq|z|\leq R}\|F(z)\|.
+\]
+Here \(A_k\in\Mat_m(\C)\), uniformly over \(m\geq1\), while the
+scalar constant \(K_{\mathrm{sc}}(R)\) is obtained by restricting to
+\(m=1\).  Thus
+\[
+ K_{\mathrm{sc}}(R)=K(R),
+ \qquad
+ K_{\mathrm{mat}}(R)=K_{\cb}(R).
+\]
+Determine both constants exactly, decide whether they coincide, and
+in particular decide whether both are equal to \(2\).
+\end{problem}
+
+\begin{thebibliography}{99}
+
+\bibitem{BadeaBeckermannCrouzeix2009}
+C. Badea, B. Beckermann, and M. Crouzeix,
+\emph{Intersections of several disks of the Riemann sphere as
+\(K\)-spectral sets},
+Commun. Pure Appl. Anal. \textbf{8} (2009), no.~1, 37--54.
+\url{https://doi.org/10.3934/cpaa.2009.8.37}.
+
+\bibitem{CrouzeixGreenbaum2019}
+M. Crouzeix and A. Greenbaum,
+\emph{Spectral sets: numerical range and beyond},
+SIAM J. Matrix Anal. Appl. \textbf{40} (2019), no.~3,
+1087--1101.
+\url{https://doi.org/10.1137/18M1198417}.
+
+\bibitem{Crouzeix2025}
+M. Crouzeix,
+\emph{Spectral estimates in the quantum annulus and in the numerical
+annulus},
+arXiv:2512.11813, 2025.
+\url{https://arxiv.org/abs/2512.11813}.
+
+\bibitem{McCulloughPascoe2023}
+S. McCullough and J.~E. Pascoe,
+\emph{Geometric dilations and operator annuli},
+arXiv:2202.08872v4, 2023.
+\url{https://arxiv.org/abs/2202.08872}.
+
+\bibitem{PalPascoeTomar2026}
+S. Pal, J.~E. Pascoe, and N. Tomar,
+\emph{Spectral constants for the quantum annulus},
+arXiv:2601.17560v2, 2026; Communications on Pure and Applied
+Analysis, to appear.
+\url{https://arxiv.org/abs/2601.17560}.
+
+\bibitem{Pascoe2025}
+J.~E. Pascoe,
+\emph{The spectral constant for the quantum cross and asymptotically
+sharp bounds for annuli},
+arXiv:2505.06230, 2025.
+\url{https://arxiv.org/abs/2505.06230}.
+
+\bibitem{Tomar2026}
+N. Tomar,
+\emph{Regular quantum annulus unitary dilation and applications},
+arXiv:2606.14366, 2026.
+\url{https://arxiv.org/abs/2606.14366}.
+
+\bibitem{Tsikalas2022}
+G. Tsikalas,
+\emph{A note on a spectral constant associated with an annulus},
+Oper. Matrices \textbf{16} (2022), no.~1, 95--99.
+\url{https://doi.org/10.7153/oam-2022-16-09}.
+
+\bibitem{Tsikalas2026}
+G. Tsikalas,
+\emph{Spectral estimates over multiply connected domains},
+arXiv:2607.10107, 2026.
+\url{https://arxiv.org/abs/2607.10107}.
+
+\end{thebibliography}
+
+\end{document}

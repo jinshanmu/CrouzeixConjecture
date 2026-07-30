@@ -2,6 +2,7 @@ module
 
 public import CrouzeixConjecture.MainPerturbationReduction
 public import CrouzeixConjecture.CompletionDiagonalization
+public import CrouzeixConjecture.Limiting
 public import CrouzeixConjecture.NumericalRangeConvexity
 public import CrouzeixConjecture.OuterApproximationLimit
 public import CrouzeixConjecture.SimpleSpectrumDensity
@@ -44,9 +45,8 @@ theorem polynomialCrouzeixBound_of_simple_outer_approximants
     (B : ℕ → SquareMatrix n)
     (hBsimple : ∀ k, HasDistinctEigenvalues (B k))
     (hBtends : Tendsto B atTop (nhds A))
-    (C : Set ℂ) (R : ℝ)
-    (hCcompact : IsCompact C) (hR : 0 ≤ R)
-    (hCbound : ∀ z ∈ C, ‖z‖ ≤ R)
+    (C : Set ℂ)
+    (hCcompact : IsCompact C)
     (s : ℕ → Set ℂ)
     (hscompact : ∀ k, IsCompact (s k))
     (hWAs : ∀ k, numericalRange A ⊆ s k)
@@ -67,15 +67,12 @@ theorem polynomialCrouzeixBound_of_simple_outer_approximants
         2 * maxPolynomialModulusOnSet (s k) p := by
     apply norm_polynomialEval_le_two_mul_of_simpleSpectrum
       (B k) (hBsimple k) p (s k)
-      (maxPolynomialModulusOnSet (s k) p) R
+      (maxPolynomialModulusOnSet (s k) p)
     · exact maxPolynomialModulusOnSet_nonneg (hscompact k) (hsne k) p
-    · exact hR
     · intro z hz
       exact hWBs k (matrixSpectrum_subset_numericalRange (B k) hz)
     · intro z hz
       exact norm_polynomial_eval_le_maxOnSet (hscompact k) (hsne k) p hz
-    · intro z hz
-      exact hCbound z (hsC k hz)
     · exact hDoubleLayer k
     · exact hCompletion
   have hmax :
@@ -93,9 +90,8 @@ theorem polynomialCrouzeixBound_of_simple_outer_approximants
 constructed from the characteristic-resultant argument. -/
 theorem polynomialCrouzeixBound_of_outer_approximants
     (A : SquareMatrix n) (p : Polynomial ℂ)
-    (C : Set ℂ) (R : ℝ)
-    (hCcompact : IsCompact C) (hR : 0 ≤ R)
-    (hCbound : ∀ z ∈ C, ‖z‖ ≤ R)
+    (C : Set ℂ)
+    (hCcompact : IsCompact C)
     (s : ℕ → Set ℂ)
     (hscompact : ∀ k, IsCompact (s k))
     (hWAs : ∀ k, numericalRange A ⊆ s k)
@@ -114,7 +110,7 @@ theorem polynomialCrouzeixBound_of_outer_approximants
     A p (simpleSpectrumApproximation A)
     (simpleSpectrumApproximation_hasDistinctEigenvalues A)
     (tendsto_simpleSpectrumApproximation A)
-    C R hCcompact hR hCbound s hscompact hWAs hWBs hsC hWAC
+    C hCcompact s hscompact hWAs hWBs hsC hWAC
     radius hradius hclose hDoubleLayer hCompletion
 
 /-- The canonical parallel bodies discharge every compactness, convexity, containment, and
@@ -133,19 +129,6 @@ theorem polynomialCrouzeixBound_of_parallelOuterDomains
   have hKcompact : IsCompact K := isCompact_numericalRange A
   have hKne : K.Nonempty := numericalRange_nonempty A
   have hCcompact : IsCompact C := fixedOuterNeighborhood_isCompact hKcompact
-  have hCbound : ∀ z ∈ C, ‖z‖ ≤ ‖A‖ + 1 := by
-    intro z hz
-    change z ∈ Metric.cthickening 1 K at hz
-    rw [hKcompact.cthickening_eq_biUnion_closedBall (by norm_num : (0 : ℝ) ≤ 1)] at hz
-    simp only [Set.mem_iUnion] at hz
-    obtain ⟨w, hwK, hzw⟩ := hz
-    have hdist : ‖z - w‖ ≤ 1 := by
-      simpa [dist_eq_norm] using hzw
-    calc
-      ‖z‖ = ‖(z - w) + w‖ := by ring_nf
-      _ ≤ ‖z - w‖ + ‖w‖ := norm_add_le _ _
-      _ ≤ 1 + ‖A‖ := add_le_add hdist (norm_le_of_mem_numericalRange A hwK)
-      _ = ‖A‖ + 1 := add_comm _ _
   have hscompact (k : ℕ) :
       IsCompact (closure (parallelOuterDomain K k)) :=
     (parallelOuterDomain_data hKcompact hconvex hKne k).closure_isCompact
@@ -163,8 +146,7 @@ theorem polynomialCrouzeixBound_of_parallelOuterDomains
     change K ⊆ Metric.cthickening 1 K
     exact Metric.self_subset_cthickening K
   exact polynomialCrouzeixBound_of_outer_approximants
-    A p C (‖A‖ + 1)
-    hCcompact (by positivity) hCbound
+    A p C hCcompact
     (fun k ↦ closure (parallelOuterDomain K k))
     hscompact hWAs hWBs hsC hKC
     outerApproximationRadius tendsto_outerApproximationRadius
