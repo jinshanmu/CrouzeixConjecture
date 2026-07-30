@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  30 JUL 2026 23:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  31 JUL 2026 00:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1058,7 +1058,7 @@ Package: seqsplit 2006/08/07 v0.1 Splitting long sequences (DNA, RNA, proteins,
 )
 \c@manuscriptresult=\count384
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 87.
+h' as default language. on input line 89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
@@ -1193,7 +1193,7 @@ Package cleveref Info: always capitalise cross-reference names on input line 78
 52.
 Package cleveref Info: no abbreviation of names on input line 7852.
 )
-LaTeX Font Info:    Trying to load font information for T1+ppl on input line 87
+LaTeX Font Info:    Trying to load font information for T1+ppl on input line 89
 .
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/t1ppl.fd
@@ -1202,24 +1202,24 @@ File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 (./the_numerical_range_is_a_2_spectral_set_v2.aux)
 \openout1 = `the_numerical_range_is_a_2_spectral_set_v2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1251,20 +1251,20 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 87.
-Package microtype Info: Applying patch `item' on input line 87.
-Package microtype Info: Applying patch `toc' on input line 87.
-Package microtype Info: Applying patch `eqnum' on input line 87.
-Package microtype Info: Applying patch `footnote' on input line 87.
-Package microtype Info: Applying patch `verbatim' on input line 87.
-LaTeX Info: Redefining \microtypesetup on input line 87.
+LaTeX Info: Redefining \microtypecontext on input line 89.
+Package microtype Info: Applying patch `item' on input line 89.
+Package microtype Info: Applying patch `toc' on input line 89.
+Package microtype Info: Applying patch `eqnum' on input line 89.
+Package microtype Info: Applying patch `footnote' on input line 89.
+Package microtype Info: Applying patch `verbatim' on input line 89.
+LaTeX Info: Redefining \microtypesetup on input line 89.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 87.
+LaTeX Info: Redefining \showhyphens on input line 89.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1278,7 +1278,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 87.
+or `english'. on input line 89.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
@@ -1322,58 +1322,58 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package newfloat Info: `float' package detected.
-Package hyperref Info: Link coloring ON on input line 87.
+Package hyperref Info: Link coloring ON on input line 89.
 (./the_numerical_range_is_a_2_spectral_set_v2.out)
 (./the_numerical_range_is_a_2_spectral_set_v2.out)
 \@outlinefile=\write4
 \openout4 = `the_numerical_range_is_a_2_spectral_set_v2.out'.
 
 LaTeX Font Info:    Trying to load font information for OT1+ppl on input line 8
-7.
+9.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 LaTeX Font Info:    Trying to load font information for OML+zplm on input line 
-87.
+89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+zplm on input line 
-87.
+89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+zplm on input line 
-87.
+89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 87.
+(Font)              scaled to size 10.42007pt on input line 89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 87.
+(Font)              scaled to size 7.91925pt on input line 89.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 87.
+(Font)              scaled to size 6.25204pt on input line 89.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 87.
+(Font)              scaled to size 10.42007pt on input line 89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 87.
+(Font)              scaled to size 7.91925pt on input line 89.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 87.
+(Font)              scaled to size 6.25204pt on input line 89.
 LaTeX Font Info:    Trying to load font information for OT1+zplm on input line 
-87.
+89.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
@@ -1386,497 +1386,497 @@ Package microtype Info: Loading generic protrusion settings for font family
 (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-eur.cfg
 File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 )
-LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 87.
+LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 89.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `normal'
-(Font)                  U/msb/m/n --> U/msb/m/n on input line 87.
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 89.
 LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
-(Font)                  U/msb/m/n --> U/msb/m/n on input line 87.
+(Font)                  U/msb/m/n --> U/msb/m/n on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\times' on input line 87.
+(hyperref)                removing `\times' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 87.
+(hyperref)                removing `superscript' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\in' on input line 87.
+(hyperref)                removing `\in' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 87.
+(hyperref)                removing `superscript' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lVert' on input line 87.
+(hyperref)                removing `\lVert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rVert' on input line 87.
+(hyperref)                removing `\rVert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 87.
+(hyperref)                removing `subscript' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 87.
+(hyperref)                removing `superscript' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lVert' on input line 87.
+(hyperref)                removing `\lVert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 87.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 87.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cdot' on input line 87.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 87.
+(hyperref)                removing `\leavevmode@ifvmode' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 87.
+(hyperref)                removed on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rVert' on input line 87.
+(hyperref)                removing `\cdot' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 87.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lVert' on input line 87.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 87.
+(hyperref)                removing `\leavevmode@ifvmode' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 87.
+(hyperref)                removed on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\cdot' on input line 87.
+(hyperref)                removing `\rVert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 87.
+(hyperref)                removing `subscript' on input line 89.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 89.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 89.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lVert' on input line 89.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 87.
+(hyperref)                removed on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rVert' on input line 87.
+(hyperref)                removing `\cdot' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\leavevmode@ifvmode' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                \kern 1.66702pt
+(hyperref)                removed on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\rVert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@currenvir' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dspbrk@context' on input line 87.
+(hyperref)                removing `\<def>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 87.
+(hyperref)                removing `\@currenvir' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tag' on input line 87.
+(hyperref)                removing `\dspbrk@context' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\z@' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `\tag' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\print@eqnum' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\incr@eqnum' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\print@eqnum' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\incr@eqnum' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfuzz' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\maxdimen' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\setbox' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 87.
+(hyperref)                removing `\hfuzz' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 87.
+(hyperref)                removing `\maxdimen' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\displaywidth' on input line 87.
+(hyperref)                removing `\setbox' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `\z@' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\split@warning' on input line 87.
+(hyperref)                removing `\hbox' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\everymath' on input line 87.
+(hyperref)                removing `\displaywidth' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@emptytoks' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 87.
+(hyperref)                removing `\split@warning' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 87.
+(hyperref)                removing `\everymath' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\@emptytoks' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\displaystyle' on input line 87.
+(hyperref)                removing `\mathsurround' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lVert' on input line 87.
+(hyperref)                removing `\z@' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rVert' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leq' on input line 87.
+(hyperref)                removing `\displaystyle' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\max' on input line 87.
+(hyperref)                removing `\lVert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 87.
+(hyperref)                removing `\rVert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\in' on input line 87.
+(hyperref)                removing `\leq' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lvert' on input line 87.
+(hyperref)                removing `\max' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rvert' on input line 87.
+(hyperref)                removing `subscript' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 87.
+(hyperref)                removing `\in' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\df@tag' on input line 87.
+(hyperref)                removing `\lvert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\rvert' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\<def>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\df@tag' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\df@label' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\df@tag' on input line 87.
+(hyperref)                removing `\df@label' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\df@tag' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alt@tag' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\<let>-command' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\alt@tag' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\global' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\global' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `\let' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 87.
+(hyperref)                removing `math shift' on input line 89.
 
-Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 87
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 89.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 89.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 89.
+
+Package marginnote Info: Margin note 1.1 is on absolute page 1 on input line 89
 .
-Package marginnote Info: right page because not two side mode on input line 87.
+Package marginnote Info: right page because not two side mode on input line 89.
 
-Package marginnote Info: xpos seems to be 76.82234pt on input line 87.
+Package marginnote Info: xpos seems to be 76.82234pt on input line 89.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -2026,14 +2026,14 @@ L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `the_numerical_range_is_a_2_spectral_set_v2.o
 ut' has not changed.
-(rerunfilecheck)             Checksum: CBED3A3639A0E5B8B72AEE9A19E30903;2033.
+(rerunfilecheck)             Checksum: D3FF63D84682EB60BDA7E55B1004796D;2050.
  ) 
 Here is how much of TeX's memory you used:
- 34543 strings out of 473190
- 643808 string characters out of 5715801
- 1125771 words of memory out of 5000000
- 56662 multiletter control sequences out of 15000+600000
- 622312 words of font info for 382 fonts, out of 8000000 for 9000
+ 34559 strings out of 473190
+ 643933 string characters out of 5715801
+ 1125791 words of memory out of 5000000
+ 56663 multiletter control sequences out of 15000+600000
+ 623013 words of font info for 392 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  123i,20n,121p,1039b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
@@ -2047,8 +2047,8 @@ cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/loca
 l/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texli
 ve/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025
 /texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on the_numerical_range_is_a_2_spectral_set_v2.pdf (14 pages, 213
-304 bytes).
+Output written on the_numerical_range_is_a_2_spectral_set_v2.pdf (14 pages, 212
+825 bytes).
 PDF statistics:
  477 PDF objects out of 1000 (max. 8388607)
  434 compressed objects within 5 object streams

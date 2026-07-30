@@ -3,7 +3,7 @@
 - Active manuscript: all 1,165 lines of
   `../preprint/the_numerical_range_is_a_2_spectral_set_v2.tex` were reviewed;
   SHA-256
-  `6bd029631d6b2207795a1bb4df1064b77e5c4323deb816b8a37dec7a969a80f4`.
+  `11235d02fd0d91d982cbc113495c5c6f426ce9fba75332de5d10e7bf6a1ed315`.
 - Toolchain: Lean 4.28.0 with Mathlib commit
   `8f9d9cff6bd728b17a24e163c9402775d9e6a365`; dependencies and build
   products are local under `.lake/`.

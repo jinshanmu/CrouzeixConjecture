@@ -46,6 +46,7 @@
 \newcommand{\distop}{\operatorname{dist}}
 \newcommand{\RePart}{\operatorname{Re}}
 \newcommand{\diag}{\operatorname{diag}}
+\newcommand{\iu}{\mathrm{i}}
 
 \Title{The numerical range is a 2-spectral set}
 \Author{Shanmu Jin}
@@ -67,17 +68,18 @@ norm.  For every complex polynomial $p$, we prove that
 \]
 and consequently that $W(A)$ is a $2$-spectral set for $A$.  This
 proves Crouzeix's conjecture, and the constant is optimal.  The central
-new ingredient is a positive-real completion theorem relative to an
+ingredient is a positive-real completion theorem relative to an
 auxiliary eigenbasis: an adjoint-algebra constraint on the resolvent
 defect of a normalized matrix-valued Carath\'eodory function forces the
 underlying matrix to have norm at most $2$.  The classical positive
 double-layer calculus supplies such completions for $f(B)$ whenever the
 auxiliary matrix $B$ has simple spectrum; the eigenvalues of $f(B)$
-need not be distinct.  Sampling the associated Herglotz kernel at half
+may repeat.  Sampling the associated Herglotz kernel at half
 the conjugate diagonal entries and at the origin cancels the completion
 term and leaves a comparison of two weighted Gramians; a Stein identity
-yields the sharp estimate.  Simple-spectrum approximation and smooth
-convex outer approximation remove the remaining auxiliary hypotheses.
+yields the sharp estimate.  Simple-spectrum approximation and convex
+outer approximation by domains with continuously differentiable
+boundary yield the general theorem.
 }
 
 \keyword{Crouzeix conjecture; numerical range; spectral set;
@@ -99,8 +101,9 @@ numerical range is
 Here $x^*$ denotes the conjugate transpose, $\sigma(A)$ denotes the
 spectrum, $\lVert x\rVert_2$ is the Euclidean norm, $\lVert X\rVert$ is
 the induced operator norm, and scalar moduli are denoted by
-$\lvert\,\cdot\,\rvert$.  The Toeplitz--Hausdorff theorem shows that
-$W(A)$ is compact and convex, and $\sigma(A)\subset W(A)$.
+$\lvert\,\cdot\,\rvert$.  The set $W(A)$ is compact, the
+Toeplitz--Hausdorff theorem makes it convex, and
+$\sigma(A)\subset W(A)$.
 
 A compact set $K\subset\C$ containing $\sigma(A)$ is called a
 $C$-spectral set for $A$ if
@@ -108,7 +111,7 @@ $C$-spectral set for $A$ if
   \lVert r(A)\rVert\leq C\max_{z\in K}\lvert r(z)\rvert
   \label{eq:spectral-set-definition}
 \end{equation}
-for every rational function $r$ with no pole on $K$.  Our main result
+for every rational function $r$ pole-free on $K$.  Our main result
 settles Crouzeix's conjecture by identifying the sharp universal
 constant for $K=W(A)$.
 
@@ -167,52 +170,54 @@ compressions of shifts, further nilpotent classes, and quantitative
 bounds for KMS matrices~%
 \cite{BickelGorkin2024,OLoughlinVirtanen2024,BickelEtAl2024,
 CrouzeixGreenbaumLi2024}.  An alternative proof for a class of weighted shifts
-appears in~\cite{CrouzeixGreenbaum2025}.  None of the cited reductions
-supplies a dimension-free argument that lowers the universal bound from
-$1+\sqrt2$ to $2$.
+appears in~\cite{CrouzeixGreenbaum2025}.  Across these cited
+reductions, the best dimension-free universal bound remained
+$1+\sqrt2$.
 
-\subsection{Where the earlier mechanism loses sharpness}
+\subsection{The sharpness barrier in the symmetrized calculus}
 
 The positive boundary measure used below originates in the
 convex-domain integral calculus of Delyon--Delyon~%
 \cite{DelyonDelyon1999}; see also~%
 \cite{BadeaCrouzeixDelyon2006,CrouzeixPalencia2017}.  If $B$ has
-numerical range in a smooth convex domain $\Omega$ and $f$ is bounded
-by one on $\Omega$, this calculus produces a unital positive map
-$\Phi$ and a holomorphic Cauchy companion $g_f$ such that
+numerical range in a convex domain $\Omega$ with continuously
+differentiable boundary and $f$ is bounded by one on $\Omega$, this
+calculus produces a unital positive map $\Phi$ and a holomorphic Cauchy
+companion $g_f$ such that
 \begin{equation}
   2\Phi(f)=f(B)+g_f(B)^*.
   \label{eq:intro-symmetrized}
 \end{equation}
 Thus positivity directly controls a symmetrized functional calculus,
-not $f(B)$ by itself.  The Crouzeix--Palencia argument couples the two
-terms in~\eqref{eq:intro-symmetrized}, and its abstract norm estimate is
-sharp at $1+\sqrt2$.  The examples in~%
-\cite{RansfordSchwenninger2018} show that this abstract mechanism alone
-cannot give $2$.  The corresponding general uniform-algebra theorem is
-likewise sharp at $1+\sqrt2$; its additional unital case was proposed
-as a possible route to $2$ in~\cite{ClouatreOstermannRansford2023}.
+while the target estimate concerns $f(B)$.  The
+Crouzeix--Palencia argument couples the two terms
+in~\eqref{eq:intro-symmetrized}; the examples
+in~\cite{RansfordSchwenninger2018} show that its abstract norm estimate
+is sharp at $1+\sqrt2$.  The corresponding general uniform-algebra
+theorem has the same sharp constant; its additional unital case was
+proposed as a possible route to $2$
+in~\cite{ClouatreOstermannRansford2023}.
 Schwenninger and de Vries revisited the double-layer method~%
 \cite{SchwenningerDeVries2025}.  Malman et al.\ proved that a
 configuration-constant refinement gives a strict improvement for every
 fixed numerical-range shape; they also constructed thin quadrilaterals
-for which the configuration constant approaches its limiting value, so
-it yields no smaller universal constant~\cite{MalmanEtAl2025}.
+for which the resulting bounds approach
+$1+\sqrt2$~\cite{MalmanEtAl2025}.
 Separately,
 continuity and compactness give a constant $C_n<1+\sqrt2$ in every
 fixed matrix dimension $n$~\cite{MalmanRatio2024}.
 
-The missing information is algebraic.  The companion in~%
-\eqref{eq:intro-symmetrized} is not an arbitrary operator: for the
-approximants constructed in Section~\ref{sec:passage}, it belongs to
-the algebra generated by $B^*$, where the simple-spectrum matrix $B$
-supplies an eigenbasis that also diagonalizes $f(B)$.  Estimating the
-companion as an unrelated summand discards precisely this coupling.
+The key additional information is algebraic.  For the approximants
+constructed in Section~\ref{sec:passage}, the companion
+in~\eqref{eq:intro-symmetrized} belongs to the algebra generated by
+$B^*$, where the simple-spectrum matrix $B$ supplies an eigenbasis that
+also diagonalizes $f(B)$.  Treating $f(B)$ and the companion jointly
+preserves this coupling.
 
-\subsection{The new de-symmetrization mechanism}
+\subsection{Auxiliary-basis de-symmetrization}
 
-Our argument retains the whole Cayley family, rather than the single
-identity~\eqref{eq:intro-symmetrized}.  It has four steps.
+Our argument uses the whole Cayley family associated
+with~\eqref{eq:intro-symmetrized}.  It has four steps.
 
 \begin{enumerate}
 \item Applying $\Phi$ to
@@ -243,9 +248,9 @@ Gramians.  Its difference is positive, and an eigenvector argument
 followed by a Stein identity yields $\lVert T\rVert\leq2$.
 \end{enumerate}
 
-No perturbation of $f$ is required.  We first let the simple-spectrum
-matrices tend to $A$ and then let the outer domains converge to $W(A)$.
-These two limits remove the remaining auxiliary hypotheses.
+The proof uses two limits: simple-spectrum matrices tend to $A$,
+followed by outer domains converging to $W(A)$.  Together they yield
+the general case.
 
 \section{Positive-real kernels}
 \label{sec:herglotz}
@@ -279,13 +284,13 @@ The matrix Herglotz representation gives a positive
 $\Mn$-valued measure $M$ on $\Torus$, and a Hermitian matrix $J_F$, such
 that
 \begin{equation}
-  F(w)=iJ_F+\int_{\Torus}\frac{\zeta+w}{\zeta-w}\,dM(\zeta).
+  F(w)=\iu J_F+\int_{\Torus}\frac{\zeta+w}{\zeta-w}\,dM(\zeta).
   \label{eq:matrix-herglotz-representation}
 \end{equation}
 Indeed, for each $u\in\C^n$ the scalar Herglotz theorem gives a positive
 finite measure $\mu_u$ on $\Torus$ and a real number $c_u$ such that
 \[
-  u^*F(w)u=ic_u+
+  u^*F(w)u=\iu c_u+
   \int_{\Torus}\frac{\zeta+w}{\zeta-w}\,d\mu_u(\zeta).
 \]
 Uniqueness in the scalar theorem shows that, for every Borel set
@@ -300,13 +305,13 @@ the scalar functions gives, as identities of measures,
 \]
 Its polarization defines
 \[
-  x^*M(E)y=\frac14\sum_{k=0}^3 i^{-k}
-  \mu_{x+i^k y}(E)\qquad(x,y\in\C^n).
+  x^*M(E)y=\frac14\sum_{k=0}^3 \iu^{-k}
+  \mu_{x+\iu^k y}(E)\qquad(x,y\in\C^n).
 \]
 Thus $M$ is a finite $\Mn$-valued measure and
 $u^*M(E)u=\mu_u(E)\geq0$, so $M$ is positive.  The scalar imaginary
 constants polarize to the Hermitian matrix
-$J_F=(F(0)-F(0)^*)/(2i)$, and the scalar representations assemble to~%
+$J_F=(F(0)-F(0)^*)/(2\iu)$, and the scalar representations assemble to~%
 \eqref{eq:matrix-herglotz-representation}.
 
 For $\lvert\zeta\rvert=1$, direct calculation gives
@@ -318,7 +323,7 @@ For $\lvert\zeta\rvert=1$, direct calculation gives
   =\frac{2}{(1-w\overline\zeta)(1-\overline z\zeta)}.
   \label{eq:scalar-herglotz-factorization}
 \end{equation}
-The constant $iJ_F$ cancels from~\eqref{eq:herglotz-kernel}.  Substituting~%
+The constant $\iu J_F$ cancels from~\eqref{eq:herglotz-kernel}.  Substituting~%
 \eqref{eq:matrix-herglotz-representation} and then summing as in~%
 \eqref{eq:positive-kernel-definition} yields
 \[
@@ -350,7 +355,7 @@ Let
 \end{equation}
 where $S$ is invertible, the numbers $\beta_1,\ldots,\beta_n$ are
 distinct, and $\lvert\lambda_i\rvert\leq1$ for every $i$.  The numbers
-$\lambda_i$ are not required to be distinct.
+$\lambda_i$ may repeat.
 Let $H\colon\D\to\Mn$ be analytic and satisfy
 \begin{equation}
   H(0)=I,\qquad \RePart H(w)\succeq0\quad(w\in\D),
@@ -420,9 +425,9 @@ and add the point $w_0=0$ with vector
   \xi_0=v=-G^{-1}Pu.
   \label{eq:compensating-vector}
 \end{equation}
-The points $w_i$ need not be distinct.  Kernel positivity applies to
-arbitrary finite lists of points and vectors, so repetitions among the
-$w_i$, including $w_i=w_0$ when $\lambda_i=0$, cause no difficulty.
+The points $w_i$ may coincide.  Kernel positivity applies to arbitrary
+finite indexed lists of points and vectors, including $w_i=w_0$ when
+$\lambda_i=0$.
 We first verify that this sample cancels the entire unknown function
 $\Theta$.  The contribution of the second term in~%
 \eqref{eq:Htilde-decomposition} to the kernel quadratic form is
@@ -568,11 +573,10 @@ The factor $1/2$ in the sampling points~%
 \eqref{eq:eigenvalue-samples} simultaneously produces the weights
 $1/2$ and $1/4$ in~\eqref{eq:two-gramians}.  Their positive difference
 and the Stein identity are what recover the sharp constant.  The
-origin sample removes the unknown analytic correction exactly; no
-estimate is used at this step.  Distinctness is needed only for the
-eigenvalues of the auxiliary matrix $B$, which identify $\alg(B^*)$
-with the diagonal algebra in the chosen basis; no distinctness is
-required of the diagonal entries of $T$.
+origin sample cancels the unknown analytic correction by an exact
+algebraic identity.  Distinct auxiliary eigenvalues identify
+$\alg(B^*)$ with the diagonal algebra in the chosen basis, while the
+diagonal entries of $T$ may repeat.
 \end{remark}
 
 \section{The double-layer completion}
@@ -581,8 +585,8 @@ required of the diagonal entries of $T$.
 We now construct from the numerical range the function required by
 Theorem~\ref{thm:completion}.  The measure and companion transform used
 here are classical~%
-\cite{DelyonDelyon1999,Crouzeix2007,CrouzeixPalencia2017}.  The new
-point is that retaining the full Cayley family yields the algebraic
+\cite{DelyonDelyon1999,Crouzeix2007,CrouzeixPalencia2017}.  The full
+Cayley family yields the algebraic
 constraint~\eqref{eq:completion-algebra-condition} relative to the
 auxiliary matrix.
 
@@ -603,7 +607,7 @@ $\overline\Omega$,
 \end{equation}
 where
 \begin{equation}
-  g_h(z)=\frac{1}{2\pi i}
+  g_h(z)=\frac{1}{2\pi\iu}
   \int_{\partial\Omega}
   \frac{\overline{h(\zeta)}}{\zeta-z}\,d\zeta,
   \qquad z\in\Omega.
@@ -650,7 +654,7 @@ $\mathcal R_\zeta$ turns the left side of~%
 \eqref{eq:double-layer-measure}.
 
 Along the counterclockwise boundary,
-$d\zeta=i\nu(\zeta)ds$.  The matrix Cauchy formula gives
+$d\zeta=\iu\nu(\zeta)ds$.  The matrix Cauchy formula gives
 \begin{equation}
   \frac{1}{2\pi}\int_{\partial\Omega}
   \nu(\zeta)\mathcal R_\zeta\,ds=I.
@@ -679,22 +683,22 @@ For holomorphic $h$, the first layer of $2\Phi(h)$ is $h(B)$ by
 Cauchy's formula.  The function $g_h$ in~%
 \eqref{eq:companion-transform} is holomorphic on $\Omega$, so
 $g_h(B)$ is defined by the holomorphic functional calculus.  To verify
-the relevant integral formula without assuming that $g_h$ extends
-across $\partial\Omega$, choose a positively oriented contour
+the relevant integral formula using only the holomorphy of $g_h$ on
+$\Omega$, choose a positively oriented contour
 $\Gamma\subset\Omega$ enclosing $\sigma(B)$.  Cauchy's formula and
 Fubini's theorem give
 \begin{equation}
 \begin{split}
  g_h(B)
- &=\frac{1}{2\pi i}\int_{\Gamma}
+ &=\frac{1}{2\pi\iu}\int_{\Gamma}
    g_h(z)(zI-B)^{-1}\,dz\\
- &=\frac{1}{2\pi i}\int_{\partial\Omega}
+ &=\frac{1}{2\pi\iu}\int_{\partial\Omega}
    \overline{h(\zeta)}(\zeta I-B)^{-1}\,d\zeta.
 \end{split}
 \label{eq:companion-functional-calculus}
 \end{equation}
 Taking adjoints in~\eqref{eq:companion-functional-calculus} and using
-$d\overline\zeta=-i\overline{\nu(\zeta)}ds$ gives the second layer of
+$d\overline\zeta=-\iu\overline{\nu(\zeta)}ds$ gives the second layer of
 $2\Phi(h)$.  This proves~\eqref{eq:double-layer-identity}.
 \end{proof}
 
@@ -803,8 +807,8 @@ repeat.
 \section{Passage to arbitrary matrices and proof of the main theorem}
 \label{sec:passage}
 
-We now remove the hypotheses of simple spectrum and boundary regularity
-by successive approximations.
+Successive approximations pass from the auxiliary setting to arbitrary
+matrices.
 
 \begin{lemma}[Simple spectrum and numerical range]
 \label{lem:simple-spectrum-density}
@@ -864,8 +868,8 @@ and then with $\pi_K(z+h)$ gives
 \]
 The continuity of $\pi_K$ now shows that $d_K^2$ is continuously
 differentiable, with real gradient $2(z-\pi_K(z))$.  On the level set
-$d_K(z)=\delta$ this gradient has norm $2\delta$ and hence never
-vanishes.  Since $\partial\Omega_\delta=\{d_K=\delta\}$, the
+$d_K(z)=\delta$ this gradient has norm $2\delta>0$.  Since
+$\partial\Omega_\delta=\{d_K=\delta\}$, the
 implicit-function theorem shows that $\partial\Omega_\delta$ is
 continuously differentiable.  Taking
 $\Omega_j=\Omega_{1/j}$ for $j\geq1$ proves the lemma.
@@ -901,7 +905,7 @@ Set
   \label{eq:m-Omega}
 \end{equation}
 If $m_\Omega=0$, the polynomial vanishes on the open set $\Omega$ and
-is identically zero.  In the remaining case $m_\Omega>0$, put
+is identically zero.  When $m_\Omega>0$, put
 \begin{equation}
   f=\frac{p}{m_\Omega}.
   \label{eq:normalized-f}
@@ -935,13 +939,11 @@ Apply~\eqref{eq:fixed-Omega-bound} to each $\Omega_j$ and pass to the
 limit.  This proves~\eqref{eq:main-bound}.
 
 It remains to justify the spectral-set conclusion.  Let $r$ be
-rational with no pole on $W(A)$.  Since $W(A)$ is compact and disjoint
-from the finite set of poles of $r$, choose $\delta>0$ so that the
-closed $\delta$-neighborhood $K_\delta$ of $W(A)$ contains no pole.
-Thus $r$ is holomorphic on an open neighborhood of the compact convex
-set $K_\delta$.  Since $\C\setminus K_\delta$ is connected, polynomial
-Runge approximation gives polynomials $p_j$ converging uniformly to
-$r$ on $K_\delta$.  As
+rational and pole-free on $W(A)$.  Since $W(A)$ is compact, choose
+$\delta>0$ so that $r$ is holomorphic on an open neighborhood of the
+closed $\delta$-neighborhood $K_\delta$ of $W(A)$.  Since
+$\C\setminus K_\delta$ is connected, polynomial Runge approximation
+gives polynomials $p_j$ converging uniformly to $r$ on $K_\delta$.  As
 $\sigma(A)\subset W(A)\subset\operatorname{int}K_\delta$, choose a
 positively oriented contour $\Gamma\subset\operatorname{int}K_\delta$
 enclosing $\sigma(A)$.  Uniform convergence on $\Gamma$, together with
@@ -981,7 +983,7 @@ Cauchy integral formula for the holomorphic functional calculus, gives
 the assertion.
 \end{proof}
 
-The Hilbert-space version follows by the standard finite-dimensional
+The Hilbert-space extension follows by the standard finite-dimensional
 compression argument; compare~\cite{BickelEtAl2020}.
 
 \begin{corollary}[Hilbert-space form]
@@ -1030,7 +1032,7 @@ Taking the supremum over unit vectors $x$ proves~%
 
 Put $K=\overline{W(A)}$.  The standard inclusion
 $\sigma(A)\subset K$ shows that $r(A)$ is defined for every rational
-function $r$ without poles on $K$.  The polynomial-approximation
+function $r$ pole-free on $K$.  The polynomial-approximation
 argument in the proof of Theorem~\ref{thm:main}, now applied to $K$,
 gives polynomials $p_j$ such that $p_j(A)\to r(A)$ and
 \[
@@ -1045,7 +1047,7 @@ rational estimate and hence the spectral-set assertion.
 The conclusion also controls polynomial and rational approximation of
 matrix functions.  Let $A\in\Mn$, let $f$ be holomorphic on a
 neighborhood of $W(A)$, and let $s$ be either a polynomial or a
-rational function with no pole on $W(A)$.  Then $f-s$ is holomorphic on
+rational function pole-free on $W(A)$.  Then $f-s$ is holomorphic on
 a neighborhood of $W(A)$, and Corollary~\ref{cor:holomorphic-bound}
 gives
 \begin{equation}
@@ -1061,7 +1063,7 @@ for the role of spectral sets in those settings.
 \section{Discussion and further directions}
 \label{sec:outlook}
 
-Theorem~\ref{thm:main} proves the original, scalar-valued Crouzeix
+Theorem~\ref{thm:main} proves the scalar-valued Crouzeix
 conjecture.  The most immediate strengthening is the uniform
 matrix-polynomial question: for every
 $m\geq1$ and every matrix polynomial
@@ -1074,7 +1076,7 @@ $\mathcal F=[f_{ij}]\in\mathbb M_m(\C[z])$, does one have
 \end{equation}
 Here $\lVert\mathcal F(A)\rVert$ is the operator norm on $(\C^n)^m$,
 whereas $\lVert\mathcal F(z)\rVert$ is the operator norm on $\C^m$.
-The case $m=1$ is precisely the original conjecture proved above;
+The case $m=1$ is precisely the scalar theorem proved above;
 uniformity in $m$ is an additional operator-algebraic requirement.  The
 foundational matrix-level disk estimate is due to Okubo and Ando~%
 \cite{OkuboAndo1975}.  Uniform matrix-level spectral-set bounds and
@@ -1086,7 +1088,7 @@ $\rho$-contractions with $1\leq\rho\leq2$ are developed in~%
 \cite{SchwenningerDeVriesRho2025}.  The extension is
 known with constant $2$ for weighted shift matrices~%
 \cite{CrouzeixGreenbaum2025}.  For block-valued inputs, the coefficients
-in the completion need not reduce to a single diagonal algebra, so the
+in the completion may occupy a larger operator algebra, so the
 cancellation in~\eqref{eq:theta-contribution} would require a genuinely
 operator-algebraic formulation.
 
@@ -1094,13 +1096,12 @@ The positive-real completion principle is independent of numerical
 ranges: it starts with a Carath\'eodory function whose resolvent defect
 lies in the adjoint algebra of an auxiliary simple-spectrum matrix
 sharing an eigenbasis with the matrix in the resolvent.  A direct
-infinite-dimensional version of Theorem~\ref{thm:completion},
+infinite-dimensional extension of Theorem~\ref{thm:completion},
 based for example on spectral measures or Riesz bases, could reveal
 equality cases or uniform matrix-level functional-calculus structure.
-The main obstacle is to
-replace the finite diagonal correction supplied by the auxiliary
-eigenbasis with a stable functional-calculus condition that does not
-rely on a finite diagonal spectral model.
+The main challenge is a stable functional-calculus formulation of the
+auxiliary-basis correction, valid beyond finite diagonal spectral
+models.
 Related questions for unbounded numerical ranges are studied in~%
 \cite{CrouzeixUnbounded2025}, and related abstract spectral-constant
 problems in~\cite{SchwenningerDeVries2024,BlazhkoEtAl2025}.
@@ -1138,8 +1139,7 @@ classification must allow the nonuniqueness phenomena found in~%
 Finally, O'Loughlin and Rani extend the Crouzeix--Palencia framework to
 scaled $q$-numerical ranges, $q\in[0,1]$, and propose associated
 spectral-set problems~\cite{OLoughlinRani2026}.  These provide a natural
-testing ground for positive-real completion, although no constant-$2$
-analogue is asserted here.
+testing ground for investigating a constant-$2$ analogue.
 
 \section*{AI-assistance disclosure}
 

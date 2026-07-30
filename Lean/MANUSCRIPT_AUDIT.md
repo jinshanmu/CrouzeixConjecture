@@ -6,7 +6,7 @@
   `../preprint/the_numerical_range_is_a_2_spectral_set_v2.tex`
 - Lines: 1,165
 - SHA-256:
-  `6bd029631d6b2207795a1bb4df1064b77e5c4323deb816b8a37dec7a969a80f4`
+  `11235d02fd0d91d982cbc113495c5c6f426ce9fba75332de5d10e7bf6a1ed315`
 - Formalization toolchain: Lean 4.28.0 and Mathlib commit
   `8f9d9cff6bd728b17a24e163c9402775d9e6a365`
 
@@ -14,7 +14,7 @@ The v2 source was read as the active manuscript. The proof simplification was
 checked again at the mathematical and interface levels. No need for the
 earlier perturbation of the normalized function was found.
 
-## Verification of the auxiliary-basis simplification, lines 212--248
+## Verification of the auxiliary-basis simplification, lines 217--253
 
 The key distinction in v2 is correct: simple spectrum is required for the
 auxiliary matrix `B`, not for the target `T=f(B)`.
@@ -58,7 +58,7 @@ This checks the logical point on which the simplification rests: allowing
 repeated samples is sufficient, and the auxiliary basis provides exactly the
 algebraic information needed to cancel the correction.
 
-## Positive-real completion audit, lines 250--575
+## Positive-real completion audit, lines 255--580
 
 The following calculations are formalized:
 
@@ -82,7 +82,7 @@ broader matrix-valued Herglotz measure representation is not separately
 packaged; the exact kernel consequence is proved directly by regularized
 circle averages and a limit.
 
-## Double-layer and contour audit, lines 578--801
+## Double-layer and contour audit, lines 582--805
 
 The orientation and normalization were checked: the counterclockwise relation
 is `dσ = iν ds`, the total double-layer mass is `2I`, the boundary map carries
@@ -107,7 +107,7 @@ the projection residual normal, positive orientation, and a principal-log
 winding proof. This discharges the contour provider on the canonical
 parallel bodies.
 
-## Direct normalization and the two remaining limits, lines 803--935
+## Direct normalization and the two remaining limits, lines 807--939
 
 The fixed-simple argument now has exactly the v2 shape.
 
@@ -129,7 +129,7 @@ geometric: canonical convex parallel bodies decrease to `W(A)`, and the
 corresponding maximum moduli converge. These are logically independent
 limits and match the order stated in v2.
 
-## Rational endpoint, lines 937--956
+## Rational endpoint, lines 941--958
 
 The rational result remains separate from the polynomial theorem. The
 library defines pole-freeness on the numerical range, proves uniform

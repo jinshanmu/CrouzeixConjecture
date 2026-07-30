@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex the_numerical_range_is_a_2_spectral_set_v2"] 1785424495.53413 "the_numerical_range_is_a_2_spectral_set_v2.aux" "the_numerical_range_is_a_2_spectral_set_v2.bbl" "the_numerical_range_is_a_2_spectral_set_v2" 1785424498.66753 0
+["bibtex the_numerical_range_is_a_2_spectral_set_v2"] 1785428845.50008 "the_numerical_range_is_a_2_spectral_set_v2.aux" "the_numerical_range_is_a_2_spectral_set_v2.bbl" "the_numerical_range_is_a_2_spectral_set_v2" 1785428849.11814 0
   "./preprints-template/preprints_template_latex/Definitions/mdpi.bst" 1734396266 23683 4afe8e0b352a18c39ff91c43fd26f4b2 ""
   "./the_numerical_range_is_a_2_spectral_set.bib" 1785135971.23696 13195 7b0a3d04c8591af7ba2367d58b1ab410 ""
-  "the_numerical_range_is_a_2_spectral_set_v2.aux" 1785424498.15154 18700 c7df631cbf0376599a6837947f64acd5 "pdflatex"
+  "the_numerical_range_is_a_2_spectral_set_v2.aux" 1785428848.52951 18708 d76b832ecdbec5d5eb57f909dd77776d "pdflatex"
   (generated)
   "the_numerical_range_is_a_2_spectral_set_v2.bbl"
   "the_numerical_range_is_a_2_spectral_set_v2.blg"
   (rewritten before read)
-["pdflatex"] 1785424495.683 "the_numerical_range_is_a_2_spectral_set_v2.tex" "the_numerical_range_is_a_2_spectral_set_v2.pdf" "the_numerical_range_is_a_2_spectral_set_v2" 1785424498.66775 0
+["pdflatex"] 1785428845.68825 "the_numerical_range_is_a_2_spectral_set_v2.tex" "the_numerical_range_is_a_2_spectral_set_v2.pdf" "the_numerical_range_is_a_2_spectral_set_v2" 1785428849.11842 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -248,10 +248,10 @@
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "preprints-template/preprints_template_latex/Definitions/journalnames.tex" 1780459742 124319 aecfca85c94a2b766f8e76723ab64a73 ""
   "preprints-template/preprints_template_latex/Definitions/mdpi.cls" 1782192896 62506 cc41be1239881b59b9118b755ba62978 ""
-  "the_numerical_range_is_a_2_spectral_set_v2.aux" 1785424498.15154 18700 c7df631cbf0376599a6837947f64acd5 "pdflatex"
-  "the_numerical_range_is_a_2_spectral_set_v2.bbl" 1785424495.67814 11248 193cff216f02a67446545b8deea1d593 "bibtex the_numerical_range_is_a_2_spectral_set_v2"
-  "the_numerical_range_is_a_2_spectral_set_v2.out" 1785424498.15356 2033 cbed3a3639a0e5b8b72aee9a19e30903 "pdflatex"
-  "the_numerical_range_is_a_2_spectral_set_v2.tex" 1785424483.23444 41980 24e8c8e3ae2160fc0e76a4772a18adb5 ""
+  "the_numerical_range_is_a_2_spectral_set_v2.aux" 1785428848.52951 18708 d76b832ecdbec5d5eb57f909dd77776d "pdflatex"
+  "the_numerical_range_is_a_2_spectral_set_v2.bbl" 1785428845.68269 11248 193cff216f02a67446545b8deea1d593 "bibtex the_numerical_range_is_a_2_spectral_set_v2"
+  "the_numerical_range_is_a_2_spectral_set_v2.out" 1785428848.53173 2050 d3ff63d84682eb60bda7e55b1004796d "pdflatex"
+  "the_numerical_range_is_a_2_spectral_set_v2.tex" 1785428792.91678 41364 22cd13b7ea84fb2251939b4904edea95 ""
   (generated)
   "the_numerical_range_is_a_2_spectral_set_v2.aux"
   "the_numerical_range_is_a_2_spectral_set_v2.log"
