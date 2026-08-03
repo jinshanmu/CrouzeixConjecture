@@ -16,8 +16,9 @@ namespace CrouzeixConjecture
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- If matrices converge to `A`, their numerical ranges are eventually contained in every open
-set containing `W(A)`.  This is the compact-buffer argument in manuscript lines 367--374, using
-the exact induced Euclidean operator norm perturbation estimate. -/
+set containing `W(A)`.  This is the compact-buffer step based on
+`eq:numerical-range-Lipschitz`, using the exact induced Euclidean operator norm perturbation
+estimate. -/
 theorem eventually_numericalRange_subset_open_of_tendsto
     {kappa : Type*} {l : Filter kappa}
     (A : SquareMatrix n) {B : kappa → SquareMatrix n}

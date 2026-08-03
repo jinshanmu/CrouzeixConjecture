@@ -27,9 +27,8 @@ def HasDoubleLayerCompletionProvider (B : SquareMatrix n) (s : Set ℂ) : Prop :
       IsPositiveRealCompletion B (polynomialEval q B) H
 
 omit [Nonempty n] in
-/-- A polynomial bounded by zero on the spectrum of a simple-spectrum matrix
-evaluates to zero at that matrix.  This is the honest `M_Ω = 0` branch in
-manuscript lines 384--388. -/
+/-- A polynomial bounded by zero on the spectrum of a simple-spectrum matrix evaluates to zero
+at that matrix.  This is the `M_Ω = 0` branch of the fixed-domain argument. -/
 theorem polynomialEval_eq_zero_of_simpleSpectrum_of_bound_zero
     (B : SquareMatrix n) (hB : HasDistinctEigenvalues B)
     (p : Polynomial ℂ) (s : Set ℂ)

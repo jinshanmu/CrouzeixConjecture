@@ -3,7 +3,7 @@
 This project audits and formalizes the proof architecture of
 `../preprint/the_numerical_range_is_a_2_spectral_set_v3.tex`, 1,066 lines,
 at SHA-256
-`ecee7d87f0a31c70c5cbc8e8b46ccf0dd2cc89e5edaecfa4de8357259aa73e9a`.
+`f190178bc197c5f62fa8146f96c932a241379e90bf63145d542035058b92d154`.
 All source-line references in the audit documents refer to that version.
 
 It uses Lean 4.28.0 and Mathlib pinned at commit

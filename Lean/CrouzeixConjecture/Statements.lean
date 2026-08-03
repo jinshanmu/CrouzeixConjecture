@@ -17,7 +17,7 @@ the same set of values; compactness and nonemptiness will supply the attaining p
 def maxPolynomialModulusOnNumericalRange (A : SquareMatrix n) (p : Polynomial ℂ) : ℝ :=
   sSup ((fun z : ℂ ↦ ‖Polynomial.eval z p‖) '' numericalRange A)
 
-/-- The exact polynomial inequality claimed in lines 15--24 of the manuscript. -/
+/-- The polynomial specialization of `eq:main-bound`. -/
 def PolynomialCrouzeixBound (A : SquareMatrix n) (p : Polynomial ℂ) : Prop :=
   ‖polynomialEval p A‖ ≤ 2 * maxPolynomialModulusOnNumericalRange A p
 

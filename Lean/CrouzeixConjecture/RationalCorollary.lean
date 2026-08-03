@@ -20,7 +20,8 @@ def maxRationalModulusOnNumericalRange
     (A : SquareMatrix n) (r : RatFunc ℂ) : ℝ :=
   sSup ((fun z : ℂ ↦ ‖rationalScalarEval r z‖) '' numericalRange A)
 
-/-- The separate rational constant-two conclusion requested in manuscript lines 439--450. -/
+/-- The separate rational constant-two conclusion corresponding to
+`eq:spectral-set-definition`. -/
 def RationalCrouzeixBound (A : SquareMatrix n) (r : RatFunc ℂ) : Prop :=
   RationalPoleFreeOn r (numericalRange A) →
     ‖rationalMatrixEval r A‖ ≤ 2 * maxRationalModulusOnNumericalRange A r

@@ -32,21 +32,21 @@ theorem finite_type_sampling_quadratic_nonneg {ι : Type*} [Fintype ι] [Decidab
     (fun i ↦ ∑ j, star (ξ i) ⬝ᵥ (L (z i) (z j) *ᵥ ξ j))] at h
   exact h
 
-/-- The matrix multiplying `u` after the manuscript substitutes `v = -G⁻¹Pu` into the
-sampled Herglotz-kernel quadratic form (lines 148--154). -/
+/-- The matrix multiplying `u` after substituting `v = -G⁻¹Pu` into the sampled
+Herglotz-kernel quadratic form in `eq:pre-gramian-inequality`. -/
 def completionSampleCoefficient (G P R : SquareMatrix n) : SquareMatrix n :=
   4 * R - 2 * P - (G + R) * G⁻¹ * P - P * G⁻¹ * (G + R) +
     2 * (P * G⁻¹ * P)
 
 /-- The sampled coefficient is exactly the anticommutator expression in `X = R - P` from
-manuscript equation (5). -/
+`eq:Y-inequality`. -/
 theorem completionSampleCoefficient_eq (G P R : SquareMatrix n) (hG : IsUnit G) :
     completionSampleCoefficient G P R =
       4 * (R - P) - (R - P) * G⁻¹ * P - P * G⁻¹ * (R - P) := by
   exact completion_substitution_matrix_identity G P R hG
 
-/-- Hermiticity of the sampled coefficient.  The two mixed terms are adjoints of one another;
-this makes explicit the real-part step in manuscript line 153. -/
+/-- Hermiticity of the sampled coefficient.  The two mixed terms are adjoints of one another,
+as in `eq:pre-gramian-inequality`. -/
 theorem completionSampleCoefficient_isHermitian {G P R : SquareMatrix n}
     (hG : G.IsHermitian) (hP : P.IsHermitian) (hR : R.IsHermitian) :
     (completionSampleCoefficient G P R).IsHermitian := by
@@ -67,8 +67,8 @@ theorem completionSampleCoefficient_posSemidef_of_quadratic_nonneg
   Matrix.PosSemidef.of_dotProduct_mulVec_nonneg
     (completionSampleCoefficient_isHermitian hG hP hR) hquad
 
-/-- Exact matrix form of manuscript equation (5), after applying the preceding sampling
-calculation to the three matrices `P`, `R`, and `X`. -/
+/-- Exact matrix form of `eq:Y-inequality`, after applying the preceding sampling calculation
+to the three matrices `P`, `R`, and `X`. -/
 theorem completion_X_inequality_of_sampling
     {G : SquareMatrix n} {lambda : n → ℂ} (hGherm : G.IsHermitian) (hG : IsUnit G)
     (hquad : ∀ u : n → ℂ,

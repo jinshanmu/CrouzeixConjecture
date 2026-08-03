@@ -155,7 +155,8 @@ theorem doubleLayerResolvent_leftInverse
     (sigma • (1 : SquareMatrix n) - B).isUnit_iff_isUnit_det.mp hunit
   exact (sigma • (1 : SquareMatrix n) - B).nonsing_inv_mul hdet
 
-/-- Exact instantiated form of manuscript lines 275–276 for the genuine resolvent. -/
+/-- Exact resolvent congruence connecting the support-line matrix in
+`eq:supporting-half-plane` with the density in `eq:double-layer-measure`. -/
 theorem doubleLayerResolvent_congruence_density
     {Omega : Set ℂ} {sigma nu : ℂ} (hgeom : OutwardBoundarySupport Omega sigma nu)
     (B : SquareMatrix n) (hWB : numericalRange B ⊆ Omega) :
@@ -165,8 +166,8 @@ theorem doubleLayerResolvent_congruence_density
   exact doubleLayer_congruence_density_identity B (doubleLayerResolvent B sigma) sigma nu
     (doubleLayerResolvent_rightInverse hgeom B hWB)
 
-/-- Thus the double-layer density in manuscript equation (11) is positive semidefinite at
-every supported boundary point. -/
+/-- Thus the density in `eq:double-layer-measure` is positive semidefinite at every supported
+boundary point. -/
 theorem doubleLayerResolvent_density_posSemidef
     {Omega : Set ℂ} {sigma nu : ℂ} (hgeom : OutwardBoundarySupport Omega sigma nu)
     (B : SquareMatrix n) (hWB : numericalRange B ⊆ Omega) :

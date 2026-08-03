@@ -16,15 +16,15 @@ namespace CrouzeixConjecture
 
 variable {n : Type*}
 
-/-- The matrix `P` from manuscript line 105. -/
+/-- The matrix `P` from `eq:PQY-definition`. -/
 def completionP (G : SquareMatrix n) (lambda : n → ℂ) : SquareMatrix n :=
   fun i j ↦ G i j / (1 - conj (lambda i) * lambda j / 4)
 
-/-- The matrix `R` from manuscript line 106. -/
+/-- The matrix called `Q` in `eq:PQY-definition`. -/
 def completionR (G : SquareMatrix n) (lambda : n → ℂ) : SquareMatrix n :=
   fun i j ↦ G i j / (1 - conj (lambda i) * lambda j / 2)
 
-/-- The matrix `X = R - P` from manuscript line 107. -/
+/-- The matrix called `Y = Q - P` in `eq:PQY-definition`. -/
 def completionX (G : SquareMatrix n) (lambda : n → ℂ) : SquareMatrix n :=
   completionR G lambda - completionP G lambda
 
@@ -93,7 +93,7 @@ theorem completionX_isHermitian {G : SquareMatrix n} (hG : G.IsHermitian)
     (lambda : n → ℂ) : (completionX G lambda).IsHermitian := by
   rw [Matrix.IsHermitian, completionX_conjTranspose, hG]
 
-/-- The scalar identity behind manuscript line 145. -/
+/-- The scalar identity behind `eq:sampled-main-block`. -/
 theorem completion_resolvent_scalar_identity (g a : ℂ)
     (h₂ : 1 - a / 2 ≠ 0) (h₄ : 1 - a / 4 ≠ 0) :
     2 * g / ((1 - a / 2) * (1 - a / 4)) =
@@ -136,7 +136,7 @@ theorem completion_substitution_matrix_identity [Fintype n] [DecidableEq n]
   exact completion_substitution_ring_identity G G⁻¹ P R
     (G.nonsing_inv_mul hdet) (G.mul_nonsing_inv hdet)
 
-/-- The vector `v = -G⁻¹ P u` used in manuscript line 121. -/
+/-- The vector `v = -G⁻¹ P u` from `eq:compensating-vector`. -/
 def completionV [Fintype n] [DecidableEq n]
     (G P : SquareMatrix n) (u : n → ℂ) : n → ℂ :=
   -(G⁻¹ *ᵥ (P *ᵥ u))
@@ -149,8 +149,8 @@ theorem completion_mulVec_add_eq_zero [Fintype n] [DecidableEq n]
   rw [completionV, Matrix.mulVec_neg, Matrix.mulVec_mulVec, G.mul_nonsing_inv hdet,
     Matrix.one_mulVec, neg_add_cancel]
 
-/-- The exact `P`, `R`, `X` specialization of the noncommutative substitution in manuscript
-line 154. -/
+/-- The exact `P`, `R`, `X` specialization of the noncommutative substitution leading to
+`eq:Y-inequality`. -/
 theorem completion_PRX_substitution_identity [Fintype n] [DecidableEq n]
     (G : SquareMatrix n) (lambda : n → ℂ) (hG : IsUnit G) :
     4 * completionR G lambda - 2 * completionP G lambda -

@@ -14,13 +14,13 @@ open scoped ComplexOrder Matrix Matrix.Norms.L2Operator Pointwise
 
 namespace CrouzeixConjecture
 
-/-- The support-line matrix in manuscript lines 268--271. -/
+/-- The support-line matrix in `eq:supporting-half-plane`. -/
 def doubleLayerSupportMatrix {n : Type*} [DecidableEq n]
     (B : SquareMatrix n) (sigma nu : ℂ) : SquareMatrix n :=
   nu • (star sigma • (1 : SquareMatrix n) - Bᴴ) +
     star nu • (sigma • (1 : SquareMatrix n) - B)
 
-/-- The support-line matrix is twice the real part used in manuscript line 270. -/
+/-- The support-line matrix is twice the real part in `eq:supporting-half-plane`. -/
 theorem doubleLayerSupportMatrix_eq_two_smul_rePart
     {n : Type*} [DecidableEq n] (B : SquareMatrix n) (sigma nu : ℂ) :
     doubleLayerSupportMatrix B sigma nu =
@@ -35,7 +35,7 @@ theorem doubleLayerSupportMatrix_isHermitian
     (doubleLayerSupportMatrix B sigma nu).IsHermitian := by
   simp [doubleLayerSupportMatrix, Matrix.IsHermitian, add_comm]
 
-/-- The unnormalised double-layer density in the parentheses of manuscript equation (261). -/
+/-- The unnormalised double-layer density in `eq:double-layer-measure`. -/
 def doubleLayerDensity {n : Type*} (R : SquareMatrix n) (nu : ℂ) : SquareMatrix n :=
   nu • R + star nu • Rᴴ
 
@@ -57,8 +57,8 @@ theorem resolvent_conjTranspose_leftInverse
     Matrix.conjTranspose_smul, Matrix.conjTranspose_one, starRingEnd_apply,
     star_star] using h
 
-/-- Exact algebra behind manuscript lines 275--276: congruencing the support-line
-matrix by the resolvent produces the double-layer density. -/
+/-- Exact algebra connecting `eq:supporting-half-plane` and `eq:double-layer-measure`:
+congruencing the support-line matrix by the resolvent produces the double-layer density. -/
 theorem doubleLayer_congruence_density_identity
     {n : Type*} [Fintype n] [DecidableEq n]
     (B R : SquareMatrix n) (sigma nu : ℂ)
@@ -79,8 +79,8 @@ theorem doubleLayerDensity_posSemidef
   rw [← doubleLayer_congruence_density_identity B R sigma nu hR]
   exact hSupport.conjTranspose_mul_mul_same R
 
-/-- Abstract integral form of the map in manuscript equation (292).  The two functions
-stand for the already normalised analytic and adjoint pieces of the density. -/
+/-- Abstract integral form of the map in `eq:Phi-definition`.  The two functions stand for
+the already normalised analytic and adjoint pieces of the density. -/
 def doubleLayerIntegralAverage {i n : Type*} [MeasurableSpace i]
     [Fintype n] [DecidableEq n] (mu : Measure i)
     (firstPart secondPart : i → SquareMatrix n) : SquareMatrix n :=
@@ -94,8 +94,9 @@ theorem two_smul_doubleLayerIntegralAverage
       ∫ x, firstPart x + secondPart x ∂mu := by
   simp [doubleLayerIntegralAverage]
 
-/-- Abstracted Cauchy-mass calculation from manuscript lines 278--289.  The hypotheses
-state exactly the two contour-integral evaluations left to boundary geometry. -/
+/-- Abstracted Cauchy-mass calculation behind `eq:first-layer-mass` and
+`eq:double-layer-mass`.  The hypotheses state exactly the two contour-integral evaluations
+left to boundary geometry. -/
 theorem doubleLayerIntegral_mass_eq_two_one
     {i n : Type*} [MeasurableSpace i] [Fintype n] [DecidableEq n]
     (mu : Measure i) (firstPart secondPart : i → SquareMatrix n)
@@ -121,7 +122,7 @@ theorem doubleLayerIntegralAverage_eq_one_of_cauchy
       hCauchy hAdjoint]
   module
 
-/-- Abstracted companion-transform identity from manuscript equation (308).  Its two
+/-- Abstracted companion-transform identity from `eq:double-layer-identity`.  Its two
 hypotheses are the Cauchy evaluation and the adjoint companion evaluation. -/
 theorem doubleLayer_companion_identity
     {i n : Type*} [MeasurableSpace i] [Fintype n] [DecidableEq n]
@@ -134,7 +135,8 @@ theorem doubleLayer_companion_identity
   rw [two_smul_doubleLayerIntegralAverage,
     integral_add hfirst hsecond, hCauchy, hCompanion]
 
-/-- Scalar Cayley transform used for the boundary functions in manuscript line 314. -/
+/-- Scalar Cayley transform used for the boundary functions in
+`eq:cayley-boundary-function`. -/
 def cayleyTransform (z w : ℂ) : ℂ := (1 + z * w) / (1 - z * w)
 
 /-- Coefficients of `1 + 2 ∑_{m ≥ 1} z^m w^m`. -/
@@ -175,7 +177,7 @@ theorem cayleyTransform_re_nonneg {z w : ℂ} (hz : ‖z‖ < 1) (hw : ‖w‖ �
     nlinarith
   · exact hden.le
 
-/-- Norm-convergent Cayley expansion from manuscript lines 325--330. -/
+/-- Norm-convergent expansion of the scalar Cayley transform. -/
 theorem cayleyCoefficient_hasSum {z w : ℂ} (hz : ‖z‖ < 1) (hw : ‖w‖ ≤ 1) :
     HasSum (cayleyCoefficient z w) (cayleyTransform z w) := by
   have hzw : ‖z * w‖ < 1 := calc

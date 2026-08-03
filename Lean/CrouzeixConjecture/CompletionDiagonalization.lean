@@ -199,7 +199,7 @@ theorem innerConjugation_conjTranspose_diagonal
   simp [innerConjugation, Matrix.mul_apply, Matrix.diagonal, mul_comm, mul_left_comm]
 
 /-- Polynomial evaluation in `Bᴴ`, pulled back by `Sᴴ` and `S`, is a diagonal matrix times
-the Gram matrix.  This is the algebraic isomorphism used in manuscript lines 87--98. -/
+the Gram matrix.  This is the algebraic isomorphism behind `eq:adjoint-algebra-diagonal`. -/
 theorem polynomialEval_conjTranspose_diagonalization
     (u : (SquareMatrix n)ˣ) (lambda : n → ℂ) (p : Polynomial ℂ) :
     u.valᴴ *
@@ -229,8 +229,8 @@ theorem polynomialEval_conjTranspose_diagonalization
   simp only [← Matrix.mul_assoc]
   rw [hleft, Matrix.one_mul]
 
-/-- Every element of `alg(Bᴴ)` has exactly the diagonal-times-Gram form claimed at manuscript
-lines 87--98. -/
+/-- Every element of `alg(Bᴴ)` has exactly the diagonal-times-Gram form used in
+`eq:adjoint-algebra-diagonal`. -/
 theorem exists_diagonal_correction_of_mem_generatedAlgebra_conjTranspose
     {B X : SquareMatrix n} (hB : SimpleDiagonalization B)
     (hX : X ∈ generatedAlgebra Bᴴ) :

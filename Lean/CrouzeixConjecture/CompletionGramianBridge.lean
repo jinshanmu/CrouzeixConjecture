@@ -13,7 +13,7 @@ namespace CrouzeixConjecture
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- The algebraic square-root data used in manuscript lines 163–192.  For the manuscript's
+/-- The algebraic square-root data used in `eq:balanced-definitions`.  For the manuscript's
 positive definite Gram matrix `G = SᴴS`, take `H = G¹⁄²` and `Hinv = G⁻¹⁄²`.  The
 four fields below are precisely the self-adjointness and two-sided inverse facts used by the
 similarity and congruence calculations; no analytic property of a square root is hidden here. -/
@@ -28,7 +28,8 @@ structure CompletionSquareRootData (G H Hinv : SquareMatrix n) : Prop where
 def completionEigenvalueDiagonal (lambda : n → ℂ) : SquareMatrix n :=
   Matrix.diagonal lambda
 
-/-- The power-bounded matrix `C = G¹⁄² D G⁻¹⁄²` from manuscript line 182. -/
+/-- The power-bounded matrix called `\widetilde T = G¹⁄² \Lambda G⁻¹⁄²` in
+`eq:balanced-definitions`. -/
 def completionSimilarity (H Hinv : SquareMatrix n) (lambda : n → ℂ) : SquareMatrix n :=
   H * completionEigenvalueDiagonal lambda * Hinv
 
@@ -321,7 +322,7 @@ theorem completionGram_inverse_eq {G H Hinv : SquareMatrix n}
     G⁻¹ = Hinv * Hinv :=
   Matrix.inv_eq_left_inv (completionSquareRoot_inverse_mul hsqrt)
 
-/-- The purely algebraic identity behind congruencing manuscript equation (7) by `G⁻¹⁄²`. -/
+/-- The purely algebraic identity behind congruencing `eq:Y-inequality` by `G⁻¹⁄²`. -/
 theorem completion_congruence_identity (Hinv Ginv P X : SquareMatrix n)
     (hGinv : Ginv = Hinv * Hinv) :
     Hinv * (4 * X - X * Ginv * P - P * Ginv * X) * Hinv =
@@ -331,7 +332,7 @@ theorem completion_congruence_identity (Hinv Ginv P X : SquareMatrix n)
   rw [hGinv]
   noncomm_ring
 
-/-- Exact Gramian form of the congruenced matrix in manuscript equation (10). -/
+/-- Exact Gramian form of the congruenced matrix in `eq:Yhat-inequality`. -/
 theorem completion_PRX_congruence_eq_gramian_expression
     {G H Hinv : SquareMatrix n} (hsqrt : CompletionSquareRootData G H Hinv)
     (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1) :
@@ -353,7 +354,7 @@ theorem completion_PRX_congruence_eq_gramian_expression
   rw [completionX_congruence_eq_gramian_difference hsqrt lambda hlambda,
     completionP_congruence_eq_gramian_four hsqrt lambda hlambda]
 
-/-- The congruenced `X` is positive semidefinite, as asserted in manuscript equation (9). -/
+/-- The congruenced `X` is positive semidefinite, as asserted in `eq:Yhat-positive`. -/
 theorem completionX_congruence_posSemidef [Nonempty n]
     {G H Hinv : SquareMatrix n} (hsqrt : CompletionSquareRootData G H Hinv)
     (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1) :
@@ -364,8 +365,8 @@ theorem completionX_congruence_posSemidef [Nonempty n]
     (completionSimilarity H Hinv lambda)
     (completionSimilarity_pow_norm_le hsqrt lambda hlambda)
 
-/-- Exact `k = 1, 2, ...` form of manuscript equation (9); the reindexing uses that the
-`k = 0` difference summand vanishes. -/
+/-- Exact `k = 1, 2, ...` form of `eq:Yhat-positive`; the reindexing uses that the `k = 0`
+difference summand vanishes. -/
 theorem completionX_congruence_eq_tsum_succ
     {G H Hinv : SquareMatrix n} (hsqrt : CompletionSquareRootData G H Hinv)
     (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1) :
@@ -388,8 +389,8 @@ theorem completionX_congruence_eq_tsum_succ
     _ = ∑' k : ℕ, gramianDifferenceTerm C (k + 1) := by
       rw [gramianDifferenceTerm_zero, zero_add]
 
-/-- Positivity is preserved when manuscript equation (7) is congruenced by the self-adjoint
-matrix `Hinv = G⁻¹⁄²`, yielding the Gramian form of equation (10). -/
+/-- Positivity is preserved when `eq:Y-inequality` is congruenced by the self-adjoint matrix
+`Hinv = G⁻¹⁄²`, yielding `eq:Yhat-inequality`. -/
 theorem completion_gramian_expression_posSemidef_of_source
     {G H Hinv : SquareMatrix n} (hsqrt : CompletionSquareRootData G H Hinv)
     (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1)

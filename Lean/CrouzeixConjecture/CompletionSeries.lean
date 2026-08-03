@@ -173,7 +173,7 @@ theorem gramian_two_sub_gramian_four_eq_tsum {M : ℝ} (hM : 0 ≤ M)
     summable_gramianTerm (by norm_num) hM C hbound
   simpa [gramian, gramianDifferenceTerm] using (h2.hasSum.sub h4.hasSum).tsum_eq.symm
 
-/-- The difference Gramian in manuscript equation (8) is positive semidefinite. -/
+/-- The difference Gramian in `eq:Yhat-positive` is positive semidefinite. -/
 theorem gramian_two_sub_gramian_four_posSemidef [Nonempty n] {M : ℝ} (hM : 0 ≤ M)
     (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M) :
     (gramian 2 C - gramian 4 C).PosSemidef := by

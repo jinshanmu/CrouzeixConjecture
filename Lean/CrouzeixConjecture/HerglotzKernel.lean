@@ -35,7 +35,7 @@ def sampledKernelMatrix {n : Type*} {m : ℕ}
   fun i j ↦ L (z i.1) (z j.1) i.2 j.2
 
 /-- Positivity of all finite sampling matrices, equivalent to the quadratic-form formulation
-in manuscript lines 51--58. -/
+in `eq:positive-kernel-definition`. -/
 def IsPositiveMatrixKernel {n : Type*} (L : ℂ → ℂ → SquareMatrix n) : Prop :=
   ∀ (m : ℕ) (z : Fin m → ℂ), (sampledKernelMatrix L z).PosSemidef
 
@@ -45,7 +45,7 @@ def IsPositiveMatrixKernelOn {n : Type*} (s : Set ℂ)
   ∀ (m : ℕ) (z : Fin m → ℂ),
     (∀ i, z i ∈ s) → (sampledKernelMatrix L z).PosSemidef
 
-/-- The matrix-valued Herglotz kernel from manuscript equation (1). -/
+/-- The matrix-valued Herglotz kernel from `eq:herglotz-kernel`. -/
 def matrixHerglotzKernel {n : Type*} (K : ℂ → SquareMatrix n) (z w : ℂ) :
     SquareMatrix n :=
   (1 - z * starRingEnd ℂ w)⁻¹ • (K z + (K w)ᴴ)
@@ -67,8 +67,8 @@ private lemma unitCircle_mul_conj { ζ : ℂ } (hζ : ζ ∈ unitCircle) :
   rw [Complex.mul_conj, Complex.normSq_eq_norm_sq, hnorm]
   norm_num
 
-/-- The elementary scalar identity in manuscript lines 66--76, first isolated with exactly the
-nonvanishing denominators required by field algebra. -/
+/-- The elementary scalar identity underlying `eq:scalar-herglotz-factorization`, first
+isolated with exactly the nonvanishing denominators required by field algebra. -/
 theorem scalar_herglotz_kernel_identity_of_ne { ζ z w : ℂ }
     (hunit : ζ * starRingEnd ℂ ζ = 1)
     (hzw : 1 - z * starRingEnd ℂ w ≠ 0)
@@ -218,7 +218,7 @@ theorem finiteMatrixHerglotzKernel_isPositiveMatrixKernelOn
       (fun r _ ↦ matrixHerglotzAtom_isPositiveMatrixKernelOn (hζ r) (hM r))
 
 /-- The block-matrix definition of kernel positivity implies exactly the finite quadratic-form
-inequality displayed in manuscript equation (2). -/
+inequality in `eq:positive-kernel-definition`. -/
 theorem finite_sampling_quadratic_nonneg {n : Type*} [Fintype n] [DecidableEq n]
     {s : Set ℂ} {L : ℂ → ℂ → SquareMatrix n} (hL : IsPositiveMatrixKernelOn s L)
     {m : ℕ} (z : Fin m → ℂ) (hz : ∀ i, z i ∈ s) (ξ : Fin m → n → ℂ) :
@@ -240,7 +240,8 @@ theorem finite_sampling_quadratic_nonneg {n : Type*} [Fintype n] [DecidableEq n]
     ]
   exact hpair
 
-/-- Manuscript equation (2) for a single positive matrix mass in a Herglotz representation. -/
+/-- The finite sampling inequality for a single positive matrix mass in a Herglotz
+representation. -/
 theorem matrixHerglotzAtom_finite_sampling_nonneg {n : Type*} [Fintype n]
     [DecidableEq n] { ζ : ℂ } {M : SquareMatrix n} (hζ : ζ ∈ unitCircle)
     (hM : M.PosSemidef) {m : ℕ} (z : Fin m → ℂ)

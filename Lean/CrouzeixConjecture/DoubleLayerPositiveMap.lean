@@ -20,7 +20,7 @@ variable {i n : Type*} [TopologicalSpace i] [MeasurableSpace i]
 /-- The exact measure-theoretic hypotheses on the positive operator-valued boundary
 density.  Integrability is stated explicitly.  Positive semidefiniteness includes
 Hermitian symmetry, so no separate (and redundant) Hermitian hypothesis is imposed.
-The mass identity is the normalisation in manuscript equation (289). -/
+The mass identity is the normalisation in `eq:double-layer-mass`. -/
 structure PositiveBoundaryDensity (mu : Measure i) where
   density : i → SquareMatrix n
   integrable_density : Integrable density mu
@@ -39,8 +39,8 @@ theorem PositiveBoundaryDensity.integrable_smul
       h.continuous.measurable.aestronglyMeasurable
       (Filter.Eventually.of_forall fun x ↦ h.norm_coe_le_norm x)
 
-/-- The positive operator-valued boundary map from manuscript equation (292), on
-the Banach algebra of bounded continuous complex boundary functions. -/
+/-- The positive operator-valued boundary map from `eq:Phi-definition`, on the Banach algebra
+of bounded continuous complex boundary functions. -/
 def boundaryPhi (D : PositiveBoundaryDensity (n := n) mu) (h : i →ᵇ ℂ) :
     SquareMatrix n :=
   (2 : ℂ)⁻¹ • ∫ x, h x • D.density x ∂mu

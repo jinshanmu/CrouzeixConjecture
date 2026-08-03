@@ -16,8 +16,8 @@ namespace CrouzeixConjecture
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A finite-dimensional matrix subalgebra is inverse-closed for elements that are units in
-the ambient matrix algebra.  This is the finite-dimensional linear-algebra substitute for a
-general holomorphic functional calculus used in manuscript lines 343--345. -/
+the ambient matrix algebra.  This supplies the algebra-membership step following
+`eq:direct-completion`. -/
 theorem matrix_inv_mem_subalgebra_of_mem_of_isUnit
     (A : Subalgebra ℂ (SquareMatrix n)) {x : SquareMatrix n}
     (hx : x ∈ A) (hunit : IsUnit x) : x⁻¹ ∈ A := by

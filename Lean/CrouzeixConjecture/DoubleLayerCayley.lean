@@ -19,7 +19,7 @@ variable {i n : Type*} [TopologicalSpace i] [MeasurableSpace i]
   [OpensMeasurableSpace i] [Fintype n] [DecidableEq n] [Nonempty n]
 
 /-- A bounded continuous boundary function satisfying the unit sup-norm hypothesis in
-manuscript lines 236--238. -/
+`eq:f-bounded-by-one`. -/
 structure ContractiveBoundaryFunction (i : Type*) [TopologicalSpace i] where
   function : i →ᵇ ℂ
   norm_le_one : ∀ x, ‖function x‖ ≤ 1
@@ -95,7 +95,7 @@ theorem cayleyBoundaryFunction_apply (z : ℂ) (hz : ‖z‖ < 1)
 
 variable {mu : Measure i}
 
-/-- The value `H(z)=Φ(h_z)` from manuscript equation (318), for a point of the open disk. -/
+/-- The value `H(z)=Φ(h_z)` from `eq:H-from-Phi`, for a point of the open disk. -/
 def doubleLayerCayleyValue (D : PositiveBoundaryDensity (n := n) mu)
     (f : ContractiveBoundaryFunction i) (z : ℂ) (hz : ‖z‖ < 1) :
     SquareMatrix n :=
@@ -116,7 +116,7 @@ theorem doubleLayerCayleyValue_zero
 
 omit [Nonempty n] in
 /-- The real part of every constructed Cayley value is positive semidefinite, proving the
-positivity assertion in manuscript equation (323). -/
+positivity assertion in `eq:cayley-H-positive`. -/
 theorem doubleLayerCayleyValue_rePart_posSemidef
     (D : PositiveBoundaryDensity (n := n) mu)
     (f : ContractiveBoundaryFunction i) (z : ℂ) (hz : ‖z‖ < 1) :
@@ -228,7 +228,7 @@ theorem isPositiveRealCompletion_of_direct_cayley_identity
     (generatedAlgebra Bᴴ).one_mem
 
 /-- Coefficients of the analytic series obtained by applying the bounded positive map to the
-uniform Cayley expansion in manuscript equations (327)--(335). -/
+uniform Cayley expansion used to construct the completion. -/
 def doubleLayerCayleySeriesCoefficient
     (D : PositiveBoundaryDensity (n := n) mu)
     (f : ContractiveBoundaryFunction i) : ℕ → SquareMatrix n

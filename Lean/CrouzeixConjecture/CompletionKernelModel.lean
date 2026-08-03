@@ -12,11 +12,11 @@ namespace CrouzeixConjecture
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- The diagonal analytic correction `D(z)` in manuscript equation (3). -/
+/-- The diagonal analytic correction `D(z)` in `eq:Htilde-decomposition`. -/
 def completionDiagonalCorrection (d : ℂ → n → ℂ) (z : ℂ) : SquareMatrix n :=
   Matrix.diagonal (d z)
 
-/-- The conjugated positive-real function from manuscript equation (3):
+/-- The conjugated positive-real function from `eq:Htilde-decomposition`:
 `K(z) = G (I - z Λ)⁻¹ + D(z)G`. -/
 def completionKernelModel (G : SquareMatrix n) (lambda : n → ℂ)
     (d : ℂ → n → ℂ) (z : ℂ) : SquareMatrix n :=
@@ -60,7 +60,7 @@ lemma completionSamplePoint_mem_openUnitDisk (lambda : n → ℂ)
         linarith [hlambda i]
       simpa [completionSamplePoint, openUnitDisk, Metric.mem_ball, dist_eq_norm] using hhalf
 
-/-- The sparse vector `uᵢeᵢ` in manuscript line 116. -/
+/-- The sparse vector `uᵢeᵢ` from `eq:eigenvalue-samples`. -/
 def completionSparseVector (u : n → ℂ) (i : n) : n → ℂ :=
   fun j ↦ if j = i then u i else 0
 
@@ -91,14 +91,14 @@ theorem star_completionSparseVector_dotProduct (u : n → ℂ) (i : n) (x : n �
     simp [completionSparseVector, hji]
   · simp
 
-/-- The point/vector family used in manuscript lines 111--123. -/
+/-- The point/vector family from `eq:eigenvalue-samples` and `eq:compensating-vector`. -/
 def completionSampleVector (G : SquareMatrix n) (lambda : n → ℂ)
     (u : n → ℂ) : Option n → n → ℂ
   | none => completionV G (completionP G lambda) u
   | some i => completionSparseVector u i
 
-/-- The unknown diagonal term is multiplied by the exact cancellation vector
-`Gv + Pu`; this is the algebraic content of manuscript lines 124--137. -/
+/-- The unknown diagonal term is multiplied by the exact cancellation vector `Gv + Pu`; this
+is the algebraic content of `eq:theta-contribution`. -/
 def completionUnknownHalfContribution (G : SquareMatrix n) (lambda : n → ℂ)
     (d : ℂ → n → ℂ) (u : n → ℂ) : ℂ :=
   ∑ i, conj (u i) * d (conj (lambda i) / 2) i *
@@ -113,8 +113,8 @@ theorem completionUnknownHalfContribution_eq_zero (G : SquareMatrix n)
     completion_mulVec_add_eq_zero G (completionP G lambda) u hG]
   simp
 
-/-- Consequently the contribution together with its adjoint is zero, matching the
-`2 RePart` expression displayed in manuscript lines 128--136. -/
+/-- Consequently the contribution together with its adjoint is zero, matching the `2 RePart`
+expression in `eq:theta-contribution`. -/
 theorem completionUnknownContribution_eq_zero (G : SquareMatrix n)
     (lambda : n → ℂ) (d : ℂ → n → ℂ) (u : n → ℂ) (hG : IsUnit G) :
     completionUnknownHalfContribution G lambda d u +
@@ -132,8 +132,8 @@ theorem completionResolventModel_apply (G : SquareMatrix n) (lambda : n → ℂ)
     completionResolventModel G lambda z i j = G i j * (1 - z * lambda j)⁻¹ := by
   simp [completionResolventModel, Matrix.mul_apply, Matrix.diagonal]
 
-/-- At two nonzero manuscript sampling points, the known kernel block is exactly
-`4R - 2P` (manuscript lines 139--146). -/
+/-- At two nonzero sampling points, the known kernel block is exactly `4R - 2P`, as in
+`eq:sampled-main-block`. -/
 theorem completionResolventKernel_sample_sample_apply {G : SquareMatrix n}
     (hG : G.IsHermitian) (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1)
     (i j : n) :
@@ -174,8 +174,8 @@ theorem completionResolventKernel_sample_sample_apply {G : SquareMatrix n}
   field_simp [h₂, h₄]
   ring
 
-/-- Between a nonzero sampling point and the origin, the known block is `G+R`
-(manuscript line 147). -/
+/-- Between a nonzero sampling point and the origin, the known block is `G+R`, as used in
+`eq:pre-gramian-inequality`. -/
 theorem completionResolventKernel_sample_zero_apply {G : SquareMatrix n}
     (hG : G.IsHermitian) (lambda : n → ℂ) (i j : n) :
     matrixHerglotzKernel (completionResolventModel G lambda)
@@ -328,7 +328,7 @@ theorem completionResolventKernel_selected_zero_zero {G : SquareMatrix n}
   rw [hmatrix]
 
 /-- Full finite sampling calculation for the known resolvent part.  The four summands are
-exactly the four terms on manuscript lines 152--153, before substituting the formula for `v`. -/
+exactly the four terms in `eq:pre-gramian-inequality` before substituting the formula for `v`. -/
 theorem completionResolventKernel_sampling_quadratic_eq {G : SquareMatrix n}
     (hG : G.IsHermitian) (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1)
     (u : n → ℂ) :
@@ -549,7 +549,7 @@ theorem completionUnknownHalfContribution_eq_matrixPairing
     Matrix.mulVec_diagonal, dotProduct, Pi.star_apply, mul_assoc]
 
 /-- The complete unknown sampling sum is one half-contribution plus its conjugate, exactly the
-`2 RePart` term in manuscript lines 128--136. -/
+`2 RePart` term in `eq:theta-contribution`. -/
 theorem completionCorrectionKernel_sampling_eq_unknownContribution
     {G : SquareMatrix n} (hG : G.IsHermitian) (lambda : n → ℂ)
     (d : ℂ → n → ℂ) (hd0 : d 0 = 0) (u : n → ℂ) :
@@ -601,7 +601,7 @@ theorem completionCorrectionKernel_sampling_eq_zero
 def completionSubstitutionMatrix (G P : SquareMatrix n) : SquareMatrix n :=
   -(G⁻¹ * P)
 
-/-- Applying the substitution matrix gives the vector chosen in manuscript equation (4). -/
+/-- Applying the substitution matrix gives the vector in `eq:compensating-vector`. -/
 theorem completionSubstitutionMatrix_mulVec (G P : SquareMatrix n) (u : n → ℂ) :
     completionSubstitutionMatrix G P *ᵥ u = completionV G P u := by
   simp only [completionSubstitutionMatrix, completionV, Matrix.neg_mulVec]
@@ -635,8 +635,8 @@ theorem mixed_mulVec_right_eq (B V : SquareMatrix n) (u : n → ℂ) :
       star u ⬝ᵥ ((B * V) *ᵥ u) := by
   rw [Matrix.mulVec_mulVec]
 
-/-- The four compressed kernel blocks reduce exactly to the coefficient defined after the
-substitution in manuscript line 154. -/
+/-- The four compressed kernel blocks reduce exactly to the coefficient in
+`eq:pre-gramian-inequality` after the prescribed substitution. -/
 theorem completionCompressedCoefficient_eq {G P R : SquareMatrix n}
     (hGherm : G.IsHermitian) (hP : P.IsHermitian) (hG : IsUnit G) :
     let V := completionSubstitutionMatrix G P
@@ -723,7 +723,7 @@ theorem completionSampleCoefficient_quadratic_nonneg_of_positiveKernel
     add_zero] at hsample
   exact hsample
 
-/-- Manuscript equation (5), now derived from kernel positivity rather than assumed. -/
+/-- The inequality `eq:Y-inequality`, now derived from kernel positivity rather than assumed. -/
 theorem completion_X_inequality_of_positiveKernel
     {G : SquareMatrix n} (hGherm : G.IsHermitian) (hG : IsUnit G)
     (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1)
