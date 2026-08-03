@@ -1,7 +1,6 @@
 module
 
 public import CrouzeixConjecture.CompletionStatement
-public import CrouzeixConjecture.DoubleLayerAlgebra
 public import Mathlib.Analysis.Complex.CauchyIntegral
 public import Mathlib.Analysis.Normed.Algebra.GelfandFormula
 
@@ -64,21 +63,5 @@ theorem hasSum_resolvent_series_of_spectrum_subset_closedUnitDisk
   rw [Matrix.nonsing_inv_eq_ringInverse]
   simpa [ContinuousMultilinearMap.mkPiRing_apply, Finset.prod_const] using
     hseries.hasSum_sub hzBall
-
-/-- The same result in the exact coefficient notation of the double-layer construction. -/
-theorem hasSum_resolventSeriesTerm_of_spectrum_subset_closedUnitDisk
-    (T : SquareMatrix n) (hspectrum : matrixSpectrum T ⊆ closedUnitDisk)
-    {z : ℂ} (hz : z ∈ unitDisk) :
-    HasSum (resolventSeriesTerm z T) (1 - z • T)⁻¹ := by
-  simpa only [resolventSeriesTerm] using
-    hasSum_resolvent_series_of_spectrum_subset_closedUnitDisk T hspectrum hz
-
-/-- Consequently the positive-degree resolvent tail has the manuscript's claimed sum. -/
-theorem hasSum_resolventTailTerm_of_spectrum_subset_closedUnitDisk
-    (T : SquareMatrix n) (hspectrum : matrixSpectrum T ⊆ closedUnitDisk)
-    {z : ℂ} (hz : z ∈ unitDisk) :
-    HasSum (resolventTailTerm z T) ((1 - z • T)⁻¹ - 1) := by
-  exact resolventTailTerm_hasSum_of_resolventSeries z T
-    (hasSum_resolventSeriesTerm_of_spectrum_subset_closedUnitDisk T hspectrum hz)
 
 end CrouzeixConjecture

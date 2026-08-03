@@ -15,7 +15,7 @@ namespace CrouzeixConjecture
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 omit [DecidableEq n] in
-/-- Evaluation of the anticommutator in manuscript line 203 on an eigenvector of `P`. -/
+/-- Evaluation of the Gramian anticommutator on an eigenvector of `P`. -/
 theorem anticommutator_quadratic_on_eigenvector
     (P X : SquareMatrix n) (hP : P.IsHermitian) (e : n → ℂ) (p : ℝ)
     (hPe : P *ᵥ e = (p : ℂ) • e) :
@@ -41,7 +41,7 @@ theorem anticommutator_quadratic_on_eigenvector
   ring
 
 /-- Under the Gramian anticommutator inequality, every eigenvalue of the `q = 4` Gramian is at
-most `2`.  This is the eigenvector contradiction in manuscript lines 200--208. -/
+most `2`. -/
 theorem gramian_four_eigenvalues_le_two [Nonempty n] {M : ℝ} (hM : 0 ≤ M)
     (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M)
     (hineq : ((4 : ℂ) • (gramian 2 C - gramian 4 C) -
@@ -108,13 +108,9 @@ theorem gramian_four_eigenvalues_le_two [Nonempty n] {M : ℝ} (hM : 0 ≤ M)
         simp only [← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec,
           Matrix.vecMul_conjTranspose, star_star]
       _ = 0 := hCCqzero
-  have hstein : P = 1 + (4 : ℝ)⁻¹ • (Cᴴ * P * C) := by
-    simpa [P] using gramian_stein_identity (q := 4) (by norm_num) hM C hbound
-  have htriple : (Cᴴ * P * C) *ᵥ e = 0 := by
-    rw [← Matrix.mulVec_mulVec, hCe, Matrix.mulVec_zero]
   have hPeOne : P *ᵥ e = e := by
-    rw [hstein, Matrix.add_mulVec, Matrix.smul_mulVec, htriple]
-    simp
+    simpa only [P] using
+      gramian_mulVec_eq_of_mulVec_eq_zero (q := 4) (by norm_num) hM C hbound e hCe
   have heLp : hPh.eigenvectorBasis i ≠ 0 := hPh.eigenvectorBasis.orthonormal.ne_zero i
   have he : e ≠ 0 := by
     intro hezero
@@ -127,8 +123,7 @@ theorem gramian_four_eigenvalues_le_two [Nonempty n] {M : ℝ} (hM : 0 ≤ M)
   have hpone : p = 1 := Complex.ofReal_injective hpcomplex
   nlinarith
 
-/-- The eigenvalue bound is equivalent to the Loewner upper bound `P ≤ 2 I` in manuscript
-equation (11). -/
+/-- The eigenvalue bound is equivalent to the Loewner upper bound `P ≤ 2 I`. -/
 theorem gramian_four_upper_bound_posSemidef [Nonempty n] {M : ℝ} (hM : 0 ≤ M)
     (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M)
     (hineq : ((4 : ℂ) • (gramian 2 C - gramian 4 C) -
@@ -168,7 +163,8 @@ theorem gramian_four_upper_bound_posSemidef [Nonempty n] {M : ℝ} (hM : 0 ≤ M
   rw [hdiag, Matrix.mul_sub, Matrix.sub_mul]
   simp [mul_assoc, hU]
 
-/-- The Gramian anticommutator inequality implies the final Stein bound `4 I - Cᴴ C ⪰ 0`. -/
+/-- The Gramian anticommutator inequality and the first nonconstant Gramian term imply
+`4 I - Cᴴ C ⪰ 0` directly. -/
 theorem four_sub_conjTranspose_mul_self_posSemidef_of_gramian_inequality
     [Nonempty n] {M : ℝ} (hM : 0 ≤ M)
     (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M)
@@ -177,51 +173,26 @@ theorem four_sub_conjTranspose_mul_self_posSemidef_of_gramian_inequality
       gramian 4 C * (gramian 2 C - gramian 4 C)).PosSemidef) :
     ((4 : ℂ) • (1 : SquareMatrix n) - Cᴴ * C).PosSemidef := by
   let P := gramian 4 C
-  have hPpos : P.PosSemidef := gramian_posSemidef (q := 4) (by norm_num) hM C hbound
   have hPupper : ((2 : ℂ) • (1 : SquareMatrix n) - P).PosSemidef := by
     simpa [P] using gramian_four_upper_bound_posSemidef hM C hbound hineq
-  have hstein : P = 1 + (4 : ℝ)⁻¹ • (Cᴴ * P * C) := by
-    simpa [P] using gramian_stein_identity (q := 4) (by norm_num) hM C hbound
-  have hPminusEq : P - 1 = (4 : ℝ)⁻¹ • (Cᴴ * P * C) := by
-    calc
-      P - 1 = (1 + (4 : ℝ)⁻¹ • (Cᴴ * P * C)) - 1 :=
-        congrArg (· - 1) hstein
-      _ = (4 : ℝ)⁻¹ • (Cᴴ * P * C) := by simp
-  have hPminus : (P - 1).PosSemidef := by
-    rw [hPminusEq]
-    exact (hPpos.conjTranspose_mul_mul_same C).smul (by norm_num)
-  have hCPdiff : (Cᴴ * P * C - Cᴴ * C).PosSemidef := by
-    have h := hPminus.conjTranspose_mul_mul_same C
-    have hid : Cᴴ * (P - 1) * C = Cᴴ * P * C - Cᴴ * C := by
-      noncomm_ring
-    rwa [hid] at h
-  have hCPC : Cᴴ * P * C = (4 : ℝ) • (P - 1) := by
-    calc
-      Cᴴ * P * C = (1 : ℝ) • (Cᴴ * P * C) := (one_smul ℝ _).symm
-      _ = ((4 : ℝ) * (4 : ℝ)⁻¹) • (Cᴴ * P * C) := by norm_num
-      _ = (4 : ℝ) • ((4 : ℝ)⁻¹ • (Cᴴ * P * C)) :=
-        (smul_smul (4 : ℝ) (4 : ℝ)⁻¹ (Cᴴ * P * C)).symm
-      _ = (4 : ℝ) • (P - 1) := congrArg ((4 : ℝ) • ·) hPminusEq.symm
-  have hscaled : ((4 : ℝ) • ((2 : ℂ) • (1 : SquareMatrix n) - P)).PosSemidef :=
-    hPupper.smul (by norm_num)
-  have h4CP : ((4 : ℂ) • (1 : SquareMatrix n) - Cᴴ * P * C).PosSemidef := by
-    rw [hCPC]
-    have heq : (4 : ℝ) • ((2 : ℂ) • (1 : SquareMatrix n) - P) =
-        (4 : ℂ) • (1 : SquareMatrix n) - (4 : ℝ) • (P - 1) := by
-      ext i j
-      by_cases hij : i = j
-      · simp [hij]
-        ring
-      · simp [hij]
-    rw [← heq]
-    exact hscaled
-  have hfinal := hCPdiff.add h4CP
-  convert hfinal using 1
-  simp only [Algebra.smul_def, mul_one]
-  noncomm_ring
+  have hrest : (P - 1 - (4 : ℝ)⁻¹ • (Cᴴ * C)).PosSemidef := by
+    simpa [P] using gramian_four_sub_one_sub_first_posSemidef hM C hbound
+  have hquarter :
+      ((1 : SquareMatrix n) - (4 : ℝ)⁻¹ • (Cᴴ * C)).PosSemidef := by
+    have h := hPupper.add hrest
+    convert h using 1
+    module
+  have hscaled := hquarter.smul (show 0 ≤ (4 : ℝ) by norm_num)
+  convert hscaled using 1
+  ext i j
+  by_cases hij : i = j
+  · subst j
+    simp
+    ring
+  · simp [hij]
 
-/-- Completion of manuscript lines 200--221: the anticommutator inequality for the two Gramians
-forces the Euclidean operator norm of `C` to be at most `2`. -/
+/-- The anticommutator inequality for the two Gramians forces the Euclidean operator norm of `C`
+to be at most `2`. -/
 theorem norm_le_two_of_gramian_inequality [Nonempty n] {M : ℝ} (hM : 0 ≤ M)
     (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M)
     (hineq : ((4 : ℂ) • (gramian 2 C - gramian 4 C) -

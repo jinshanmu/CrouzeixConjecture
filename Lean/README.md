@@ -1,9 +1,9 @@
 # Crouzeix conjecture manuscript formalization
 
 This project audits and formalizes the proof architecture of
-`../preprint/the_numerical_range_is_a_2_spectral_set_v2.tex`, 1,165 lines,
+`../preprint/the_numerical_range_is_a_2_spectral_set_v3.tex`, 1,066 lines,
 at SHA-256
-`11235d02fd0d91d982cbc113495c5c6f426ce9fba75332de5d10e7bf6a1ed315`.
+`ecee7d87f0a31c70c5cbc8e8b46ccf0dd2cc89e5edaecfa4de8357259aa73e9a`.
 All source-line references in the audit documents refer to that version.
 
 It uses Lean 4.28.0 and Mathlib pinned at commit
@@ -19,7 +19,7 @@ polynomial is at most twice the maximum polynomial modulus on the numerical
 range. The quantified form is
 `CrouzeixConjecture.crouzeixConjecture_mainTheorem : MainTheoremStatement`.
 
-The active fixed-domain proof follows the v2 auxiliary-basis simplification.
+The active proof follows the v3 auxiliary-basis simplification.
 An auxiliary matrix `B` has simple spectrum, while the target
 `T = f(B)` is diagonal in the same basis. The sampled values `f(βᵢ)` may
 repeat or vanish. The positive-real defect belongs to `alg(Bᴴ)`, kernel
@@ -27,7 +27,12 @@ sampling permits repeated points, and the completion theorem concludes
 `‖T‖ ≤ 2` without requiring `T` to have simple spectrum. For a polynomial
 `p`, the proof treats the zero-supremum case directly and otherwise uses only
 the normalization `f = p / M`. It then lets simple-spectrum matrices
-`Bₖ → A` and finally lets the convex outer domains decrease to `W(A)`.
+`Bₖ → A` inside each fixed outer domain and only afterward lets the convex
+outer domains decrease to `W(A)`. The Gramian endpoint uses the first
+nonconstant term directly, with no Stein identity. The direct Cayley algebra
+is recorded by `isPositiveRealCompletion_of_direct_cayley_identity`; the
+concrete polynomial contour provider still obtains its special Cauchy identity
+through a uniform series bridge.
 
 The superseded `f_eta` collision-avoidance, algebra-equality, and
 `eta → 0` formalization has been deleted from the working tree. Git history
@@ -45,7 +50,7 @@ authoritative default verification script: it runs the build and then
 `lake env lean AxiomAudit.lean`. Run these serially; do not overlap Lean/Lake
 processes.
 
-See `FORMALIZATION_MAP.md` for v2 source coverage,
+See `FORMALIZATION_MAP.md` for v3 source coverage,
 `CONTINUATION_STATUS.md` for the proof route and verification procedure,
 `MANUSCRIPT_AUDIT.md` for the mathematical audit, and `AXIOM_AUDIT.md` for
 the trust boundary.

@@ -38,20 +38,13 @@ theorem canonicalParallelOrientedRadialBoundaryStatement :
       (isCompact_numericalRange A) (numericalRange_convex A)
       (outerApproximationRadius_pos k))
 
-/-- The radial boundary geometry implies the previously isolated canonical double-layer
-statement.  All Cauchy, positivity, companion, algebra-membership, and coefficient claims are
-discharged by the permanent radial and parametric-boundary modules. -/
+/-- The radial boundary geometry supplies the double-layer completion for every simple auxiliary
+matrix lying in a fixed canonical outer body. -/
 theorem canonicalParallelDoubleLayerStatement_of_orientedRadialBoundaries
     (hGeometry : CanonicalParallelOrientedRadialBoundaryStatement (n := n)) :
     CanonicalParallelDoubleLayerStatement (n := n) := by
-  intro A k
+  intro A B k hB hWB
   obtain ⟨R, c, ⟨G⟩⟩ := hGeometry A k
-  let B := simpleSpectrumApproximation A k
-  have hB : HasDistinctEigenvalues B :=
-    simpleSpectrumApproximation_hasDistinctEigenvalues A k
-  have hWB : numericalRange B ⊆
-      parallelOuterDomain (numericalRange A) k :=
-    numericalRange_simpleSpectrumApproximation_subset_parallelOuterDomain A k
   exact G.hasDoubleLayerCompletionProvider_of_simpleDiagonalization
     R c B (simpleDiagonalization_of_hasDistinctEigenvalues B hB) hWB
 

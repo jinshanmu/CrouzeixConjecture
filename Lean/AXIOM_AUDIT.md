@@ -1,7 +1,7 @@
 # Axiom audit
 
 `AxiomAudit.lean` exposes the types and trust dependencies of the principal
-results at every proof layer. Its central completion audit now follows the v2
+results at every proof layer. Its central completion audit follows the v3
 auxiliary-basis route:
 
 - `IsPositiveRealCompletion` and `PositiveRealCompletionStatement`;
@@ -10,11 +10,16 @@ auxiliary-basis route:
 - arbitrary-finite-type and repeated-point kernel sampling;
 - `completionSampleCoefficient_quadratic_nonneg_of_positiveKernel`;
 - `norm_completionDiagonalizableMatrix_le_two_of_positiveKernelModel`;
-- `doubleLayerCayleySeries_isPositiveRealCompletion` and
+- `gramian_four_sub_one_sub_first_posSemidef` and the direct no-Stein norm
+  endpoint;
+- `matrixCayleyTransform_eq_two_resolvent_sub_one`,
+  `parametric_direct_cayley_identity`,
+  `isPositiveRealCompletion_of_direct_cayley_identity`, and
   `HasDoubleLayerCompletionProvider`;
 - the direct zero branch and
   `norm_polynomialEval_le_two_mul_of_simpleSpectrum`;
-- the simple-matrix approximation and outer-domain limiting endpoints.
+- the fixed-outer-domain simple-matrix limit and the subsequent outer-domain
+  endpoint.
 
 The superseded normalized affine `f_eta`, collision-avoidance,
 generated-algebra equality, and `eta → 0` formalization has been deleted from

@@ -2,7 +2,7 @@ module
 
 public import CrouzeixConjecture.CompletionKernelModel
 public import CrouzeixConjecture.CompletionSquareRoot
-public import CrouzeixConjecture.CompletionCore
+public import CrouzeixConjecture.CompletionEigenvector
 
 @[expose] public section
 
@@ -17,7 +17,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
 /-- The positive-real completion lemma after the manuscript's diagonalization and algebra
 reduction have produced the explicit model `K(z)=G(I-zΛ)⁻¹+D(z)G`.  Unlike a conditional
 Gramian lemma, this theorem constructs the actual positive square root of `G=SᴴS`, transports
-the sampled kernel inequality through both Gramians, completes the eigenvector/Stein argument,
+the sampled kernel inequality through both Gramians, applies the direct first-term estimate,
 and returns to `T=SΛS⁻¹` by the polar unitary. -/
 theorem norm_completionDiagonalizableMatrix_le_two_of_positiveKernelModel
     (S : SquareMatrix n) (hS : IsUnit S) (lambda : n → ℂ)

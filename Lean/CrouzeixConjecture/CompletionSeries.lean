@@ -33,13 +33,8 @@ theorem gramianTerm_posSemidef {q : ℝ} (hq : 0 < q) (C : SquareMatrix n) (k : 
   exact (Matrix.posSemidef_conjTranspose_mul_self (C ^ k)).smul
     (pow_nonneg (inv_nonneg.mpr hq.le) k)
 
-/-- Multiplying a Gramian summand on both sides advances its index. -/
-theorem gramianTerm_succ {q : ℝ} (C : SquareMatrix n) (k : ℕ) :
-    q⁻¹ • (Cᴴ * gramianTerm q C k * C) = gramianTerm q C (k + 1) := by
-  simp [gramianTerm, pow_succ, mul_assoc, smul_smul, mul_comm]
-
 /-- Geometric weights make the Gramian series converge whenever the powers of `C` are uniformly
-bounded, exactly as used in manuscript lines 186–192. -/
+bounded. -/
 theorem summable_gramianTerm {q M : ℝ} (hq : 1 < q) (hM : 0 ≤ M)
     (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M) :
     Summable (gramianTerm q C) := by
@@ -58,6 +53,43 @@ theorem summable_gramianTerm {q M : ℝ} (hq : 1 < q) (hM : 0 ≤ M)
 /-- The weighted Gramian matrix. -/
 def gramian (q : ℝ) (C : SquareMatrix n) : SquareMatrix n :=
   ∑' k : ℕ, gramianTerm q C k
+
+/-- If `C` kills a vector, then every positive-degree Gramian summand kills it as well. -/
+theorem gramianTerm_succ_mulVec_eq_zero_of_mulVec_eq_zero
+    {q : ℝ} (C : SquareMatrix n) (e : n → ℂ) (hCe : C *ᵥ e = 0) (k : ℕ) :
+    gramianTerm q C (k + 1) *ᵥ e = 0 := by
+  have hpow : C ^ (k + 1) *ᵥ e = 0 := by
+    rw [pow_succ, ← Matrix.mulVec_mulVec, hCe, Matrix.mulVec_zero]
+  rw [gramianTerm, Matrix.smul_mulVec, ← Matrix.mulVec_mulVec, hpow,
+    Matrix.mulVec_zero, smul_zero]
+
+/-- Directly from its defining series, a Gramian acts as the identity on `ker C`. -/
+theorem gramian_mulVec_eq_of_mulVec_eq_zero
+    {q M : ℝ} (hq : 1 < q) (hM : 0 ≤ M)
+    (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M)
+    (e : n → ℂ) (hCe : C *ᵥ e = 0) :
+    gramian q C *ᵥ e = e := by
+  let Llin : SquareMatrix n →ₗ[ℂ] (n → ℂ) :=
+    { toFun := fun A ↦ A *ᵥ e
+      map_add' := fun A B ↦ Matrix.add_mulVec A B e
+      map_smul' := fun c A ↦ Matrix.smul_mulVec c A e }
+  let L : SquareMatrix n →L[ℂ] (n → ℂ) :=
+    ⟨Llin, Llin.continuous_of_finiteDimensional⟩
+  have hs : Summable (gramianTerm q C) := summable_gramianTerm hq hM C hbound
+  have hsum : HasSum (fun k ↦ L (gramianTerm q C k)) (L (gramian q C)) :=
+    hs.hasSum.mapL L
+  have hsparse : HasSum (fun k : ℕ ↦ if k = 0 then e else 0) e :=
+    hasSum_ite_eq 0 e
+  have heq : (fun k ↦ L (gramianTerm q C k)) =
+      (fun k : ℕ ↦ if k = 0 then e else 0) := by
+    funext k
+    cases k with
+    | zero => simp [L, Llin, gramianTerm]
+    | succ k =>
+        simp only [Nat.succ_ne_zero, ↓reduceIte]
+        exact gramianTerm_succ_mulVec_eq_zero_of_mulVec_eq_zero C e hCe k
+  rw [heq] at hsum
+  exact hsum.unique hsparse
 
 /-- A norm-convergent sum of positive semidefinite complex matrices is positive semidefinite. -/
 theorem posSemidef_tsum [Nonempty n] {ι : Type*} (f : ι → SquareMatrix n)
@@ -85,20 +117,27 @@ theorem posSemidef_tsum [Nonempty n] {ι : Type*} (f : ι → SquareMatrix n)
   exact tsum_nonneg fun i ↦
     ((isPositiveMatrix_iff_euclideanOperator_isPositive (f i)).mp (hpos i)).inner_nonneg_right x
 
-/-- Removing one summand from a convergent sum of positive semidefinite matrices leaves a
-positive semidefinite remainder. -/
-theorem posSemidef_tsum_sub_single [Nonempty n] {ι : Type*} [DecidableEq ι]
-    (f : ι → SquareMatrix n) (hs : Summable f) (hpos : ∀ i, (f i).PosSemidef) (j : ι) :
-    ((∑' i, f i) - f j).PosSemidef := by
-  let rest : Set ι := {i | i ∉ ({j} : Finset ι)}
+/-- Removing finitely many summands from a convergent sum of positive semidefinite matrices leaves
+a positive semidefinite remainder. -/
+theorem posSemidef_tsum_sub_finset [Nonempty n] {ι : Type*} [DecidableEq ι]
+    (f : ι → SquareMatrix n) (hs : Summable f) (hpos : ∀ i, (f i).PosSemidef)
+    (s : Finset ι) :
+    ((∑' i, f i) - ∑ i ∈ s, f i).PosSemidef := by
+  let rest : Set ι := {i | i ∉ s}
   have hsrest : Summable (fun i : rest ↦ f i) := hs.subtype rest
   have hrest : (∑' i : rest, f i).PosSemidef :=
     posSemidef_tsum (fun i : rest ↦ f i) hsrest fun i ↦ hpos i
-  have hsplit := hs.sum_add_tsum_subtype_compl ({j} : Finset ι)
-  have heq : (∑' i, f i) - f j = ∑' i : rest, f i := by
+  have hsplit := hs.sum_add_tsum_subtype_compl s
+  have heq : (∑' i, f i) - ∑ i ∈ s, f i = ∑' i : rest, f i := by
     rw [← hsplit]
-    simp [rest]
+    abel
   rwa [heq]
+
+/-- Single-summand specialization of `posSemidef_tsum_sub_finset`. -/
+theorem posSemidef_tsum_sub_single [Nonempty n] {ι : Type*} [DecidableEq ι]
+    (f : ι → SquareMatrix n) (hs : Summable f) (hpos : ∀ i, (f i).PosSemidef) (j : ι) :
+    ((∑' i, f i) - f j).PosSemidef := by
+  simpa using posSemidef_tsum_sub_finset f hs hpos ({j} : Finset ι)
 
 /-- The norm-convergent Gramian is positive semidefinite. -/
 theorem gramian_posSemidef [Nonempty n] {q M : ℝ} (hq : 1 < q) (hM : 0 ≤ M)
@@ -159,24 +198,26 @@ theorem gramian_two_sub_gramian_four_sub_first_posSemidef [Nonempty n] {M : ℝ}
     norm_num [gramianDifferenceTerm, gramianTerm, ← sub_smul]
   rwa [hfirst] at hrest
 
-/-- The norm-convergent Gramian satisfies its Stein identity. -/
-theorem gramian_stein_identity {q M : ℝ} (hq : 1 < q) (hM : 0 ≤ M)
-    (C : SquareMatrix n) (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M) :
-    gramian q C = 1 + q⁻¹ • (Cᴴ * gramian q C * C) := by
-  have hs : Summable (gramianTerm q C) := summable_gramianTerm hq hM C hbound
-  calc
-    gramian q C = gramianTerm q C 0 + ∑' k : ℕ, gramianTerm q C (k + 1) :=
-      hs.tsum_eq_zero_add
-    _ = 1 + q⁻¹ • (Cᴴ * gramian q C * C) := by
-      rw [gramianTerm_zero]
-      congr 1
-      calc
-        ∑' k : ℕ, gramianTerm q C (k + 1) =
-            ∑' k : ℕ, q⁻¹ • (Cᴴ * gramianTerm q C k * C) := by
-              exact tsum_congr fun k ↦ (gramianTerm_succ C k).symm
-        _ = q⁻¹ • (Cᴴ * (∑' k : ℕ, gramianTerm q C k) * C) := by
-          rw [← hs.tsum_mul_left Cᴴ, ← (hs.mul_left Cᴴ).tsum_mul_right C,
-            ← (hs.mul_left Cᴴ |>.mul_right C).tsum_const_smul q⁻¹]
-        _ = q⁻¹ • (Cᴴ * gramian q C * C) := by rfl
+/-- After its constant and first-degree terms are removed, the `q = 4` Gramian remains positive
+semidefinite.  This is the direct first-term estimate used in the simplified proof. -/
+theorem gramian_four_sub_one_sub_first_posSemidef [Nonempty n]
+    {M : ℝ} (hM : 0 ≤ M) (C : SquareMatrix n)
+    (hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M) :
+    (gramian 4 C - 1 - (4 : ℝ)⁻¹ • (Cᴴ * C)).PosSemidef := by
+  have hs : Summable (gramianTerm 4 C) :=
+    summable_gramianTerm (by norm_num) hM C hbound
+  have hrest := posSemidef_tsum_sub_finset
+    (gramianTerm 4 C) hs (gramianTerm_posSemidef (by norm_num) C) ({0, 1} : Finset ℕ)
+  change (gramian 4 C - ∑ k ∈ ({0, 1} : Finset ℕ), gramianTerm 4 C k).PosSemidef at hrest
+  have hremoved :
+      ∑ k ∈ ({0, 1} : Finset ℕ), gramianTerm 4 C k =
+        1 + (4 : ℝ)⁻¹ • (Cᴴ * C) := by
+    norm_num [gramianTerm]
+  rw [hremoved] at hrest
+  have heq : gramian 4 C - 1 - (4 : ℝ)⁻¹ • (Cᴴ * C) =
+      gramian 4 C - (1 + (4 : ℝ)⁻¹ • (Cᴴ * C)) := by
+    abel
+  rw [heq]
+  exact hrest
 
 end CrouzeixConjecture

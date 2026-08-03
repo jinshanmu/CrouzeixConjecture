@@ -3,20 +3,20 @@
 ## Source identity
 
 - Active file:
-  `../preprint/the_numerical_range_is_a_2_spectral_set_v2.tex`
-- Lines: 1,165
+  `../preprint/the_numerical_range_is_a_2_spectral_set_v3.tex`
+- Lines: 1,066
 - SHA-256:
-  `11235d02fd0d91d982cbc113495c5c6f426ce9fba75332de5d10e7bf6a1ed315`
+  `ecee7d87f0a31c70c5cbc8e8b46ccf0dd2cc89e5edaecfa4de8357259aa73e9a`
 - Formalization toolchain: Lean 4.28.0 and Mathlib commit
   `8f9d9cff6bd728b17a24e163c9402775d9e6a365`
 
-The v2 source was read as the active manuscript. The proof simplification was
+The v3 source was read as the active manuscript. The proof simplification was
 checked again at the mathematical and interface levels. No need for the
 earlier perturbation of the normalized function was found.
 
-## Verification of the auxiliary-basis simplification, lines 217--253
+## Verification of the auxiliary-basis simplification, lines 220--257
 
-The key distinction in v2 is correct: simple spectrum is required for the
+The key distinction in v3 is correct: simple spectrum is required for the
 auxiliary matrix `B`, not for the target `T=f(B)`.
 
 If
@@ -25,7 +25,7 @@ If
 values `f(beta i)` to be distinct. Lean records it as
 `SimpleDiagonalization.polynomialEval_eq_innerConjugation_diagonal`.
 
-The double-layer companion is a function of `B`, so its coefficients lie in
+The double-layer construction supplies pointwise companion values in
 `alg(B)`, and their adjoints lie in `alg(Bᴴ)`. Accordingly, the positive-real
 defect is correctly stated relative to the auxiliary matrix:
 
@@ -49,8 +49,9 @@ The surviving coefficient is
 `4Y - YG⁻¹P - PG⁻¹Y`.
 
 The two weighted Gramian series use weights `4⁻ᵏ` and `2⁻ᵏ`; their positive
-difference, the eigenvector contradiction, and the Stein identity yield the
-sharp constant `2`. None of those steps depends on distinct target entries.
+difference and the eigenvector contradiction give `P̂ ⪯ 2I`, while the first
+nonconstant term gives `T̃ᴴT̃/4 ⪯ I` directly. No Stein identity is used, and
+none of these steps depends on distinct target entries.
 Lean calls the manuscript's `P,Q,Y` matrices
 `completionP, completionR, completionX`, respectively.
 
@@ -58,7 +59,7 @@ This checks the logical point on which the simplification rests: allowing
 repeated samples is sufficient, and the auxiliary basis provides exactly the
 algebraic information needed to cancel the correction.
 
-## Positive-real completion audit, lines 255--580
+## Positive-real completion audit, lines 259--544
 
 The following calculations are formalized:
 
@@ -69,7 +70,8 @@ The following calculations are formalized:
 - the sampled blocks `4Q-2P`, `G+Q`, and `2G`;
 - the ordered inequality `4Y-YG⁻¹P-PG⁻¹Y ⪰ 0`;
 - both norm-convergent Gramians, positivity of their difference, the
-  eigenvector argument, Stein identity, square roots, and polar transfer.
+  eigenvector argument, the direct first-term estimate, square roots, and
+  polar transfer.
 
 `PositiveRealCompletionStatement` explicitly accepts a
 `SimpleDiagonalization B`, a target diagonal in the same basis, and only the
@@ -82,7 +84,7 @@ broader matrix-valued Herglotz measure representation is not separately
 packaged; the exact kernel consequence is proved directly by regularized
 circle averages and a limit.
 
-## Double-layer and contour audit, lines 582--805
+## Double-layer and contour audit, lines 546--762 and 793--825
 
 The orientation and normalization were checked: the counterclockwise relation
 is `dσ = iν ds`, the total double-layer mass is `2I`, the boundary map carries
@@ -90,10 +92,12 @@ the factor `1/2`, and the companion term has the required adjoint.
 
 Lean proves boundary support and resolvent positivity, positive
 operator-valued Bochner integration, the positive unital star-preserving
-boundary map, the polynomial companion identity, Cayley coefficients,
-analytic convergence, positive real part, and closed membership in
-`alg(Bᴴ)`. The formal Cayley theorem now takes both the auxiliary matrix `B`
-and target `T`, matching the v2 proposition.
+boundary map, the generic boundary-companion identity, a uniform Cayley-series
+bridge for the polynomial Cauchy formula, the direct matrix Cayley identity,
+analytic convergence, positive real part, and companion membership in
+`alg(B)`. The resulting completion defect lies in `alg(Bᴴ)`. The formal
+Cayley theorem takes both the auxiliary matrix `B` and target `T`, matching
+the v3 proposition.
 
 The manuscript phrases part of this layer for a general holomorphic
 function. The formal endpoint uses polynomials and their powers, for which
@@ -107,9 +111,9 @@ the projection residual normal, positive orientation, and a principal-log
 winding proof. This discharges the contour provider on the canonical
 parallel bodies.
 
-## Direct normalization and the two remaining limits, lines 807--939
+## Direct normalization and the two remaining limits, lines 740--762 and 764--881
 
-The fixed-simple argument now has exactly the v2 shape.
+The fixed-simple argument now has exactly the v3 shape.
 
 For a simple-spectrum auxiliary matrix `B`, let `M` bound `|p|` on the outer
 set. If `M=0`, `polynomialEval_eq_zero_of_simpleSpectrum_of_bound_zero`
@@ -127,9 +131,9 @@ The only matrix approximation is the density step choosing
 simple-spectrum `Bₖ → A`; continuity gives `p(Bₖ) → p(A)`. The other limit is
 geometric: canonical convex parallel bodies decrease to `W(A)`, and the
 corresponding maximum moduli converge. These are logically independent
-limits and match the order stated in v2.
+limits and match the order stated in v3.
 
-## Rational endpoint, lines 941--958
+## Rational endpoint, lines 877--880 and 933--958
 
 The rational result remains separate from the polynomial theorem. The
 library defines pole-freeness on the numerical range, proves uniform
@@ -146,6 +150,6 @@ inventory. Git history preserves the prior implementation.
 
 The permanent proof avoids `sorry`, `admit`, custom axioms, unsafe proof
 construction, native-decision shortcuts, and compiler-trust shortcuts.
-`AxiomAudit.lean` is organized around the v2 auxiliary-basis interfaces and
+`AxiomAudit.lean` is organized around the v3 auxiliary-basis interfaces and
 the active endpoint chain. Authoritative verification is plain `lake build`
 followed serially by plain `lake run`.

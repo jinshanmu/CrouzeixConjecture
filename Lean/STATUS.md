@@ -1,9 +1,9 @@
 # Formalization status
 
-- Active manuscript: all 1,165 lines of
-  `../preprint/the_numerical_range_is_a_2_spectral_set_v2.tex` were reviewed;
+- Active manuscript: all 1,066 lines of
+  `../preprint/the_numerical_range_is_a_2_spectral_set_v3.tex` were reviewed;
   SHA-256
-  `11235d02fd0d91d982cbc113495c5c6f426ce9fba75332de5d10e7bf6a1ed315`.
+  `ecee7d87f0a31c70c5cbc8e8b46ccf0dd2cc89e5edaecfa4de8357259aa73e9a`.
 - Toolchain: Lean 4.28.0 with Mathlib commit
   `8f9d9cff6bd728b17a24e163c9402775d9e6a365`; dependencies and build
   products are local under `.lake/`.
@@ -27,16 +27,20 @@
   `finite_type_sampling_quadratic_nonneg`,
   `completionSampleCoefficient_quadratic_nonneg_of_positiveKernel`, and
   `norm_completionDiagonalizableMatrix_le_two_of_positiveKernelModel`.
+- Simplified Gramian endpoint: proved directly from the first nonconstant
+  Gramian term by `gramian_four_sub_one_sub_first_posSemidef`; the former
+  Stein machinery and wrapper module have been removed.
 - Double layer: proved relative to the auxiliary matrix, including the
-  companion transform in `alg(B)`, Cayley series, positive-real completion,
+  companion transform in `alg(B)`, the direct Cayley algebraic implication,
+  positive-real completion,
   and the absence of any generated-algebra equality requirement between
   `B` and `f(B)`.
 - Fixed simple-spectrum estimate: proved by
   `norm_polynomialEval_le_two_mul_of_simpleSpectrum`. It handles `M = 0`
   directly and otherwise normalizes only by `f = p / M`.
-- Final limit: proved. The only matrix perturbation on the active route is
-  `Bₖ → A` with each `Bₖ` simple; canonical parallel bodies supply the
-  separate outer-domain limit.
+- Final limit: proved in v3 order. For each fixed outer body, simple-spectrum
+  `Bₖ → A` gives the fixed-domain estimate; only then do the canonical
+  parallel bodies shrink to `W(A)`.
 - Superseded route removed: the `f_eta`, collision-avoidance,
   interpolation-based algebra-equality, and `eta → 0` formalization has been
   deleted from the working tree. Git history preserves the prior version.

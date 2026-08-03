@@ -1,6 +1,7 @@
 module
 
 public import CrouzeixConjecture.DoubleLayerPositiveMap
+public import CrouzeixConjecture.DoubleLayerAlgebra
 public import CrouzeixConjecture.CompletionStatement
 public import CrouzeixConjecture.MatrixPowerSeries
 public import CrouzeixConjecture.ResolventSeries
@@ -124,6 +125,107 @@ theorem doubleLayerCayleyValue_rePart_posSemidef
   intro x
   rw [cayleyBoundaryFunction_apply]
   exact cayleyTransform_re_nonneg hz (f.norm_le_one x)
+
+/-- The matrix Cayley transform appearing in the direct completion identity of the manuscript. -/
+def matrixCayleyTransform (z : ℂ) (T : SquareMatrix n) : SquareMatrix n :=
+  (1 + z • T) * (1 - z • T)⁻¹
+
+/-- The closed-disk spectral hypothesis makes the Cayley denominator invertible throughout the
+open unit disk. -/
+theorem isUnit_one_sub_smul_of_spectrum_subset_closedUnitDisk
+    (T : SquareMatrix n) (hspectrum : matrixSpectrum T ⊆ closedUnitDisk)
+    {z : ℂ} (hz : z ∈ unitDisk) :
+    IsUnit ((1 : SquareMatrix n) - z • T) := by
+  have hzNorm : ‖z‖ < 1 := by
+    simpa [unitDisk, Metric.mem_ball, dist_eq_norm] using hz
+  have hspectralRadius : spectralRadius ℂ T ≤ 1 :=
+    matrix_spectralRadius_le_one_of_spectrum_subset_closedUnitDisk T hspectrum
+  have hOneLeInv : (1 : ENNReal) ≤ (spectralRadius ℂ T)⁻¹ := by
+    simpa using (ENNReal.inv_le_inv.mpr hspectralRadius)
+  apply spectrum.isUnit_one_sub_smul_of_lt_inv_radius
+  exact (ENNReal.coe_lt_one_iff.mpr hzNorm).trans_le hOneLeInv
+
+omit [Nonempty n] in
+/-- Direct matrix form of the scalar Cayley identity
+`(I + zT)(I - zT)⁻¹ = 2(I - zT)⁻¹ - I`. -/
+theorem matrixCayleyTransform_eq_two_resolvent_sub_one
+    (T : SquareMatrix n) (z : ℂ)
+    (hunit : IsUnit ((1 : SquareMatrix n) - z • T)) :
+    matrixCayleyTransform z T =
+      (2 : ℂ) • ((1 : SquareMatrix n) - z • T)⁻¹ - 1 := by
+  have hdet : IsUnit ((1 : SquareMatrix n) - z • T).det :=
+    (((1 : SquareMatrix n) - z • T).isUnit_iff_isUnit_det).mp hunit
+  have hright :
+      ((1 : SquareMatrix n) - z • T) * ((1 : SquareMatrix n) - z • T)⁻¹ = 1 :=
+    Matrix.mul_nonsing_inv _ hdet
+  rw [matrixCayleyTransform]
+  calc
+    (1 + z • T) * ((1 : SquareMatrix n) - z • T)⁻¹ =
+        ((2 : ℂ) • (1 : SquareMatrix n) - (1 - z • T)) *
+          ((1 : SquareMatrix n) - z • T)⁻¹ := by congr 1; module
+    _ = (2 : ℂ) • ((1 : SquareMatrix n) - z • T)⁻¹ - 1 := by
+      rw [Matrix.sub_mul, hright]
+      simp
+
+/-- The matrix-valued Cayley series used only to transport the polynomial Cauchy formula to the
+direct Cayley identity. -/
+def matrixCayleySeriesTerm (z : ℂ) (T : SquareMatrix n) : ℕ → SquareMatrix n
+  | 0 => 1
+  | m + 1 => (2 * z ^ (m + 1)) • T ^ (m + 1)
+
+/-- The Cayley series sums to the matrix Cayley transform on the open unit disk. -/
+theorem matrixCayleySeriesTerm_hasSum
+    (T : SquareMatrix n) (hspectrum : matrixSpectrum T ⊆ closedUnitDisk)
+    {z : ℂ} (hz : z ∈ unitDisk) :
+    HasSum (matrixCayleySeriesTerm z T) (matrixCayleyTransform z T) := by
+  have hresolvent :=
+    hasSum_resolvent_series_of_spectrum_subset_closedUnitDisk T hspectrum hz
+  have hone := hasSum_ite_eq 0 (1 : SquareMatrix n)
+  have hraw := (hresolvent.const_smul (2 : ℂ)).sub hone
+  have hunit := isUnit_one_sub_smul_of_spectrum_subset_closedUnitDisk T hspectrum hz
+  have hcayley := matrixCayleyTransform_eq_two_resolvent_sub_one T z hunit
+  rw [hcayley]
+  convert hraw using 1
+  funext m
+  cases m with
+  | zero =>
+      simp [matrixCayleySeriesTerm]
+      module
+  | succ m =>
+      simp [matrixCayleySeriesTerm, mul_smul]
+
+/-- The v3 proof's direct Cayley step.  Once the double-layer identity supplies a companion
+`g(z)` in `alg(B)`, the completion defect is exactly `(g(z)ᴴ - I) / 2`; no subtraction of
+power-series expansions is needed in this algebraic conclusion. -/
+theorem isPositiveRealCompletion_of_direct_cayley_identity
+    (B T : SquareMatrix n) (H g : ℂ → SquareMatrix n)
+    (hspectrum : matrixSpectrum T ⊆ closedUnitDisk)
+    (hAnalytic : AnalyticOnNhd ℂ H unitDisk)
+    (hzero : H 0 = 1)
+    (hpositive : ∀ z ∈ unitDisk, (rePart (H z)).PosSemidef)
+    (hg : ∀ z ∈ unitDisk, g z ∈ generatedAlgebra B)
+    (hidentity : ∀ z ∈ unitDisk,
+      (2 : ℂ) • H z = matrixCayleyTransform z T + (g z)ᴴ) :
+    IsPositiveRealCompletion B T H := by
+  refine ⟨hAnalytic, hzero, hpositive, ?_⟩
+  intro z hz
+  have hunit :=
+    isUnit_one_sub_smul_of_spectrum_subset_closedUnitDisk T hspectrum hz
+  have hcayley := matrixCayleyTransform_eq_two_resolvent_sub_one T z hunit
+  have htwice :
+      (2 : ℂ) • (H z - ((1 : SquareMatrix n) - z • T)⁻¹) = (g z)ᴴ - 1 := by
+    rw [smul_sub, hidentity z hz, hcayley]
+    module
+  have hdefect :
+      H z - ((1 : SquareMatrix n) - z • T)⁻¹ =
+        (2 : ℂ)⁻¹ • ((g z)ᴴ - 1) := by
+    rw [← htwice]
+    module
+  rw [hdefect]
+  apply (generatedAlgebra Bᴴ).smul_mem
+  exact (generatedAlgebra Bᴴ).sub_mem
+    (conjTranspose_mem_generatedAlgebra_conjTranspose (hg z hz))
+    (generatedAlgebra Bᴴ).one_mem
 
 /-- Coefficients of the analytic series obtained by applying the bounded positive map to the
 uniform Cayley expansion in manuscript equations (327)--(335). -/
@@ -299,37 +401,5 @@ theorem doubleLayerCayleySeries_rePart_posSemidef
     simpa [unitDisk, Metric.mem_ball, dist_eq_norm] using hz
   rw [doubleLayerCayleySeries_eq_value D f z hznorm]
   exact doubleLayerCayleyValue_rePart_posSemidef D f z hznorm
-
-/-- The analytic, positive Cayley series supplies a genuine positive-real completion relative
-to the auxiliary matrix once the contour companion identity and its generated-algebra membership
-have been established.  No equality between the algebras generated by the target and auxiliary
-matrices is required. -/
-theorem doubleLayerCayleySeries_isPositiveRealCompletion
-    (D : PositiveBoundaryDensity (n := n) mu)
-    (f : ContractiveBoundaryFunction i)
-    (B T : SquareMatrix n) (G : ℕ → SquareMatrix n)
-    (hspectrum : matrixSpectrum T ⊆ closedUnitDisk)
-    (hG : ∀ m : ℕ, G (m + 1) ∈ generatedAlgebra B)
-    (hcoefficient : ∀ m : ℕ,
-      doubleLayerCayleySeriesCoefficient D f (m + 1) =
-        T ^ (m + 1) + (G (m + 1))ᴴ) :
-    IsPositiveRealCompletion B T (doubleLayerCayleySeries D f) := by
-  refine ⟨doubleLayerCayleySeries_analyticOnNhd D f,
-    doubleLayerCayleySeries_zero D f, ?_, ?_⟩
-  · intro z hz
-    exact doubleLayerCayleySeries_rePart_posSemidef D f z hz
-  · intro z hz
-    have hfull := doubleLayerCayleySeries_hasSum D f hz
-    have htail :
-        HasSum (doubleLayerCompletionTailTerm z T G)
-          (doubleLayerCayleySeries D f z - 1) := by
-      convert (hasSum_nat_add_iff' 1).mpr hfull using 1
-      · funext m
-        rw [hcoefficient m]
-        simp [doubleLayerCompletionTailTerm, doubleLayerCompletionCoefficient]
-      · simp [doubleLayerCayleySeriesCoefficient]
-    exact completion_sub_resolvent_mem_generatedAlgebra_conjTranspose
-      z B T (doubleLayerCayleySeries D f z) G hG htail
-      (hasSum_resolventSeriesTerm_of_spectrum_subset_closedUnitDisk T hspectrum hz)
 
 end CrouzeixConjecture

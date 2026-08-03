@@ -366,7 +366,7 @@ theorem matrixHerglotzKernel_positive_congr_on
   rwa [← heq]
 
 /-- The auxiliary-basis positive-real completion theorem.  All kernel, Gramian, eigenvector,
-Stein, square-root, and polar-decomposition inputs have been discharged by preceding
+direct first-term, square-root, and polar-decomposition inputs have been discharged by preceding
 declarations, without any distinctness requirement on the target diagonal entries. -/
 theorem positiveRealCompletionStatement [Nonempty n] :
     PositiveRealCompletionStatement (n := n) := by
