@@ -153,3 +153,79 @@ construction, native-decision shortcuts, and compiler-trust shortcuts.
 `AxiomAudit.lean` is organized around the v3 auxiliary-basis interfaces and
 the active endpoint chain. Authoritative verification is plain `lake build`
 followed serially by plain `lake run`.
+
+# Audit of the scaled `q`-numerical-range preprint
+
+## Source identity
+
+- Active file: `../preprint/q_numerical_range_spectral_set.tex`
+- Lines: 660
+- SHA-256:
+  `5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`
+
+## Geometry audit
+
+Lean's `scaledQNumericalRange` directly encodes
+`Omega_q(A) = q⁻¹ W_q(A)` with the manuscript's inner-product convention.
+The phase reduction and the identities relating `r`, `tau`, and `kappa` are
+proved exactly.
+
+The manuscript and formal proof use the same exact Tsing disk-union
+characterization.  The easy inclusion is Cauchy--Schwarz applied to the
+orthogonal residual.  For the converse, a point inside one disk is joined on
+the unit sphere to a normalized eigenvector; continuity gives a disk-boundary
+vector, and an explicit unit orthogonal residual direction constructs the
+constrained pair.  The zero-residual branch is handled separately.  Comparing
+the disk radii proves nesting and then `W(A) ⊆ Omega_q(A)` and
+`spectrum(A) ⊆ Omega_q(A)`.
+
+For the adapted rank-one stretches selected by extraction, both artifacts
+prove positivity, the explicit inverse, the sharp Pythagorean norm-product
+estimate, and the one-sided numerical-range containment.  No larger
+similarity family enters either proof.
+
+## Extraction and rational transfer audit
+
+The scalar extraction equation, its intermediate-value root, orthogonality,
+and amplification identity are proved.  The matrix theorem formalizes norm
+attainment, phase rotation, the eigenvalue contradiction, invertibility of
+the Möbius denominator from spectral containment, and the adapted stretch.
+It concludes `‖X‖ ≤ max 1 (K / kappa)`.
+
+The transfer layer uses the project's reduced rational functional calculus.
+It proves rational spectral mapping, similarity covariance, and exact scalar
+and matrix evaluation for the composed disk automorphism.  With
+`M_epsilon = M + epsilon`, the normalized spectrum lies strictly in the unit
+disk, every transformed function is bounded by one on each stretched
+numerical range, and the ordinary rational numerical-range theorem supplies
+the uniform `K` estimate.  Extraction followed by `epsilon → 0` proves
+`rationalScaledQNumericalRangeBound_of_universal`.
+
+Taking the already verified ordinary constant `2` yields
+`sharpRationalScaledQNumericalRangeBound` with
+
+`max 1 (2 * ‖q‖ / (1 + √(1 - ‖q‖ ^ 2)))`.
+
+This is the exact spectral-set assertion because spectral sets quantify over
+rational functions pole-free on the set.  A polynomial specialization is
+also proved.  The manuscript theorem and Lean endpoint therefore have the
+same function class and pole-freeness hypothesis.
+
+## Sharpness audit
+
+For the `2 × 2` Jordan nilpotent, Lean proves its operator norm, quadratic
+form, residual, the upper bound `‖z‖ ≤ kappa/2` throughout the scaled range,
+and an explicit unit-vector witness attaining `kappa/2`.  Thus the identity
+function forces `2/kappa`; constant functions force `1`.
+`sharpScaledQNumericalRangeConstant_isLeast_finTwo_complex` combines these
+lower bounds, phase reduction, and the general upper theorem, and states for
+every admissible complex `q` that the displayed constant is least already in
+dimension two.  This is the same fixed-complex-parameter sharpness statement
+as the manuscript proposition.
+
+Thus the scaled `q` proof is formalized faithfully from phase reduction
+through complex-parameter sharpness, with matching hypotheses and no unused
+stronger intermediate theorem in the manuscript route.
+
+All scaled `q` endpoint declarations audit to the standard Lean/Mathlib
+axioms `propext`, `Classical.choice`, and `Quot.sound` only.

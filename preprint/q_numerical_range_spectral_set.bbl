@@ -1,0 +1,28 @@
+\begin{thebibliography}{999}
+
+\bibitem[Crouzeix(2004)]{Crouzeix2004}
+Crouzeix, M.
+\newblock Bounds for analytical functions of matrices.
+\newblock {\em Integral Equations and Operator Theory} {\bf 2004}, {\em
+  48},~461--477.
+\newblock {\url{https://doi.org/10.1007/s00020-002-1188-6}}.
+
+\bibitem[Jin(2026)]{Jin2026}
+Jin, S.
+\newblock The numerical range is a 2-spectral set.
+\newblock Preprints.org, version 1, posted 27 July 2026,
+  {\url{https://doi.org/10.20944/preprints202607.1919.v1}}.
+
+\bibitem[Tsing(1984)]{Tsing1984}
+Tsing, N.K.
+\newblock The constrained bilinear form and the {$C$}-numerical range.
+\newblock {\em Linear Algebra Appl.} {\bf 1984}, {\em 56},~195--206.
+\newblock {\url{https://doi.org/10.1016/0024-3795(84)90125-3}}.
+
+\bibitem[O'Loughlin and Rani(2026)]{OLoughlinRani2026}
+O'Loughlin, R.; Rani, J.
+\newblock {$q$}-numerical ranges and spectral sets.
+\newblock arXiv:2603.15536v1, submitted 16 March 2026,
+  {\url{https://doi.org/10.48550/arXiv.2603.15536}}.
+
+\end{thebibliography}

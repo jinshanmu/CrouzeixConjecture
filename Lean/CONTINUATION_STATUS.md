@@ -78,3 +78,33 @@ historical comparison.
 Run Lean/Lake processes serially to control memory and disk use. The
 authoritative checks are plain `lake build` followed by plain `lake run`;
 the latter rebuilds as needed and runs `lake env lean AxiomAudit.lean`.
+
+## Scaled `q`-numerical-range extension
+
+The active scaled `q` source is
+`../preprint/q_numerical_range_spectral_set.tex`, 660 lines, SHA-256
+`5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`.
+
+Its exact rational spectral-set theorem is proved by
+`sharpRationalScaledQNumericalRangeBound`; the polynomial specialization is
+`sharpPolynomialScaledQNumericalRangeBound`.  The reusable methodological
+endpoint is `rationalScaledQNumericalRangeBound_of_universal`, which transfers
+an ordinary universal numerical-range constant `K` to
+`max 1 (K / qKappa ‖q‖)`.
+
+The active proof route is:
+
+1. phase reduction and exact `q`-parameter identities;
+2. an internal proof of Tsing's disk-union formula and range nesting;
+3. containment of the numerical ranges of the adapted positive rank-one
+   stretches;
+4. scalar and matrix rational Möbius calculus plus rational spectral mapping;
+5. the rank-one-stretch extraction lemma;
+6. `M + epsilon` normalization and passage to the limit;
+7. specialization to the proved ordinary constant `2`;
+8. constant-function and Jordan-nilpotent lower bounds, combined as
+   `sharpScaledQNumericalRangeConstant_isLeast_finTwo_complex`.
+
+This is also the manuscript's complete proof route: its theorem is the exact
+rational spectral-set statement, and every geometric, algebraic, extraction,
+transfer, and sharpness step has a corresponding proved Lean declaration.

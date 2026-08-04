@@ -49,5 +49,29 @@
 - Rational result: proved separately as
   `crouzeixRationalSpectralSetCorollary`, with pointwise theorem
   `crouzeixRationalBound` and no Runge axiom.
+- Scaled `q` source: all 660 lines of
+  `../preprint/q_numerical_range_spectral_set.tex` were reviewed; SHA-256
+  `5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`.
+- Scaled `q` geometry: proved.  The formal development includes phase
+  reduction, parameter identities, compactness/nonemptiness, Tsing's exact
+  disk-union formula, nesting, numerical-range inclusion, and spectral
+  inclusion.  Tsing convexity is not assumed as an axiom.
+- Reusable transfer: proved for rational functions by
+  `rationalScaledQNumericalRangeBound_of_universal`.  It transfers `K` to
+  `max 1 (K / qKappa ‖q‖)` through adapted rank-one positive stretches,
+  Möbius transforms, spectral mapping, orbit extraction, and an
+  `M + epsilon` argument.
+- Sharp scaled `q` endpoint: proved by
+  `sharpRationalScaledQNumericalRangeBound`, with polynomial specialization
+  `sharpPolynomialScaledQNumericalRangeBound`.  The constant is exactly
+  `max 1 (2 * ‖q‖ / (1 + √(1 - ‖q‖ ^ 2)))`.
+- Scaled `q` optimality: proved.  Constant functions force the branch `1`,
+  the `2 × 2` Jordan nilpotent forces `2 / qKappa r`, and
+  `sharpScaledQNumericalRangeConstant_isLeast_finTwo_complex` packages the
+  exact least-constant result for every admissible complex `q`.
+- Scaled `q` manuscript match: complete.  The paper states the exact rational
+  spectral-set assertion and uses only the adapted rank-one stretches.  Lean
+  formalizes the same hypotheses, intermediate lemmas, transfer theorem,
+  polynomial specialization, and fixed-complex-parameter sharpness result.
 - Authoritative verification: run plain `lake build`, followed serially by
   plain `lake run`; the latter checks `AxiomAudit.lean`.

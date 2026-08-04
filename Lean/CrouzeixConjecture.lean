@@ -1,5 +1,7 @@
 module
 
 public import CrouzeixConjecture.FinalTheorems
+public import CrouzeixConjecture.QFinalTheorems
 
-/-! The public package surface is the verified endpoint and its transitive proof dependencies. -/
+/-! The public package surface contains the verified Crouzeix and scaled
+`q`-numerical-range endpoints together with their transitive proof dependencies. -/

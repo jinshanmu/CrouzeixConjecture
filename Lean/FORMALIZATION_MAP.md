@@ -108,3 +108,70 @@ dependency graph. Git history preserves the prior implementation.
 
 No collision-avoidance parameter, algebra equality
 `alg(f_eta(B)) = alg(B)`, or `eta → 0` occurs in this chain.
+
+# Scaled `q`-numerical-range formalization map
+
+The second active source is
+`../preprint/q_numerical_range_spectral_set.tex` (660 lines), verified at
+SHA-256
+`5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`.
+
+## Definitions and elementary geometry, lines 107--202
+
+| Source | Claim | Lean declaration(s) | Status / translation |
+|---|---|---|---|
+| 127--140 | `q`-numerical range, scaled range, compactness, and nonemptiness | `qUnitPairs`, `scaledQNumericalRange`, `isCompact_scaledQNumericalRange`, `scaledQNumericalRange_nonempty` | **defined/proved** for finite complex Euclidean matrix spaces; `[Nontrivial n]` is the manuscript convention `n ≥ 2`. |
+| 174--202 | Phase reduction and the parameters `tau`, `kappa` | `scaledQNumericalRange_eq_norm`, `qTau`, `qKappa`, `qKappa_parameter_identity`, `two_div_qKappa` | **proved** |
+| 142--159, 552--623 | Exact rational main theorem, polynomial specialization, and optimal constant | `sharpRationalScaledQNumericalRangeBound`, `sharpPolynomialScaledQNumericalRangeBound`, `sharpScaledQNumericalRangeConstant_isLeast_finTwo_complex` | **proved** with the same hypotheses and fixed-complex-parameter sharpness statement. |
+
+## Tsing disks, nesting, and spectral containment, lines 204--281
+
+| Source | Claim | Lean declaration(s) | Status / translation |
+|---|---|---|---|
+| 204--281 | Exact Tsing disk formula and nesting | `qResidual`, `qDiskUnion`, `scaledQNumericalRange_eq_qDiskUnion`, `qTau_div_antitone`, `scaledQNumericalRange_antitone` | **proved by the manuscript's argument**: Cauchy--Schwarz for one inclusion, then a normalized eigenvector, connected unit sphere, intermediate value, and explicit boundary pair for the reverse inclusion. |
+| 227--230, 497--500 | `W(A) ⊆ Omega_q(A)` and `spectrum(A) ⊆ Omega_q(A)` | `numericalRange_subset_scaledQNumericalRange`, `matrixSpectrum_subset_scaledQNumericalRange` | **proved** |
+
+## Rank-one stretch geometry, lines 283--349
+
+| Source | Claim | Lean declaration(s) | Status / translation |
+|---|---|---|---|
+| 283--349 | Positive rank-one stretch, explicit inverse, sharp norm product, and numerical-range containment | `rankOneProjection`, `stretchSimilarity`, `stretchInverseCandidate`, `stretchSimilarity_posDef`, `stretchSimilarity_inv`, `norm_stretch_product_le_half_add_inv`, `numericalRange_stretchSimilarity_subset_scaledQNumericalRange`, `numericalRange_stretchSimilarity_subset_scaledQNumericalRange_complex` | **proved exactly** for the stretch family and one-sided containment used later. |
+
+## Rank-one stretch extraction, lines 351--453
+
+| Source | Claim | Lean declaration(s) | Status / translation |
+|---|---|---|---|
+| 399--437 | Orthogonality parameter and amplification identities | `exists_extractionParameter`, `extraction_vectors_inner_eq_zero`, `extraction_vectors_amplify` | **proved** |
+| 351--453 | Exact Möbius family and rank-one stretch extraction lemma | `rotatedRealMobiusEval`, `norm_le_max_one_div_of_uniform_stretch_mobius` | **proved** with the manuscript's hypotheses `κ ≥ 1`, `K ∈ ℝ`, closed-disk spectrum, unit `v` and `omega`, and `0 ≤ a < 1`. |
+
+## Rational transfer theorem, lines 455--548
+
+| Source | Claim | Lean declaration(s) | Status / translation |
+|---|---|---|---|
+| 461--484 | Universal rational base constant and transferred constant | `UniversalRationalNumericalRangeBound`, `qTransferredConstant` | **defined** with the same pole-free rational hypotheses and `K ≥ 1`. |
+| 486--539 | `M + epsilon` normalization, rational spectral mapping, exact Möbius composition, similarity covariance, extraction, and limit | `matrixSpectrum_rationalMatrixEval_subset_image`, `rationalMatrixEval_mobiusComposeRatFunc_of_disk`, `rationalMatrixEval_similarity_of_rationalPoleFreeOn`, `rationalMatrixEval_le_qTransferredConstant_mul_max_add` | **proved** |
+| 461--539 | General transfer `K ↦ max{1,K/kappa}` | `rationalScaledQNumericalRangeBound_of_universal` | **proved** for the exact rational spectral-set formulation. |
+| 541--548 | Constant-two conclusion and polynomial specialization | `universalRationalNumericalRangeBound_two`, `rationalScaledQNumericalRangeBound_two`, `polynomialScaledQNumericalRangeBound_two`, `sharpRationalScaledQNumericalRangeBound`, `sharpPolynomialScaledQNumericalRangeBound` | **proved**. `sharpScaledQNumericalRangeConstant_eq_qTransferredConstant` identifies the result with the displayed formula. |
+
+## Sharpness, lines 550--623
+
+| Source | Claim | Lean declaration(s) | Status / translation |
+|---|---|---|---|
+| 550--623 | Jordan nilpotent, exact identity-function maximum, both lower branches, and complex-parameter optimality | `jordanNilpotentTwo`, `norm_jordanNilpotentTwo`, `norm_le_qKappa_half_of_mem_scaledQNumericalRange_jordanNilpotentTwo`, `qKappa_half_mem_scaledQNumericalRange_jordanNilpotentTwo`, `maxRationalModulusOnScaledQNumericalRange_X_jordanNilpotentTwo`, `one_le_of_polynomialScaledQBoundOnFinTwo`, `two_div_qKappa_le_of_polynomialScaledQBoundOnFinTwo`, `max_one_two_div_qKappa_le_of_rationalScaledQBoundOnFinTwo`, `sharpScaledQNumericalRangeConstant_isLeast_finTwo_complex` | **proved**. For every admissible complex `q`, the displayed constant is least even after restriction to `2 × 2` matrices. |
+
+## Active scaled `q` endpoint chain
+
+1. Phase reduction replaces a complex `q` by `‖q‖`; the parameter identities
+   produce `kappa`.
+2. Tsing's disk-union formula proves nesting, hence numerical-range and
+   spectrum containment.
+3. Every adapted rank-one positive stretch used by extraction has numerical
+   range inside the scaled `q`-range.
+4. Rational spectral mapping and exact rational Möbius composition turn the
+   universal numerical-range estimate into uniform Schur estimates over
+   those stretches.
+5. The extraction lemma and the `epsilon → 0` argument yield the transferred
+   rational constant.
+6. The proved ordinary constant `2` gives the displayed sharp upper bound.
+7. Constant functions and the two-dimensional Jordan nilpotent give both
+   lower branches, hence the least-constant theorem.

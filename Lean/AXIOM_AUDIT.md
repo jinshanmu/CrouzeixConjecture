@@ -41,5 +41,19 @@ aliases.
 The audit also prints the fully elaborated endpoint types and axioms of
 `crouzeixConjecture_mainTheorem`, `crouzeixConjecture`,
 `crouzeixRationalSpectralSetCorollary`, and `crouzeixRationalBound`.
+For the scaled `q` development it additionally audits:
+
+- phase reduction, the exact parameter identities, Tsing's disk-union
+  theorem, and nesting;
+- rank-one-stretch positivity, inverse, sharp norm product, and range
+  inclusion;
+- the rank-one-stretch extraction theorem;
+- the reusable rational transfer theorem and its constant-two instance;
+- the explicit sharp rational and polynomial endpoints;
+- the exact Jordan-block maximum, lower branch, and complex-parameter
+  dimension-two least-constant theorem.
+
+The scaled `q` declarations have the same expected trust boundary:
+`propext`, `Classical.choice`, and `Quot.sound`, with no custom axiom.
 Authoritative verification is plain `lake build` followed serially by
 plain `lake run`.

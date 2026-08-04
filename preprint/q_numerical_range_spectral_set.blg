@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: q_numerical_range_spectral_set.aux
+The style file: preprints-template/preprints_template_latex/Definitions/mdpi.bst
+Database file #1: q_numerical_range_spectral_set.bib
+You've used 4 entries,
+            2887 wiz_defined-function locations,
+            587 strings with 4564 characters,
+and the built_in function-call counts, 1169 in all, are:
+= -- 117
+> -- 37
+< -- 4
++ -- 19
+- -- 10
+* -- 84
+:= -- 200
+add.period$ -- 14
+call.type$ -- 4
+change.case$ -- 4
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 57
+empty$ -- 97
+format.name$ -- 17
+if$ -- 235
+int.to.chr$ -- 1
+int.to.str$ -- 4
+missing$ -- 2
+newline$ -- 25
+num.names$ -- 12
+pop$ -- 18
+preamble$ -- 0
+purify$ -- 4
+quote$ -- 0
+skip$ -- 34
+stack$ -- 0
+substring$ -- 58
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 28
+warning$ -- 0
+while$ -- 12
+width$ -- 0
+write$ -- 54

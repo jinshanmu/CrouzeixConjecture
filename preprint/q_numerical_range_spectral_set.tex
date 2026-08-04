@@ -1,0 +1,660 @@
+\makeatletter
+\def\input@path{{preprints-template/preprints_template_latex/}}
+\let\preprint@bibliographystyle\bibliographystyle
+\renewcommand{\bibliographystyle}[1]{%
+  \preprint@bibliographystyle{preprints-template/preprints_template_latex/#1}}
+\makeatother
+
+\documentclass[preprints,article,submit,oneauthor]{Definitions/mdpi}
+\setlength{\headheight}{18pt}
+
+\makeatletter
+\let\bibliographystyle\preprint@bibliographystyle
+\makeatother
+
+\graphicspath{{preprints-template/preprints_template_latex/}}
+
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+\datereceived{}
+\daterevised{}
+\dateaccepted{}
+\datepublished{}
+
+\newcounter{manuscriptresult}[section]
+\renewcommand{\themanuscriptresult}{\thesection.\arabic{manuscriptresult}}
+\theoremstyle{mdpi}
+\newtheorem{theorem}[manuscriptresult]{Theorem}
+\newtheorem{lemma}[manuscriptresult]{Lemma}
+\newtheorem{proposition}[manuscriptresult]{Proposition}
+\newtheorem{corollary}[manuscriptresult]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{remark}[manuscriptresult]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\mathbb D}
+\newcommand{\Mn}{\mathbb M_n(\C)}
+
+\Title{The sharp universal spectral constant for scaled
+\texorpdfstring{$q$}{q}-numerical ranges}
+\Author{Shanmu Jin}
+\AuthorNames{Shanmu Jin}
+\address{Department of Neurosurgery, Peking Union Medical College
+  Hospital, No.~1 Shuaifuyuan, Dongcheng District, Beijing 100730,
+  China\\
+jinshanmu1129@pku.edu.cn}
+\corres{Correspondence: jinshanmu1129@pku.edu.cn}
+
+\abstract{\texorpdfstring{%
+Let $A$ be an $n\times n$ complex matrix, $n\geq2$, and let
+$0<\lvert q\rvert\leq1$.  The $q$-numerical range and its scaled form
+are
+\[
+ W_q(A)=\{y^*Ax:\lVert x\rVert_2=\lVert y\rVert_2=1,\ y^*x=q\},
+ \qquad
+ \Omega_q(A)=q^{-1}W_q(A).
+\]
+We prove that the sharp universal spectral constant for the family of
+scaled $q$-numerical ranges is
+\[
+ C_q=\max\left\{1,
+ \frac{2\lvert q\rvert}
+ {1+\sqrt{1-\lvert q\rvert^2}}\right\}.
+\]
+Thus, for every rational function $f$ pole-free on $\Omega_q(A)$,
+$\lVert f(A)\rVert$ is at most $C_q$ times the maximum modulus of $f$
+on $\Omega_q(A)$, and $C_q$ is the least constant valid uniformly in
+$n$ and $A$.
+The proof is a transfer from the sharp numerical-range theorem.  Its
+geometric input shows that the numerical range of every adapted
+rank-one stretch of $A$ lies in the scaled $q$-range.  Applying a
+numerical-range spectral-set estimate to these stretches produces a
+simultaneous family of Schur estimates.  A disk automorphism adapted to
+a maximizing singular-vector pair then extracts the norm at the
+identity stretch.  More generally, a universal numerical-range
+spectral constant $K$ transfers to the constant
+$\max\{1,K/\kappa(q)\}$ on the scaled $q$-range, where
+$\kappa(q)=(1+\sqrt{1-\lvert q\rvert^2})/\lvert q\rvert$.  The two
+lower-bound branches defining $C_q$ are attained, respectively, by the
+constant rational function and by the identity polynomial on a
+$2\times2$ square-zero matrix.
+}{%
+For a complex matrix A and a parameter q satisfying 0<|q|<=1, we
+determine the sharp universal spectral constant for the scaled
+q-numerical range in the rational spectral-set formulation.  The proof
+applies the numerical-range spectral-set estimate to adapted rank-one
+stretches and then uses a disk automorphism chosen from a maximizing
+singular-vector pair.  More generally, every universal numerical-range
+spectral constant transfers explicitly to scaled q-numerical ranges.
+Constant functions and a two-dimensional square-zero matrix attain the
+two lower-bound branches, respectively.
+}}
+
+\keyword{q-numerical range; spectral set; Crouzeix conjecture;
+numerical range; rank-one similarity; Schur function}
+\MSC{Primary 47A25; Secondary 47A12, 15A60}
+
+\begin{document}
+
+\section{Introduction}
+\label{sec:introduction}
+
+For $A\in\Mn$, its numerical range is
+\[
+ W(A)=\{x^*Ax:x\in\C^n,\ \lVert x\rVert_2=1\}.
+\]
+It is compact and convex, and it contains the spectrum of $A$.
+For $C\geq1$, a compact set $E\subset\C$ containing $\sigma(A)$ is a
+$C$-spectral set for $A$ if
+\begin{equation}
+ \lVert g(A)\rVert
+ \leq C\max_{z\in E}\lvert g(z)\rvert
+ \label{eq:spectral-set-definition}
+\end{equation}
+for every rational function $g$ pole-free on $E$.
+Crouzeix conjectured that $W(A)$ is always a $2$-spectral set
+\cite{Crouzeix2004}, and the sharp constant $2$ was established in
+\cite{Jin2026}.
+
+For $n\geq2$ and $0<\lvert q\rvert\leq1$, the $q$-numerical range is
+\begin{equation}
+ W_q(A)=
+ \{y^*Ax:\lVert x\rVert_2=\lVert y\rVert_2=1,\ y^*x=q\},
+ \qquad
+ \Omega_q(A)=\frac1qW_q(A).
+ \label{eq:q-range-definition}
+\end{equation}
+The set $W_q(A)$ is compact, and Tsing proved its convexity
+\cite{Tsing1984}.  The scaled set $\Omega_q(A)$ contains $W(A)$ and
+hence $\sigma(A)$.  O'Loughlin and Rani formulated the polynomial
+inequality below as Conjecture 4.2 \cite{OLoughlinRani2026}.  The
+theorem proves that conjecture together with its rational spectral-set
+extension.
+
+\begin{theorem}[Main theorem]
+\label{thm:main}
+Let $n\geq2$, let $A\in\Mn$, let $0<\lvert q\rvert\leq1$, and let
+$f$ be a rational function pole-free on $\Omega_q(A)$.  Then
+\begin{equation}
+ \lVert f(A)\rVert
+ \leq
+ C_q\max_{z\in\Omega_q(A)}\lvert f(z)\rvert,
+ \qquad
+ C_q=
+ \max\left\{1,
+ \frac{2\lvert q\rvert}
+ {1+\sqrt{1-\lvert q\rvert^2}}\right\}.
+ \label{eq:main-bound}
+\end{equation}
+Equivalently, $\Omega_q(A)$ is a $C_q$-spectral set for $A$.
+In particular, the same inequality holds for every polynomial $f$.
+\end{theorem}
+
+The proof has three steps.  First, Section~\ref{sec:similarity-geometry}
+proves nesting of the scaled ranges and shows that every adapted
+rank-one stretch has numerical range inside $\Omega_q(A)$.  Second,
+Section~\ref{sec:orbit-extraction} proves that uniform Schur estimates
+over precisely these stretches force an improved norm estimate at the
+identity stretch.  Third, Section~\ref{sec:main-proof} packages the two
+facts into a transfer principle for any universal numerical-range
+spectral constant $K$.  Taking $K=2$ gives \eqref{eq:main-bound}; a
+$2\times2$ nilpotent matrix proves sharpness.
+
+\section{Rank-one stretch geometry}
+\label{sec:similarity-geometry}
+
+We use the inner product
+\[
+ \langle x,y\rangle=y^*x,
+\]
+which is linear in its first variable.  Thus
+$W_q(A)=\{\langle Ax,y\rangle:\lVert x\rVert_2=\lVert y\rVert_2=1,\
+\langle x,y\rangle=q\}$.
+Changing the phase of $y$ in \eqref{eq:q-range-definition} gives
+\begin{equation}
+ \Omega_q(A)=\Omega_{\lvert q\rvert}(A).
+ \label{eq:phase-reduction}
+\end{equation}
+We may therefore put
+\begin{equation}
+ r=\lvert q\rvert,\qquad
+ \tau=\sqrt{1-r^2},\qquad
+ \kappa=\frac{1+\tau}{r}.
+ \label{eq:parameter-normalization}
+\end{equation}
+The equivalent identities
+\begin{equation}
+ r=\frac{2\kappa}{\kappa^2+1},
+ \qquad
+ \frac\tau r=\frac{\kappa^2-1}{2\kappa},
+ \qquad
+ \frac2\kappa=\frac{2r}{1+\sqrt{1-r^2}}
+ \label{eq:kappa-identities}
+\end{equation}
+will be used repeatedly.
+
+After division by $r$, Tsing's Lemma 5 gives the following disk formula
+\cite{Tsing1984}.  It will also be used in the sharpness argument.  For
+a unit vector $x$, put
+\[
+ \rho_A(x)=
+ \left(\lVert Ax\rVert_2^2-
+       \lvert\langle Ax,x\rangle\rvert^2\right)^{1/2}.
+\]
+The radicand is nonnegative by Cauchy--Schwarz.
+
+\begin{lemma}[Disk formula and nesting]
+\label{lem:q-range-nesting}
+Let $A\in\Mn$, $n\geq2$, and $0<r\leq1$.  Then
+\begin{equation}
+ \Omega_r(A)=
+ \bigcup_{\lVert x\rVert_2=1}
+ \left\{z\in\C:
+  \lvert z-\langle Ax,x\rangle\rvert
+  \leq\frac{\sqrt{1-r^2}}r\rho_A(x)\right\}.
+ \label{eq:q-disk-formula}
+\end{equation}
+Consequently, if $0<r\leq s\leq1$, then
+\[
+ \Omega_s(A)\subseteq\Omega_r(A).
+\]
+In particular, $W(A)=\Omega_1(A)\subseteq\Omega_r(A)$.
+\end{lemma}
+
+\begin{proof}
+Let $x,y$ be unit vectors with $\langle x,y\rangle=r$, and put
+$e_x=Ax-\langle Ax,x\rangle x$.  Then $e_x\perp x$ and
+$\lVert e_x\rVert_2=\rho_A(x)$.  Since
+$y-rx\perp x$ and $\lVert y-rx\rVert_2=\sqrt{1-r^2}$,
+Cauchy--Schwarz gives
+\[
+ \left\lvert
+  \frac1r\langle Ax,y\rangle-\langle Ax,x\rangle
+ \right\rvert
+ =\frac1r\lvert\langle e_x,y-rx\rangle\rvert
+ \leq\frac{\sqrt{1-r^2}}r\rho_A(x).
+\]
+This proves the inclusion from left to right in
+\eqref{eq:q-disk-formula}.
+
+Conversely, suppose that $\zeta$ belongs to the disk indexed by a unit
+vector $x_0$.  On the unit sphere define
+\[
+ g(x)=\lvert\zeta-\langle Ax,x\rangle\rvert
+      -\frac{\sqrt{1-r^2}}r\rho_A(x).
+\]
+The function $g$ is continuous and $g(x_0)\leq0$.  A complex matrix has
+a unit eigenvector $e$, and $\rho_A(e)=0$, so $g(e)\geq0$.  The unit
+sphere in $\C^n$ is path connected for $n\geq2$; hence there is a unit
+vector $u$ with $g(u)=0$.
+
+Write $\alpha=\langle Au,u\rangle$ and $d=\rho_A(u)$.  Choose a unit
+vector $w\perp u$ such that $\langle Au,w\rangle=d$: when $d>0$, take
+$w=(Au-\alpha u)/d$, and when $d=0$, take any unit vector orthogonal to
+$u$.  If $d>0$, set
+\[
+ \beta=\frac{r\,\overline{\zeta-\alpha}}d;
+\]
+if $d=0$, set $\beta=\sqrt{1-r^2}$.  The equality $g(u)=0$ gives
+$\lvert\beta\rvert=\sqrt{1-r^2}$.  Thus
+$y=ru+\beta w$ is a unit vector with $\langle u,y\rangle=r$, and
+if $d>0$, the definition of $\beta$ gives
+$\overline\beta d/r=\zeta-\alpha$.  If $d=0$, then $g(u)=0$ gives
+$\zeta=\alpha$.  In either case,
+\[
+ \frac1r\langle Au,y\rangle
+ =\alpha+\frac{\overline\beta d}{r}=\zeta.
+\]
+This proves the reverse inclusion.
+
+Finally, the coefficient $\sqrt{1-r^2}/r$ decreases with $r$ on
+$(0,1]$.  Comparing the disks in \eqref{eq:q-disk-formula} proves
+nesting, and the case $r=1$ gives $\Omega_1(A)=W(A)$.
+\end{proof}
+
+For a unit vector $v$, let $P_v$ be the orthogonal projection onto
+$\C v$ and define the rank-one stretch
+\begin{equation}
+ S_v=I+(\kappa-1)P_v.
+ \label{eq:rank-one-stretch}
+\end{equation}
+
+\begin{lemma}[Rank-one stretch geometry]
+\label{lem:rank-one-stretch}
+Let $A\in\Mn$, $n\geq2$, and $0<r\leq1$, with $\kappa$ as in
+\eqref{eq:parameter-normalization}.  For every unit vector $v$,
+$S_v\succ0$,
+\[
+ S_v^{-1}=I+(\kappa^{-1}-1)P_v,
+\]
+and
+\begin{equation}
+ W(S_vAS_v^{-1})\subseteq\Omega_r(A).
+ \label{eq:rank-one-stretch-containment}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The formulas for $S_v$ and $S_v^{-1}$ follow from
+$P_v^2=P_v$; positivity follows from $\kappa\geq1$.  Fix a unit vector
+$u$ and put
+\[
+ \ell=\lVert S_v^{-1}u\rVert_2,\qquad
+ m=\lVert S_vu\rVert_2,
+ \qquad \theta=\lVert P_vu\rVert_2^2.
+\]
+Orthogonality of $P_vu$ and $(I-P_v)u$ gives
+\[
+ m^2=\kappa^2\theta+1-\theta,
+ \qquad
+ \ell^2=\kappa^{-2}\theta+1-\theta.
+\]
+Since $0\leq\theta\leq1$,
+\[
+ \ell^2m^2
+ =1+(\kappa-\kappa^{-1})^2\theta(1-\theta)
+ \leq\frac14(\kappa+\kappa^{-1})^2.
+\]
+Moreover,
+$1=\lvert\langle S_v^{-1}u,S_vu\rangle\rvert\leq \ell m$.
+Because $S_v$ is invertible, $\ell,m>0$.  Therefore, with
+$s=(\ell m)^{-1}$,
+\[
+ r\leq s\leq1,
+ \qquad
+ \frac12(\kappa+\kappa^{-1})=\frac1r.
+\]
+The vectors
+\[
+ x=\frac{S_v^{-1}u}{\ell},
+ \qquad
+ y=\frac{S_vu}{m}
+\]
+are unit vectors with $\langle x,y\rangle=s$, and
+\[
+ \langle S_vAS_v^{-1}u,u\rangle
+ =\frac1s\langle Ax,y\rangle
+ \in\Omega_s(A)\subseteq\Omega_r(A)
+\]
+by Lemma~\ref{lem:q-range-nesting}.  This proves
+\eqref{eq:rank-one-stretch-containment}.
+\end{proof}
+
+\section{Rank-one stretch extraction}
+\label{sec:orbit-extraction}
+
+A convenient family of disk automorphisms is
+\[
+ \varphi_{\omega,a}(z)=\frac{\omega z-a}{1-a\omega z},
+ \qquad \lvert\omega\rvert=1,\quad 0\leq a<1.
+\]
+The next lemma is independent of numerical ranges.  It is the step
+that converts simultaneous estimates over the rank-one stretches
+\eqref{eq:rank-one-stretch} into a sharper norm bound at the identity
+stretch.
+
+\begin{lemma}[Rank-one stretch extraction]
+\label{lem:orbit-extraction}
+Let $n\geq2$, let $\kappa\geq1$ and $K\in\mathbb{R}$, and let $X\in\Mn$ satisfy
+$\sigma(X)\subseteq\overline\D$.  Suppose that
+\begin{equation}
+ \lVert S_v\varphi_{\omega,a}(X)S_v^{-1}\rVert\leq K
+ \label{eq:orbit-extraction-hypothesis}
+\end{equation}
+for every unit vector $v$, every $\lvert\omega\rvert=1$, and every
+$0\leq a<1$.  Then
+\begin{equation}
+ \lVert X\rVert\leq\max\left\{1,\frac K\kappa\right\}.
+ \label{eq:orbit-extraction-conclusion}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Put $t=\lVert X\rVert$.  The result is immediate if $t\leq1$, so
+assume $t>1$.  Choose unit vectors $x,y$ such that
+\[
+ Xx=ty.
+\]
+Let $c_0=\langle x,y\rangle$, put
+$\omega=c_0/\lvert c_0\rvert$ when $c_0\neq0$, and put $\omega=1$
+otherwise.  Set
+\[
+ \widetilde y=\omega y.
+\]
+Then $\lvert\omega\rvert=1$,
+$\omega Xx=t\widetilde y$, and
+$c:=\langle x,\widetilde y\rangle=\lvert c_0\rvert\in[0,1]$.
+In fact $c<1$, because $c=1$ would give $\widetilde y=x$ and
+$Xx=t\overline\omega x$, producing an eigenvalue of $X$ of modulus
+$t>1$, whereas $\sigma(X)\subseteq\overline\D$.
+
+If $c=0$, put $a=0$.  If $c>0$, consider
+\[
+ F(a)=tc(1+a^2)-a(1+t^2).
+\]
+Since
+\[
+ F(0)=tc>0,\qquad
+ F(1)=2tc-(1+t^2)\leq-(t-1)^2<0,
+\]
+there is an $a\in(0,1)$ such that
+\begin{equation}
+ tc(1+a^2)=a(1+t^2).
+ \label{eq:orthogonality-parameter}
+\end{equation}
+Define
+\[
+ u=(I-a\omega X)x=x-at\,\widetilde y,
+ \qquad
+ w=(\omega X-aI)x=t\,\widetilde y-ax.
+\]
+The matrix $I-a\omega X$ is invertible because
+$\sigma(X)\subseteq\overline\D$ and $a<1$, so $u\neq0$ and
+\[
+ \varphi_{\omega,a}(X)u=w.
+\]
+Also $w\neq0$, since $w=0$ would imply
+$t=\lVert Xx\rVert_2=a<1$.  Equation
+\eqref{eq:orthogonality-parameter} gives
+\[
+ \langle u,w\rangle
+ =tc(1+a^2)-a(1+t^2)=0.
+\]
+It also yields
+\begin{align}
+ \lVert w\rVert_2^2-t^2\lVert u\rVert_2^2
+ &=a(t^2-1)\bigl(2tc-a(1+t^2)\bigr)\notag\\
+ &=atc(t^2-1)(1-a^2)\geq0.
+ \label{eq:automorphism-amplification}
+\end{align}
+Consequently,
+\[
+ \frac{\lVert w\rVert_2}{\lVert u\rVert_2}\geq t.
+\]
+
+Put $v=w/\lVert w\rVert_2$.  Since $u\perp w$, the stretch $S_v$
+satisfies $S_v^{-1}u=u$ and $S_vw=\kappa w$.  Testing
+$S_v\varphi_{\omega,a}(X)S_v^{-1}$ on $u$ gives
+\[
+ K\geq\lVert S_v\varphi_{\omega,a}(X)S_v^{-1}\rVert
+ \geq\kappa\frac{\lVert w\rVert_2}{\lVert u\rVert_2}
+ \geq\kappa t.
+\]
+Thus every case with $t>1$ has $t\leq K/\kappa$, proving
+\eqref{eq:orbit-extraction-conclusion}.
+\end{proof}
+
+\section{Transfer to scaled \texorpdfstring{$q$}{q}-numerical ranges}
+\label{sec:main-proof}
+
+We now combine the geometry and extraction into a general transfer
+principle.
+
+\begin{theorem}[Spectral-constant transfer]
+\label{thm:constant-transfer}
+Let $K\geq1$ have the following property: for every square matrix $B$
+and every rational function $h$ pole-free on $W(B)$,
+\begin{equation}
+ \lVert h(B)\rVert
+ \leq K\max_{z\in W(B)}\lvert h(z)\rvert.
+ \label{eq:base-numerical-range-bound}
+\end{equation}
+Let $n\geq2$, $A\in\Mn$, $0<\lvert q\rvert\leq1$, and let $f$ be
+a rational function pole-free on $\Omega_q(A)$.  With
+\[
+ r=\lvert q\rvert,\qquad
+ \kappa=\frac{1+\sqrt{1-r^2}}r,
+\]
+one has
+\begin{equation}
+ \lVert f(A)\rVert
+ \leq
+ \max\left\{1,\frac K\kappa\right\}
+ \max_{z\in\Omega_q(A)}\lvert f(z)\rvert.
+ \label{eq:transferred-bound}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:phase-reduction}, it is enough to use $\Omega_r(A)$.
+Put
+\[
+ M=\max_{z\in\Omega_r(A)}\lvert f(z)\rvert,\qquad
+ M_\varepsilon=M+\varepsilon,\qquad
+ X_\varepsilon=\frac{f(A)}{M_\varepsilon},
+\]
+where $\varepsilon>0$.  The maximum exists because $\Omega_r(A)$ is
+compact and $f$ is continuous there.  Since
+\[
+ \sigma(A)\subseteq W(A)\subseteq\Omega_r(A),
+\]
+the rational spectral mapping theorem gives
+$\sigma(X_\varepsilon)\subset\D$.
+
+Fix a unit vector $v$ and put $B=S_vAS_v^{-1}$.
+Lemma~\ref{lem:rank-one-stretch} gives
+\[
+ W(B)\subseteq\Omega_r(A).
+\]
+For $\lvert\omega\rvert=1$ and $0\leq a<1$, define the rational
+function
+\[
+ h(z)=\varphi_{\omega,a}
+      \left(\frac{f(z)}{M_\varepsilon}\right).
+\]
+The function $f$ is pole-free on $W(B)$, and the strict inequality
+$M/M_\varepsilon<1$ keeps its normalized values in $\D$.  For every
+$z\in W(B)$,
+\[
+ \left\lvert1-\frac{a\omega f(z)}{M_\varepsilon}\right\rvert
+ \geq1-\frac{aM}{M_\varepsilon}>0.
+\]
+Thus $h$ is pole-free on $W(B)$ and $\lvert h\rvert\leq1$ there.
+Applying
+\eqref{eq:base-numerical-range-bound} and using similarity covariance
+and composition covariance of the rational functional calculus, we
+obtain
+\[
+ \lVert S_v\varphi_{\omega,a}(X_\varepsilon)S_v^{-1}\rVert
+ =
+ \left\|\varphi_{\omega,a}
+  \left(\frac{f(B)}{M_\varepsilon}\right)\right\|
+ \leq K.
+\]
+Lemma~\ref{lem:orbit-extraction} therefore gives
+\[
+ \frac{\lVert f(A)\rVert}{M_\varepsilon}
+ \leq\max\left\{1,\frac K\kappa\right\}.
+\]
+Letting $\varepsilon\downarrow0$ proves
+\eqref{eq:transferred-bound}.
+\end{proof}
+
+The sharp numerical-range theorem gives
+\eqref{eq:base-numerical-range-bound} with $K=2$ for every rational
+$h$ pole-free on $W(B)$ \cite{Jin2026}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Apply Theorem~\ref{thm:constant-transfer} with $K=2$ and use
+\eqref{eq:kappa-identities}.  This proves \eqref{eq:main-bound}.
+\end{proof}
+
+We next establish optimality of both branches of $C_q$.
+
+\begin{proposition}[Sharpness]
+\label{prop:sharpness}
+For every fixed $q\in\C$ with $0<\lvert q\rvert\leq1$, put
+$r=\lvert q\rvert$.  The constant
+\[
+ C_q=\max\left\{1,\frac2\kappa\right\},
+ \qquad
+ \kappa=\frac{1+\sqrt{1-r^2}}r,
+\]
+is the least constant $C$ such that
+\[
+ \lVert f(A)\rVert
+ \leq C\max_{z\in\Omega_q(A)}\lvert f(z)\rvert
+\]
+for every $A\in\mathbb M_2(\C)$ and every rational function $f$
+pole-free on $\Omega_q(A)$.
+\end{proposition}
+
+\begin{proof}
+Theorem~\ref{thm:main} shows that $C_q$ is admissible.  By
+\eqref{eq:phase-reduction}, $\Omega_q(A)=\Omega_r(A)$.  The constant
+function $f\equiv1$ gives the lower bound $C\geq1$.
+
+For the other branch, let
+\[
+ J=\begin{pmatrix}0&1\\0&0\end{pmatrix}.
+\]
+For a unit vector $x=(\xi,\eta)$, one has
+\[
+ \langle Jx,x\rangle=\overline\xi\eta,
+ \qquad
+ \rho_J(x)=\lvert\eta\rvert^2.
+\]
+Put $\mu=\lvert\xi\rvert$ and $\nu=\lvert\eta\rvert$, so that
+$\mu^2+\nu^2=1$.  The identities in \eqref{eq:kappa-identities} give
+\[
+ \frac{\sqrt{1-r^2}}r=\frac{\kappa^2-1}{2\kappa}.
+\]
+Therefore every point $z$ in the disk indexed by $x$ in
+\eqref{eq:q-disk-formula} satisfies
+\begin{align*}
+ \lvert z\rvert
+ &\leq \mu\nu+\frac{\kappa^2-1}{2\kappa}\nu^2
+ \leq\frac\kappa2,
+\end{align*}
+because
+\begin{equation}
+ \frac\kappa2-
+ \left(\mu\nu+\frac{\kappa^2-1}{2\kappa}\nu^2\right)
+ =\frac{(\kappa\mu-\nu)^2}{2\kappa}\geq0.
+ \label{eq:jordan-disk-bound}
+\end{equation}
+Equality is attained by taking the unit vector $x=(\mu,\nu)$ with
+positive real coordinates
+\[
+ \mu=\frac1{\sqrt{\kappa^2+1}},
+ \qquad
+ \nu=\frac\kappa{\sqrt{\kappa^2+1}},
+\]
+For this vector, the positive boundary point is $z=\kappa/2$.  Hence
+\[
+ \max_{z\in\Omega_r(J)}\lvert z\rvert=\frac\kappa2.
+\]
+Since $\lVert J\rVert=1$, taking the polynomial $f(z)=z$ yields
+\[
+ \frac{\lVert f(J)\rVert}
+ {\max_{z\in\Omega_r(J)}\lvert f(z)\rvert}
+ =\frac2\kappa.
+\]
+Thus every admissible $C$ satisfies $C\geq2/\kappa$.  Together with
+$C\geq1$, this proves the claim.
+\end{proof}
+
+\section{Consequences and discussion}
+\label{sec:discussion}
+
+The transfer theorem accesses the base numerical-range estimate solely
+through \eqref{eq:base-numerical-range-bound}, applied to the rank-one
+stretches \eqref{eq:rank-one-stretch} selected by the extraction
+mechanism.  The disk-automorphism family in
+Lemma~\ref{lem:orbit-extraction} supplies the orthogonal input-output
+pair used in \eqref{eq:automorphism-amplification}; the identity
+function is one member of this family.
+
+More generally, Theorem~\ref{thm:constant-transfer} turns every
+universal numerical-range spectral constant into an explicit constant
+for scaled $q$-numerical ranges.
+
+For the sharp value $K=2$, the transfer constant equals $1$ precisely
+when $\kappa\geq2$, or equivalently when
+$0<\lvert q\rvert\leq4/5$.  At $\lvert q\rvert=1$, one has
+$\kappa=1$ and the argument reduces to the sharp numerical-range
+estimate.  The definition of the scaled range uses
+$0<\lvert q\rvert\leq1$.  When $n\geq2$, unit vectors satisfying
+$y^*x=q$ exist for every such $q$.
+
+\section*{AI-assistance disclosure}
+
+OpenAI ChatGPT contributed the rank-one stretch argument and the
+disk-automorphism construction in Lemma~\ref{lem:orbit-extraction}.
+It also assisted with exposition, bibliography, typesetting, and Lean
+formalization.  The human author independently checked the mathematical
+derivations and assumes full responsibility for the correctness of all
+statements and for the integrity and accuracy of all citations.
+
+\reftitle{References}
+\bibliography{q_numerical_range_spectral_set}
+
+\end{document}
