@@ -82,8 +82,8 @@ the latter rebuilds as needed and runs `lake env lean AxiomAudit.lean`.
 ## Scaled `q`-numerical-range extension
 
 The active scaled `q` source is
-`../preprint/q_numerical_range_spectral_set.tex`, 660 lines, SHA-256
-`5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`.
+`../preprint/q_numerical_range_spectral_set.tex`, 669 lines, SHA-256
+`69862abf0f290975767dfd84dc998509da90c34982302927a19b45edcaa22771`.
 
 Its exact rational spectral-set theorem is proved by
 `sharpRationalScaledQNumericalRangeBound`; the polynomial specialization is

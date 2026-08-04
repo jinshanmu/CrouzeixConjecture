@@ -8,8 +8,8 @@ Source-line references in the original Crouzeix audit sections refer to that
 version.
 
 The same library now also formalizes the spectral-set proof in
-`../preprint/q_numerical_range_spectral_set.tex`, 660 lines, at SHA-256
-`5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`.
+`../preprint/q_numerical_range_spectral_set.tex`, 669 lines, at SHA-256
+`69862abf0f290975767dfd84dc998509da90c34982302927a19b45edcaa22771`.
 
 It uses Lean 4.28.0 and Mathlib pinned at commit
 `8f9d9cff6bd728b17a24e163c9402775d9e6a365`. The committed dependency

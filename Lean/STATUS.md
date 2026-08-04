@@ -49,9 +49,9 @@
 - Rational result: proved separately as
   `crouzeixRationalSpectralSetCorollary`, with pointwise theorem
   `crouzeixRationalBound` and no Runge axiom.
-- Scaled `q` source: all 660 lines of
+- Scaled `q` source: all 669 lines of
   `../preprint/q_numerical_range_spectral_set.tex` were reviewed; SHA-256
-  `5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`.
+  `69862abf0f290975767dfd84dc998509da90c34982302927a19b45edcaa22771`.
 - Scaled `q` geometry: proved.  The formal development includes phase
   reduction, parameter identities, compactness/nonemptiness, Tsing's exact
   disk-union formula, nesting, numerical-range inclusion, and spectral

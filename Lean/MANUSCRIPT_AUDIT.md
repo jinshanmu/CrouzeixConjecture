@@ -159,9 +159,9 @@ followed serially by plain `lake run`.
 ## Source identity
 
 - Active file: `../preprint/q_numerical_range_spectral_set.tex`
-- Lines: 660
+- Lines: 669
 - SHA-256:
-  `5939c6f76c0d2ab0aea076ae89af7d3c709fc49ba175917560da31733f061620`
+  `69862abf0f290975767dfd84dc998509da90c34982302927a19b45edcaa22771`
 
 ## Geometry audit
 

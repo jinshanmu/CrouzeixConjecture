@@ -55,8 +55,8 @@ jinshanmu1129@pku.edu.cn}
 
 \abstract{\texorpdfstring{%
 Let $A$ be an $n\times n$ complex matrix, $n\geq2$, and let
-$0<\lvert q\rvert\leq1$.  The $q$-numerical range and its scaled form
-are
+$q\in\C$ satisfy $0<\lvert q\rvert\leq1$.  The $q$-numerical range
+and its scaled form are
 \[
  W_q(A)=\{y^*Ax:\lVert x\rVert_2=\lVert y\rVert_2=1,\ y^*x=q\},
  \qquad
@@ -78,8 +78,8 @@ geometric input shows that the numerical range of every adapted
 rank-one stretch of $A$ lies in the scaled $q$-range.  Applying a
 numerical-range spectral-set estimate to these stretches produces a
 simultaneous family of Schur estimates.  A disk automorphism adapted to
-a maximizing singular-vector pair then extracts the norm at the
-identity stretch.  More generally, a universal numerical-range
+a maximizing singular-vector pair then extracts a norm bound for the
+original matrix.  More generally, a universal numerical-range
 spectral constant $K$ transfers to the constant
 $\max\{1,K/\kappa(q)\}$ on the scaled $q$-range, where
 $\kappa(q)=(1+\sqrt{1-\lvert q\rvert^2})/\lvert q\rvert$.  The two
@@ -112,6 +112,12 @@ For $A\in\Mn$, its numerical range is
  W(A)=\{x^*Ax:x\in\C^n,\ \lVert x\rVert_2=1\}.
 \]
 It is compact and convex, and it contains the spectrum of $A$.
+For vectors, $\lVert\cdot\rVert_2$ denotes the Euclidean norm.  For a
+matrix $T$, the unsubscripted norm is the induced Euclidean operator norm,
+\[
+ \lVert T\rVert:=
+ \max_{\lVert x\rVert_2=1}\lVert Tx\rVert_2.
+\]
 For $C\geq1$, a compact set $E\subset\C$ containing $\sigma(A)$ is a
 $C$-spectral set for $A$ if
 \begin{equation}
@@ -124,7 +130,8 @@ Crouzeix conjectured that $W(A)$ is always a $2$-spectral set
 \cite{Crouzeix2004}, and the sharp constant $2$ was established in
 \cite{Jin2026}.
 
-For $n\geq2$ and $0<\lvert q\rvert\leq1$, the $q$-numerical range is
+Throughout, $q\in\C$.  For $n\geq2$ and $0<\lvert q\rvert\leq1$, the
+$q$-numerical range is
 \begin{equation}
  W_q(A)=
  \{y^*Ax:\lVert x\rVert_2=\lVert y\rVert_2=1,\ y^*x=q\},
@@ -162,8 +169,8 @@ The proof has three steps.  First, Section~\ref{sec:similarity-geometry}
 proves nesting of the scaled ranges and shows that every adapted
 rank-one stretch has numerical range inside $\Omega_q(A)$.  Second,
 Section~\ref{sec:orbit-extraction} proves that uniform Schur estimates
-over precisely these stretches force an improved norm estimate at the
-identity stretch.  Third, Section~\ref{sec:main-proof} packages the two
+over precisely these stretches force an improved norm estimate for the
+original matrix.  Third, Section~\ref{sec:main-proof} packages the two
 facts into a transfer principle for any universal numerical-range
 spectral constant $K$.  Taking $K=2$ gives \eqref{eq:main-bound}; a
 $2\times2$ nilpotent matrix proves sharpness.
@@ -201,9 +208,10 @@ The equivalent identities
 \end{equation}
 will be used repeatedly.
 
-After division by $r$, Tsing's Lemma 5 gives the following disk formula
-\cite{Tsing1984}.  It will also be used in the sharpness argument.  For
-a unit vector $x$, put
+For $0<r<1$, division by $r$ in Tsing's Lemma 5 gives the disk formula
+below \cite{Tsing1984}.  The endpoint $r=1$ is included in the proof.
+The formula will also be used in the sharpness argument.  For a unit
+vector $x$, put
 \[
  \rho_A(x)=
  \left(\lVert Ax\rVert_2^2-
@@ -248,13 +256,13 @@ This proves the inclusion from left to right in
 Conversely, suppose that $\zeta$ belongs to the disk indexed by a unit
 vector $x_0$.  On the unit sphere define
 \[
- g(x)=\lvert\zeta-\langle Ax,x\rangle\rvert
+ G(x)=\lvert\zeta-\langle Ax,x\rangle\rvert
       -\frac{\sqrt{1-r^2}}r\rho_A(x).
 \]
-The function $g$ is continuous and $g(x_0)\leq0$.  A complex matrix has
-a unit eigenvector $e$, and $\rho_A(e)=0$, so $g(e)\geq0$.  The unit
+The function $G$ is continuous and $G(x_0)\leq0$.  A complex matrix has
+a unit eigenvector $e$, and $\rho_A(e)=0$, so $G(e)\geq0$.  The unit
 sphere in $\C^n$ is path connected for $n\geq2$; hence there is a unit
-vector $u$ with $g(u)=0$.
+vector $u$ with $G(u)=0$.
 
 Write $\alpha=\langle Au,u\rangle$ and $d=\rho_A(u)$.  Choose a unit
 vector $w\perp u$ such that $\langle Au,w\rangle=d$: when $d>0$, take
@@ -263,11 +271,11 @@ $u$.  If $d>0$, set
 \[
  \beta=\frac{r\,\overline{\zeta-\alpha}}d;
 \]
-if $d=0$, set $\beta=\sqrt{1-r^2}$.  The equality $g(u)=0$ gives
+if $d=0$, set $\beta=\sqrt{1-r^2}$.  The equality $G(u)=0$ gives
 $\lvert\beta\rvert=\sqrt{1-r^2}$.  Thus
 $y=ru+\beta w$ is a unit vector with $\langle u,y\rangle=r$, and
 if $d>0$, the definition of $\beta$ gives
-$\overline\beta d/r=\zeta-\alpha$.  If $d=0$, then $g(u)=0$ gives
+$\overline\beta d/r=\zeta-\alpha$.  If $d=0$, then $G(u)=0$ gives
 $\zeta=\alpha$.  In either case,
 \[
  \frac1r\langle Au,y\rangle
@@ -351,6 +359,7 @@ by Lemma~\ref{lem:q-range-nesting}.  This proves
 \section{Rank-one stretch extraction}
 \label{sec:orbit-extraction}
 
+Write $\D=\{z\in\C:\lvert z\rvert<1\}$ for the open unit disk.
 A convenient family of disk automorphisms is
 \[
  \varphi_{\omega,a}(z)=\frac{\omega z-a}{1-a\omega z},
@@ -358,8 +367,8 @@ A convenient family of disk automorphisms is
 \]
 The next lemma is independent of numerical ranges.  It is the step
 that converts simultaneous estimates over the rank-one stretches
-\eqref{eq:rank-one-stretch} into a sharper norm bound at the identity
-stretch.
+\eqref{eq:rank-one-stretch} into a sharper norm bound for the original
+matrix.
 
 \begin{lemma}[Rank-one stretch extraction]
 \label{lem:orbit-extraction}
@@ -551,7 +560,7 @@ We next establish optimality of both branches of $C_q$.
 
 \begin{proposition}[Sharpness]
 \label{prop:sharpness}
-For every fixed $q\in\C$ with $0<\lvert q\rvert\leq1$, put
+For every fixed $q$ with $0<\lvert q\rvert\leq1$, put
 $r=\lvert q\rvert$.  The constant
 \[
  C_q=\max\left\{1,\frac2\kappa\right\},
@@ -592,9 +601,9 @@ Therefore every point $z$ in the disk indexed by $x$ in
 \begin{align*}
  \lvert z\rvert
  &\leq \mu\nu+\frac{\kappa^2-1}{2\kappa}\nu^2
- \leq\frac\kappa2,
+ \leq\frac\kappa2.
 \end{align*}
-because
+The second inequality follows from
 \begin{equation}
  \frac\kappa2-
  \left(\mu\nu+\frac{\kappa^2-1}{2\kappa}\nu^2\right)
@@ -606,7 +615,7 @@ positive real coordinates
 \[
  \mu=\frac1{\sqrt{\kappa^2+1}},
  \qquad
- \nu=\frac\kappa{\sqrt{\kappa^2+1}},
+ \nu=\frac\kappa{\sqrt{\kappa^2+1}}.
 \]
 For this vector, the positive boundary point is $z=\kappa/2$.  Hence
 \[
