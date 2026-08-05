@@ -12,7 +12,7 @@ namespace CrouzeixConjecture
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- The diagonal analytic correction `D(z)` in `eq:Htilde-decomposition`. -/
+/-- The pointwise diagonal correction `D(z)` in `eq:Htilde-decomposition`. -/
 def completionDiagonalCorrection (d : ℂ → n → ℂ) (z : ℂ) : SquareMatrix n :=
   Matrix.diagonal (d z)
 
@@ -23,8 +23,8 @@ def completionKernelModel (G : SquareMatrix n) (lambda : n → ℂ)
   G * Matrix.diagonal (fun j ↦ (1 - z * lambda j)⁻¹) +
     completionDiagonalCorrection d z * G
 
-/-- Entrywise form of the model, retaining both the known resolvent and the unknown diagonal
-analytic correction. -/
+/-- Entrywise form of the model, retaining both the known resolvent and the unknown pointwise
+diagonal correction. -/
 theorem completionKernelModel_apply (G : SquareMatrix n) (lambda : n → ℂ)
     (d : ℂ → n → ℂ) (z : ℂ) (i j : n) :
     completionKernelModel G lambda d z i j =

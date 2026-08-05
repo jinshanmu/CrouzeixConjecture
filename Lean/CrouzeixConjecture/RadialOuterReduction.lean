@@ -1,6 +1,6 @@
 module
 
-public import CrouzeixConjecture.ParallelRadialBoundary
+public import CrouzeixConjecture.CanonicalParallelRadialGeometry
 public import CrouzeixConjecture.MainOuterLimit
 
 @[expose] public section
@@ -13,31 +13,6 @@ namespace CrouzeixConjecture
 
 variable {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
 
-/-- A bounded open convex domain has the exact radial `C¹` boundary package consumed by
-the proved Cauchy and double-layer constructions. -/
-def HasOrientedRadialConvexBoundary (Omega : Set ℂ) : Prop :=
-  ∃ R : PositivePeriodicRadialData, ∃ c : ℂ,
-    Nonempty (R.OrientedRadialConvexBoundary c Omega)
-
-/-- The sole remaining geometric assertion for the canonical parallel bodies used in the
-outer-limit argument. -/
-def CanonicalParallelOrientedRadialBoundaryStatement : Prop :=
-  ∀ (A : SquareMatrix n) (k : ℕ),
-    HasOrientedRadialConvexBoundary
-      (parallelOuterDomain (numericalRange A) k)
-
-/-- The canonical positive parallel bodies of the numerical range have the required oriented
-radial `C¹` boundaries. -/
-theorem canonicalParallelOrientedRadialBoundaryStatement :
-    CanonicalParallelOrientedRadialBoundaryStatement (n := n) := by
-  intro A k
-  unfold HasOrientedRadialConvexBoundary
-  simpa only [parallelOuterDomain] using
-    (exists_orientedRadialConvexBoundary_thickening
-      (numericalRange A) (numericalRange_nonempty A)
-      (isCompact_numericalRange A) (numericalRange_convex A)
-      (outerApproximationRadius_pos k))
-
 /-- The radial boundary geometry supplies the double-layer completion for every simple auxiliary
 matrix lying in a fixed canonical outer body. -/
 theorem canonicalParallelDoubleLayerStatement_of_orientedRadialBoundaries
@@ -48,8 +23,8 @@ theorem canonicalParallelDoubleLayerStatement_of_orientedRadialBoundaries
   exact G.hasDoubleLayerCompletionProvider_of_simpleDiagonalization
     R c B (simpleDiagonalization_of_hasDistinctEigenvalues B hB) hWB
 
-/-- The manuscript's final theorem now follows from exactly the canonical radial-boundary
-geometry statement. -/
+/-- The polynomial endpoint follows from exactly the canonical radial-boundary geometry
+statement. -/
 theorem mainTheoremStatement_of_canonicalParallelOrientedRadialBoundaries
     (hGeometry : CanonicalParallelOrientedRadialBoundaryStatement (n := n)) :
     MainTheoremStatement (n := n) :=

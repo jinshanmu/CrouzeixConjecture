@@ -469,7 +469,7 @@ theorem parametricCayleyCompanion_mem_generatedAlgebra
   rw [parametricCayleyCompanion, dif_pos hz]
   exact parametricBoundaryCompanion_mem_generatedAlgebra Gamma B hWB _
 
-/-- The full double-layer identity in the direct v3 Cayley form. -/
+/-- The full double-layer identity in direct Cayley form. -/
 theorem parametric_direct_cayley_identity
     [IsFiniteMeasure (mu : Measure i)]
     (Gamma : ParametricConvexBoundary (i := i) Omega)

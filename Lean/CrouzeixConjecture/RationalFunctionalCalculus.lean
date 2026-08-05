@@ -2,6 +2,8 @@ module
 
 public import CrouzeixConjecture.NumericalRange
 public import CrouzeixConjecture.Spectrum
+public import Mathlib.Analysis.Calculus.Deriv.Inv
+public import Mathlib.Analysis.Calculus.Deriv.Polynomial
 public import Mathlib.Analysis.Normed.Algebra.GelfandFormula
 public import Mathlib.FieldTheory.RatFunc.AsPolynomial
 
@@ -25,6 +27,12 @@ theorem rationalPoleSet_finite (r : RatFunc ℂ) :
     (rationalPoleSet r).Finite := by
   simpa [rationalPoleSet, Polynomial.IsRoot] using
     (Polynomial.finite_setOf_isRoot (RatFunc.denom_ne_zero r))
+
+/-- The complement of the finite pole set is the canonical open domain of holomorphy of a
+reduced rational function. -/
+theorem isOpen_compl_rationalPoleSet (r : RatFunc ℂ) :
+    IsOpen (rationalPoleSet r)ᶜ :=
+  (rationalPoleSet_finite r).isClosed.isOpen_compl
 
 /-- A rational function is pole-free on a set when its canonical denominator has no zero there. -/
 def RationalPoleFreeOn (r : RatFunc ℂ) (s : Set ℂ) : Prop :=
@@ -51,6 +59,22 @@ theorem rationalPoleFreeOn_iff (r : RatFunc ℂ) (s : Set ℂ) :
     intro z hzp hzs
     exact h z hzs (by simpa [rationalPoleSet] using hzp)
 
+/-- Pole-freeness is equivalently containment in the complement of the canonical pole set. -/
+theorem rationalPoleFreeOn_iff_subset_compl (r : RatFunc ℂ) (s : Set ℂ) :
+    RationalPoleFreeOn r s ↔ s ⊆ (rationalPoleSet r)ᶜ := by
+  constructor
+  · intro h z hzs hzp
+    exact Set.disjoint_left.mp h hzp hzs
+  · intro h
+    apply Set.disjoint_left.mpr
+    intro z hzp hzs
+    exact h hzs hzp
+
+/-- A rational function is pole-free on the complement of its canonical pole set. -/
+theorem rationalPoleFreeOn_compl_rationalPoleSet (r : RatFunc ℂ) :
+    RationalPoleFreeOn r (rationalPoleSet r)ᶜ :=
+  (rationalPoleFreeOn_iff_subset_compl r _).mpr fun _ ↦ id
+
 /-- A reduced rational function is continuous on every set on which it is pole-free. -/
 theorem continuousOn_rationalScalarEval (r : RatFunc ℂ) (s : Set ℂ)
     (hfree : RationalPoleFreeOn r s) :
@@ -60,6 +84,15 @@ theorem continuousOn_rationalScalarEval (r : RatFunc ℂ) (s : Set ℂ)
   · exact r.denom.continuous.continuousOn
   · intro z hzs
     exact (rationalPoleFreeOn_iff r s).mp hfree z hzs
+
+/-- A reduced rational function is holomorphic on every set on which it is pole-free. -/
+theorem differentiableOn_rationalScalarEval (r : RatFunc ℂ) (s : Set ℂ)
+    (hfree : RationalPoleFreeOn r s) :
+    DifferentiableOn ℂ (rationalScalarEval r) s := by
+  apply DifferentiableOn.div
+  · exact r.num.differentiableOn
+  · exact r.denom.differentiableOn
+  · exact (rationalPoleFreeOn_iff r s).mp hfree
 
 /-- Evaluation of a rational function at a matrix using the canonical reduced numerator and
 denominator.  When the function is pole-free on the spectrum, the denominator matrix is a unit. -/

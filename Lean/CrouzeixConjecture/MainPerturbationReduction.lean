@@ -37,20 +37,7 @@ theorem polynomialEval_eq_zero_of_simpleSpectrum_of_bound_zero
     polynomialEval p B = 0 := by
   let hdiag := simpleDiagonalization_of_hasDistinctEigenvalues B hB
   have heigenvalue (i : n) : hdiag.eigenvalues i ∈ matrixSpectrum B := by
-    let D := Matrix.diagonal hdiag.eigenvalues
-    have hchar : B.charpoly = D.charpoly := by
-      calc
-        B.charpoly = (innerConjugation hdiag.changeBasis D).charpoly :=
-          congrArg Matrix.charpoly hdiag.eq_conjugate
-        _ = D.charpoly := by
-          change (hdiag.changeBasis.val * D * hdiag.changeBasis.inv).charpoly = D.charpoly
-          simpa only [Units.inv_eq_val_inv] using
-            Matrix.charpoly_units_conj hdiag.changeBasis D
-    apply Matrix.mem_spectrum_iff_isRoot_charpoly.mpr
-    rw [hchar, Matrix.charpoly_diagonal]
-    exact (Polynomial.isRoot_prod Finset.univ
-      (fun j ↦ Polynomial.X - Polynomial.C (hdiag.eigenvalues j))
-      (hdiag.eigenvalues i)).mpr ⟨i, Finset.mem_univ i, by simp⟩
+    exact hdiag.eigenvalue_mem_matrixSpectrum i
   have hzero : ∀ i, Polynomial.eval (hdiag.eigenvalues i) p = 0 := by
     intro i
     apply norm_eq_zero.mp
@@ -109,21 +96,7 @@ theorem norm_polynomialEval_le_two_mul_of_simpleSpectrum
         Complex.norm_real, Real.norm_eq_abs, abs_of_pos hMpos]
       exact (inv_mul_le_one₀ hMpos).mpr (hp z hzs)
     have heigenvalue (i : n) : hdiag.eigenvalues i ∈ matrixSpectrum B := by
-      let D := Matrix.diagonal hdiag.eigenvalues
-      have hchar : B.charpoly = D.charpoly := by
-        calc
-          B.charpoly = (innerConjugation hdiag.changeBasis D).charpoly :=
-            congrArg Matrix.charpoly hdiag.eq_conjugate
-          _ = D.charpoly := by
-            change (hdiag.changeBasis.val * D * hdiag.changeBasis.inv).charpoly =
-              D.charpoly
-            simpa only [Units.inv_eq_val_inv] using
-              Matrix.charpoly_units_conj hdiag.changeBasis D
-      apply Matrix.mem_spectrum_iff_isRoot_charpoly.mpr
-      rw [hchar, Matrix.charpoly_diagonal]
-      exact (Polynomial.isRoot_prod Finset.univ
-        (fun j ↦ Polynomial.X - Polynomial.C (hdiag.eigenvalues j))
-        (hdiag.eigenvalues i)).mpr ⟨i, Finset.mem_univ i, by simp⟩
+      exact hdiag.eigenvalue_mem_matrixSpectrum i
     have hlambda : ∀ i, ‖lambda i‖ ≤ 1 := by
       intro i
       exact hf (hdiag.eigenvalues i) (hspectrum (heigenvalue i))

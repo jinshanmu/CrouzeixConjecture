@@ -1,7 +1,6 @@
 module
 
 public import CrouzeixConjecture.DoubleLayerBoundary
-public import CrouzeixConjecture.CompletionDiagonalization
 public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 public import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv

@@ -3,27 +3,32 @@
 ## Source identity
 
 - Active file:
-  `../preprint/the_numerical_range_is_a_2_spectral_set_v3.tex`
-- Lines: 1,066
+  `../preprint/the_numerical_range_is_a_2_spectral_set_v4.tex`
+- Lines: 1,106
 - SHA-256:
-  `f190178bc197c5f62fa8146f96c932a241379e90bf63145d542035058b92d154`
+  `c8968d966d5564d9523d35b5d1bf7aa196c49c6769da4706c58d60876d9f5d18`
 - Formalization toolchain: Lean 4.28.0 and Mathlib commit
   `8f9d9cff6bd728b17a24e163c9402775d9e6a365`
 
-The v3 source was read as the active manuscript. The proof simplification was
+The v4 source was read as the active manuscript. The proof simplification was
 checked again at the mathematical and interface levels. No need for the
 earlier perturbation of the normalized function was found.
 
-## Verification of the auxiliary-basis simplification, lines 220--257
+The ordinary constant has the exact advertised strength:
+`crouzeixConstantTwo_isLeast_finTwo` uses the `2 × 2` Jordan nilpotent and
+the identity function to prove that `2` is least for the rational numerical-
+range bound already in dimension two.
 
-The key distinction in v3 is correct: simple spectrum is required for the
+## Verification of the auxiliary-basis simplification, lines 218--255
+
+The key distinction in v4 is correct: simple spectrum is required for the
 auxiliary matrix `B`, not for the target `T=f(B)`.
 
-If
-`B = S diag(beta) S⁻¹`, then polynomial functional calculus gives
+If `B = S diag(beta) S⁻¹`, then functional calculus gives
 `f(B) = S diag(f(beta)) S⁻¹`. This identity does not require the scalar
-values `f(beta i)` to be distinct. Lean records it as
-`SimpleDiagonalization.polynomialEval_eq_innerConjugation_diagonal`.
+values `f(beta i)` to be distinct. Lean records the general evaluation as
+`SimpleDiagonalization.functionEval`; its polynomial compatibility is
+`SimpleDiagonalization.functionEval_polynomial`.
 
 The double-layer construction supplies pointwise companion values in
 `alg(B)`, and their adjoints lie in `alg(Bᴴ)`. Accordingly, the positive-real
@@ -59,7 +64,7 @@ This checks the logical point on which the simplification rests: allowing
 repeated samples is sufficient, and the auxiliary basis provides exactly the
 algebraic information needed to cancel the correction.
 
-## Positive-real completion audit, lines 259--544
+## Positive-real completion audit, lines 257--543
 
 The following calculations are formalized:
 
@@ -84,7 +89,7 @@ broader matrix-valued Herglotz measure representation is not separately
 packaged; the exact kernel consequence is proved directly by regularized
 circle averages and a limit.
 
-## Double-layer and contour audit, lines 546--762 and 793--825
+## Radial double-layer and contour audit, lines 545--774 and 805--852
 
 The orientation and normalization were checked: the counterclockwise relation
 is `dσ = iν ds`, the total double-layer mass is `2I`, the boundary map carries
@@ -92,18 +97,22 @@ the factor `1/2`, and the companion term has the required adjoint.
 
 Lean proves boundary support and resolvent positivity, positive
 operator-valued Bochner integration, the positive unital star-preserving
-boundary map, the generic boundary-companion identity, a uniform Cayley-series
-bridge for the polynomial Cauchy formula, the direct matrix Cayley identity,
-analytic convergence, positive real part, and companion membership in
-`alg(B)`. The resulting completion defect lies in `alg(Bᴴ)`. The formal
-Cayley theorem takes both the auxiliary matrix `B` and target `T`, matching
-the v3 proposition.
+boundary map, its explicit boundedness, the power-Cauchy companion identity,
+analytic convergence of the Cayley series, positive real part, and companion
+membership in `alg(B)`. The resulting completion defect lies in `alg(Bᴴ)`.
+The formal theorem `exists_positiveRealCompletion_of_parametricPowerCauchy`
+takes exactly the auxiliary matrix `B`, target `T`, supported parametrization,
+mass, and power identities used by the v4 proposition.
 
-The manuscript phrases part of this layer for a general holomorphic
-function. The formal endpoint uses polynomials and their powers, for which
-the scalar and matrix Cauchy formulas, companion membership, and convergence
-are proved. No broader unused analytic representation is smuggled in as an
-assumption.
+For general holomorphic `f`, compactness selects an open convex buffer inside
+the supplied open neighborhood of the closed radial domain, and
+`integral_holomorphic_cauchy` proves the scalar Cauchy formula on that buffer.
+The matrix formula follows entrywise in the supplied eigenbasis;
+`SimpleDiagonalization.functionEval_pow` then supplies exactly the powers
+needed by the Cayley series. `HasParametricPowerCauchyFormula` deliberately
+records only these used identities. Thus the holomorphic extension uses the
+same scalar mechanism and adds only the order-sensitive matrix evaluation and
+completion step; no broader representation theorem is assumed.
 
 The required convex boundary is constructed through metric projection,
 `C¹` squared distance, inverse gauge, a scalar implicit-function argument,
@@ -111,35 +120,86 @@ the projection residual normal, positive orientation, and a principal-log
 winding proof. This discharges the contour provider on the canonical
 parallel bodies.
 
-## Direct normalization and the two remaining limits, lines 740--762 and 764--881
+## Direct normalization and the two remaining limits, lines 752--910
 
-The fixed-simple argument now has exactly the v3 shape.
+The fixed-simple argument has exactly the v4 shape.
 
-For a simple-spectrum auxiliary matrix `B`, let `M` bound `|p|` on the outer
-set. If `M=0`, `polynomialEval_eq_zero_of_simpleSpectrum_of_bound_zero`
-proves `p(B)=0` from the spectral values. If `M>0`, set `f=p/M`.
-The shared-basis lemma identifies `f(B)` with the required target diagonal,
-the double-layer provider constructs its completion, and the auxiliary
-completion theorem gives `‖f(B)‖≤2`. Rescaling yields
-`‖p(B)‖≤2M`.
+For a simple-spectrum auxiliary matrix `B`, the exact unit-bound statement is
+`norm_functionEval_le_two_of_holomorphic_of_simpleDiagonalization`. Its
+scaled form `norm_functionEval_le_two_mul_of_holomorphic_of_simpleDiagonalization`
+handles a nonnegative bound `M`. The zero branch obtains zero evaluation
+directly from the diagonal entries; the positive branch normalizes only by
+`f/M`. The shared-basis evaluation, radial Cayley completion, and
+positive-real completion theorem then give `‖f(B)‖ ≤ 2M`.
 
 No affine `f_eta` is introduced. Consequently there is no finite collision
 set, no injectivity proof for perturbed target values, no equality
 `alg(f_eta(B))=alg(B)`, and no `eta → 0` limit.
 
-The only matrix approximation is the density step choosing
-simple-spectrum `Bₖ → A`; continuity gives `p(Bₖ) → p(A)`. The other limit is
+The only matrix approximation is the density step choosing simple-spectrum
+`Bₖ → A`; fixed-contour continuity gives `f(Bₖ) → f(A)`. The other limit is
 geometric: canonical convex parallel bodies decrease to `W(A)`, and the
-corresponding maximum moduli converge. These are logically independent
-limits and match the order stated in v3.
+corresponding exact maximum moduli converge. These are logically independent
+limits and match the order stated in v4. On a fixed radial outer domain,
+contour continuity identifies the limit of the simple-spectrum evaluations
+with `holomorphicMatrixEval A f`. Compactness of `W(A)` supplies a positive
+buffer inside the given open neighborhood `U`; only a sufficiently small tail
+of canonical parallel bodies is used, and their closures remain in `U`.
+Shrinking the exact function maxima proves `holomorphicCrouzeixBound`.
+`holomorphicMatrixEval_congr_on_neighborhood` verifies locality. No global
+extension of `f`, Runge theorem, or Mergelyan theorem is needed in the finite
+holomorphic proof.
 
-## Rational endpoint, lines 877--880 and 933--958
+## Finite polynomial and rational consequences, lines 119--129 and 906--910
 
-The rational result remains separate from the polynomial theorem. The
-library defines pole-freeness on the numerical range, proves uniform
-polynomial approximation and convergence of matrix evaluations and maximum
-moduli, and transfers the polynomial estimate to
+The algebra laws `holomorphicMatrixEval_add`, `holomorphicMatrixEval_neg`,
+`holomorphicMatrixEval_sub`, and `holomorphicMatrixEval_mul` are proved on a
+common holomorphy neighborhood. Polynomial compatibility gives
+`crouzeixConjecture` directly from the holomorphic theorem. For a reduced
+rational function, `holomorphicMatrixEval_rational` identifies the
+holomorphic value with `rationalMatrixEval`; hence
+`holomorphicCrouzeixRationalBound` is the direct specialization used by
 `crouzeixRationalSpectralSetCorollary` and `crouzeixRationalBound`.
+`finiteRationalSpectralSetCorollary` records compactness, spectrum containment,
+and the rational bound together.
+
+## Hilbert-space consequence, lines 919--986
+
+`finiteDimensionalHilbertPolynomialCrouzeix` transports the matrix theorem
+through an orthonormal coordinate basis. For a unit vector `x`, the general
+proof then compresses `A` to the finite Krylov subspace through the degree of
+the polynomial, proves exact agreement of the required powers and containment
+of the compressed numerical range, and applies the finite theorem.
+Taking the supremum over vectors gives
+`hilbertSpacePolynomialCrouzeix` for an arbitrary bounded operator on a
+complete nonzero complex Hilbert space. This matches the manuscript's
+polynomial compression argument without a finite-dimensional assumption on
+the ambient space.
+
+For lines 963--986, `closedOperatorNumericalRange` is proved nonempty,
+compact, and convex. The theorem
+`spectrum_subset_closedOperatorNumericalRange` approximates the reciprocal of
+`z-a` outside that set and constructs a two-sided inverse for `A-aI`, yielding
+the required spectral containment. The same explicit finite-denominator
+approximation defines `operatorRationalEval` as an operator-norm limit, proves
+independence of the approximating sequence, identifies the limit with the
+standard reduced numerator-times-inverse-denominator calculus, and gives
+`hilbertSpaceRationalCrouzeix`. The paired statement
+`hilbertSpaceRationalSpectralSet` records spectrum inclusion and the rational
+constant-`2` bound, while `closedOperatorNumericalRange_isTwoSpectralSet`
+also records compactness and is the exact one-operator corollary. Lean
+discharges the manuscript's Runge-approximation step by a proved
+special-purpose finite-denominator approximation theorem rather than an
+additional analytic axiom.
+
+## Matrix-function error consequence, lines 988--997
+
+The calculus subtraction law and polynomial compatibility prove
+`holomorphicCrouzeixPolynomialErrorBound`. Rational compatibility proves
+`holomorphicCrouzeixRationalErrorBound`; its proof intersects the supplied
+holomorphy neighborhood with the rational pole complement, so pole-freeness
+is assumed only on `W(A)`. These are exactly the two cases of
+the displayed matrix-function error estimate in v4.
 
 ## Deleted superseded formalization and trust boundary
 
@@ -150,9 +210,9 @@ inventory. Git history preserves the prior implementation.
 
 The permanent proof avoids `sorry`, `admit`, custom axioms, unsafe proof
 construction, native-decision shortcuts, and compiler-trust shortcuts.
-`AxiomAudit.lean` is organized around the v3 auxiliary-basis interfaces and
-the active endpoint chain. Authoritative verification is plain `lake build`
-followed serially by plain `lake run`.
+`AxiomAudit.lean` is organized around the v4 auxiliary-basis interfaces and
+the active endpoint chain. Authoritative verification is `lake build`
+followed serially by `lake env lean AxiomAudit.lean`.
 
 # Audit of the scaled `q`-numerical-range preprint
 

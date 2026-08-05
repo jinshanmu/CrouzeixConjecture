@@ -86,23 +86,4 @@ theorem conjTranspose_integral {mu : Measure i} {f : i → SquareMatrix n}
   have h := (matrixConjTransposeCLM (n := n)).integral_comp_comm hf
   exact h.symm
 
-/-- Pointwise positivity of the double-layer density makes its half-mass integral positive,
-which is the positivity of the manuscript map `Φ` on a nonnegative scalar boundary input. -/
-theorem doubleLayerIntegralAverage_posSemidef
-    (mu : Measure i) (firstPart secondPart : i → SquareMatrix n)
-    (hpositive : ∀ x, (firstPart x + secondPart x).PosSemidef) :
-    (doubleLayerIntegralAverage mu firstPart secondPart).PosSemidef := by
-  have hintegral :
-      (∫ x, firstPart x + secondPart x ∂mu).PosSemidef :=
-    integral_posSemidef hpositive
-  change (((2 : ℂ)⁻¹) • ∫ x, firstPart x + secondPart x ∂mu).PosSemidef
-  have hreal := hintegral.smul (inv_nonneg.mpr (by norm_num : (0 : ℝ) ≤ 2))
-  have heq :
-      ((2 : ℂ)⁻¹) • (∫ x, firstPart x + secondPart x ∂mu) =
-        ((2 : ℝ)⁻¹) • (∫ x, firstPart x + secondPart x ∂mu) := by
-    ext a b
-    norm_num [Complex.real_smul]
-  rw [heq]
-  exact hreal
-
 end CrouzeixConjecture

@@ -125,8 +125,8 @@ theorem polynomialCrouzeixBound_of_canonicalParallelOuterDomains
       (simpleSpectrumApproximation_hasDistinctEigenvalues A j) hWB)
     positiveRealCompletionStatement
 
-/-- The faithful manuscript theorem follows from precisely the canonical contour-provider
-statement, with the positive-real completion and Toeplitz--Hausdorff inputs supplied internally. -/
+/-- The polynomial endpoint follows from precisely the canonical contour-provider statement,
+with the positive-real completion and Toeplitz--Hausdorff inputs supplied internally. -/
 theorem mainTheoremStatement_of_canonicalParallelDoubleLayer
     (hDoubleLayer : CanonicalParallelDoubleLayerStatement (n := n)) :
     MainTheoremStatement (n := n) := by

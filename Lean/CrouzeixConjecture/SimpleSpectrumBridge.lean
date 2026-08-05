@@ -91,13 +91,6 @@ def simpleDiagonalization_of_hasDistinctEigenvalues (B : SquareMatrix n)
     _ = standard.toMatrix eigenbasis * Matrix.diagonal eigenvalues *
         eigenbasis.toMatrix standard := by rw [hdiagonal]
 
-/-- Proposition-valued existence form of
-`simpleDiagonalization_of_hasDistinctEigenvalues`. -/
-theorem nonempty_simpleDiagonalization_of_hasDistinctEigenvalues (B : SquareMatrix n)
-    (hB : HasDistinctEigenvalues B) :
-    Nonempty (SimpleDiagonalization B) :=
-  ⟨simpleDiagonalization_of_hasDistinctEigenvalues B hB⟩
-
 /-- Conversely, explicit simple diagonalization data certifies noduplicity of
 the characteristic roots. -/
 theorem hasDistinctEigenvalues_of_simpleDiagonalization

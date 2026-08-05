@@ -139,17 +139,4 @@ theorem fixedOuterNeighborhood_isCompact
     IsCompact (Metric.cthickening 1 K) :=
   hKcompact.cthickening
 
-theorem exists_convexOuterApproximationSequence
-    {K : Set ℂ} (hKcompact : IsCompact K) (hKconvex : Convex ℝ K)
-    (hKne : K.Nonempty) :
-    ∃ Omega : ℕ → Set ℂ, ∃ radius : ℕ → ℝ,
-      Tendsto radius atTop (nhds 0) ∧
-      (∀ k, ConvexOuterApproximationData K (Omega k) (radius k)) ∧
-      Tendsto (fun k ↦ Metric.hausdorffDist (closure (Omega k)) K)
-        atTop (nhds 0) := by
-  exact ⟨parallelOuterDomain K, outerApproximationRadius,
-    tendsto_outerApproximationRadius,
-    parallelOuterDomain_data hKcompact hKconvex hKne,
-    tendsto_hausdorffDist_parallelOuterDomain_closure hKcompact⟩
-
 end CrouzeixConjecture

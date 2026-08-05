@@ -25,7 +25,6 @@ the scaled `q`-numerical range. -/
 def qTransferredConstant (K : ℝ) (q : ℂ) : ℝ :=
   max 1 (K / qKappa ‖q‖)
 
-set_option linter.unnecessarySeqFocus false in
 /-- The explicit matrix Möbius composition is the rotated real Möbius
 transform of the scaled rational matrix value. -/
 theorem mobiusComposeMatrixEval_eq_rotatedRealMobiusEval
@@ -34,7 +33,11 @@ theorem mobiusComposeMatrixEval_eq_rotatedRealMobiusEval
       rotatedRealMobiusEval omega a (c • rationalMatrixEval f A) := by
   rw [mobiusComposeMatrixEval, rotatedRealMobiusEval,
     rotatedRealMobiusNumerator, rotatedRealMobiusDenominator]
-  congr 2 <;> simp only [smul_smul] <;> congr 2 <;> ring
+  congr 2
+  · simp only [smul_smul]
+  · simp only [smul_smul]
+    congr 2
+    ring
 
 /-- Pole-freeness restricts along set inclusion. -/
 theorem rationalPoleFreeOn_mono {f : RatFunc ℂ} {s t : Set ℂ}

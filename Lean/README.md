@@ -1,9 +1,9 @@
 # Crouzeix conjecture manuscript formalization
 
 This project audits and formalizes the proof architecture of
-`../preprint/the_numerical_range_is_a_2_spectral_set_v3.tex`, 1,066 lines,
+`../preprint/the_numerical_range_is_a_2_spectral_set_v4.tex`, 1,106 lines,
 at SHA-256
-`f190178bc197c5f62fa8146f96c932a241379e90bf63145d542035058b92d154`.
+`c8968d966d5564d9523d35b5d1bf7aa196c49c6769da4706c58d60876d9f5d18`.
 Source-line references in the original Crouzeix audit sections refer to that
 version.
 
@@ -16,28 +16,43 @@ It uses Lean 4.28.0 and Mathlib pinned at commit
 manifest records the transitive revisions needed for a reproducible build;
 downloaded packages and build products remain local under `.lake/`.
 
-The library proves the manuscript's polynomial Crouzeix estimate unconditionally.
-Its public pointwise theorem is `CrouzeixConjecture.crouzeixConjecture`: for
-every matrix on a finite nonempty complex Euclidean coordinate space and every
-complex polynomial, the induced Euclidean operator norm of the matrix
-polynomial is at most twice the maximum polynomial modulus on the numerical
-range. The quantified form is
-`CrouzeixConjecture.crouzeixConjecture_mainTheorem : MainTheoremStatement`.
+The library proves the manuscript's finite-matrix holomorphic Crouzeix
+estimate.  The functional calculus `CrouzeixConjecture.holomorphicMatrixEval`
+is identified with every admissible contour integral, agrees with
+`polynomialEval` and the reduced rational calculus, is local on a
+neighborhood of the numerical range, and satisfies the additive and
+multiplicative functional-calculus laws there.
+The endpoint `CrouzeixConjecture.holomorphicCrouzeixBound` assumes exactly an
+open set `U` containing `W(A)` and complex differentiability of `f` on `U`,
+and proves the constant-`2` bound by the maximum of `|f|` on `W(A)`.
 
-The active proof follows the v3 auxiliary-basis simplification.
+Its polynomial specialization remains available as the pointwise theorem
+`CrouzeixConjecture.crouzeixConjecture`: for every matrix on a finite nonempty
+complex Euclidean coordinate space and every complex polynomial, the induced
+Euclidean operator norm of the matrix polynomial is at most twice the maximum
+polynomial modulus on the numerical range. This is
+`CrouzeixConjecture.crouzeixConjecture`. The exactness statement
+`crouzeixConstantTwo_isLeast_finTwo` shows that `2` is least already for the
+rational bounds restricted to `2 × 2` matrices.
+
+The active proof follows the v4 holomorphic auxiliary-basis route.
 An auxiliary matrix `B` has simple spectrum, while the target
 `T = f(B)` is diagonal in the same basis. The sampled values `f(βᵢ)` may
 repeat or vanish. The positive-real defect belongs to `alg(Bᴴ)`, kernel
 sampling permits repeated points, and the completion theorem concludes
-`‖T‖ ≤ 2` without requiring `T` to have simple spectrum. For a polynomial
-`p`, the proof treats the zero-supremum case directly and otherwise uses only
-the normalization `f = p / M`. It then lets simple-spectrum matrices
+`‖T‖ ≤ 2` without requiring `T` to have simple spectrum. The radial boundary
+map is explicitly bounded; exact power Cauchy identities feed its analytic
+Cayley series. The proof treats the zero-maximum case directly and otherwise
+uses only normalization by the maximum. It then lets simple-spectrum matrices
 `Bₖ → A` inside each fixed outer domain and only afterward lets the convex
 outer domains decrease to `W(A)`. The Gramian endpoint uses the first
 nonconstant term directly, with no Stein identity. The direct Cayley algebra
 is recorded by `isPositiveRealCompletion_of_direct_cayley_identity`; the
-concrete polynomial contour provider still obtains its special Cauchy identity
-through a uniform series bridge.
+holomorphic contour route selects a convex buffer inside the supplied open
+neighborhood, obtains the scalar Cauchy formula there, and transports it
+entrywise through the auxiliary diagonalization. Power compatibility then
+supplies exactly the Cauchy data used by the same double-layer completion
+mechanism.
 
 The superseded `f_eta` collision-avoidance, algebra-equality, and
 `eta → 0` formalization has been deleted from the working tree. Git history
@@ -46,9 +61,33 @@ comparison. In the completion algebra, Lean names the manuscript matrices
 `Q` and `Y` as `completionR` and `completionX` respectively; Lean's `P`
 agrees with the manuscript's `P`.
 
-The rational spectral-set discussion is formalized separately as
-`CrouzeixConjecture.crouzeixRationalSpectralSetCorollary`, with pointwise form
-`CrouzeixConjecture.crouzeixRationalBound`.
+Rational compatibility makes the finite rational estimate a direct
+specialization of the holomorphic theorem. Its pointwise form is
+`CrouzeixConjecture.holomorphicCrouzeixRationalBound`; the complete compactness,
+spectrum-containment, and bound package is
+`CrouzeixConjecture.finiteRationalSpectralSetCorollary`. The public aliases
+`crouzeixRationalSpectralSetCorollary` and `crouzeixRationalBound` remain.
+
+The manuscript's polynomial and rational matrix-function error estimates are
+`holomorphicCrouzeixPolynomialErrorBound` and
+`holomorphicCrouzeixRationalErrorBound`.
+
+The checked Hilbert-space polynomial consequence is
+`CrouzeixConjecture.hilbertSpacePolynomialCrouzeix`.  It transports the finite
+theorem to finite-dimensional Hilbert spaces and then applies it to finite
+Krylov compressions of an arbitrary bounded operator.
+
+On the closed operator numerical range, `HilbertSpectralSet.lean` proves
+convexity, compactness, `spectrum_subset_closedOperatorNumericalRange`, and the
+rational constant-`2` bound. It defines `operatorRationalEval` as the unique
+operator-norm limit supplied by the project's explicit finite-denominator
+polynomial approximation, identifies this limit with the standard reduced
+numerator-times-inverse-denominator calculus, proves polynomial compatibility, and packages
+spectrum inclusion together with the rational estimate as
+`hilbertSpaceRationalSpectralSet`. The full one-operator package, including
+compactness, is `closedOperatorNumericalRange_isTwoSpectralSet`. This route
+proves the needed special-purpose approximation internally rather than
+assuming a general Runge or Mergelyan axiom.
 
 For the scaled `q`-numerical range, the public rational endpoint is
 `CrouzeixConjecture.sharpRationalScaledQNumericalRangeBound`.  For every
@@ -69,17 +108,18 @@ extraction lemma, and the `M + epsilon` limit.  The theorem
 combines the upper bound with the constant and Jordan-block witnesses to show
 that the displayed constant is least even for `2 × 2` matrices.
 
-The manuscript and Lean development now have the same exact scope: the
-rational spectral-set assertion, its polynomial specialization, and the
-adapted rank-one stretches selected by extraction.  The disk formula,
-stretch containment, extraction, rational transfer, constant-two
-specialization, and complex-parameter sharpness proof are formalized in the
-same order and at the same strength.
+The finite-matrix development now includes the manuscript's standard
+holomorphic open-neighborhood statement as well as its polynomial and rational
+specializations. The proof is direct: it uses convex-buffer Cauchy formulas
+inside the supplied open neighborhoods, contour locality, and a tail of
+canonical outer approximations. It
+does not assume Runge's theorem, Mergelyan's theorem, or a custom analytic
+axiom. The scaled `q` development separately matches its manuscript's exact
+rational scope, including stretch containment, extraction, transfer,
+constant-two specialization, and complex-parameter sharpness.
 
-Run plain `lake build` for the complete library. Plain `lake run` is the
-authoritative default verification script: it runs the build and then
-`lake env lean AxiomAudit.lean`. Run these serially; do not overlap Lean/Lake
-processes.
+Run `lake build` for the complete library, followed serially by
+`lake env lean AxiomAudit.lean`. Do not overlap Lean/Lake processes.
 
 See `FORMALIZATION_MAP.md` for both source-coverage maps,
 `CONTINUATION_STATUS.md` for the proof route and verification procedure,

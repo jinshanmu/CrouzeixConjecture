@@ -30,12 +30,4 @@ theorem norm_polynomialEval_le_of_tendsto {ι : Type*} {l : Filter ι} [l.NeBot]
     ‖polynomialEval p A‖ ≤ C := by
   exact le_of_tendsto (tendsto_polynomialEval p hB).norm hBound
 
-/-- Sequence form of `norm_polynomialEval_le_of_tendsto`. -/
-theorem norm_polynomialEval_le_of_tendsto_atTop (p : Polynomial ℂ)
-    {B : ℕ → SquareMatrix n} {A : SquareMatrix n} {C : ℝ}
-    (hB : Tendsto B atTop (𝓝 A))
-    (hBound : ∀ᶠ k in atTop, ‖polynomialEval p (B k)‖ ≤ C) :
-    ‖polynomialEval p A‖ ≤ C := by
-  exact norm_polynomialEval_le_of_tendsto p hB hBound
-
 end CrouzeixConjecture

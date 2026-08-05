@@ -39,6 +39,25 @@ structure SimpleDiagonalization (B : SquareMatrix n) where
   eq_conjugate : B = innerConjugation changeBasis (Matrix.diagonal eigenvalues)
   eigenvalues_injective : Function.Injective eigenvalues
 
+/-- Every diagonal entry in an explicit diagonalization belongs to the matrix spectrum. -/
+theorem SimpleDiagonalization.eigenvalue_mem_matrixSpectrum
+    {B : SquareMatrix n} (hB : SimpleDiagonalization B) (i : n) :
+    hB.eigenvalues i ∈ matrixSpectrum B := by
+  let D := Matrix.diagonal hB.eigenvalues
+  have hchar : B.charpoly = D.charpoly := by
+    calc
+      B.charpoly = (innerConjugation hB.changeBasis D).charpoly :=
+        congrArg Matrix.charpoly hB.eq_conjugate
+      _ = D.charpoly := by
+        change (hB.changeBasis.val * D * hB.changeBasis.inv).charpoly = D.charpoly
+        simpa only [Units.inv_eq_val_inv] using
+          Matrix.charpoly_units_conj hB.changeBasis D
+  apply Matrix.mem_spectrum_iff_isRoot_charpoly.mpr
+  rw [hchar, Matrix.charpoly_diagonal]
+  exact (Polynomial.isRoot_prod Finset.univ
+    (fun j ↦ Polynomial.X - Polynomial.C (hB.eigenvalues j))
+    (hB.eigenvalues i)).mpr ⟨i, Finset.mem_univ i, by simp⟩
+
 /-- Polynomial evaluation on a diagonal matrix is entrywise scalar evaluation. -/
 theorem polynomialEval_diagonal (p : Polynomial ℂ) (nodes : n → ℂ) :
     polynomialEval p (Matrix.diagonal nodes) =

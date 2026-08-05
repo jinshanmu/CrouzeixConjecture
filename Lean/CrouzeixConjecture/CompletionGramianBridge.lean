@@ -354,41 +354,6 @@ theorem completion_PRX_congruence_eq_gramian_expression
   rw [completionX_congruence_eq_gramian_difference hsqrt lambda hlambda,
     completionP_congruence_eq_gramian_four hsqrt lambda hlambda]
 
-/-- The congruenced `X` is positive semidefinite, as asserted in `eq:Yhat-positive`. -/
-theorem completionX_congruence_posSemidef [Nonempty n]
-    {G H Hinv : SquareMatrix n} (hsqrt : CompletionSquareRootData G H Hinv)
-    (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1) :
-    (Hinv * completionX G lambda * Hinv).PosSemidef := by
-  rw [completionX_congruence_eq_gramian_difference hsqrt lambda hlambda]
-  exact gramian_two_sub_gramian_four_posSemidef
-    (mul_nonneg (norm_nonneg H) (norm_nonneg Hinv))
-    (completionSimilarity H Hinv lambda)
-    (completionSimilarity_pow_norm_le hsqrt lambda hlambda)
-
-/-- Exact `k = 1, 2, ...` form of `eq:Yhat-positive`; the reindexing uses that the `k = 0`
-difference summand vanishes. -/
-theorem completionX_congruence_eq_tsum_succ
-    {G H Hinv : SquareMatrix n} (hsqrt : CompletionSquareRootData G H Hinv)
-    (lambda : n → ℂ) (hlambda : ∀ i, ‖lambda i‖ ≤ 1) :
-    Hinv * completionX G lambda * Hinv =
-      ∑' k : ℕ, gramianDifferenceTerm (completionSimilarity H Hinv lambda) (k + 1) := by
-  let C := completionSimilarity H Hinv lambda
-  let M := ‖H‖ * ‖Hinv‖
-  have hM : 0 ≤ M := mul_nonneg (norm_nonneg H) (norm_nonneg Hinv)
-  have hbound : ∀ k : ℕ, ‖C ^ k‖ ≤ M :=
-    completionSimilarity_pow_norm_le hsqrt lambda hlambda
-  have hs : Summable (gramianDifferenceTerm C) :=
-    (summable_gramianTerm (q := 2) (by norm_num) hM C hbound).sub
-      (summable_gramianTerm (q := 4) (by norm_num) hM C hbound)
-  rw [completionX_congruence_eq_gramian_difference hsqrt lambda hlambda]
-  rw [gramian_two_sub_gramian_four_eq_tsum hM C hbound]
-  calc
-    ∑' k : ℕ, gramianDifferenceTerm C k =
-        gramianDifferenceTerm C 0 + ∑' k : ℕ, gramianDifferenceTerm C (k + 1) :=
-      hs.tsum_eq_zero_add
-    _ = ∑' k : ℕ, gramianDifferenceTerm C (k + 1) := by
-      rw [gramianDifferenceTerm_zero, zero_add]
-
 /-- Positivity is preserved when `eq:Y-inequality` is congruenced by the self-adjoint matrix
 `Hinv = G⁻¹⁄²`, yielding `eq:Yhat-inequality`. -/
 theorem completion_gramian_expression_posSemidef_of_source

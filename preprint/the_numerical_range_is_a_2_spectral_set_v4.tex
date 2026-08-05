@@ -1,0 +1,1106 @@
+\makeatletter
+\def\input@path{{preprints-template/preprints_template_latex/}}
+\let\preprint@bibliographystyle\bibliographystyle
+\renewcommand{\bibliographystyle}[1]{%
+  \preprint@bibliographystyle{preprints-template/preprints_template_latex/#1}}
+\makeatother
+
+\documentclass[preprints,article,submit,oneauthor]{Definitions/mdpi}
+
+\makeatletter
+\let\bibliographystyle\preprint@bibliographystyle
+\makeatother
+
+\graphicspath{{preprints-template/preprints_template_latex/}}
+
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+\datereceived{}
+\daterevised{}
+\dateaccepted{}
+\datepublished{}
+
+\newcounter{manuscriptresult}[section]
+\renewcommand{\themanuscriptresult}{\thesection.\arabic{manuscriptresult}}
+\theoremstyle{mdpi}
+\newtheorem{theorem}[manuscriptresult]{Theorem}
+\newtheorem{lemma}[manuscriptresult]{Lemma}
+\newtheorem{proposition}[manuscriptresult]{Proposition}
+\newtheorem{corollary}[manuscriptresult]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{remark}[manuscriptresult]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\mathbb D}
+\newcommand{\Mn}{\mathbb M_n(\C)}
+\newcommand{\alg}{\operatorname{alg}}
+\newcommand{\distop}{\operatorname{dist}}
+\newcommand{\RePart}{\operatorname{Re}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\iu}{\mathrm{i}}
+
+\Title{The numerical range is a 2-spectral set}
+\Author{Shanmu Jin}
+\AuthorNames{Shanmu Jin}
+\address{Department of Neurosurgery, Peking Union Medical College
+  Hospital, No.~1 Shuaifuyuan, Dongcheng District, Beijing 100730,
+  China\\
+jinshanmu1129@pku.edu.cn}
+
+\abstract{
+For an $n\times n$ complex matrix $A$, let
+$W(A)=\{x^*Ax:x\in\C^n,\ \lVert x\rVert_2=1\}$ be its numerical range.
+Here $x^*$ denotes the conjugate transpose, $\lVert\,\cdot\,\rVert_2$
+the Euclidean norm, and $\lVert\,\cdot\,\rVert$ the induced operator
+norm.  For every function $f$ holomorphic on a neighborhood of $W(A)$,
+we prove that
+\[
+  \lVert f(A)\rVert\leq
+  2\max_{z\in W(A)}\lvert f(z)\rvert
+\]
+and consequently that $W(A)$ is a $2$-spectral set for $A$.  This
+proves Crouzeix's conjecture, and the constant is optimal.  The central
+ingredient is a positive-real completion theorem relative to an
+auxiliary eigenbasis: an adjoint-algebra constraint on the resolvent
+defect of a normalized matrix-valued Carath\'eodory function forces the
+underlying matrix to have norm at most $2$.  The classical positive
+double-layer calculus supplies such completions for $f(B)$ whenever the
+auxiliary matrix $B$ has simple spectrum; the eigenvalues of $f(B)$
+may repeat.  Sampling the associated Herglotz kernel at half
+the conjugate diagonal entries and at the origin cancels the completion
+term's contribution and leaves a comparison of two weighted Gramians;
+their first nonconstant terms yield the sharp estimate.  Simple-spectrum
+approximation and canonical convex outer domains with supported oriented
+radial boundaries yield the general theorem.
+}
+
+\keyword{Crouzeix conjecture; numerical range; spectral set;
+matrix-valued Herglotz kernel; double-layer potential}
+\MSC{Primary 47A25; Secondary 47A12, 15A60}
+
+\begin{document}
+
+\section{Introduction}
+\label{sec:introduction}
+
+Let $\C$ denote the complex field and, for $n\geq1$, let $\Mn$ denote
+the algebra of $n\times n$ complex matrices.  For $A\in\Mn$, its
+numerical range is
+\begin{equation}
+  W(A)=\{x^*Ax:x\in\C^n,\ \lVert x\rVert_2=1\}.
+  \label{eq:numerical-range}
+\end{equation}
+Here $x^*$ denotes the conjugate transpose, $\sigma(A)$ denotes the
+spectrum, $\lVert x\rVert_2$ is the Euclidean norm, $\lVert X\rVert$ is
+the induced operator norm, and scalar moduli are denoted by
+$\lvert\,\cdot\,\rvert$.  The set $W(A)$ is compact, the
+Toeplitz--Hausdorff theorem makes it convex, and
+$\sigma(A)\subset W(A)$.  Functions holomorphic near $\sigma(A)$ are
+evaluated using the holomorphic functional calculus.
+
+A compact set $K\subset\C$ containing $\sigma(A)$ is called a
+$C$-spectral set for $A$ if
+\begin{equation}
+  \lVert r(A)\rVert\leq C\max_{z\in K}\lvert r(z)\rvert
+  \label{eq:spectral-set-definition}
+\end{equation}
+for every rational function $r$ pole-free on $K$.  Our main result
+settles Crouzeix's conjecture by identifying the sharp universal
+constant for $K=W(A)$.
+
+\begin{theorem}[Main theorem]
+\label{thm:main}
+Let $n\geq1$, let $A\in\Mn$, and let $f$ be holomorphic on a
+neighborhood of $W(A)$.  Then
+\begin{equation}
+  \lVert f(A)\rVert
+  \leq2\max_{z\in W(A)}\lvert f(z)\rvert.
+  \label{eq:main-bound}
+\end{equation}
+Consequently, $W(A)$ is a $2$-spectral set for $A$.
+\end{theorem}
+
+The factor $2$ is optimal: for
+\begin{equation}
+  J=\begin{pmatrix}0&1\\0&0\end{pmatrix}
+  \quad\text{and}\quad p(z)=z,
+  \label{eq:sharp-example}
+\end{equation}
+one has
+$\max_{z\in W(J)}\lvert z\rvert=1/2$ and $\lVert J\rVert=1$.
+
+For later use, write
+\[
+  \D=\{z\in\C:\lvert z\rvert<1\}.
+\]
+We use $I$ for the identity matrix of the size dictated by context,
+$X^*$ for the adjoint, put $\RePart X=(X+X^*)/2$, and let $\alg(T)$
+denote the unital algebra generated by $T$.  For Hermitian matrices
+$X$ and $Y$, we write $X\preceq Y$ (equivalently, $Y\succeq X$) when
+$Y-X$ is positive semidefinite.
+
+Crouzeix proved the estimate with constant $2$ for $2\times2$ matrices and
+formulated the general conjecture in~\cite{Crouzeix2004}.  His
+subsequent dimension-free theorem gave the constant $11.08$~%
+\cite{Crouzeix2007}.  After further structural and numerical work~%
+\cite{Crouzeix2016}, Crouzeix and Palencia proved that $W(A)$ is a
+$(1+\sqrt2)$-spectral set~\cite{CrouzeixPalencia2017}.  Their
+double-layer and Cauchy-transform argument was clarified in~%
+\cite{RansfordSchwenninger2018} and developed in several directions in~%
+\cite{CaldwellGreenbaumLi2018,CrouzeixGreenbaum2019}.
+
+The intervening literature established the conjectured constant for
+perturbed Jordan blocks and, more generally, scalar translates of
+cyclic weighted shifts, as well as for tridiagonal $3\times3$ matrices
+with elliptic numerical range centered at an eigenvalue~%
+\cite{ChoiGreenbaum2012,Choi2013,GladerKurulaLindstrom2018}.
+Numerical and extremal investigations appear in~%
+\cite{GreenbaumOverton2018,Li2020}, and a broad account of the problem
+and its variants is given in~\cite{BickelEtAl2020}.  Subsequent work
+has treated Blaschke-product level sets, cyclicity reductions,
+compressions of shifts, further nilpotent classes, and quantitative
+bounds for KMS matrices~%
+\cite{BickelGorkin2024,OLoughlinVirtanen2024,BickelEtAl2024,
+CrouzeixGreenbaumLi2024}.  An alternative proof for a class of weighted shifts
+appears in~\cite{CrouzeixGreenbaum2025}.  Across these cited
+reductions, the best dimension-free universal bound remained
+$1+\sqrt2$.
+
+\subsection{The sharpness barrier in the symmetrized calculus}
+
+The positive boundary measure used below originates in the
+convex-domain integral calculus of Delyon--Delyon~%
+\cite{DelyonDelyon1999}; see also~%
+\cite{BadeaCrouzeixDelyon2006,CrouzeixPalencia2017}.  If $B$ has
+numerical range in a convex domain $\Omega$ with continuously
+differentiable boundary and $f$ is holomorphic on a neighborhood of
+$\overline\Omega$ with $\lvert f\rvert\leq1$ on $\overline\Omega$, this
+calculus produces a unital positive map $\Phi$ and a holomorphic Cauchy
+companion $g_f$ such that
+\begin{equation}
+  2\Phi(f)=f(B)+g_f(B)^*.
+  \label{eq:intro-symmetrized}
+\end{equation}
+Thus positivity directly controls a symmetrized functional calculus,
+while the target estimate concerns $f(B)$.  The
+Crouzeix--Palencia argument couples the two terms
+in~\eqref{eq:intro-symmetrized}; the example
+in~\cite{RansfordSchwenninger2018} shows that its abstract norm estimate
+is sharp at $1+\sqrt2$.  The corresponding general uniform-algebra
+theorem has the same sharp constant; its additional unital case was
+proposed as a possible route to $2$
+in~\cite{ClouatreOstermannRansford2023}.
+Schwenninger and de Vries revisited the double-layer method~%
+\cite{SchwenningerDeVries2025}.  Malman et al.\ proved that a
+configuration-constant refinement gives a strict improvement for every
+fixed numerical-range shape; they also constructed thin quadrilaterals
+for which the resulting bounds approach
+$1+\sqrt2$~\cite{MalmanEtAl2025}.
+Separately,
+continuity and compactness give a constant $C_n<1+\sqrt2$ in every
+fixed matrix dimension $n$~\cite{MalmanRatio2024}.
+
+The key additional information is algebraic.  For the approximants
+constructed in Section~\ref{sec:passage}, the companion
+in~\eqref{eq:intro-symmetrized} belongs to the algebra generated by
+$B^*$, where the simple-spectrum matrix $B$ supplies an eigenbasis that
+also diagonalizes $f(B)$.  Treating $f(B)$ and the companion jointly
+preserves this coupling.
+
+\subsection{Auxiliary-basis de-symmetrization}
+
+Our argument uses the whole Cayley family associated
+with~\eqref{eq:intro-symmetrized}.  It has four steps.
+
+\begin{enumerate}
+\item Applying $\Phi$ to
+\[
+  \zeta\longmapsto\frac{1+w f(\zeta)}{1-w f(\zeta)},
+  \qquad w\in\D,
+\]
+produces a matrix-valued Carath\'eodory function $H$, meaning that
+$H(0)=I$ and $\RePart H(w)\succeq0$.
+
+\item For a simple-spectrum auxiliary matrix $B$, put $T=f(B)$.  The
+double-layer identity gives the positive-real completion
+\begin{equation}
+  H(w)-(I-wT)^{-1}\in\alg(B^*),\qquad w\in\D.
+  \label{eq:intro-completion}
+\end{equation}
+
+\item The eigenbasis of $B$ diagonalizes $T=f(B)$ even when some values
+of $f$ on the spectrum of $B$ coincide, and it turns the unknown term
+in~\eqref{eq:intro-completion} into a diagonal analytic correction.  We
+sample the Herglotz kernel of $H$ at half the conjugate diagonal entries
+of $T$ and add one vector sample at the origin.  Repeated sampling
+points are allowed, and the origin sample cancels the diagonal
+correction's contribution exactly.
+
+\item The surviving positive-matrix inequality compares two weighted
+Gramians.  Its difference is positive, and an eigenvector argument
+followed by the first nonconstant Gramian term yields
+$\lVert T\rVert\leq2$.
+\end{enumerate}
+
+The proof uses two limits: simple-spectrum matrices tend to $A$,
+followed by outer domains converging to $W(A)$.  Together they yield
+the general case.
+
+\section{Positive-real kernels}
+\label{sec:herglotz}
+
+Let $\mathcal K$ be an $\Mn$-valued kernel on $\D\times\D$.  We call
+$\mathcal K$ positive if, for every finite choice
+$w_0,\ldots,w_m\in\D$ and $\xi_0,\ldots,\xi_m\in\C^n$,
+\begin{equation}
+  \sum_{i,j=0}^m
+  \xi_i^*\mathcal K(w_i,w_j)\xi_j\geq0.
+  \label{eq:positive-kernel-definition}
+\end{equation}
+
+We shall use the following standard matrix-valued Herglotz kernel
+fact.  A direct proof is included to fix the normalization.
+
+\begin{lemma}[Matrix Herglotz kernel]
+\label{lem:herglotz-kernel}
+Let $F\colon\D\to\Mn$ be analytic with
+$\RePart F(w)\succeq0$ for every $w\in\D$.  Then
+\begin{equation}
+  \mathcal L_F(w,z)
+  =\frac{F(w)+F(z)^*}{1-w\overline z}
+  \label{eq:herglotz-kernel}
+\end{equation}
+is a positive kernel.
+\end{lemma}
+
+\begin{proof}
+Fix $w_0,\ldots,w_m\in\D$ and
+$\xi_0,\ldots,\xi_m\in\C^n$, and put
+\[
+  \eta(\zeta)=\sum_{j=0}^m
+  \frac{\xi_j}{1-\overline{w_j}\zeta},
+  \qquad \lvert\zeta\rvert=1.
+\]
+For $0\leq r<1$, the scalar Cauchy formula, applied entrywise, gives
+\begin{equation}
+\begin{split}
+ &\frac{1}{2\pi}\int_0^{2\pi}
+  \eta(e^{\iu t})^*\,2\RePart F(re^{\iu t})\,
+  \eta(e^{\iu t})\,dt \\
+ &\qquad={}
+  \sum_{i,j=0}^m \xi_i^*
+  \frac{F(rw_i)+F(rw_j)^*}
+       {1-w_i\overline{w_j}}\xi_j.
+  \label{eq:regularized-herglotz-average}
+\end{split}
+\end{equation}
+The integrand on the left is nonnegative, so the right side is
+nonnegative.  Letting $r\uparrow1$ and using the continuity of $F$ at
+the finitely many points $w_i$ gives
+\eqref{eq:positive-kernel-definition} for
+$\mathcal K=\mathcal L_F$.
+\end{proof}
+
+\section{The positive-real completion principle}
+\label{sec:completion}
+
+The following completion theorem is the core of the argument: it
+converts a positive-real completion constrained by the adjoint algebra
+of an auxiliary simple-spectrum matrix into the sharp norm bound.
+
+\begin{theorem}[Positive-real completion]
+\label{thm:completion}
+Let
+\begin{equation}
+  B=S\diag(\beta_1,\ldots,\beta_n)S^{-1},
+  \qquad
+  T=S\Lambda S^{-1},
+  \qquad
+  \Lambda=\diag(\lambda_1,\ldots,\lambda_n),
+  \label{eq:T-diagonalization}
+\end{equation}
+where $S$ is invertible, the numbers $\beta_1,\ldots,\beta_n$ are
+distinct, and $\lvert\lambda_i\rvert\leq1$ for every $i$.  The numbers
+$\lambda_i$ may repeat.
+Let $H\colon\D\to\Mn$ be analytic and satisfy
+\begin{equation}
+  H(0)=I,\qquad \RePart H(w)\succeq0\quad(w\in\D),
+  \label{eq:completion-positive-real}
+\end{equation}
+and
+\begin{equation}
+  H(w)-(I-wT)^{-1}\in\alg(B^*)\qquad(w\in\D).
+  \label{eq:completion-algebra-condition}
+\end{equation}
+Then $\lVert T\rVert\leq2$.
+\end{theorem}
+
+\begin{proof}
+Use the simultaneous diagonalizations in~\eqref{eq:T-diagonalization}
+and put $G=S^*S\succ0$.  Since the $\beta_i$ are distinct, polynomial
+interpolation shows that
+\begin{equation}
+  \alg(B^*)
+  =\left\{(S^{-1})^* D S^* \,:\,
+  D\ \text{is diagonal}\right\}.
+  \label{eq:adjoint-algebra-diagonal}
+\end{equation}
+By~\eqref{eq:adjoint-algebra-diagonal}, the matrix
+\[
+  \Theta(w)=S^*\bigl(H(w)-(I-wT)^{-1}\bigr)(S^*)^{-1}
+\]
+is diagonal for every $w$, and
+\[
+  H(w)-(I-wT)^{-1}=(S^{-1})^*\Theta(w)S^*.
+\]
+Also $\Theta(0)=0$ because $H(0)=I$.
+Write $\Theta(w)=\diag(\theta_1(w),\ldots,\theta_n(w))$.  On setting
+$\widetilde H(w)=S^*H(w)S$, we obtain
+\begin{equation}
+  \widetilde H(w)=G(I-w\Lambda)^{-1}+\Theta(w)G.
+  \label{eq:Htilde-decomposition}
+\end{equation}
+Since $\RePart\widetilde H(w)=S^*(\RePart H(w))S$, the real part of
+$\widetilde H(w)$ is positive semidefinite.  Consequently,
+Lemma~\ref{lem:herglotz-kernel} applies to $\widetilde H$.
+
+Define Hermitian matrices $P,Q,Y\in\Mn$ by
+\begin{equation}
+  P_{ij}=\frac{G_{ij}}{1-\overline{\lambda_i}\lambda_j/4},
+  \qquad
+  Q_{ij}=\frac{G_{ij}}{1-\overline{\lambda_i}\lambda_j/2},
+  \qquad
+  Y=Q-P.
+  \label{eq:PQY-definition}
+\end{equation}
+The denominators are nonzero because $\lvert\lambda_i\rvert\leq1$.
+Since $G=G^*$, conjugate symmetry in the displayed formulas also gives
+$P=P^*$ and $Q=Q^*$.
+Let $e_1,\ldots,e_n$ be the standard basis of $\C^n$, and fix
+$u=(u_1,\ldots,u_n)^T\in\C^n$.  In the positive-kernel inequality use
+the $n$ points and vectors
+\begin{equation}
+  w_i=\frac{\overline{\lambda_i}}2,\qquad
+  \xi_i=u_i e_i\qquad(1\leq i\leq n),
+  \label{eq:eigenvalue-samples}
+\end{equation}
+and add the point $w_0=0$ with vector
+\begin{equation}
+  \xi_0=v=-G^{-1}Pu.
+  \label{eq:compensating-vector}
+\end{equation}
+The points $w_i$ may coincide.  Kernel positivity applies to arbitrary
+finite indexed lists of points and vectors, including $w_i=w_0$ when
+$\lambda_i=0$.
+We first verify that this sample cancels the contribution of $\Theta$
+to the sampled kernel quadratic form.  The contribution of the second
+term in~\eqref{eq:Htilde-decomposition} to the kernel quadratic form is
+\begin{equation}
+  2\RePart\sum_{i=1}^n
+  \overline{u_i}\theta_i(w_i)
+  \left(
+    (Gv)_i+
+    \sum_{j=1}^n
+    \frac{G_{ij}u_j}{1-w_i\overline{w_j}}
+  \right).
+  \label{eq:theta-contribution}
+\end{equation}
+Because
+\[
+  1-w_i\overline{w_j}
+  =1-\overline{\lambda_i}\lambda_j/4,
+\]
+the parenthesis in~\eqref{eq:theta-contribution} is
+$(Gv+Pu)_i$, which vanishes by~%
+\eqref{eq:compensating-vector}.
+
+It remains to calculate the contribution of
+$G(I-w\Lambda)^{-1}$.  For sample indices $r,s\in\{1,\ldots,n\}$,
+compression of the kernel block between $w_r$ and $w_s$ against
+$e_r$ and $e_s$ gives
+\begin{equation}
+  \frac{2G_{rs}}
+  {(1-\overline{\lambda_r}\lambda_s/2)
+   (1-\overline{\lambda_r}\lambda_s/4)}
+  =(4Q-2P)_{rs}.
+  \label{eq:sampled-main-block}
+\end{equation}
+After compression by the coordinate vectors $e_i$, the two effective
+sample--origin blocks are $G+Q$, and the origin block is $2G$.  After
+the cancellation of $\Theta$'s contribution, kernel positivity gives,
+for the prescribed vector $v=-G^{-1}Pu$,
+\begin{equation}
+\begin{aligned}
+0&\leq
+\begin{pmatrix}u\\v\end{pmatrix}^{\!*}
+\begin{pmatrix}
+  4Q-2P&G+Q\\
+  G+Q&2G
+\end{pmatrix}
+\begin{pmatrix}u\\v\end{pmatrix}\\
+&=u^*\bigl((4Q-2P)-(G+Q)G^{-1}P
+-PG^{-1}(G+Q)+2PG^{-1}P\bigr)u\\
+&=u^*\bigl(4Y-YG^{-1}P-PG^{-1}Y\bigr)u,
+\end{aligned}
+\label{eq:pre-gramian-inequality}
+\end{equation}
+Here the block quadratic form is used only on the graph
+$v=-G^{-1}Pu$; it is not asserted to be positive for independent
+$u$ and $v$.  The last equality uses $Q=P+Y$.
+Since $u$ was arbitrary,
+\begin{equation}
+  4Y-YG^{-1}P-PG^{-1}Y\succeq0.
+  \label{eq:Y-inequality}
+\end{equation}
+
+Balance the diagonalization by defining
+\begin{equation}
+\begin{aligned}
+  \widetilde T&=G^{1/2}\Lambda G^{-1/2},
+  &\widehat P&=G^{-1/2}PG^{-1/2},\\
+  \widehat Q&=G^{-1/2}QG^{-1/2},
+  &\widehat Y&=\widehat Q-\widehat P.
+\end{aligned}
+\label{eq:balanced-definitions}
+\end{equation}
+Expanding the scalar kernels in~\eqref{eq:PQY-definition} into
+geometric series gives
+\begin{equation}
+  \widehat P=\sum_{k=0}^{\infty}
+  4^{-k}\widetilde T^{*k}\widetilde T^k,
+  \qquad
+  \widehat Q=\sum_{k=0}^{\infty}
+  2^{-k}\widetilde T^{*k}\widetilde T^k.
+  \label{eq:two-gramians}
+\end{equation}
+Indeed, $\widetilde T^k=G^{1/2}\Lambda^k G^{-1/2}$, so the sequence
+$(\widetilde T^k)$ is bounded even when some
+$\lvert\lambda_j\rvert=1$; the
+geometric weights give norm convergence.  It follows that
+\begin{equation}
+  \widehat Y=
+  \sum_{k=1}^{\infty}(2^{-k}-4^{-k})
+  \widetilde T^{*k}\widetilde T^k\succeq0.
+  \label{eq:Yhat-positive}
+\end{equation}
+Taking the congruence of~\eqref{eq:Y-inequality} by $G^{-1/2}$ yields
+\begin{equation}
+  4\widehat Y-\widehat Y\widehat P
+  -\widehat P\widehat Y\succeq0.
+  \label{eq:Yhat-inequality}
+\end{equation}
+
+Let $e$ be an eigenvector of the Hermitian matrix $\widehat P$, say
+$\widehat Pe=\alpha e$.  If $\alpha>2$, then~%
+\eqref{eq:Yhat-inequality} gives
+\begin{equation}
+  0\leq2(2-\alpha)e^*\widehat Ye.
+  \label{eq:eigenvector-evaluation}
+\end{equation}
+Since $\widehat Y\succeq0$ and $\alpha>2$,~%
+\eqref{eq:eigenvector-evaluation} forces $e^*\widehat Ye=0$.  The
+$k=1$ term in~\eqref{eq:Yhat-positive} is
+$\widetilde T^*\widetilde T/4$, so $\widetilde Te=0$.  The first
+series in~\eqref{eq:two-gramians} gives $\widehat Pe=e$, contradicting
+$\widehat Pe=\alpha e$ with $\alpha>2$.  The first series in~%
+\eqref{eq:two-gramians} also begins with $I$, and hence
+\begin{equation}
+  I\preceq\widehat P\preceq2I.
+  \label{eq:Phat-bounds}
+\end{equation}
+The $k=1$ term of the same series now gives
+\[
+  \frac14\widetilde T^*\widetilde T
+  \preceq\widehat P-I\preceq I.
+\]
+Thus $\lVert\widetilde T\rVert\leq2$.  The polar decomposition
+$S=UG^{1/2}$ gives
+\[
+  T=U\widetilde TU^*,
+\]
+where $U$ is unitary.  Therefore $\lVert T\rVert\leq2$.
+\end{proof}
+
+\begin{remark}
+\label{rem:completion-novelty}
+The factor $1/2$ in the sampling points~%
+\eqref{eq:eigenvalue-samples} simultaneously produces the weights
+$1/2$ and $1/4$ in~\eqref{eq:two-gramians}.  Their positive difference
+bounds $\widehat P$, and the first nonconstant term of $\widehat P$
+then gives the sharp constant.  The origin sample cancels the
+correction's contribution by an exact algebraic identity.  Distinct
+auxiliary eigenvalues identify
+$\alg(B^*)$ with the diagonal algebra in the chosen basis, while the
+diagonal entries of $T$ may repeat.
+\end{remark}
+
+\section{The double-layer completion}
+\label{sec:double-layer}
+
+We now construct from the numerical range the function required by
+Theorem~\ref{thm:completion}.  The measure and companion transform used
+here are classical~%
+\cite{DelyonDelyon1999,Crouzeix2007,CrouzeixPalencia2017}.  The full
+Cayley family yields the algebraic
+constraint~\eqref{eq:completion-algebra-condition} relative to the
+auxiliary matrix.
+
+Only the canonical parallel domains used in Section~\ref{sec:passage}
+are needed.  We say that a bounded convex domain $\Omega$ has a
+\emph{supported oriented radial boundary} if, for some $c\in\Omega$,
+its boundary is traced once by
+\[
+  \gamma(t)=c+\rho(t)e^{\iu t},\qquad 0\leq t\leq2\pi,
+\]
+where $\rho$ is positive, continuously differentiable, and
+$2\pi$-periodic, and there are continuous $2\pi$-periodic functions
+$\nu$ and $s$ such that $\lvert\nu(t)\rvert=1$, $s(t)\geq0$,
+\begin{equation}
+  \gamma'(t)=\iu\nu(t)s(t),
+  \qquad
+  \RePart\bigl(\overline{\nu(t)}(\gamma(t)-z)\bigr)\geq0
+  \quad(z\in\Omega).
+  \label{eq:oriented-radial-boundary}
+\end{equation}
+Thus $\nu$ is the outward unit normal, $s(t)\,dt$ is arclength, and
+the orientation is positive.  Lemma~\ref{lem:smooth-outer-approximation}
+below supplies exactly this boundary for every canonical parallel
+domain.
+
+\begin{lemma}[Radial double-layer positive map]
+\label{lem:double-layer-map}
+Let $B\in\Mn$, let $\Omega\subset\C$ be a bounded convex domain with a
+supported oriented radial boundary $\gamma$, and suppose
+$W(B)\subset\Omega$.  There is a bounded complex-linear, unital,
+positive map on the compact parameter interval,
+\[
+  \Phi_\gamma\colon C([0,2\pi])\longrightarrow\Mn,
+\]
+given by the double-layer density below.
+\end{lemma}
+
+\begin{proof}
+Use the data in~\eqref{eq:oriented-radial-boundary}, and put
+\[
+  Z_t=\gamma(t)I-B,
+  \qquad
+  \mathcal R_t=Z_t^{-1}.
+\]
+This resolvent exists because
+$\sigma(B)\subset W(B)\subset\Omega$.  Define the matrix-valued
+boundary density
+\begin{equation}
+  D_B(t)=\frac{s(t)}{2\pi}
+  \left(
+    \nu(t)\mathcal R_t+
+    \overline{\nu(t)}\mathcal R_t^*
+  \right).
+  \label{eq:double-layer-density}
+\end{equation}
+It is positive semidefinite.  The support inequality in
+\eqref{eq:oriented-radial-boundary} gives
+\begin{equation}
+  \nu(t)Z_t^*+\overline{\nu(t)}Z_t
+  =2\RePart\bigl(\overline{\nu(t)}Z_t\bigr)\succeq0.
+  \label{eq:supporting-half-plane}
+\end{equation}
+Indeed, for every unit vector $x\in\C^n$, the quadratic form on the
+left is
+\[
+  2\RePart\bigl(\overline{\nu(t)}
+  (\gamma(t)-x^*Bx)\bigr)\geq0,
+\]
+because $x^*Bx\in W(B)\subset\Omega$.
+Congruence by $\mathcal R_t$ turns the left side of
+\eqref{eq:supporting-half-plane} into the matrix in parentheses in
+\eqref{eq:double-layer-density}.
+
+Since $d\gamma=\iu\nu(t)s(t)\,dt$, the matrix Cauchy formula gives
+\begin{equation}
+  \frac{1}{2\pi}\int_0^{2\pi}
+  \nu(t)\mathcal R_t s(t)\,dt=I.
+  \label{eq:first-layer-mass}
+\end{equation}
+Taking adjoints gives the same identity for the second layer.  Hence
+\begin{equation}
+  \int_0^{2\pi}D_B(t)\,dt=2I.
+  \label{eq:double-layer-mass}
+\end{equation}
+For $\varphi\in C([0,2\pi])$, define
+\begin{equation}
+  \Phi_\gamma(\varphi)=\frac12\int_0^{2\pi}
+  \varphi(t)D_B(t)\,dt.
+  \label{eq:Phi-definition}
+\end{equation}
+The positivity of $D_B$ and~\eqref{eq:double-layer-mass} make $\Phi_\gamma$
+positive and unital, hence $*$-preserving.  It is bounded because
+\[
+  \lVert\Phi_\gamma(\varphi)\rVert
+  \leq\frac12\lVert\varphi\rVert_\infty
+  \int_0^{2\pi}\lVert D_B(t)\rVert\,dt.
+\]
+\end{proof}
+
+\begin{proposition}[Radial Cayley completion]
+\label{prop:cayley-completion}
+Let $\Omega$ be a bounded convex domain with a supported oriented
+radial boundary, let $B\in\Mn$ have simple spectrum, and suppose
+$W(B)\subset\Omega$.  Let $V$ be an open neighborhood of
+$\overline\Omega$, and let $f$ be holomorphic on $V$ and satisfy
+\begin{equation}
+  \max_{\zeta\in\overline\Omega}\lvert f(\zeta)\rvert\leq1.
+  \label{eq:f-bounded-by-one}
+\end{equation}
+Put $T=f(B)$.  Then there is an analytic $H\colon\D\to\Mn$ satisfying
+\begin{equation}
+  H(0)=I,\qquad \RePart H(w)\succeq0\quad(w\in\D),
+  \label{eq:cayley-H-positive}
+\end{equation}
+and
+\begin{equation}
+  H(w)-(I-wT)^{-1}\in\alg(B^*)\qquad(w\in\D).
+  \label{eq:cayley-H-completion}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Choose
+\[
+  B=S\diag(\beta_1,\ldots,\beta_n)S^{-1}.
+\]
+Then
+$T=S\diag(f(\beta_1),\ldots,f(\beta_n))S^{-1}$, and
+\eqref{eq:f-bounded-by-one} gives
+$\lvert f(\beta_i)\rvert\leq1$ for every $i$.  In particular,
+$\sigma(T)\subset\overline\D$.
+
+For the fixed boundary data, put
+$\mathcal R_t=(\gamma(t)I-B)^{-1}$, and let $\Phi_\gamma$ be the bounded
+map from Lemma~\ref{lem:double-layer-map}.  For $w\in\D$, define
+\begin{equation}
+  c_w(t)=\frac{1+w f(\gamma(t))}{1-w f(\gamma(t))}
+  \label{eq:cayley-boundary-function}
+\end{equation}
+and put
+\begin{equation}
+  H(w)=\Phi_\gamma(c_w).
+  \label{eq:H-from-Phi}
+\end{equation}
+The expansion
+\begin{equation}
+  c_w(t)=1+2\sum_{m=1}^{\infty}w^m f(\gamma(t))^m
+  \label{eq:cayley-uniform-series}
+\end{equation}
+converges locally uniformly in $C([0,2\pi])$.  The boundedness of
+$\Phi_\gamma$ therefore makes $H$ analytic, and $H(0)=I$.  Furthermore,
+\[
+  \RePart c_w(t)
+  =\frac{1-\lvert w f(\gamma(t))\rvert^2}
+  {\lvert1-w f(\gamma(t))\rvert^2}\geq0.
+\]
+The positivity and $*$-preservation of $\Phi_\gamma$ give
+$\RePart H(w)=\Phi_\gamma(\RePart c_w)\succeq0$.
+
+For every $m\geq0$, the scalar Cauchy formula applied in the chosen
+eigenbasis gives exactly
+\begin{equation}
+  \frac{1}{2\pi}\int_0^{2\pi}
+  f(\gamma(t))^m\nu(t)\mathcal R_t s(t)\,dt=T^m.
+  \label{eq:power-cauchy-identity}
+\end{equation}
+Indeed, this is the diagonal collection of the scalar Cauchy formulas
+for $f^m$ at the points $\beta_i$; the neighborhood $V$ contains
+the contour and its interior.  Transporting the uniformly convergent
+series~\eqref{eq:cayley-uniform-series} through this first-layer
+integral gives
+\[
+  I+2\sum_{m=1}^{\infty}w^mT^m
+  =(I+wT)(I-wT)^{-1}.
+\]
+The matrix series converges because the powers of $T$ are bounded in
+the displayed eigenbasis.
+
+Define the companion matrix
+\[
+  G(w)=\frac{1}{2\pi}\int_0^{2\pi}
+  \overline{c_w(t)}\,\nu(t)\mathcal R_t s(t)\,dt.
+\]
+Splitting the density~\eqref{eq:double-layer-density} into its two
+layers now gives
+\[
+  2H(w)=(I+wT)(I-wT)^{-1}+G(w)^*.
+\]
+Each $\mathcal R_t$ belongs to $\alg(B)$, and this finite-dimensional
+algebra is closed, so $G(w)\in\alg(B)$.  Since
+$(I+wT)(I-wT)^{-1}=2(I-wT)^{-1}-I$, we conclude that
+\begin{equation}
+  H(w)-(I-wT)^{-1}
+  =\frac12\bigl(G(w)^*-I\bigr)\in\alg(B^*).
+  \label{eq:direct-completion}
+\end{equation}
+This proves~\eqref{eq:cayley-H-completion}.
+\end{proof}
+
+\begin{corollary}[Auxiliary sharp bound]
+\label{cor:auxiliary-bound}
+Under the hypotheses of Proposition~\ref{prop:cayley-completion},
+$\lVert f(B)\rVert\leq2$.
+\end{corollary}
+
+\begin{proof}
+Write
+\[
+  B=S\diag(\beta_1,\ldots,\beta_n)S^{-1}.
+\]
+Then
+\[
+  T=f(B)
+  =S\diag\bigl(f(\beta_1),\ldots,f(\beta_n)\bigr)S^{-1}.
+\]
+Since $\sigma(B)\subset\Omega$, the bound on $f$ gives
+$\lvert f(\beta_i)\rvert\leq1$ for every $i$.
+Apply Theorem~\ref{thm:completion} to these simultaneous
+diagonalizations and to the function $H$ constructed in
+Proposition~\ref{prop:cayley-completion}.  The values $f(\beta_i)$ may
+repeat.
+\end{proof}
+
+\section{Passage to arbitrary matrices and proof of the main theorem}
+\label{sec:passage}
+
+Successive approximations pass from the auxiliary setting to arbitrary
+matrices.
+
+\begin{lemma}[Simple spectrum and numerical range]
+\label{lem:simple-spectrum-density}
+Matrices with $n$ distinct eigenvalues are dense in $\Mn$.  Moreover,
+for $A,B\in\Mn$,
+\begin{equation}
+  W(B)\subset
+  W(A)+\{z\in\C:\lvert z\rvert\leq\lVert B-A\rVert\}.
+  \label{eq:numerical-range-Lipschitz}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The discriminant of the characteristic polynomial is a nonzero
+polynomial in the matrix entries, as is seen at
+$\diag(1,\ldots,n)$.  The zero set of a nonzero complex polynomial has
+empty interior, so its nonvanishing set is dense in
+$\Mn$, proving the first assertion.  For a unit vector $x$,
+\[
+  \lvert x^*(B-A)x\rvert\leq\lVert B-A\rVert,
+\]
+which proves~\eqref{eq:numerical-range-Lipschitz}.
+\end{proof}
+
+\begin{lemma}[Parallel convex domains]
+\label{lem:smooth-outer-approximation}
+Let $K\subset\C$ be nonempty, compact, and convex.  For $\delta>0$, the
+set
+\[
+  \Omega_\delta=\{z\in\C:\distop(z,K)<\delta\}
+\]
+is a bounded convex domain,
+$\overline\Omega_\delta=K+\delta\overline\D$, and
+$\Omega_\delta$ has a supported oriented radial boundary.
+\end{lemma}
+
+\begin{proof}
+The set $\Omega_\delta$ is bounded and convex, and its closure is the
+Minkowski sum $K+\delta\overline\D$.
+Identify $\C$ with $\mathbb R^2$.  The metric projection
+$\pi_K\colon\C\to K$ is unique and continuous.  Put
+$d_K(z)=\distop(z,K)$.  For $z,h\in\C$, comparison first with $\pi_K(z)$
+and then with $\pi_K(z+h)$ gives
+\[
+\begin{split}
+  2\RePart\bigl(\overline{z+h-\pi_K(z+h)}\,h\bigr)-\lvert h\rvert^2
+  &\leq d_K(z+h)^2-d_K(z)^2\\
+  &\leq
+  2\RePart\bigl(\overline{z-\pi_K(z)}\,h\bigr)+\lvert h\rvert^2.
+\end{split}
+\]
+The continuity of $\pi_K$ now shows that $d_K^2$ is continuously
+differentiable, with real gradient $2(z-\pi_K(z))$.  On the level set
+$d_K(z)=\delta$ this gradient has norm $2\delta>0$.  Since
+$\partial\Omega_\delta=\{d_K=\delta\}$, the
+implicit-function theorem shows that $\partial\Omega_\delta$ is
+continuously differentiable.
+
+Choose $c\in K$.  The ball $c+\delta\D$ lies in $\Omega_\delta$, so
+every ray from $c$ meets the boundary once and transversely.  Its radial
+function $\rho$ is therefore positive, continuously differentiable,
+and periodic.  With
+\[
+  \nu(t)=\frac{\gamma(t)-\pi_K(\gamma(t))}{\delta}
+  \qquad(0\leq t\leq2\pi)
+\]
+as the outward unit normal along $\gamma$ and
+$s(t)=\lvert\gamma'(t)\rvert$, convexity gives
+the support inequality in~\eqref{eq:oriented-radial-boundary}; positive
+orientation gives $\gamma'(t)=\iu\nu(t)s(t)$.  These data form the required
+supported oriented radial boundary.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Put $K=W(A)$, and let $U$ be an open neighborhood of $K$ on which $f$
+is holomorphic.  Choose $\varepsilon_0>0$ such that the closed
+$\varepsilon_0$-neighborhood of $K$ lies in $U$.  For
+$0<\varepsilon<\varepsilon_0$, let
+\[
+  \Omega_\varepsilon
+  =\{z\in\C:\distop(z,K)<\varepsilon\}.
+\]
+Lemma~\ref{lem:smooth-outer-approximation} makes this a bounded convex
+domain with a supported oriented radial boundary.  The open convex set
+$V=\Omega_{\varepsilon_0}$ satisfies
+$\overline\Omega_\varepsilon\subset V\subset U$.
+
+By Lemma~\ref{lem:simple-spectrum-density}, choose simple-spectrum
+matrices $B_k\to A$.  For fixed $\varepsilon$,
+all sufficiently large $k$ satisfy
+$\lVert B_k-A\rVert<\varepsilon/2$, and then
+\eqref{eq:numerical-range-Lipschitz} gives
+\[
+  W(B_k)\subset K+(\varepsilon/2)\overline\D
+  \subset\Omega_\varepsilon.
+\]
+Set
+\[
+  m_\varepsilon
+  =\max_{z\in\overline\Omega_\varepsilon}\lvert f(z)\rvert.
+\]
+If $m_\varepsilon=0$, then $f$ vanishes on a neighborhood of
+$\sigma(A)$, so $f(A)=0$ and there is nothing to prove.  Otherwise,
+apply Corollary~\ref{cor:auxiliary-bound} to $B_k$ and
+$f/m_\varepsilon$ to obtain
+\[
+    \lVert f(B_k)\rVert\leq2m_\varepsilon.
+\]
+Continuity of the holomorphic functional calculus, obtained from a
+fixed contour inside $U$, gives $f(B_k)\to f(A)$.  Hence
+\begin{equation}
+  \lVert f(A)\rVert\leq2m_\varepsilon.
+  \label{eq:epsilon-bound}
+\end{equation}
+
+Put $m_0=\max_{z\in K}\lvert f(z)\rvert$.  Uniform continuity of $f$
+on the closed $\varepsilon_0$-neighborhood of $K$ gives a modulus of
+continuity $\omega_f$ there.  Since every point of
+$\overline\Omega_\varepsilon$ lies within $\varepsilon$ of $K$,
+\[
+  0\leq m_\varepsilon-m_0\leq\omega_f(\varepsilon).
+\]
+Letting $\varepsilon\downarrow0$ in~\eqref{eq:epsilon-bound} proves
+\eqref{eq:main-bound}.
+
+Finally, a rational function pole-free on the compact set $W(A)$ is
+holomorphic on a neighborhood of $W(A)$.  Applying
+\eqref{eq:main-bound} to such functions proves
+\eqref{eq:spectral-set-definition} with $K=W(A)$ and $C=2$.
+\end{proof}
+
+\section{Consequences and scope}
+\label{sec:consequences}
+
+The Hilbert-space extension follows by the standard finite-dimensional
+compression argument from~\cite{Crouzeix2007}; compare the survey~%
+\cite{BickelEtAl2020}.
+
+\begin{corollary}[Hilbert-space form]
+\label{cor:operator-bound}
+Let $\mathcal H\neq\{0\}$ be a complex Hilbert space, with inner
+product linear in the first variable, and let $\mathcal B(\mathcal H)$
+denote its algebra of bounded operators.  For
+$A\in\mathcal B(\mathcal H)$, put
+\[
+  W(A)=\{\langle Ax,x\rangle:x\in\mathcal H,\ \lVert x\rVert=1\}.
+\]
+Then, for every $p\in\C[z]$,
+\begin{equation}
+  \lVert p(A)\rVert
+  \leq 2\sup_{z\in W(A)}\lvert p(z)\rvert.
+  \label{eq:operator-polynomial-bound}
+\end{equation}
+Consequently, $\overline{W(A)}$ is a $2$-spectral set for $A$.
+\end{corollary}
+
+\begin{proof}
+The assertion is immediate if $p=0$.  Otherwise, write $d=\deg p$.
+For a unit vector $x\in\mathcal H$, let
+\[
+  \mathcal M_x=\operatorname{span}\{x,Ax,\ldots,A^d x\},
+  \qquad
+  A_x=\left.\Pi_x A\right|_{\mathcal M_x},
+\]
+where $\Pi_x$ is the orthogonal projection onto
+$\mathcal M_x$.  Induction gives
+\begin{equation}
+  A_x^k x=A^k x \qquad(0\leq k\leq d),
+  \label{eq:Krylov-agreement}
+\end{equation}
+because $A^{k+1}x\in\mathcal M_x$ whenever $k<d$.  Moreover,
+$W(A_x)\subset W(A)$.  Theorem~\ref{thm:main}, applied on the
+finite-dimensional space $\mathcal M_x$, therefore gives
+\[
+  \lVert p(A)x\rVert_{\mathcal H}
+  =\lVert p(A_x)x\rVert_{\mathcal H}
+  \leq\lVert p(A_x)\rVert
+  \leq2\sup_{z\in W(A)}\lvert p(z)\rvert.
+\]
+Taking the supremum over unit vectors $x$ proves~%
+\eqref{eq:operator-polynomial-bound}.
+
+Put $K=\overline{W(A)}$.  The standard inclusion
+$\sigma(A)\subset K$ will also be used below.  Let $r=a/b$ be a reduced
+rational function with no pole on $K$.  Then $b$ has no zero on $K$,
+so spectral mapping and $\sigma(A)\subset K$ make $b(A)$ invertible.
+
+The complement of the compact convex set $K$ is connected.  Polynomial
+Runge approximation therefore gives polynomials $p_j$ converging
+uniformly to $r$ on $K$.  By~\eqref{eq:operator-polynomial-bound},
+\[
+  \lVert p_j(A)-p_k(A)\rVert
+  \leq2\max_{z\in K}\lvert p_j(z)-p_k(z)\rvert,
+\]
+so $p_j(A)$ converges in operator norm to some $R$, with
+\[
+  \lVert R\rVert\leq2\max_{z\in K}\lvert r(z)\rvert.
+\]
+Since $p_jb\to a$ uniformly on $K$, the same polynomial estimate gives
+\[
+  p_j(A)b(A)=(p_jb)(A)\longrightarrow a(A).
+\]
+Thus $Rb(A)=a(A)$ and
+$R=a(A)b(A)^{-1}=r(A)$.  This proves the rational estimate and hence
+the spectral-set assertion.
+\end{proof}
+
+The conclusion also controls polynomial and rational approximation of
+matrix functions.  Let $A\in\Mn$, let $f$ be holomorphic on a
+neighborhood of $W(A)$, and let $s$ be either a polynomial or a
+rational function pole-free on $W(A)$.  Then $f-s$ is holomorphic on
+a neighborhood of $W(A)$, and Theorem~\ref{thm:main} gives
+\begin{equation}
+  \lVert f(A)-s(A)\rVert
+  \leq2\max_{z\in W(A)}\lvert f(z)-s(z)\rvert.
+  \label{eq:matrix-function-error}
+\end{equation}
+This is the sharp universal form of the numerical-range estimate that
+underlies applications to GMRES and rational Krylov methods; see~%
+\cite{ChoiGreenbaum2015,CrouzeixGreenbaum2019,ChenGreenbaumTrogdon2025}
+for the role of spectral sets in those settings.
+
+\section{Discussion and further directions}
+\label{sec:outlook}
+
+Theorem~\ref{thm:main} proves the scalar-valued Crouzeix
+conjecture.  The most immediate strengthening is the uniform
+matrix-polynomial question: for every
+$m\geq1$ and every matrix polynomial
+$\mathcal F=[f_{ij}]\in\mathbb M_m(\C[z])$, does one have
+\begin{equation}
+  \lVert\mathcal F(A)\rVert
+  \leq2\max_{z\in W(A)}\lVert\mathcal F(z)\rVert,
+  \qquad \mathcal F(A)=[f_{ij}(A)].
+  \label{eq:uniform-matrix-polynomial-extension}
+\end{equation}
+Here $\lVert\mathcal F(A)\rVert$ is the operator norm on $(\C^n)^m$,
+whereas $\lVert\mathcal F(z)\rVert$ is the operator norm on $\C^m$.
+The case $m=1$ is precisely the scalar theorem proved above;
+uniformity in $m$ is an additional operator-algebraic requirement.  The
+foundational disk similarity estimate is due to Okubo and Ando~%
+\cite{OkuboAndo1975}; its modern complete-spectral-set formulation and
+relation to numerical radius are discussed in~%
+\cite{DavidsonPaulsenWoerdeman2018}.  Uniform matrix-level spectral-set
+bounds are studied in~\cite{HartzMcCarthy2026}; the constant
+$1+\sqrt2$ at every matrix level follows from~%
+\cite{CrouzeixPalencia2017}, while sharp estimates for
+$\rho$-contractions with $1\leq\rho\leq2$ are developed in~%
+\cite{SchwenningerDeVriesRho2025}.  The extension is
+known with constant $2$ for weighted shift matrices~%
+\cite{CrouzeixGreenbaum2025}.  For block-valued inputs, the coefficients
+in the completion may occupy a larger operator algebra, so the
+cancellation in~\eqref{eq:theta-contribution} would require a genuinely
+operator-algebraic formulation.
+
+The positive-real completion principle is independent of numerical
+ranges: it starts with a Carath\'eodory function whose resolvent defect
+lies in the adjoint algebra of an auxiliary simple-spectrum matrix
+sharing an eigenbasis with the matrix in the resolvent.  A direct
+infinite-dimensional extension of Theorem~\ref{thm:completion},
+based for example on spectral measures or Riesz bases, could reveal
+equality cases or uniform matrix-level functional-calculus structure.
+The main challenge is a stable functional-calculus formulation of the
+auxiliary-basis correction, valid beyond finite diagonal spectral
+models.
+Related questions for unbounded numerical ranges are studied in~%
+\cite{CrouzeixUnbounded2025}, and related abstract spectral-constant
+problems in~\cite{SchwenningerDeVries2024,BlazhkoEtAl2025}.
+
+Double-layer methods beyond numerical ranges were developed in~%
+\cite{CrouzeixGreenbaum2019}, while configuration-constant refinements
+were introduced in~\cite{MalmanEtAl2025}; see also~%
+\cite{SchwenningerDeVries2025} for a comparison of double-layer
+approaches.
+Annular double-layer kernels are studied in~\cite{JuryTsikalas2024},
+while~\cite{AglerLykovaYoung2025} develops a complementary annular
+realization and norm theory; elliptic domains admit structured dilation
+models~\cite{AglerLykovaYoung2024}.  Whenever a companion transform
+lands in a controlled adjoint algebra, the kernel-sampling argument may
+replace a triangle-inequality estimate and thereby offer a route to
+sharp constants for other geometric spectral sets.
+
+With the notation of the proof of Theorem~\ref{thm:completion},
+if $\lVert\widetilde T\rVert=2$ and $e\in\C^n$ satisfies
+$\lVert e\rVert_2=1$ and $\lVert\widetilde Te\rVert_2=2$, then
+\eqref{eq:Phat-bounds} and the first series in~\eqref{eq:two-gramians}
+imply
+\[
+  \widehat Pe=2e,
+  \qquad \widetilde T^2e=0,
+  \qquad \widehat P\widetilde Te=\widetilde Te.
+\]
+Analyzing these vector saturation conditions may classify extremal
+pairs $(A,p)$ and quantify stability near the nilpotent example~%
+\eqref{eq:sharp-example}.  Such a
+classification must allow the nonuniqueness phenomena found in~%
+\cite{Li2020}.
+
+Finally, O'Loughlin and Rani extend the Crouzeix--Palencia framework to
+scaled $q$-numerical ranges, $0<\lvert q\rvert\leq1$, and propose associated
+spectral-set problems~\cite{OLoughlinRani2026}.  These provide a natural
+testing ground for the conjectured sharp $q$-dependent refinement of the
+constant-$2$ bound.
+
+\section*{AI-assistance disclosure}
+
+OpenAI ChatGPT contributed the idea of sampling the matrix Herglotz
+kernel at half the conjugate eigenvalues and adding the origin sample
+that cancels the adjoint-algebra correction's contribution; this
+appears in the proof of Theorem~\ref{thm:completion}, especially~%
+\eqref{eq:eigenvalue-samples}--\eqref{eq:theta-contribution}.  It also
+assisted with exposition, bibliography, and typesetting.  The human
+author assumes full responsibility for the correctness of all
+mathematical statements and for the integrity and accuracy of all
+citations.
+
+\section*{Acknowledgments}
+
+The author thanks Elijah Winners for suggesting the auxiliary-basis
+simplification used in the proof of
+Theorem~\ref{thm:completion}.
+
+\reftitle{References}
+\bibliography{the_numerical_range_is_a_2_spectral_set}
+
+\end{document}

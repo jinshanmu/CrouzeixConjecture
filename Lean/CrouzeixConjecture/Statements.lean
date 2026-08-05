@@ -21,7 +21,7 @@ def maxPolynomialModulusOnNumericalRange (A : SquareMatrix n) (p : Polynomial �
 def PolynomialCrouzeixBound (A : SquareMatrix n) (p : Polynomial ℂ) : Prop :=
   ‖polynomialEval p A‖ ≤ 2 * maxPolynomialModulusOnNumericalRange A p
 
-/-- Faithful formal target for the manuscript's main theorem.  `Nonempty n` records the implicit
+/-- The polynomial specialization of the manuscript's main theorem. `Nonempty n` records the
 positive-dimension convention needed for a nonempty numerical range. -/
 def MainTheoremStatement [Nonempty n] : Prop :=
   ∀ (A : SquareMatrix n) (p : Polynomial ℂ), PolynomialCrouzeixBound A p

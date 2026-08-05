@@ -79,79 +79,9 @@ theorem doubleLayerDensity_posSemidef
   rw [← doubleLayer_congruence_density_identity B R sigma nu hR]
   exact hSupport.conjTranspose_mul_mul_same R
 
-/-- Abstract integral form of the map in `eq:Phi-definition`.  The two functions stand for
-the already normalised analytic and adjoint pieces of the density. -/
-def doubleLayerIntegralAverage {i n : Type*} [MeasurableSpace i]
-    [Fintype n] [DecidableEq n] (mu : Measure i)
-    (firstPart secondPart : i → SquareMatrix n) : SquareMatrix n :=
-  (2 : ℂ)⁻¹ • ∫ x, firstPart x + secondPart x ∂mu
-
-/-- The factor `1/2` in the double-layer map cancels the total factor `2`. -/
-theorem two_smul_doubleLayerIntegralAverage
-    {i n : Type*} [MeasurableSpace i] [Fintype n] [DecidableEq n]
-    (mu : Measure i) (firstPart secondPart : i → SquareMatrix n) :
-    (2 : ℂ) • doubleLayerIntegralAverage mu firstPart secondPart =
-      ∫ x, firstPart x + secondPart x ∂mu := by
-  simp [doubleLayerIntegralAverage]
-
-/-- Abstracted Cauchy-mass calculation behind `eq:first-layer-mass` and
-`eq:double-layer-mass`.  The hypotheses state exactly the two contour-integral evaluations
-left to boundary geometry. -/
-theorem doubleLayerIntegral_mass_eq_two_one
-    {i n : Type*} [MeasurableSpace i] [Fintype n] [DecidableEq n]
-    (mu : Measure i) (firstPart secondPart : i → SquareMatrix n)
-    (hfirst : Integrable firstPart mu) (hsecond : Integrable secondPart mu)
-    (hCauchy : ∫ x, firstPart x ∂mu = 1)
-    (hAdjoint : ∫ x, secondPart x ∂mu = (∫ x, firstPart x ∂mu)ᴴ) :
-    (∫ x, firstPart x + secondPart x ∂mu) =
-      (2 : ℂ) • (1 : SquareMatrix n) := by
-  rw [integral_add hfirst hsecond, hCauchy, hAdjoint, hCauchy,
-    Matrix.conjTranspose_one]
-  module
-
-/-- The mass hypotheses make the abstract double-layer integral map unital. -/
-theorem doubleLayerIntegralAverage_eq_one_of_cauchy
-    {i n : Type*} [MeasurableSpace i] [Fintype n] [DecidableEq n]
-    (mu : Measure i) (firstPart secondPart : i → SquareMatrix n)
-    (hfirst : Integrable firstPart mu) (hsecond : Integrable secondPart mu)
-    (hCauchy : ∫ x, firstPart x ∂mu = 1)
-    (hAdjoint : ∫ x, secondPart x ∂mu = (∫ x, firstPart x ∂mu)ᴴ) :
-    doubleLayerIntegralAverage mu firstPart secondPart = 1 := by
-  rw [doubleLayerIntegralAverage,
-    doubleLayerIntegral_mass_eq_two_one mu firstPart secondPart hfirst hsecond
-      hCauchy hAdjoint]
-  module
-
-/-- Abstracted companion-transform identity from `eq:double-layer-identity`.  Its two
-hypotheses are the Cauchy evaluation and the adjoint companion evaluation. -/
-theorem doubleLayer_companion_identity
-    {i n : Type*} [MeasurableSpace i] [Fintype n] [DecidableEq n]
-    (mu : Measure i) (firstPart secondPart : i → SquareMatrix n)
-    (hfirst : Integrable firstPart mu) (hsecond : Integrable secondPart mu)
-    (hB gB : SquareMatrix n)
-    (hCauchy : ∫ x, firstPart x ∂mu = hB)
-    (hCompanion : ∫ x, secondPart x ∂mu = gBᴴ) :
-    (2 : ℂ) • doubleLayerIntegralAverage mu firstPart secondPart = hB + gBᴴ := by
-  rw [two_smul_doubleLayerIntegralAverage,
-    integral_add hfirst hsecond, hCauchy, hCompanion]
-
 /-- Scalar Cayley transform used for the boundary functions in
 `eq:cayley-boundary-function`. -/
 def cayleyTransform (z w : ℂ) : ℂ := (1 + z * w) / (1 - z * w)
-
-/-- Coefficients of `1 + 2 ∑_{m ≥ 1} z^m w^m`. -/
-def cayleyCoefficient (z w : ℂ) : ℕ → ℂ
-  | 0 => 1
-  | m + 1 => 2 * z ^ (m + 1) * w ^ (m + 1)
-
-/-- Constant coefficient in the Cayley expansion. -/
-@[simp]
-theorem cayleyCoefficient_zero (z w : ℂ) : cayleyCoefficient z w 0 = 1 := rfl
-
-/-- Positive-degree coefficients in the Cayley expansion. -/
-@[simp]
-theorem cayleyCoefficient_succ (z w : ℂ) (m : ℕ) :
-    cayleyCoefficient z w (m + 1) = 2 * z ^ (m + 1) * w ^ (m + 1) := rfl
 
 /-- The Cayley boundary function has nonnegative real part under the manuscript's
 disk bounds. -/
@@ -176,30 +106,6 @@ theorem cayleyTransform_re_nonneg {z w : ℂ} (hz : ‖z‖ < 1) (hw : ‖w‖ �
     rw [← Complex.normSq_eq_norm_sq, Complex.normSq_apply] at hsq
     nlinarith
   · exact hden.le
-
-/-- Norm-convergent expansion of the scalar Cayley transform. -/
-theorem cayleyCoefficient_hasSum {z w : ℂ} (hz : ‖z‖ < 1) (hw : ‖w‖ ≤ 1) :
-    HasSum (cayleyCoefficient z w) (cayleyTransform z w) := by
-  have hzw : ‖z * w‖ < 1 := calc
-    ‖z * w‖ = ‖z‖ * ‖w‖ := norm_mul z w
-    _ ≤ ‖z‖ * 1 := mul_le_mul_of_nonneg_left hw (norm_nonneg z)
-    _ < 1 := by simpa using hz
-  have hseries := (hasSum_geometric_of_norm_lt_one hzw).mul_left (2 : ℂ)
-  have hone := hasSum_ite_eq 0 (1 : ℂ)
-  have hsub := hseries.sub hone
-  have hne : 1 - z * w ≠ 0 := by
-    intro h
-    have hzwone : z * w = 1 := (sub_eq_zero.mp h).symm
-    rw [hzwone, norm_one] at hzw
-    exact lt_irrefl 1 hzw
-  convert hsub using 1
-  · funext m
-    rcases m with _ | m
-    · norm_num [cayleyCoefficient]
-    · simp [cayleyCoefficient, mul_pow, mul_assoc]
-  · rw [cayleyTransform, div_eq_mul_inv]
-    field_simp [hne]
-    ring
 
 /-- Conjugate transpose transports membership in `alg(T)` to membership in `alg(Tᴴ)`. -/
 theorem conjTranspose_mem_generatedAlgebra_conjTranspose

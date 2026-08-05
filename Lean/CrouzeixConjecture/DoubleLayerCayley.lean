@@ -194,7 +194,7 @@ theorem matrixCayleySeriesTerm_hasSum
   | succ m =>
       simp [matrixCayleySeriesTerm, mul_smul]
 
-/-- The v3 proof's direct Cayley step.  Once the double-layer identity supplies a companion
+/-- The direct Cayley step. Once the double-layer identity supplies a companion
 `g(z)` in `alg(B)`, the completion defect is exactly `(g(z)ᴴ - I) / 2`; no subtraction of
 power-series expansions is needed in this algebraic conclusion. -/
 theorem isPositiveRealCompletion_of_direct_cayley_identity
