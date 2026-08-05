@@ -3,7 +3,7 @@
 This project audits and formalizes the proof architecture of
 `../preprint/the_numerical_range_is_a_2_spectral_set_v4.tex`, 1,106 lines,
 at SHA-256
-`c8968d966d5564d9523d35b5d1bf7aa196c49c6769da4706c58d60876d9f5d18`.
+`5713de029c4a7486e25e86d16e6413d04929bdf5f92439c3237d4a930b1c9242`.
 Source-line references in the original Crouzeix audit sections refer to that
 version.
 
