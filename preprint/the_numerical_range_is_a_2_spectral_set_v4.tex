@@ -61,13 +61,14 @@ For an $n\times n$ complex matrix $A$, let
 $W(A)=\{x^*Ax:x\in\C^n,\ \lVert x\rVert_2=1\}$ be its numerical range.
 Here $x^*$ denotes the conjugate transpose, $\lVert\,\cdot\,\rVert_2$
 the Euclidean norm, and $\lVert\,\cdot\,\rVert$ the induced operator
-norm.  For every function $f$ holomorphic on a neighborhood of $W(A)$,
-we prove that
+norm.  For every complex polynomial $p$, we prove that
 \[
-  \lVert f(A)\rVert\leq
-  2\max_{z\in W(A)}\lvert f(z)\rvert
+  \lVert p(A)\rVert\leq
+  2\max_{z\in W(A)}\lvert p(z)\rvert.
 \]
-and consequently that $W(A)$ is a $2$-spectral set for $A$.  This
+More generally, the same estimate holds for every function $f$
+holomorphic on a neighborhood of $W(A)$, with $p$ replaced by $f$;
+consequently, $W(A)$ is a $2$-spectral set for $A$.  This
 proves Crouzeix's conjecture, and the constant is optimal.  The central
 ingredient is a mass-parameterized positive-real completion theorem
 relative to an auxiliary eigenbasis: if a normalized matrix-valued
@@ -87,10 +88,11 @@ radial boundaries yield the general theorem.  The mass formulation also
 provides a concrete scalar proof protocol for annular, multiply
 connected, operator-radius, and abstract spectral-constant problems.
 }{%
-For a complex square matrix A, we prove that the norm of f(A) is at
-most twice the maximum modulus of f on the numerical range of A.
-Consequently, the numerical range is a 2-spectral set, and the factor
-2 is optimal.  The proof uses a mass-parameterized positive-real
+For a complex square matrix A, we prove the sharp polynomial
+Crouzeix inequality and its extension to every function f holomorphic
+near the numerical range of A.  Consequently, the numerical range is
+a 2-spectral set, and the factor 2 is optimal.  The proof uses a
+mass-parameterized positive-real
 completion theorem relative to an auxiliary eigenbasis.  A
 matrix-valued Herglotz kernel is sampled so that the adjoint-algebra
 correction cancels, leaving ordered weighted Gramians that yield the
@@ -130,14 +132,21 @@ $C$-spectral set for $A$ if
   \lVert r(A)\rVert\leq C\max_{z\in K}\lvert r(z)\rvert
   \label{eq:spectral-set-definition}
 \end{equation}
-for every rational function $r$ pole-free on $K$.  Our main result
-settles Crouzeix's conjecture by identifying the sharp universal
-constant for $K=W(A)$.
+for every rational function $r$ pole-free on $K$.  The following
+finite-dimensional theorem states the customary polynomial form of
+Crouzeix's conjecture together with its holomorphic and spectral-set
+extensions.
 
-\begin{theorem}[Main theorem]
+\begin{theorem}[Finite-dimensional form]
 \label{thm:main}
-Let $n\geq1$, let $A\in\Mn$, and let $f$ be holomorphic on a
-neighborhood of $W(A)$.  Then
+Let $n\geq1$ and let $A\in\Mn$.  For every $p\in\C[z]$,
+\begin{equation}
+  \lVert p(A)\rVert
+  \leq2\max_{z\in W(A)}\lvert p(z)\rvert.
+  \label{eq:matrix-polynomial-bound}
+\end{equation}
+More generally, if $f$ is holomorphic on a neighborhood of $W(A)$,
+then
 \begin{equation}
   \lVert f(A)\rVert
   \leq2\max_{z\in W(A)}\lvert f(z)\rvert.
@@ -277,12 +286,12 @@ the general case.
 \section{Positive-real kernels}
 \label{sec:herglotz}
 
-Let $\mathcal K$ be an $\Mn$-valued kernel on $\D\times\D$.  We call
-$\mathcal K$ positive if, for every finite choice
+Let $\mathcal Q$ be an $\Mn$-valued kernel on $\D\times\D$.  We call
+$\mathcal Q$ positive if, for every finite choice
 $w_0,\ldots,w_m\in\D$ and $\xi_0,\ldots,\xi_m\in\C^n$,
 \begin{equation}
   \sum_{i,j=0}^m
-  \xi_i^*\mathcal K(w_i,w_j)\xi_j\geq0.
+  \xi_i^*\mathcal Q(w_i,w_j)\xi_j\geq0.
   \label{eq:positive-kernel-definition}
 \end{equation}
 
@@ -326,7 +335,7 @@ The integrand on the left is nonnegative, so the right side is
 nonnegative.  Letting $r\uparrow1$ and using the continuity of $F$ at
 the finitely many points $w_i$ gives
 \eqref{eq:positive-kernel-definition} for
-$\mathcal K=\mathcal L_F$.
+$\mathcal Q=\mathcal L_F$.
 \end{proof}
 
 \section{The positive-real completion principle}
@@ -770,20 +779,20 @@ the displayed eigenbasis.
 
 Define the companion matrix
 \[
-  G(w)=\frac{1}{2\pi}\int_0^{2\pi}
+  C_f(w)=\frac{1}{2\pi}\int_0^{2\pi}
   \overline{c_w(t)}\,\nu(t)\mathcal R_t s(t)\,dt.
 \]
 Splitting the density~\eqref{eq:double-layer-density} into its two
 layers now gives
 \[
-  2H(w)=(I+wT)(I-wT)^{-1}+G(w)^*.
+  2H(w)=(I+wT)(I-wT)^{-1}+C_f(w)^*.
 \]
 Each $\mathcal R_t$ belongs to $\alg(B)$, and this finite-dimensional
-algebra is closed, so $G(w)\in\alg(B)$.  Since
+algebra is closed, so $C_f(w)\in\alg(B)$.  Since
 $(I+wT)(I-wT)^{-1}=2(I-wT)^{-1}-I$, we conclude that
 \begin{equation}
   H(w)-(I-wT)^{-1}
-  =\frac12\bigl(G(w)^*-I\bigr)\in\alg(B^*).
+  =\frac12\bigl(C_f(w)^*-I\bigr)\in\alg(B^*).
   \label{eq:direct-completion}
 \end{equation}
 This proves~\eqref{eq:cayley-H-completion}.
@@ -813,7 +822,7 @@ Proposition~\ref{prop:cayley-completion}.  The values $f(\beta_i)$ may
 repeat.
 \end{proof}
 
-\section{Passage to arbitrary matrices and proof of the main theorem}
+\section{The finite-dimensional theorem}
 \label{sec:passage}
 
 Successive approximations pass from the auxiliary setting to arbitrary
@@ -892,6 +901,8 @@ supported oriented radial boundary.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
+We prove the holomorphic estimate~\eqref{eq:main-bound}; the polynomial
+estimate~\eqref{eq:matrix-polynomial-bound} follows by taking $f=p$.
 Put $K=W(A)$, and let $U$ be an open neighborhood of $K$ on which $f$
 is holomorphic.  Choose $\varepsilon_0>0$ such that the closed
 $\varepsilon_0$-neighborhood of $K$ lies in $U$.  For
@@ -953,18 +964,21 @@ holomorphic on a neighborhood of $W(A)$.  Applying
 \section{Consequences and scope}
 \label{sec:consequences}
 
-The Hilbert-space extension follows by the standard finite-dimensional
-compression argument from~\cite{Crouzeix2007}; compare the survey~%
-\cite{BickelEtAl2020}.
+The finite-dimensional polynomial estimate passes to bounded
+Hilbert-space operators by the standard compression argument
+from~\cite{Crouzeix2007}; compare the survey~\cite{BickelEtAl2020}.
+Polynomial approximation then gives the corresponding holomorphic and
+spectral-set forms.
 
-\begin{corollary}[Hilbert-space form]
+\begin{corollary}[Operator-level form]
 \label{cor:operator-bound}
 Let $\mathcal H\neq\{0\}$ be a complex Hilbert space, with inner
 product linear in the first variable, and let $\mathcal B(\mathcal H)$
 denote its algebra of bounded operators.  For
 $A\in\mathcal B(\mathcal H)$, put
 \[
-  W(A)=\{\langle Ax,x\rangle:x\in\mathcal H,\ \lVert x\rVert=1\}.
+  W(A)=\{\langle Ax,x\rangle:x\in\mathcal H,\ \lVert x\rVert=1\},
+  \qquad K=\overline{W(A)}.
 \]
 Then, for every $p\in\C[z]$,
 \begin{equation}
@@ -972,11 +986,19 @@ Then, for every $p\in\C[z]$,
   \leq 2\sup_{z\in W(A)}\lvert p(z)\rvert.
   \label{eq:operator-polynomial-bound}
 \end{equation}
-Consequently, $\overline{W(A)}$ is a $2$-spectral set for $A$.
+More generally, if $f$ is holomorphic on a neighborhood of $K$, then
+\begin{equation}
+  \lVert f(A)\rVert
+  \leq2\max_{z\in K}\lvert f(z)\rvert
+  =2\sup_{z\in W(A)}\lvert f(z)\rvert.
+  \label{eq:operator-holomorphic-bound}
+\end{equation}
+Consequently, $K$ is a $2$-spectral set for $A$.
 \end{corollary}
 
 \begin{proof}
-The assertion is immediate if $p=0$.  Otherwise, write $d=\deg p$.
+We first prove~\eqref{eq:operator-polynomial-bound}.  The assertion is
+immediate if $p=0$.  Otherwise, write $d=\deg p$.
 For a unit vector $x\in\mathcal H$, let
 \[
   \mathcal M_x=\operatorname{span}\{x,Ax,\ldots,A^d x\},
@@ -1001,32 +1023,40 @@ finite-dimensional space $\mathcal M_x$, therefore gives
 Taking the supremum over unit vectors $x$ proves~%
 \eqref{eq:operator-polynomial-bound}.
 
-Put $K=\overline{W(A)}$; then $\sigma(A)\subset K$.  Write the rational
-function as $r=a/b$, where $b$ is zero-free on $K$.  Spectral mapping
-makes $b(A)$ invertible.
-
-The complement of the compact convex set $K$ is connected.  Polynomial
-Runge approximation therefore gives polynomials $p_j$ converging
-uniformly to $r$ on $K$.  By~\eqref{eq:operator-polynomial-bound},
+The set $K$ is compact and convex, and $\sigma(A)\subset K$.  Let $f$
+be holomorphic on an open neighborhood $U$ of $K$.  Choose $\eta>0$
+such that
 \[
-  \lVert p_j(A)-p_k(A)\rVert
-  \leq2\max_{z\in K}\lvert p_j(z)-p_k(z)\rvert,
+  L_\eta=\{z\in\C:\distop(z,K)\leq\eta\}\subset U.
 \]
-so $p_j(A)$ converges in operator norm to some $R$, with
+The compact convex set $L_\eta$ has connected complement, so polynomial
+Runge approximation gives polynomials $p_j$ converging uniformly to
+$f$ on $L_\eta$.  Let
 \[
-  \lVert R\rVert\leq2\max_{z\in K}\lvert r(z)\rvert.
+  \Gamma=\partial\{z\in\C:\distop(z,K)<\eta/2\},
 \]
-Since $p_jb\to a$ uniformly on $K$, the same polynomial estimate gives
+oriented positively.  Lemma~\ref{lem:smooth-outer-approximation}
+shows that $\Gamma$ is a continuously differentiable contour enclosing
+$\sigma(A)$.  The holomorphic functional calculus gives
 \[
-  p_j(A)b(A)=(p_jb)(A)\longrightarrow a(A).
+  p_j(A)-f(A)
+  =\frac{1}{2\pi\iu}\int_\Gamma
+  \bigl(p_j(z)-f(z)\bigr)(zI-A)^{-1}\,dz,
 \]
-Thus $Rb(A)=a(A)$ and
-$R=a(A)b(A)^{-1}=r(A)$.  This proves the rational estimate and hence
-the spectral-set assertion.
+and hence $p_j(A)\to f(A)$ in operator norm.  Since
+\[
+  \sup_{z\in W(A)}\lvert p_j(z)\rvert
+  =\max_{z\in K}\lvert p_j(z)\rvert,
+\]
+passing to the limit in~\eqref{eq:operator-polynomial-bound} proves
+\eqref{eq:operator-holomorphic-bound}.  Every rational function
+pole-free on $K$ is holomorphic on a neighborhood of $K$, so the
+spectral-set assertion follows.
 \end{proof}
 
-The conclusion also controls polynomial and rational approximation of
-matrix functions.  Let $A\in\Mn$, let $f$ be holomorphic on a
+The finite-dimensional holomorphic estimate also controls polynomial
+and rational approximation of matrix functions.  Let $A\in\Mn$, let
+$f$ be holomorphic on a
 neighborhood of $W(A)$, and let $s$ be either a polynomial or a
 rational function pole-free on $W(A)$.  Then $f-s$ is holomorphic on
 a neighborhood of $W(A)$, and Theorem~\ref{thm:main} gives
@@ -1100,7 +1130,8 @@ unit ball of $\mathcal A$ proves the assertion.
 \end{proof}
 
 The criterion asks for four verifiable items: positivity, total mass,
-an adjoint-algebra defect, and a simple-spectrum approximation.  A
+an adjoint-algebra defect, and an auxiliary simple-spectrum model,
+together with approximation when needed.  A
 complementary abstract approach based on extremal pairs and their
 representing extremal measures is developed in
 \cite{SchwenningerDeVries2024}.  One sharp abstract consequence of the
@@ -1227,7 +1258,7 @@ The defect is scalar.  Proposition~\ref{prop:positive-layer-transfer}
 therefore proves~\eqref{eq:rho-contraction-discussion} for
 simple-spectrum matrices with spectrum in $\D$.
 
-Now let $A\in C_\varrho$ be arbitrary and define, for $z\in\D$,
+Now let $A\in C_\varrho\cap\Mn$ be arbitrary and define, for $z\in\D$,
 \[
   Q_A(z)=\frac1\pi\RePart(I-zA)^{-1}
   -\frac{2-\varrho}{2\pi}I.
@@ -1378,7 +1409,8 @@ If $Z=A_\partial^*A_\partial$, then
 $(Z-R^2I)(Z-R^{-2}I)=0$.  Hence
 $Z=R^2E+R^{-2}(I-E)$ for a projection $E$.  Writing
 $A_\partial=U_\partial Z^{1/2}$, let $u_0,p_0$ be the canonical unitary
-and projection generators of $C(\mathbb T)*_{\C}\C^2$, and put
+and projection generators of $C(\mathbb T)*_{\C}\C^2$, where
+$\mathbb T=\{z\in\C:\lvert z\rvert=1\}$, and put
 \[
   j_R=u_0\bigl(Rp_0+R^{-1}(1-p_0)\bigr).
 \]
@@ -1492,7 +1524,8 @@ apply this identity to $X=A/R$ and $X=A^{-1}/R$ and add.  The matrices
 $W_n$ above provide the matching lower bound.
 \end{proof}
 
-For $c\in\C$ and $0<r<R$, let $A-cI$ be invertible and satisfy
+For $c\in\C$ and $0<r<R$, let $A$ be a bounded Hilbert-space operator
+such that $A-cI$ is invertible and
 \[
   \lVert A-cI\rVert\leq R,
   \qquad
@@ -1691,8 +1724,8 @@ variables.
 \end{theorem}
 
 \begin{proof}
-The upper bound is Theorem~\ref{thm:main} and its Hilbert-space
-corollary.  For $0<\delta<1$, let $X_n$ be the cyclic weighted shift
+The upper bound follows from Corollary~\ref{cor:operator-bound}.  For
+$0<\delta<1$, let $X_n$ be the cyclic weighted shift
 on $\C^{2n}$ with $n$ consecutive weights $1$ followed by $n$ weights
 $\delta$.  Then
 \[
@@ -1872,12 +1905,12 @@ unital homomorphism.  Put
 Badea, Crouzeix, and Klaja prove the exact identity
 \cite{BadeaCrouzeixKlaja2018}
 $\lVert\Xi\rVert_{w_\upsilon}=H_\upsilon(\lVert\Xi\rVert)$, where, for
-$K\geq1$,
+$s\geq1$,
 \begin{equation}
-  H_\upsilon(K)=
-  \frac{K^2+1+
-  \sqrt{(K^2+1)^2-4\upsilon(2-\upsilon)K^2}}
-  {2\upsilon K};
+  H_\upsilon(s)=
+  \frac{s^2+1+
+  \sqrt{(s^2+1)^2-4\upsilon(2-\upsilon)s^2}}
+  {2\upsilon s};
   \label{eq:operator-radius-conversion-discussion}
 \end{equation}
 Each relevant functional-calculus domain satisfies the displayed von
@@ -1902,7 +1935,7 @@ $\varrho\geq2$.
 Several nearby sharp-constant questions remain open.  The present mass
 criterion gives the finite-dimensional upper bounds $2+c$ for the
 noncentered classes $\mathrm{DL}\mathbb A_R(c)$, $c>0$, defined in
-\cite{JuryTsikalas2024}, $N+1$ for a disk with $N$
+\cite{JuryTsikalas2024}, $N+1$ for a disk with $N\geq1$
 pairwise disjoint circular holes lying strictly inside the outer disk
 under the Badea--Beckermann--Crouzeix norm and inverse-resolvent
 constraints, and $4$ under the numerical-annulus
