@@ -1,0 +1,34 @@
+\begin{thebibliography}{999}
+
+\bibitem[Crouzeix and Greenbaum(2019)]{CrouzeixGreenbaum2019}
+Crouzeix, M.; Greenbaum, A.
+\newblock Spectral sets: Numerical range and beyond.
+\newblock {\em SIAM J. Matrix Anal. Appl.} {\bf 2019}, {\em 40},~1087--1101.
+\newblock {\url{https://doi.org/10.1137/18M1198417}}.
+
+\bibitem[Tsikalas(2022)]{Tsikalas2022}
+Tsikalas, G.
+\newblock A note on a spectral constant associated with an annulus.
+\newblock {\em Oper. Matrices} {\bf 2022}, {\em 16},~95--99.
+\newblock {\url{https://doi.org/10.7153/oam-2022-16-09}}.
+
+\bibitem[Jury and Tsikalas(2024)]{JuryTsikalas2024}
+Jury, M.T.; Tsikalas, G.
+\newblock Positivity conditions on the annulus via the double-layer potential
+  kernel.
+\newblock {\em Studia Math.} {\bf 2024}, {\em 278},~233--265.
+\newblock {\url{https://doi.org/10.4064/sm231023-2-8}}.
+
+\bibitem[McCullough and Pascoe(2023)]{McCulloughPascoe2023}
+McCullough, S.; Pascoe, J.E.
+\newblock Geometric dilations and operator annuli.
+\newblock {\em J. Funct. Anal.} {\bf 2023}, {\em 285},~Paper No.~110035, 20~pp.
+\newblock {\url{https://doi.org/10.1016/j.jfa.2023.110035}}.
+
+\bibitem[Exel and Loring(1992)]{ExelLoring1992}
+Exel, R.; Loring, T.A.
+\newblock Finite-dimensional representations of free product {$C^*$}-algebras.
+\newblock {\em Internat. J. Math.} {\bf 1992}, {\em 3},~469--476.
+\newblock {\url{https://doi.org/10.1142/S0129167X92000217}}.
+
+\end{thebibliography}

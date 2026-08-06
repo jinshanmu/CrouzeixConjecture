@@ -1,0 +1,909 @@
+\makeatletter
+\def\input@path{{preprints-template/preprints_template_latex/}}
+\let\preprint@bibliographystyle\bibliographystyle
+\renewcommand{\bibliographystyle}[1]{%
+  \preprint@bibliographystyle{preprints-template/preprints_template_latex/#1}}
+\makeatother
+
+\documentclass[preprints,article,submit,oneauthor]{Definitions/mdpi}
+
+\makeatletter
+\let\bibliographystyle\preprint@bibliographystyle
+\makeatother
+
+\graphicspath{{preprints-template/preprints_template_latex/}}
+\setlength{\headheight}{18pt}
+\addtolength{\topmargin}{-6pt}
+
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+\datereceived{}
+\daterevised{}
+\dateaccepted{}
+\datepublished{}
+
+\newcounter{manuscriptresult}[section]
+\renewcommand{\themanuscriptresult}{\thesection.\arabic{manuscriptresult}}
+\theoremstyle{mdpi}
+\newtheorem{theorem}[manuscriptresult]{Theorem}
+\newtheorem{lemma}[manuscriptresult]{Lemma}
+\newtheorem{proposition}[manuscriptresult]{Proposition}
+\newtheorem{corollary}[manuscriptresult]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{remark}[manuscriptresult]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\mathbb D}
+\newcommand{\Mn}{\mathbb M_n(\C)}
+\newcommand{\alg}{\operatorname{alg}}
+\newcommand{\RePart}{\operatorname{Re}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\iu}{\mathrm{i}}
+
+\Title{The scalar spectral constant of the quantum annulus}
+\Author{Shanmu Jin}
+\AuthorNames{Shanmu Jin}
+\address{Department of Neurosurgery, Peking Union Medical College
+  Hospital, No.~1 Shuaifuyuan, Dongcheng District, Beijing 100730,
+  China\\
+jinshanmu1129@pku.edu.cn}
+
+\abstract{
+Fix $R>1$.  The quantum annulus consists of the invertible Hilbert-space
+operators $A$ such that
+$\lVert A\rVert,\lVert A^{-1}\rVert\leq R$.  We prove that its scalar
+spectral constant for the closed annulus
+$\{z\in\C:R^{-1}\leq\lvert z\rvert\leq R\}$ is exactly $2$.
+The upper bound is first established for matrices.  A shifted annular
+double-layer density gives a unital positive map of total mass $2$.
+Applied to the Cayley transforms of a bounded scalar function, this map
+produces a matrix-valued positive-real completion whose defect lies in
+the adjoint algebra of an auxiliary simple-spectrum matrix.  A direct
+sampling argument for the matrix Herglotz kernel then gives the sharp
+norm bound.  Approximation removes the simple-spectrum and strictness
+assumptions.  For arbitrary Hilbert spaces, a quantum-annulus boundary
+dilation is combined with residual finite dimensionality of the full
+unital free product $C(\mathbb T)*_{\C}\C^2$.  Finite cyclic weighted
+shifts give the matching lower bound.  The result concerns scalar
+functions; no assertion about the complete spectral constant is made.
+}
+
+\keyword{quantum annulus; spectral set; double-layer potential;
+matrix-valued Herglotz kernel; residually finite-dimensional
+C-star algebra}
+\MSC{Primary 47A25; Secondary 47A20, 46L05}
+
+\makeatletter
+\def\maketitle{%
+  \hypersetup{
+    pdftitle={\@Title},
+    pdfsubject={The scalar spectral constant of the quantum annulus is
+      exactly two. The proof combines a positive annular double-layer
+      completion, a boundary dilation, residual finite dimensionality,
+      and finite cyclic weighted shifts.},
+    pdfkeywords={quantum annulus; spectral set; double-layer potential;
+      matrix-valued Herglotz kernel; residually finite-dimensional
+      C-star algebra},
+    pdfauthor={\@AuthorNames}
+  }%
+  \org@maketitle
+}
+\makeatother
+
+\begin{document}
+
+\section{Introduction}
+\label{sec:introduction}
+
+For $R>1$, write
+\begin{equation}
+  \mathbb A_R=\{z\in\C:R^{-1}<\lvert z\rvert<R\},
+  \qquad
+  \overline{\mathbb A}_R
+  =\{z\in\C:R^{-1}\leq\lvert z\rvert\leq R\}.
+  \label{eq:annulus}
+\end{equation}
+For a complex Hilbert space $\mathcal H$, the corresponding quantum
+annulus is
+\begin{equation}
+  \mathbb Q\mathbb A_R(\mathcal H)
+  =\left\{A\in\mathcal B(\mathcal H):
+  A\text{ is invertible},\;
+  \lVert A\rVert\leq R,\;
+  \lVert A^{-1}\rVert\leq R\right\}.
+  \label{eq:quantum-annulus}
+\end{equation}
+Every $A$ in this class has spectrum in
+$\overline{\mathbb A}_R$.  Let $K(R)$ be the least number such that
+\begin{equation}
+  \lVert f(A)\rVert
+  \leq K(R)\max_{z\in\overline{\mathbb A}_R}\lvert f(z)\rvert
+  \label{eq:spectral-constant}
+\end{equation}
+for every Hilbert space $\mathcal H$, every
+$A\in\mathbb Q\mathbb A_R(\mathcal H)$, and every rational function
+$f$ with no pole on $\overline{\mathbb A}_R$.
+
+Crouzeix and Greenbaum proved the dimension-free upper bound
+$K(R)\leq1+\sqrt2$ by an annular double-layer argument
+\cite[Section~5]{CrouzeixGreenbaum2019}.  Tsikalas proved the lower
+bound $K(R)\geq2$ for every $R>1$\cite[Theorem~1.1]{Tsikalas2022}.
+The annular double-layer map and its associated operator classes were
+subsequently analyzed by Jury and Tsikalas
+\cite{JuryTsikalas2024}.  Our main result closes the gap.
+
+\begin{theorem}[Main theorem]
+\label{thm:main}
+For every $R>1$,
+\begin{equation}
+  K(R)=2.
+  \label{eq:constant-two}
+\end{equation}
+Equivalently, if $\mathcal H$ is a complex Hilbert space,
+$A\in\mathbb Q\mathbb A_R(\mathcal H)$, and $f$ is rational with no
+pole on $\overline{\mathbb A}_R$, then
+\begin{equation}
+  \lVert f(A)\rVert
+  \leq2\max_{z\in\overline{\mathbb A}_R}\lvert f(z)\rvert,
+  \label{eq:main-estimate}
+\end{equation}
+and the factor $2$ cannot be decreased.
+\end{theorem}
+
+The proof has two upper-bound stages.  In finite dimensions, positivity
+of a shifted annular double-layer density supplies the positive-real
+completion needed in Theorem~\ref{thm:completion}.  For general Hilbert
+spaces, the boundary dilation of McCullough and Pascoe
+\cite[Theorem~1.1(c)]{McCulloughPascoe2023} reduces Laurent polynomials
+to boundary operators; the free-product theorem of Exel and Loring
+\cite[Theorem~3.2]{ExelLoring1992} then reduces their norms to finite
+dimensions.  Section~\ref{sec:sharpness} gives a finite-dimensional
+lower-bound sequence.
+
+We use $I$ for the identity operator of the size dictated by context,
+$X^*$ for the adjoint, and
+$\RePart X=(X+X^*)/2$.  For Hermitian matrices $X,Y$, the notation
+$X\preceq Y$ means that $Y-X$ is positive semidefinite.  The unital
+algebra generated by an operator $X$ is denoted by $\alg(X)$.
+
+\section{A positive-real completion theorem}
+\label{sec:completion}
+
+We begin with the finite-dimensional mechanism that produces the
+constant $2$.
+
+\begin{lemma}[Matrix Herglotz kernel]
+\label{lem:herglotz-kernel}
+Let $F\colon\D\to\Mn$ be analytic and suppose that
+$\RePart F(w)\succeq0$ for $w\in\D$.  Then
+\begin{equation}
+  \mathcal L_F(w,z)
+  =\frac{F(w)+F(z)^*}{1-w\overline z}
+  \label{eq:Herglotz-kernel}
+\end{equation}
+is a positive kernel: for arbitrary
+$w_0,\ldots,w_m\in\D$ and $\xi_0,\ldots,\xi_m\in\C^n$,
+\begin{equation}
+  \sum_{i,j=0}^m
+  \xi_i^*\mathcal L_F(w_i,w_j)\xi_j\geq0.
+  \label{eq:kernel-positive}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set
+\[
+  \eta(\zeta)=\sum_{j=0}^m
+  \frac{\xi_j}{1-\overline{w_j}\zeta},
+  \qquad \lvert\zeta\rvert=1.
+\]
+For $0\leq r<1$, entrywise integration of the power series of $F$
+and of the two scalar Cauchy kernels gives, for each $i,j$,
+\begin{align*}
+  &\frac1{2\pi}\int_0^{2\pi}
+  \frac{F(re^{\iu t})}
+  {(1-w_i e^{-\iu t})(1-\overline{w_j}e^{\iu t})}\,dt
+  =\frac{F(rw_i)}{1-w_i\overline{w_j}},\\
+  &\frac1{2\pi}\int_0^{2\pi}
+  \frac{F(re^{\iu t})^*}
+  {(1-w_i e^{-\iu t})(1-\overline{w_j}e^{\iu t})}\,dt
+  =\frac{F(rw_j)^*}{1-w_i\overline{w_j}}.
+\end{align*}
+After summing against the vectors $\xi_i,\xi_j$, these identities yield
+\begin{align}
+  &\frac1{2\pi}\int_0^{2\pi}
+  \eta(e^{\iu t})^*\,2\RePart F(re^{\iu t})\,
+  \eta(e^{\iu t})\,dt \notag\\
+  &\hspace{28mm}=
+  \sum_{i,j=0}^m\xi_i^*
+  \frac{F(rw_i)+F(rw_j)^*}{1-w_i\overline{w_j}}\xi_j.
+  \label{eq:Herglotz-integral}
+\end{align}
+The left side is nonnegative.  Letting $r$ increase to $1$ proves
+\eqref{eq:kernel-positive}.
+\end{proof}
+
+\begin{theorem}[Positive-real completion]
+\label{thm:completion}
+Suppose
+\begin{equation}
+  B=S\diag(\beta_1,\ldots,\beta_n)S^{-1},
+  \qquad
+  T=S\Lambda S^{-1},
+  \qquad
+  \Lambda=\diag(\lambda_1,\ldots,\lambda_n),
+  \label{eq:simultaneous-diagonalization}
+\end{equation}
+where $S$ is invertible, the numbers $\beta_1,\ldots,\beta_n$ are
+distinct, and $\lvert\lambda_i\rvert\leq1$.  The numbers $\lambda_i$
+need not be distinct.  Let $H\colon\D\to\Mn$ be analytic and satisfy
+\begin{equation}
+  H(0)=I,
+  \qquad
+  \RePart H(w)\succeq0\quad(w\in\D),
+  \label{eq:completion-positive}
+\end{equation}
+and
+\begin{equation}
+  H(w)-(I-wT)^{-1}\in\alg(B^*)
+  \quad(w\in\D).
+  \label{eq:completion-algebra}
+\end{equation}
+Then $\lVert T\rVert\leq2$.
+\end{theorem}
+
+\begin{proof}
+Put $\Gamma=S^*S\succ0$.  Since the eigenvalues of $B$ are distinct,
+polynomial interpolation gives
+\begin{equation}
+  \alg(B^*)
+  =\{(S^{-1})^*\Delta S^*: \Delta\text{ is diagonal}\}.
+  \label{eq:adjoint-algebra}
+\end{equation}
+Consequently, there is a diagonal analytic matrix
+$\Theta(w)=\diag(\theta_1(w),\ldots,\theta_n(w))$, with
+$\Theta(0)=0$, such that
+\begin{equation}
+  \widetilde H(w):=S^*H(w)S
+  =\Gamma(I-w\Lambda)^{-1}+\Theta(w)\Gamma.
+  \label{eq:Htilde}
+\end{equation}
+The real part of $\widetilde H$ is positive, so
+Lemma~\ref{lem:herglotz-kernel} applies to $\widetilde H$.
+
+Define Hermitian matrices $P,Q,Y$ by
+\begin{equation}
+  P_{ij}=\frac{\Gamma_{ij}}
+  {1-\overline{\lambda_i}\lambda_j/4},
+  \qquad
+  Q_{ij}=\frac{\Gamma_{ij}}
+  {1-\overline{\lambda_i}\lambda_j/2},
+  \qquad
+  Y=Q-P.
+  \label{eq:PQY}
+\end{equation}
+Fix $x=(x_1,\ldots,x_n)^T\in\C^n$.  In the kernel inequality, use
+\begin{equation}
+  w_i=\frac{\overline{\lambda_i}}2,
+  \qquad
+  \xi_i=x_i e_i
+  \quad(1\leq i\leq n),
+  \label{eq:sampling-points}
+\end{equation}
+and add the sample $w_0=0$ with vector
+\begin{equation}
+  \xi_0=v=-\Gamma^{-1}Px.
+  \label{eq:origin-vector}
+\end{equation}
+Repeated sample points cause no difficulty.
+
+The contribution of the term $\Theta(w)\Gamma$ in
+\eqref{eq:Htilde} to the sampled kernel quadratic form equals
+\begin{equation}
+  2\RePart\sum_{i=1}^n
+  \overline{x_i}\theta_i(w_i)
+  \left((\Gamma v)_i+
+  \sum_{j=1}^n
+  \frac{\Gamma_{ij}x_j}{1-w_i\overline{w_j}}\right).
+  \label{eq:theta-contribution}
+\end{equation}
+The expression in parentheses is
+$(\Gamma v+Px)_i=0$, so the unknown term cancels exactly.
+
+For the known term $\Gamma(I-w\Lambda)^{-1}$, compression of the
+kernel block between $w_i$ and $w_j$ by $e_i$ and $e_j$ gives
+\begin{equation}
+  \frac{2\Gamma_{ij}}
+  {(1-\overline{\lambda_i}\lambda_j/2)
+   (1-\overline{\lambda_i}\lambda_j/4)}
+  =(4Q-2P)_{ij}.
+  \label{eq:main-sampled-block}
+\end{equation}
+Here the equality on the right follows from
+\[
+  \frac{2}{(1-a/2)(1-a/4)}
+  =\frac4{1-a/2}-\frac2{1-a/4}.
+\]
+Likewise, direct substitution of $w_0=0$ gives
+\begin{equation}
+  \left[e_i^*\left(
+  \Gamma(I-w_i\Lambda)^{-1}+\Gamma\right)e_j\right]_{i,j}
+  =\Gamma+Q,
+  \qquad
+  \Gamma(I-0\Lambda)^{-1}+\Gamma=2\Gamma
+  \label{eq:origin-blocks}
+\end{equation}
+for the known term.  Kernel positivity, evaluated on the graph
+$v=-\Gamma^{-1}Px$, therefore gives
+\begin{align}
+  0&\leq
+  \begin{pmatrix}x\\v\end{pmatrix}^{\!*}
+  \begin{pmatrix}
+    4Q-2P&\Gamma+Q\\
+    \Gamma+Q&2\Gamma
+  \end{pmatrix}
+  \begin{pmatrix}x\\v\end{pmatrix} \notag\\
+  &=x^*\bigl(4Y-Y\Gamma^{-1}P-P\Gamma^{-1}Y\bigr)x.
+  \label{eq:Y-inequality-form}
+\end{align}
+Since $x$ is arbitrary,
+\begin{equation}
+  4Y-Y\Gamma^{-1}P-P\Gamma^{-1}Y\succeq0.
+  \label{eq:Y-inequality}
+\end{equation}
+
+Balance the diagonalization by setting
+\begin{equation}
+  \widetilde T=\Gamma^{1/2}\Lambda\Gamma^{-1/2},
+  \qquad
+  \widehat P=\Gamma^{-1/2}P\Gamma^{-1/2},
+  \qquad
+  \widehat Y=\Gamma^{-1/2}Y\Gamma^{-1/2}.
+  \label{eq:balanced-objects}
+\end{equation}
+Expanding the scalar denominators in \eqref{eq:PQY} gives the
+norm-convergent series
+\begin{align}
+  \widehat P
+  &=\sum_{k=0}^{\infty}4^{-k}\widetilde T^{*k}\widetilde T^k,
+  \label{eq:P-series}\\
+  \widehat Y
+  &=\sum_{k=1}^{\infty}(2^{-k}-4^{-k})
+  \widetilde T^{*k}\widetilde T^k\succeq0.
+  \label{eq:Y-series}
+\end{align}
+Indeed, the sequence $(\widetilde T^k)$ is bounded because
+$\widetilde T^k=\Gamma^{1/2}\Lambda^k\Gamma^{-1/2}$.
+Congruence of \eqref{eq:Y-inequality} by $\Gamma^{-1/2}$ yields
+\begin{equation}
+  4\widehat Y-\widehat Y\widehat P-
+  \widehat P\widehat Y\succeq0.
+  \label{eq:balanced-inequality}
+\end{equation}
+
+Let $e$ be an eigenvector of $\widehat P$, with
+$\widehat Pe=\alpha e$.  If $\alpha>2$, then
+\eqref{eq:balanced-inequality} gives
+\[
+  0\leq2(2-\alpha)e^*\widehat Ye.
+\]
+Thus $e^*\widehat Ye=0$.  The $k=1$ term of
+\eqref{eq:Y-series} is $\widetilde T^*\widetilde T/4$, so
+$\widetilde Te=0$.  Equation
+\eqref{eq:P-series} then gives $\widehat Pe=e$, contradicting
+$\alpha>2$.  Hence
+\begin{equation}
+  I\preceq\widehat P\preceq2I.
+  \label{eq:P-bounds}
+\end{equation}
+The $k=1$ term of \eqref{eq:P-series} now gives
+\[
+  \frac14\widetilde T^*\widetilde T\preceq\widehat P-I\preceq I,
+\]
+and therefore $\lVert\widetilde T\rVert\leq2$.  Finally, the polar
+decomposition $S=U_S\Gamma^{1/2}$ gives
+$T=U_S\widetilde TU_S^*$, so
+$\lVert T\rVert\leq2$.
+\end{proof}
+
+\section{The annular double-layer completion}
+\label{sec:annular-completion}
+
+Let $\mathcal A(\mathbb A_R)$ denote the functions holomorphic on
+$\mathbb A_R$ and continuous on $\overline{\mathbb A}_R$.  We now
+construct the completion in Theorem~\ref{thm:completion}.  The shifted
+density below is the annular double-layer density underlying the
+contractive map in \cite[Section~5]{CrouzeixGreenbaum2019}; see also
+\cite[Theorem~3.12]{JuryTsikalas2024}.  We include the factorization,
+mass, and cancellation identities needed here.
+
+Let $B\in\Mn$ satisfy
+\begin{equation}
+  \lVert B\rVert<R,
+  \qquad
+  \lVert B^{-1}\rVert<R.
+  \label{eq:strict-annulus}
+\end{equation}
+Orient the outer circle of $\partial\mathbb A_R$ counterclockwise and
+the inner circle clockwise.  On either component, let $z=z(s)$ be an
+oriented arclength parametrization.  Define
+\begin{align}
+  \mu_B(z)
+  &=\frac1{2\pi\iu}\left[
+  z'(s)(zI-B)^{-1}
+  -\overline{z'(s)}(\overline zI-B^*)^{-1}\right],
+  \label{eq:mu-density}\\
+  \kappa_R(z)
+  &=\frac1{2\pi\iu}\frac{z'(s)}z,
+  \qquad
+  D_B(z)=\mu_B(z)-\kappa_R(z)I.
+  \label{eq:shifted-density}
+\end{align}
+Both $\mu_B(z)$ and $D_B(z)$ are self-adjoint.
+
+\begin{lemma}[Positive shifted density]
+\label{lem:positive-density}
+Under \eqref{eq:strict-annulus},
+\begin{equation}
+  D_B(z)\succeq0
+  \quad(z\in\partial\mathbb A_R),
+  \qquad
+  \int_{\partial\mathbb A_R}D_B(z)\,ds=2I.
+  \label{eq:density-positive-mass}
+\end{equation}
+Moreover, for every $h\in\mathcal A(\mathbb A_R)$,
+\begin{equation}
+  \int_{\partial\mathbb A_R}
+  h(z)\kappa_R(z)\,ds=0.
+  \label{eq:kappa-cancellation}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+On the outer circle, write $z=Re^{\iu t}$.  Then
+$\kappa_R(z)=1/(2\pi R)$, and direct multiplication by
+$zI-B$ and $\overline zI-B^*$ gives
+\begin{equation}
+  2\pi R D_B(z)
+  =(zI-B)^{-1}(R^2I-BB^*)
+  (\overline zI-B^*)^{-1}\succeq0.
+  \label{eq:outer-factorization}
+\end{equation}
+On the inner circle, put $\rho=R^{-1}$ and use the clockwise
+parametrization $z=\rho e^{-\iu t}$.  Now
+$\kappa_R(z)=-1/(2\pi\rho)$ and
+\begin{equation}
+  2\pi\rho D_B(z)
+  =(zI-B)^{-1}(BB^*-\rho^2I)
+  (\overline zI-B^*)^{-1}\succeq0.
+  \label{eq:inner-factorization}
+\end{equation}
+The middle factors are positive because
+$BB^*\preceq R^2I$ and $BB^*\succeq R^{-2}I$.
+
+The matrix Cauchy formula gives
+\begin{equation}
+  \frac1{2\pi\iu}\int_{\partial\mathbb A_R}
+  z'(s)(zI-B)^{-1}\,ds
+  =\frac1{2\pi\iu}\int_{\partial\mathbb A_R}
+  (zI-B)^{-1}\,dz=I.
+  \label{eq:first-resolvent-mass}
+\end{equation}
+Under the change of variable $\zeta=\overline z$, the conjugate of the
+oriented annular boundary has the reverse orientation.  Therefore
+\begin{equation}
+  -\frac1{2\pi\iu}\int_{\partial\mathbb A_R}
+  \overline{z'(s)}(\overline zI-B^*)^{-1}\,ds
+  =-\frac1{2\pi\iu}\int_{-\partial\mathbb A_R}
+  (\zeta I-B^*)^{-1}\,d\zeta=I.
+  \label{eq:second-resolvent-mass}
+\end{equation}
+Adding \eqref{eq:first-resolvent-mass} and
+\eqref{eq:second-resolvent-mass} yields
+\begin{equation}
+  \int_{\partial\mathbb A_R}\mu_B(z)\,ds=2I.
+  \label{eq:mu-mass}
+\end{equation}
+The winding numbers of the outer and inner circles are $1$ and $-1$,
+respectively, so
+\[
+  \int_{\partial\mathbb A_R}\kappa_R(z)\,ds
+  =\frac1{2\pi\iu}\int_{\partial\mathbb A_R}\frac{dz}{z}=0.
+\]
+This proves the mass identity.  Finally,
+\[
+  \int_{\partial\mathbb A_R}h(z)\kappa_R(z)\,ds
+  =\frac1{2\pi\iu}
+  \int_{\partial\mathbb A_R}\frac{h(z)}z\,dz=0
+\]
+by Cauchy's theorem on the annulus.
+\end{proof}
+
+Define
+\begin{equation}
+  \Phi_B(\varphi)
+  =\frac12\int_{\partial\mathbb A_R}
+  \varphi(z)D_B(z)\,ds,
+  \qquad
+  \varphi\in C(\partial\mathbb A_R).
+  \label{eq:positive-map}
+\end{equation}
+Lemma~\ref{lem:positive-density} makes $\Phi_B$ a unital positive map;
+in particular, it is bounded and $*$-preserving.  For
+$h\in\mathcal A(\mathbb A_R)$, define
+\begin{equation}
+  (\mathcal C\overline h)(\zeta)
+  =\frac1{2\pi\iu}
+  \int_{\partial\mathbb A_R}
+  \frac{\overline{h(z)}}{z-\zeta}\,dz,
+  \qquad \zeta\in\mathbb A_R.
+  \label{eq:conjugate-Cauchy-transform}
+\end{equation}
+This is holomorphic in $\mathbb A_R$.  Splitting the two terms of
+$\mu_B$ and using \eqref{eq:kappa-cancellation} gives
+\begin{align*}
+  \int_{\partial\mathbb A_R}h(z)D_B(z)\,ds
+  &=\frac1{2\pi\iu}\int_{\partial\mathbb A_R}
+  h(z)(zI-B)^{-1}\,dz\\
+  &\quad-\frac1{2\pi\iu}\int_{\partial\mathbb A_R}
+  h(z)(\overline zI-B^*)^{-1}\,d\overline z\\
+  &=h(B)+
+  \left[\frac1{2\pi\iu}\int_{\partial\mathbb A_R}
+  \overline{h(z)}(zI-B)^{-1}\,dz\right]^*.
+\end{align*}
+The bracket is $(\mathcal C\overline h)(B)$ by
+\eqref{eq:conjugate-Cauchy-transform} and the holomorphic functional
+calculus.  Since the left side is $2\Phi_B(h)$, we obtain
+\begin{equation}
+  2\Phi_B(h)=h(B)+(\mathcal C\overline h)(B)^*.
+  \label{eq:symmetrized-calculus}
+\end{equation}
+
+\begin{proposition}[Annular Cayley completion]
+\label{prop:annular-completion}
+Suppose that $B\in\Mn$ satisfies \eqref{eq:strict-annulus} and has
+$n$ distinct eigenvalues.  If $f\in\mathcal A(\mathbb A_R)$, then
+\begin{equation}
+  \lVert f(B)\rVert
+  \leq2\max_{z\in\overline{\mathbb A}_R}\lvert f(z)\rvert.
+  \label{eq:simple-spectrum-estimate}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Put
+$M=\max_{z\in\overline{\mathbb A}_R}\lvert f(z)\rvert$.
+If $M=0$, then $f=0$ and the result is immediate.  Replacing $f$ by
+$f/M$, we may assume that $M\leq1$.
+Put $T=f(B)$.  For $w\in\D$, define
+\begin{equation}
+  c_w(z)=\frac{1+w f(z)}{1-w f(z)},
+  \qquad
+  H(w)=\Phi_B(c_w).
+  \label{eq:Cayley-family}
+\end{equation}
+The series
+$c_w=1+2\sum_{m\geq1}w^m f^m$ converges locally uniformly in the
+supremum norm on $\overline{\mathbb A}_R$.  Thus $H$ is analytic and
+$H(0)=I$.  Since
+\[
+  \RePart c_w(z)
+  =\frac{1-\lvert w f(z)\rvert^2}
+  {\lvert1-w f(z)\rvert^2}\geq0,
+\]
+positivity and $*$-preservation of $\Phi_B$ give
+$\RePart H(w)\succeq0$.
+
+Equation \eqref{eq:symmetrized-calculus} gives
+\begin{equation}
+  2H(w)=c_w(B)+(\mathcal C\overline{c_w})(B)^*.
+  \label{eq:Cayley-symmetrization}
+\end{equation}
+Since
+\[
+  c_w(B)=(I+wT)(I-wT)^{-1}
+  =2(I-wT)^{-1}-I,
+\]
+we obtain
+\begin{equation}
+  H(w)-(I-wT)^{-1}
+  =\frac12\left((\mathcal C\overline{c_w})(B)^*-I\right)
+  \in\alg(B^*).
+  \label{eq:annular-algebra-completion}
+\end{equation}
+Indeed, a holomorphic function of a finite matrix is a polynomial in
+that matrix, by interpolation with multiplicities, and hence belongs
+to its generated unital algebra.
+
+Choose an eigenbasis
+$B=S\diag(\beta_1,\ldots,\beta_n)S^{-1}$.  Then
+\[
+  T=S\diag(f(\beta_1),\ldots,f(\beta_n))S^{-1},
+  \qquad \lvert f(\beta_i)\rvert\leq1.
+\]
+Theorem~\ref{thm:completion}, applied to
+\eqref{eq:annular-algebra-completion}, yields
+$\lVert f(B)\rVert\leq2$ under the normalization $M\leq1$.
+Scaling back by $M$ proves \eqref{eq:simple-spectrum-estimate}.
+\end{proof}
+
+\section{The finite-dimensional estimate}
+\label{sec:finite-dimensions}
+
+\begin{theorem}[Finite dimensions]
+\label{thm:finite-dimensional}
+Let $A\in\Mn$ be invertible and satisfy
+$\lVert A\rVert,\lVert A^{-1}\rVert\leq R$.  If $f$ is rational and
+has no pole on $\overline{\mathbb A}_R$, then
+\begin{equation}
+  \lVert f(A)\rVert
+  \leq2\max_{z\in\overline{\mathbb A}_R}\lvert f(z)\rvert.
+  \label{eq:finite-dimensional-estimate}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Write the polar decomposition as $A=U_A\lvert A\rvert$.  Because $A$
+is invertible, $U_A$ is unitary and
+\begin{equation}
+  R^{-1}I\preceq\lvert A\rvert\preceq RI.
+  \label{eq:modulus-bounds}
+\end{equation}
+For $0<\varepsilon<1$, put
+\begin{equation}
+  A_\varepsilon
+  =U_A\bigl((1-\varepsilon)\lvert A\rvert+\varepsilon I\bigr).
+  \label{eq:strictification}
+\end{equation}
+Since $R>1$, \eqref{eq:modulus-bounds} implies
+\begin{equation}
+  \lVert A_\varepsilon\rVert<R,
+  \qquad
+  \lVert A_\varepsilon^{-1}\rVert<R,
+  \qquad
+  A_\varepsilon\longrightarrow A.
+  \label{eq:strictification-bounds}
+\end{equation}
+Indeed, the spectrum of the positive factor in
+\eqref{eq:strictification} lies in the open interval $(R^{-1},R)$.
+
+The strict inequalities in \eqref{eq:strictification-bounds} persist
+under sufficiently small matrix perturbations.  Matrices with distinct
+eigenvalues are dense: the discriminant of the characteristic
+polynomial is a nonzero polynomial in the matrix entries, so its zero
+set has empty interior.  Hence, for each $\varepsilon$, there are
+simple-spectrum matrices $B_{\varepsilon,k}\to A_\varepsilon$ that
+satisfy \eqref{eq:strict-annulus}.  Proposition~\ref{prop:annular-completion}
+gives
+\[
+  \lVert f(B_{\varepsilon,k})\rVert
+  \leq2\max_{z\in\overline{\mathbb A}_R}\lvert f(z)\rvert.
+\]
+First let $k\to\infty$ and then let $\varepsilon\downarrow0$.
+Continuity of rational matrix evaluation proves
+\eqref{eq:finite-dimensional-estimate}.
+\end{proof}
+
+\section{Passage to arbitrary Hilbert spaces}
+\label{sec:all-Hilbert-spaces}
+
+We use two external structural theorems in this section.  In our
+normalization, the boundary-dilation theorem of McCullough and Pascoe
+\cite[Theorem~1.1 and Proposition~3.2]{McCulloughPascoe2023} says that
+every $A\in\mathbb Q\mathbb A_R(\mathcal H)$ has a Laurent dilation to
+an invertible operator $J\in\mathcal B(\mathcal L)$: there is an
+isometry $V\colon\mathcal H\to\mathcal L$ such that
+\begin{equation}
+  A^m=V^*J^mV
+  \quad(m\in\mathbb Z),
+  \label{eq:Laurent-dilation}
+\end{equation}
+and
+\begin{equation}
+  (R^2+R^{-2})I-J^*J-(J^*J)^{-1}=0.
+  \label{eq:boundary-equation}
+\end{equation}
+The second input is the theorem of Exel and Loring
+\cite[Theorem~3.2]{ExelLoring1992}: the full unital free product of two
+unital residually finite-dimensional $C^*$-algebras is residually
+finite-dimensional.
+
+Set
+\begin{equation}
+  \mathfrak F=C(\mathbb T)*_{\C}\C^2.
+  \label{eq:free-product}
+\end{equation}
+Let $u_0\in\mathfrak F$ be the canonical unitary from $C(\mathbb T)$
+and let $p_0\in\mathfrak F$ be the canonical projection from $\C^2$.
+Define
+\begin{equation}
+  j_R=u_0\bigl(Rp_0+R^{-1}(1-p_0)\bigr).
+  \label{eq:universal-boundary-element}
+\end{equation}
+Its inverse is
+\begin{equation}
+  j_R^{-1}=\bigl(R^{-1}p_0+R(1-p_0)\bigr)u_0^*.
+  \label{eq:universal-boundary-inverse}
+\end{equation}
+The algebra $C(\mathbb T)$ is residually finite-dimensional because
+point evaluations separate its elements, and $\C^2$ is
+finite-dimensional.  Thus $\mathfrak F$ is residually
+finite-dimensional.  Equivalently,
+\begin{equation}
+  \lVert x\rVert
+  =\sup_{\pi}\lVert\pi(x)\rVert
+  \qquad(x\in\mathfrak F),
+  \label{eq:RFD-norm}
+\end{equation}
+where $\pi$ ranges over finite-dimensional unital
+$*$-representations.  Indeed, Exel and Loring's characterization
+\cite[Theorem~2.4]{ExelLoring1992} makes their direct sum faithful and
+hence isometric.
+
+\begin{lemma}[Boundary reduction]
+\label{lem:boundary-reduction}
+If $J$ satisfies \eqref{eq:boundary-equation}, then every Laurent
+polynomial $q$ satisfies
+\begin{equation}
+  \lVert q(J)\rVert
+  \leq
+  \sup_{n\geq1}\;
+  \sup_{B\in\mathbb Q\mathbb A_R(\C^n)}
+  \lVert q(B)\rVert.
+  \label{eq:boundary-reduction}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Put $Z=J^*J$.  Multiplication of \eqref{eq:boundary-equation} by $Z$
+gives
+\[
+  (Z-R^2I)(Z-R^{-2}I)=0.
+\]
+The spectral theorem therefore shows that the spectrum of $Z$ is
+contained in $\{R^2,R^{-2}\}$.  Hence
+\begin{equation}
+  Z=R^2E+R^{-2}(I-E)
+  \label{eq:two-point-modulus}
+\end{equation}
+for a projection $E$.  The polar decomposition of $J$ is therefore
+\begin{equation}
+  J=U_J\bigl(RE+R^{-1}(I-E)\bigr)
+  \label{eq:boundary-polar-form}
+\end{equation}
+with $U_J$ unitary.  The universal property of \eqref{eq:free-product}
+gives a unital $*$-representation
+$\rho_J\colon\mathfrak F\to\mathcal B(\mathcal L)$ such that
+$\rho_J(j_R)=J$.  Thus
+\[
+  \lVert q(J)\rVert\leq\lVert q(j_R)\rVert.
+\]
+By \eqref{eq:RFD-norm}, the last norm is the supremum of
+$\lVert q(\pi(j_R))\rVert$ over finite-dimensional unital
+$*$-representations $\pi$.  Each matrix
+\[
+  \pi(j_R)=\pi(u_0)
+  \bigl(R\pi(p_0)+R^{-1}(I-\pi(p_0))\bigr)
+\]
+has norm at most $R$.  Its inverse is
+\[
+  \bigl(R^{-1}\pi(p_0)+R(I-\pi(p_0))\bigr)\pi(u_0)^*,
+\]
+which also has norm at most $R$.  Thus $\pi(j_R)$ belongs to the
+finite-dimensional quantum annulus, proving
+\eqref{eq:boundary-reduction}.
+\end{proof}
+
+\begin{proof}[Proof of the upper bound in Theorem~\ref{thm:main}]
+Let $A\in\mathbb Q\mathbb A_R(\mathcal H)$ and let $J,V$ be supplied
+by \eqref{eq:Laurent-dilation}--\eqref{eq:boundary-equation}.  If
+$q(z)=\sum_{m=-N}^N c_mz^m$ is a Laurent polynomial, then
+$q(A)=V^*q(J)V$.  Lemma~\ref{lem:boundary-reduction} and
+Theorem~\ref{thm:finite-dimensional} give
+\begin{align}
+  \lVert q(A)\rVert
+  &\leq\lVert q(J)\rVert \notag\\
+  &\leq
+  \sup_{n\geq1}\;
+  \sup_{B\in\mathbb Q\mathbb A_R(\C^n)}\lVert q(B)\rVert
+  \leq2\max_{z\in\overline{\mathbb A}_R}\lvert q(z)\rvert.
+  \label{eq:Laurent-estimate}
+\end{align}
+
+Now let $f$ be rational with no pole on
+$\overline{\mathbb A}_R$.  There are radii
+$r_0<R^{-1}<R<r_1$ such that $f$ is holomorphic on
+$r_0<\lvert z\rvert<r_1$.  Its Laurent series on this annulus has
+partial sums $q_k$ satisfying
+\begin{equation}
+  \max_{z\in\overline{\mathbb A}_R}
+  \lvert q_k(z)-f(z)\rvert\longrightarrow0.
+  \label{eq:Laurent-uniform}
+\end{equation}
+The convergence also holds on two circles surrounding
+$\sigma(A)$ inside the larger annulus, so the Cauchy integral formula
+for the holomorphic functional calculus gives
+$q_k(A)\to f(A)$ in operator norm.  Passing to the limit in
+\eqref{eq:Laurent-estimate} proves \eqref{eq:main-estimate}.
+\end{proof}
+
+\section{Sharpness}
+\label{sec:sharpness}
+
+The lower bound is approached by finite cyclic weighted shifts.  This
+is a finite-dimensional version of the weighted-shift construction in
+\cite[Section~2]{Tsikalas2022}.
+
+For $n\geq1$, let $W_n$ act on $\C^{2n}$ with standard basis
+$e_0,\ldots,e_{2n-1}$ by
+\begin{equation}
+  W_ne_k=\omega_ke_{k+1\pmod{2n}},
+  \qquad
+  \omega_k=
+  \begin{cases}
+    R,&0\leq k<n,\\
+    R^{-1},&n\leq k<2n.
+  \end{cases}
+  \label{eq:cyclic-shift}
+\end{equation}
+The cyclic permutation is unitary, so the singular values of $W_n$
+are the numbers $\omega_k$.  Consequently,
+\begin{equation}
+  \lVert W_n\rVert=\lVert W_n^{-1}\rVert=R.
+  \label{eq:shift-annulus}
+\end{equation}
+For the Laurent polynomial
+\begin{equation}
+  g_n(z)=R^{-n}(z^n+z^{-n}),
+  \label{eq:lower-function}
+\end{equation}
+the maximum-modulus principle, applied on the annulus, gives
+\begin{equation}
+  \max_{z\in\overline{\mathbb A}_R}\lvert g_n(z)\rvert
+  =1+R^{-2n}.
+  \label{eq:lower-function-norm}
+\end{equation}
+Indeed, on either boundary circle the triangle inequality gives this
+upper bound, and equality holds at a positive real boundary point.
+On the other hand, the two half-cycles in \eqref{eq:cyclic-shift} give
+\[
+  W_n^ne_0=W_n^{-n}e_0=R^ne_n.
+\]
+Hence
+\begin{equation}
+  \lVert g_n(W_n)\rVert\geq2.
+  \label{eq:lower-operator-norm}
+\end{equation}
+It follows from \eqref{eq:shift-annulus}--\eqref{eq:lower-operator-norm}
+that
+\[
+  K(R)\geq\frac{2}{1+R^{-2n}}.
+\]
+Letting $n\to\infty$ proves $K(R)\geq2$.  Together with the upper
+bound, this completes the proof of Theorem~\ref{thm:main}.
+
+\begin{remark}[Scalar scope]
+The theorem identifies the scalar spectral constant.  It makes no
+assertion about the complete spectral constant.
+\end{remark}
+
+\section*{AI-assistance disclosure}
+
+OpenAI ChatGPT assisted with checking the kernel-sampling calculation,
+the annular boundary factorizations, the source-to-claim matching, and
+the exposition and typesetting of this manuscript.  The human author
+assumes full responsibility for the correctness of all mathematical
+statements and for the integrity and accuracy of all citations.
+
+\reftitle{References}
+\bibliography{the_quantum_annulus_is_a_2_spectral_set}
+
+\end{document}
