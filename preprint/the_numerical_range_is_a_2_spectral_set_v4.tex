@@ -68,18 +68,22 @@ we prove that
 \]
 and consequently that $W(A)$ is a $2$-spectral set for $A$.  This
 proves Crouzeix's conjecture, and the constant is optimal.  The central
-ingredient is a positive-real completion theorem relative to an
-auxiliary eigenbasis: an adjoint-algebra constraint on the resolvent
-defect of a normalized matrix-valued Carath\'eodory function forces the
-underlying matrix to have norm at most $2$.  The classical positive
-double-layer calculus supplies such completions for $f(B)$ whenever the
-auxiliary matrix $B$ has simple spectrum; the eigenvalues of $f(B)$
-may repeat.  Sampling the associated Herglotz kernel at half
-the conjugate diagonal entries and at the origin cancels the completion
-term's contribution and leaves a comparison of two weighted Gramians;
-their first nonconstant terms yield the sharp estimate.  Simple-spectrum
+ingredient is a mass-parameterized positive-real completion theorem
+relative to an auxiliary eigenbasis: if the resolvent defect of a
+normalized matrix-valued Carath\'eodory function lies in the adjoint
+algebra, then its underlying matrix has norm at most the mass
+$\mathfrak m\geq2$.  The numerical-range double layer has mass two.
+The classical positive double-layer calculus supplies such completions
+for $f(B)$ whenever the auxiliary matrix $B$ has simple spectrum; the
+eigenvalues of $f(B)$ may repeat.  Sampling the associated Herglotz
+kernel at scaled conjugate diagonal entries and at the origin cancels
+the nonconstant completion term and leaves two ordered weighted
+Gramians; their first nonconstant terms yield the mass bound.
+Simple-spectrum
 approximation and canonical convex outer domains with supported oriented
-radial boundaries yield the general theorem.
+radial boundaries yield the general theorem.  The mass formulation also
+provides a concrete scalar proof protocol for annular, multiply
+connected, operator-radius, and abstract spectral-constant problems.
 }
 
 \keyword{Crouzeix conjecture; numerical range; spectral set;
@@ -217,8 +221,9 @@ preserves this coupling.
 
 \subsection{Auxiliary-basis de-symmetrization}
 
-Our argument uses the whole Cayley family associated
-with~\eqref{eq:intro-symmetrized}.  It has four steps.
+Our numerical-range argument uses the mass-two specialization of the
+general completion theorem proved below and the whole Cayley family
+associated with~\eqref{eq:intro-symmetrized}.  It has four steps.
 
 \begin{enumerate}
 \item Applying $\Phi$ to
@@ -245,9 +250,10 @@ points are allowed, and the origin sample cancels the diagonal
 correction's contribution exactly.
 
 \item The surviving positive-matrix inequality compares two weighted
-Gramians.  Its difference is positive, and an eigenvector argument
-followed by the first nonconstant Gramian term yields
-$\lVert T\rVert\leq2$.
+Gramians at scales $\tau$ and $\tau^2$, where
+$\tau=\mathfrak m^{-1}$.  Their ordered difference and the first
+nonconstant Gramian term yield $\lVert T\rVert\leq\mathfrak m$; here
+$\mathfrak m=2$.
 \end{enumerate}
 
 The proof uses two limits: simple-spectrum matrices tend to $A$,
@@ -312,13 +318,14 @@ $\mathcal K=\mathcal L_F$.
 \section{The positive-real completion principle}
 \label{sec:completion}
 
-The following completion theorem is the core of the argument: it
-converts a positive-real completion constrained by the adjoint algebra
-of an auxiliary simple-spectrum matrix into the sharp norm bound.
+The following mass-parameterized completion theorem is the core of the
+argument.  It converts a positive-real completion constrained by the
+adjoint algebra of an auxiliary simple-spectrum matrix into a norm
+bound equal to the mass parameter.
 
-\begin{theorem}[Positive-real completion]
+\begin{theorem}[Positive-real completion of mass $\mathfrak m$]
 \label{thm:completion}
-Let
+Let $2\leq\mathfrak m<\infty$, and let
 \begin{equation}
   B=S\diag(\beta_1,\ldots,\beta_n)S^{-1},
   \qquad
@@ -337,16 +344,17 @@ Let $H\colon\D\to\Mn$ be analytic and satisfy
 \end{equation}
 and
 \begin{equation}
-  H(w)-(I-wT)^{-1}\in\alg(B^*)\qquad(w\in\D).
+  H(w)-\frac{2}{\mathfrak m}(I-wT)^{-1}
+  \in\alg(B^*)\qquad(w\in\D).
   \label{eq:completion-algebra-condition}
 \end{equation}
-Then $\lVert T\rVert\leq2$.
+Then $\lVert T\rVert\leq\mathfrak m$.
 \end{theorem}
 
 \begin{proof}
-Use the simultaneous diagonalizations in~\eqref{eq:T-diagonalization}
-and put $G=S^*S\succ0$.  Since the $\beta_i$ are distinct, polynomial
-interpolation shows that
+Put $\tau=\mathfrak m^{-1}$, so $0<\tau\leq1/2$, and set
+$G=S^*S\succ0$.
+Since the $\beta_i$ are distinct, polynomial interpolation shows that
 \begin{equation}
   \alg(B^*)
   =\left\{(S^{-1})^* D S^* \,:\,
@@ -355,18 +363,26 @@ interpolation shows that
 \end{equation}
 By~\eqref{eq:adjoint-algebra-diagonal}, the matrix
 \[
-  \Theta(w)=S^*\bigl(H(w)-(I-wT)^{-1}\bigr)(S^*)^{-1}
+  \Theta(w)=S^*\bigl(H(w)-2\tau(I-wT)^{-1}\bigr)(S^*)^{-1}
 \]
-is diagonal for every $w$, and
-\[
-  H(w)-(I-wT)^{-1}=(S^{-1})^*\Theta(w)S^*.
-\]
-Also $\Theta(0)=0$ because $H(0)=I$.
-Write $\Theta(w)=\diag(\theta_1(w),\ldots,\theta_n(w))$.  On setting
+is diagonal for every $w$.  On setting
 $\widetilde H(w)=S^*H(w)S$, we obtain
 \begin{equation}
-  \widetilde H(w)=G(I-w\Lambda)^{-1}+\Theta(w)G.
+  \widetilde H(w)=2\tau G(I-w\Lambda)^{-1}+\Theta(w)G.
   \label{eq:Htilde-decomposition}
+\end{equation}
+Since $\widetilde H(0)=G$, one has $\Theta(0)=(1-2\tau)I$.  Write
+\[
+  \Theta(w)=(1-2\tau)I+\Psi(w),
+  \qquad
+  \Psi(w)=\diag(\psi_1(w),\ldots,\psi_n(w)),
+\]
+where $\Psi(0)=0$.  Thus
+\begin{equation}
+  \widetilde H(w)=F(w)+\Psi(w)G,
+  \qquad
+  F(w)=(1-2\tau)G+2\tau G(I-w\Lambda)^{-1}.
+  \label{eq:mass-H-decomposition}
 \end{equation}
 Since $\RePart\widetilde H(w)=S^*(\RePart H(w))S$, the real part of
 $\widetilde H(w)$ is positive semidefinite.  Consequently,
@@ -374,9 +390,11 @@ Lemma~\ref{lem:herglotz-kernel} applies to $\widetilde H$.
 
 Define Hermitian matrices $P,Q,Y\in\Mn$ by
 \begin{equation}
-  P_{ij}=\frac{G_{ij}}{1-\overline{\lambda_i}\lambda_j/4},
+  P_{ij}=\frac{G_{ij}}
+  {1-\tau^2\overline{\lambda_i}\lambda_j},
   \qquad
-  Q_{ij}=\frac{G_{ij}}{1-\overline{\lambda_i}\lambda_j/2},
+  Q_{ij}=\frac{G_{ij}}
+  {1-\tau\overline{\lambda_i}\lambda_j},
   \qquad
   Y=Q-P.
   \label{eq:PQY-definition}
@@ -388,7 +406,7 @@ Let $e_1,\ldots,e_n$ be the standard basis of $\C^n$, and fix
 $u=(u_1,\ldots,u_n)^T\in\C^n$.  In the positive-kernel inequality use
 the $n$ points and vectors
 \begin{equation}
-  w_i=\frac{\overline{\lambda_i}}2,\qquad
+  w_i=\tau\overline{\lambda_i},\qquad
   \xi_i=u_i e_i\qquad(1\leq i\leq n),
   \label{eq:eigenvalue-samples}
 \end{equation}
@@ -400,12 +418,11 @@ and add the point $w_0=0$ with vector
 The points $w_i$ may coincide.  Kernel positivity applies to arbitrary
 finite indexed lists of points and vectors, including $w_i=w_0$ when
 $\lambda_i=0$.
-We first verify that this sample cancels the contribution of $\Theta$
-to the sampled kernel quadratic form.  The contribution of the second
-term in~\eqref{eq:Htilde-decomposition} to the kernel quadratic form is
+We first verify that this sample cancels the contribution of $\Psi$
+to the sampled kernel quadratic form.  Its contribution is
 \begin{equation}
   2\RePart\sum_{i=1}^n
-  \overline{u_i}\theta_i(w_i)
+  \overline{u_i}\psi_i(w_i)
   \left(
     (Gv)_i+
     \sum_{j=1}^n
@@ -416,48 +433,41 @@ term in~\eqref{eq:Htilde-decomposition} to the kernel quadratic form is
 Because
 \[
   1-w_i\overline{w_j}
-  =1-\overline{\lambda_i}\lambda_j/4,
+  =1-\tau^2\overline{\lambda_i}\lambda_j,
 \]
 the parenthesis in~\eqref{eq:theta-contribution} is
 $(Gv+Pu)_i$, which vanishes by~%
 \eqref{eq:compensating-vector}.
 
-It remains to calculate the contribution of
-$G(I-w\Lambda)^{-1}$.  For sample indices $r,s\in\{1,\ldots,n\}$,
-compression of the kernel block between $w_r$ and $w_s$ against
-$e_r$ and $e_s$ gives
+It remains to calculate the contribution of $F$.  For
+$x=\overline{\lambda_r}\lambda_s$, the sample--sample entry is
 \begin{equation}
-  \frac{2G_{rs}}
-  {(1-\overline{\lambda_r}\lambda_s/2)
-   (1-\overline{\lambda_r}\lambda_s/4)}
-  =(4Q-2P)_{rs}.
+  2(1-2\tau)P_{rs}
+  +\frac{4\tau G_{rs}}{(1-\tau x)(1-\tau^2x)}.
   \label{eq:sampled-main-block}
 \end{equation}
-After compression by the coordinate vectors $e_i$, the two effective
-sample--origin blocks are $G+Q$, and the origin block is $2G$.  After
-the cancellation of $\Theta$'s contribution, kernel positivity gives,
-for the prescribed vector $v=-G^{-1}Pu$,
+The partial-fraction identity
+\[
+  \frac1{(1-\tau x)(1-\tau^2x)}
+  =\frac1{1-\tau}\left(\frac1{1-\tau x}
+  -\frac{\tau}{1-\tau^2x}\right)
+\]
+shows that the compressed sample--sample block is
+\[
+  M=2P+\frac{4\tau}{1-\tau}Y.
+\]
+The sample--origin block is $R_0=2(1-\tau)G+2\tau Q$, and the
+origin--origin block is $2G$.  After cancellation of the $\Psi$ term,
+kernel positivity on the graph $v=-G^{-1}Pu$ gives
 \begin{equation}
-\begin{aligned}
-0&\leq
-\begin{pmatrix}u\\v\end{pmatrix}^{\!*}
-\begin{pmatrix}
-  4Q-2P&G+Q\\
-  G+Q&2G
-\end{pmatrix}
-\begin{pmatrix}u\\v\end{pmatrix}\\
-&=u^*\bigl((4Q-2P)-(G+Q)G^{-1}P
--PG^{-1}(G+Q)+2PG^{-1}P\bigr)u\\
-&=u^*\bigl(4Y-YG^{-1}P-PG^{-1}Y\bigr)u,
-\end{aligned}
+  0\preceq M-R_0G^{-1}P-PG^{-1}R_0+2PG^{-1}P.
 \label{eq:pre-gramian-inequality}
 \end{equation}
-Here the block quadratic form is used only on the graph
-$v=-G^{-1}Pu$; it is not asserted to be positive for independent
-$u$ and $v$.  The last equality uses $Q=P+Y$.
-Since $u$ was arbitrary,
+Using $Q=P+Y$ reduces this to
 \begin{equation}
-  4Y-YG^{-1}P-PG^{-1}Y\succeq0.
+  \frac{4\tau}{1-\tau}Y
+  -2\tau(YG^{-1}P+PG^{-1}Y)
+  +2(1-2\tau)(PG^{-1}P-P)\succeq0.
   \label{eq:Y-inequality}
 \end{equation}
 
@@ -475,10 +485,10 @@ Expanding the scalar kernels in~\eqref{eq:PQY-definition} into
 geometric series gives
 \begin{equation}
   \widehat P=\sum_{k=0}^{\infty}
-  4^{-k}\widetilde T^{*k}\widetilde T^k,
+  \tau^{2k}\widetilde T^{*k}\widetilde T^k,
   \qquad
   \widehat Q=\sum_{k=0}^{\infty}
-  2^{-k}\widetilde T^{*k}\widetilde T^k.
+  \tau^k\widetilde T^{*k}\widetilde T^k.
   \label{eq:two-gramians}
 \end{equation}
 Indeed, $\widetilde T^k=G^{1/2}\Lambda^k G^{-1/2}$, so the sequence
@@ -486,68 +496,82 @@ $(\widetilde T^k)$ is bounded even when some
 $\lvert\lambda_j\rvert=1$; the
 geometric weights give norm convergence.  It follows that
 \begin{equation}
+  \widehat P\succeq I,
+  \qquad
   \widehat Y=
-  \sum_{k=1}^{\infty}(2^{-k}-4^{-k})
-  \widetilde T^{*k}\widetilde T^k\succeq0.
+  \sum_{k=1}^{\infty}(\tau^k-\tau^{2k})
+  \widetilde T^{*k}\widetilde T^k
+  \succeq\frac{1-\tau}{\tau}(\widehat P-I).
   \label{eq:Yhat-positive}
 \end{equation}
-Taking the congruence of~\eqref{eq:Y-inequality} by $G^{-1/2}$ yields
+The last inequality follows termwise.  Taking the congruence
+of~\eqref{eq:Y-inequality} by $G^{-1/2}$ and dividing by $2\tau$ yields
 \begin{equation}
-  4\widehat Y-\widehat Y\widehat P
-  -\widehat P\widehat Y\succeq0.
+  \frac{2}{1-\tau}\widehat Y
+  -\widehat Y\widehat P-\widehat P\widehat Y
+  +\frac{1-2\tau}{\tau}(\widehat P^2-\widehat P)\succeq0.
   \label{eq:Yhat-inequality}
 \end{equation}
 
-Let $e$ be an eigenvector of the Hermitian matrix $\widehat P$, say
-$\widehat Pe=\alpha e$.  If $\alpha>2$, then~%
-\eqref{eq:Yhat-inequality} gives
+Let $e$ be a unit eigenvector of $\widehat P$, say
+$\widehat Pe=\alpha e$, and put $y=e^*\widehat Ye$.  Then
+$\alpha\geq1$ and~\eqref{eq:Yhat-inequality} gives
 \begin{equation}
-  0\leq2(2-\alpha)e^*\widehat Ye.
+  0\leq2\left(\frac1{1-\tau}-\alpha\right)y
+  +\frac{1-2\tau}{\tau}\alpha(\alpha-1).
   \label{eq:eigenvector-evaluation}
 \end{equation}
-Since $\widehat Y\succeq0$ and $\alpha>2$,~%
-\eqref{eq:eigenvector-evaluation} forces $e^*\widehat Ye=0$.  The
-$k=1$ term in~\eqref{eq:Yhat-positive} is
-$\widetilde T^*\widetilde T/4$, so $\widetilde Te=0$.  The first
-series in~\eqref{eq:two-gramians} gives $\widehat Pe=e$, contradicting
-$\widehat Pe=\alpha e$ with $\alpha>2$.  The first series in~%
-\eqref{eq:two-gramians} also begins with $I$, and hence
+If $\alpha\leq(1-\tau)^{-1}$, then $\alpha\leq2$.  Otherwise the
+coefficient of $y$ is negative, while
+$y\geq(1-\tau)(\alpha-1)/\tau$ by~\eqref{eq:Yhat-positive}.  Because the
+coefficient is negative, this lower bound for $y$ gives an upper bound
+for the right side of~\eqref{eq:eigenvector-evaluation}, namely
+\[
+  0\leq\frac{\alpha-1}{\tau}(2-\alpha).
+\]
+Thus $\alpha\leq2$ in either case.  Therefore
 \begin{equation}
   I\preceq\widehat P\preceq2I.
   \label{eq:Phat-bounds}
 \end{equation}
 The $k=1$ term of the same series now gives
 \[
-  \frac14\widetilde T^*\widetilde T
+  \tau^2\widetilde T^*\widetilde T
   \preceq\widehat P-I\preceq I.
 \]
-Thus $\lVert\widetilde T\rVert\leq2$.  The polar decomposition
+Thus $\lVert\widetilde T\rVert\leq\tau^{-1}=\mathfrak m$.  The polar
+decomposition
 $S=UG^{1/2}$ gives
 \[
   T=U\widetilde TU^*,
 \]
-where $U$ is unitary.  Therefore $\lVert T\rVert\leq2$.
+where $U$ is unitary.  Therefore
+$\lVert T\rVert\leq\mathfrak m$.
 \end{proof}
 
 \begin{remark}
 \label{rem:completion-novelty}
-The factor $1/2$ in the sampling points~%
-\eqref{eq:eigenvalue-samples} simultaneously produces the weights
-$1/2$ and $1/4$ in~\eqref{eq:two-gramians}.  Their positive difference
-bounds $\widehat P$, and the first nonconstant term of $\widehat P$
-then gives the sharp constant.  The origin sample cancels the
-correction's contribution by an exact algebraic identity.  Distinct
-auxiliary eigenvalues identify
-$\alg(B^*)$ with the diagonal algebra in the chosen basis, while the
-diagonal entries of $T$ may repeat.
+The sampling scale $\tau=\mathfrak m^{-1}$ simultaneously produces the
+weights $\tau$ and $\tau^2$ in~\eqref{eq:two-gramians}.  Their ordered
+difference bounds $\widehat P$, and the first nonconstant term then
+gives the coefficient $\mathfrak m$.  The origin sample cancels the
+nonconstant diagonal correction exactly.  When $\mathfrak m=2$, the
+last term of~\eqref{eq:Yhat-inequality} vanishes and the theorem
+reduces to the sharp completion used for numerical ranges.  For
+$\mathfrak m>2$, the nonzero constant part
+$\Theta(0)=(1-2/\mathfrak m)I$ produces that additional positive
+Gramian term; omitting it would invalidate the parameterized proof.
+Distinct auxiliary eigenvalues identify $\alg(B^*)$ with the diagonal
+algebra in the chosen basis, while the diagonal entries of $T$ may
+repeat.
 \end{remark}
 
 \section{The double-layer completion}
 \label{sec:double-layer}
 
-We now construct from the numerical range the function required by
-Theorem~\ref{thm:completion}.  The measure and companion transform used
-here are classical~%
+We now construct from the numerical range the mass-two function
+required by Theorem~\ref{thm:completion}.  The measure and companion
+transform used here are classical~%
 \cite{DelyonDelyon1999,Crouzeix2007,CrouzeixPalencia2017}.  The full
 Cayley family yields the algebraic
 constraint~\eqref{eq:completion-algebra-condition} relative to the
@@ -634,14 +658,16 @@ Taking adjoints gives the same identity for the second layer.  Hence
   \int_0^{2\pi}D_B(t)\,dt=2I.
   \label{eq:double-layer-mass}
 \end{equation}
-For $\varphi\in C([0,2\pi])$, define
+Thus the raw positive layer has mass $2I$.  For
+$\varphi\in C([0,2\pi])$, define
 \begin{equation}
   \Phi_\gamma(\varphi)=\frac12\int_0^{2\pi}
   \varphi(t)D_B(t)\,dt.
   \label{eq:Phi-definition}
 \end{equation}
-The positivity of $D_B$ and~\eqref{eq:double-layer-mass} make $\Phi_\gamma$
-positive and unital, hence $*$-preserving.  It is bounded because
+The factor $1/2$ normalizes this mass.  The positivity of $D_B$
+and~\eqref{eq:double-layer-mass} make $\Phi_\gamma$ positive and
+unital, hence $*$-preserving.  It is bounded because
 \[
   \lVert\Phi_\gamma(\varphi)\rVert
   \leq\frac12\lVert\varphi\rVert_\infty
@@ -767,7 +793,7 @@ Then
 \]
 Since $\sigma(B)\subset\Omega$, the bound on $f$ gives
 $\lvert f(\beta_i)\rvert\leq1$ for every $i$.
-Apply Theorem~\ref{thm:completion} to these simultaneous
+Apply Theorem~\ref{thm:completion} with $\mathfrak m=2$ to these simultaneous
 diagonalizations and to the function $H$ constructed in
 Proposition~\ref{prop:cayley-completion}.  The values $f(\beta_i)$ may
 repeat.
@@ -1003,91 +1029,314 @@ for the role of spectral sets in those settings.
 \section{Discussion and further directions}
 \label{sec:outlook}
 
-Theorem~\ref{thm:main} proves the scalar-valued Crouzeix
-conjecture.  The most immediate strengthening is the uniform
-matrix-polynomial question: for every
-$m\geq1$ and every matrix polynomial
+The proof separates an algebraic completion engine from its geometric
+input.  This makes it possible to say precisely when another scalar
+spectral-constant problem is ready for the same method.
+
+\subsection{A reusable scalar protocol}
+
+Let $\mathcal A$ be a uniform algebra on a compact space $K$, let
+$\theta\colon\mathcal A\to\Mn$ be a continuous unital homomorphism,
+and suppose that there is a simple-spectrum matrix $B$ such that
+$\theta(\mathcal A)\subset\alg(B)$.  The following criterion is the
+functional-calculus form of Theorem~\ref{thm:completion}.
+
+\begin{proposition}[Positive-layer transfer]
+\label{prop:positive-layer-transfer}
+Suppose $2\leq\mathfrak m<\infty$ and that a bounded complex-linear map
+$\mathcal P\colon\mathcal A\to\Mn$ satisfies
+\begin{equation}
+  \mathcal P(1)=\mathfrak m I,
+  \qquad
+  \RePart h\geq0\Longrightarrow\RePart\mathcal P(h)\succeq0,
+  \qquad
+  \mathcal P(h)-\theta(h)\in\alg(B^*)
+  \label{eq:discussion-positive-layer}
+\end{equation}
+for every $h\in\mathcal A$.  Then
+$\lVert\theta\rVert\leq\mathfrak m$.
+\end{proposition}
+
+\begin{proof}
+Fix $f\in\mathcal A$ with $\lVert f\rVert_K\leq1$, put
+$T=\theta(f)$, and, for $w\in\D$, define
+\[
+  c_w=(1+wf)(1-wf)^{-1},
+  \qquad H(w)=\mathfrak m^{-1}\mathcal P(c_w).
+\]
+The diagonal entries of $T$ are contractive character values, while
+$c_w$ has nonnegative real part.  Hence $H$ is analytic,
+$H(0)=I$, and $\RePart H(w)\succeq0$.  Since
+\[
+  \theta(c_w)=(I+wT)(I-wT)^{-1}
+  =2(I-wT)^{-1}-I,
+\]
+condition~\eqref{eq:discussion-positive-layer} gives
+\[
+  H(w)-\frac2{\mathfrak m}(I-wT)^{-1}
+  =\frac1{\mathfrak m}\bigl(\mathcal P(c_w)-\theta(c_w)-I\bigr)
+  \in\alg(B^*).
+\]
+Theorem~\ref{thm:completion} yields
+$\lVert\theta(f)\rVert\leq\mathfrak m$; take the supremum over the
+unit ball of $\mathcal A$.
+\end{proof}
+
+Thus a finite-dimensional scalar problem is ready once four items are
+available: a positive layer, its total mass, an adjoint-algebra defect,
+and an approximation by simultaneous simple-spectrum models.  The
+upper bound produced by the method is the layer mass, not the number
+of boundary components by itself.
+Proposition~\ref{prop:positive-layer-transfer} also resolves
+the finite-dimensional semisimple-range case of the abstract
+Crouzeix problem in~\cite[Conjecture~1.2]{ClouatreOstermannRansford2023}:
+if $\alpha$ is the unital antilinear contraction in that conjecture and
+\[
+  \theta_\alpha(h)=\frac12\bigl(
+  \theta(h)+\theta(\alpha(h))^*\bigr)
+\]
+is contractive, then $\mathcal P=2\theta_\alpha$ has mass two.  Indeed,
+each map $h\mapsto x^*\theta_\alpha(h)x$, for $\lVert x\rVert=1$, is a
+unital functional of norm one, hence extends to a state on $C(K)$ and
+preserves nonnegative real parts.  Moreover,
+$\mathcal P(h)-\theta(h)=\theta(\alpha(h))^*$.  Simultaneous
+diagonalization of the semisimple range, followed by the choice of an
+auxiliary simple diagonal matrix, verifies the remaining hypothesis.
+
+\subsection{Formal scalar consequences}
+
+Several consequences require no new boundary layer.  A faithful
+universal representation of a unital $C^*$-algebra $\mathfrak C$
+transfers Corollary~\ref{cor:operator-bound} to its algebraic numerical
+range $V_{\mathfrak C}(a)$:
+\begin{equation}
+  \lVert f(a)\rVert\leq
+  2\max_{z\in V_{\mathfrak C}(a)}\lvert f(z)\rvert.
+  \label{eq:Cstar-discussion}
+\end{equation}
+Here $f$ may be any rational function with poles off
+$V_{\mathfrak C}(a)$.  Applying this to the Calkin algebra gives
+\[
+  \lVert f([A])\rVert\leq
+  2\max_{z\in W_{\mathrm e}(A)}\lvert f(z)\rvert
+\]
+for every rational $f$ with poles off $W_{\mathrm e}(A)$, where $[A]$
+is the Calkin coset.  If $f$ is also pole-free on $\sigma(A)$, the
+left side equals $\lVert f(A)\rVert_{\mathrm e}$.  For separable
+infinite-dimensional Hilbert spaces,
+\cite[Theorem~5.2]{BlazhkoEtAl2025} identifies the universal Calkin
+constant with the universal Hilbert-space constant, and hence yields
+the same conclusion once Corollary~\ref{cor:operator-bound} is used.
+
+For a closed densely defined operator satisfying
+$\sigma(A)\subset W(A)$ and
+$\overline{W(A)}\subset\Omega$, where
+$\Omega\neq\C$ is an open unbounded convex domain of aperture
+$2\alpha$, $0\leq\alpha\leq\pi/2$, the Yosida approximation in~%
+\cite[Section~3]{CrouzeixUnbounded2025} combines with
+Corollary~\ref{cor:operator-bound} to give, for every rational $f$
+bounded on
+$\Omega$ and with poles off $\sigma(A)$,
+\begin{equation}
+ \lVert f(A)\rVert\leq
+ \min\left\{2,
+ 1-\frac{\alpha}{\pi}
+ +\sqrt{2-\frac{4\alpha}{\pi}+\frac{\alpha^2}{\pi^2}}
+ \right\}
+ \sup_{z\in\Omega}\lvert f(z)\rvert.
+ \label{eq:unbounded-discussion}
+\end{equation}
+The value $2$ improves the aperture estimate exactly when
+$0\leq\alpha<\pi/6$.
+
+Operator-radius constants transfer formally as well.  The conversion
+theorem of Badea, Crouzeix, and Klaja gives, from a sharp scalar norm
+constant two,
+\begin{equation}
+  H_\rho(2)=
+  \frac{5+\sqrt{25-16\rho(2-\rho)}}{4\rho},
+  \qquad \rho\geq1;
+  \qquad H_2(2)=\frac54.
+  \label{eq:operator-radius-discussion}
+\end{equation}
+See~\cite[Theorems~3.2 and~5.1]{BadeaCrouzeixKlaja2018}.
+
+\subsection{New mass-two layers and short geometric transfers}
+
+The quantum annulus is the cleanest genuinely new positive-layer
+test.  Fix $R>1$ and orient the two circles of
+$\mathbb A_R=\{R^{-1}<\lvert z\rvert<R\}$ positively.  If $B$ is
+invertible with $\lVert B\rVert,\lVert B^{-1}\rVert<R$, subtract from
+the annular double-layer density
+\[
+  \mu_B(z)=\frac1{2\pi\iu}\left[
+  z'(s)(zI-B)^{-1}
+  -\overline{z'(s)}(\overline zI-B^*)^{-1}\right]
+\]
+the scalar winding density
+\begin{equation}
+  \mathcal D_B^{\rm ann}(z)
+  =\mu_B(z)-\frac1{2\pi\iu}\frac{z'(s)}zI.
+  \label{eq:annular-shifted-layer}
+\end{equation}
+On the outer circle and on the clockwise inner circle, with
+$r=R^{-1}$, direct multiplication gives respectively
+\begin{align}
+ 2\pi R\mathcal D_B^{\rm ann}(z)
+ &= (zI-B)^{-1}(R^2I-BB^*)
+    (\overline zI-B^*)^{-1}\succeq0,\nonumber\\
+ 2\pi r\mathcal D_B^{\rm ann}(z)
+ &= (zI-B)^{-1}(BB^*-r^2I)
+    (\overline zI-B^*)^{-1}\succeq0.
+ \label{eq:annular-readiness-factorizations}
+\end{align}
+The scalar winding numbers cancel, so this layer has mass $2I$; the
+annular Cauchy identity leaves an adjoint Cauchy companion in
+$\alg(B^*)$.  If $B$ has simple spectrum, all hypotheses of
+Proposition~\ref{prop:positive-layer-transfer} are therefore present.
+Arbitrary matrices in the strict class follow by simple-spectrum
+approximation, and radius enlargement gives the non-strict boundary
+case.  This yields the finite-dimensional upper constant two.
+Tsikalas's bilateral weighted
+shift gives the matching lower bound for the universal
+all-Hilbert-space constant~\cite{Tsikalas2022}; it does not by itself
+prove finite-dimensional sharpness.  For context, the previous
+all-Hilbert-space upper bound was $1+\sqrt2$
+\cite{CrouzeixGreenbaum2019}, and a more recent matrix bound is
+$1+\sqrt{1+2/(R^2+1)}$~\cite{CrouzeixAnnuli2025}.  The boundary
+dilation of McCullough and Pascoe, together with residual finite
+dimensionality of the relevant free product, can be combined in a
+companion argument to pass from matrices to arbitrary Hilbert spaces
+\cite[Theorem~1.1 and Proposition~3.2]{McCulloughPascoe2023},
+\cite[Theorems~2.4 and~3.2]{ExelLoring1992}.
+
+The centered annular classes of Jury and Tsikalas provide a second
+ready input.  Their contractive double-layer calculus has mass two
+when $c=0$ and mass $2+c$ in general; compare their
+Definition~3.6 and Theorem~3.12 in~\cite{JuryTsikalas2024}.
+Theorem~3.12 assumes that the spectrum lies in the open annulus; the
+closed-boundary class requires radius enlargement followed by a stable
+limit.  Subject to that reduction, at $c=0$ the mass-two theorem
+supplies the finite-dimensional upper constant two, improving their
+general $1+\sqrt2$ estimate
+\cite[Theorem~5.3]{JuryTsikalas2024} and extending their special
+$2\times2$ constant-two result
+\cite[Theorem~1.3]{JuryTsikalas2024}.  For $c>0$, in finite dimensions,
+Theorem~\ref{thm:completion} supplies the upper coefficient $2+c$,
+without a sharpness assertion.
+
+Other problems invite a short transfer from the numerical-range
+theorem rather than a new layer.  For $A\in\Mn$ and
+$0<\lvert q\rvert\leq1$, put
+\[
+  W_q(A)=\{\langle Ax,y\rangle:
+  \lVert x\rVert=\lVert y\rVert=1,\ \langle x,y\rangle=q\},
+  \qquad \Omega_q=q^{-1}W_q(A).
+\]
+Tsing proves the convexity of $W_q(A)$~\cite{Tsing1984}, while
+O'Loughlin and Rani propose in
+\cite[Conjecture~4.2]{OLoughlinRani2026} the estimate
+$\lVert p(A)\rVert\leq C_q
+\sup_{z\in\Omega_q}\lvert p(z)\rvert$, with the candidate
+\begin{equation}
+  C_q=\max\left\{1,
+  \frac{2\lvert q\rvert}{1+\sqrt{1-\lvert q\rvert^2}}\right\}.
+  \label{eq:q-candidate-discussion}
+\end{equation}
+Deriving this value from Theorem~\ref{thm:main} requires a separate
+rank-one-similarity and scalar-extraction argument; that step is not
+contained in the two cited sources.
+Likewise, every ellipse containing $W(A)$ has upper constant two
+immediately;
+fixed-ellipse sharpness and the Douglas--Paulsen norm require the
+structured ellipse and annular models in
+\cite{AglerLykovaYoung2024,AglerLykovaYoung2025}.
+The two-disk setup in~\cite[Theorem~10]{CrouzeixGreenbaum2019}
+assumes $\lVert A-w_1I\rVert\leq R_1$ and
+$\lVert(A-w_2I)^{-1}\rVert\leq R_2$, and distinguishes nested,
+crossing, and tangent boundary circles.
+For this setup the crossing case admits a M\"obius reduction to a
+convex disk--half-plane geometry, while a genuine nested annular case
+reduces to the quantum annulus.
+
+\subsection{Higher-mass scalar problems}
+
+The mass theorem also identifies several finite-dimensional problems
+whose algebraic part is complete and whose remaining work is boundary
+factorization and approximation.
+\begin{enumerate}
+  \item For a disk with $N$ disjoint circular holes, subtracting one
+  unit of mass on the outer circle and adding one on each inner circle
+  leaves a positive layer of mass $N+1$.  The resulting target bound is
+  $N+1$.  The underlying class originates in
+  \cite{BadeaBeckermannCrouzeix2009}.  A recent geometry-independent
+  bound is
+  $(N+1)/2+\sqrt{(N+1)^2/4+N}$, and the question whether $N+1$ is a
+  universal lower bound appears in
+  \cite[Theorem~2.3 and Question~2.5]{TsikalasMultiplyConnected2026}.
+  Sharpness remains open for $N\geq2$.
+  \item For the numerical annulus
+  $w(A)\leq R$, $w(A^{-1})\leq R$, the outer convex layer has mass two
+  and the shifted inner layer adds two, producing the target upper
+  bound four.  The universal all-Hilbert-space lower bound is two by
+  inclusion of the quantum-annulus class~\cite{Tsikalas2022}, while
+  the recent matrix estimate is
+  $2+\sqrt{4+2/(R^2+1)}$~\cite{CrouzeixAnnuli2025}; the sharp
+  finite-dimensional constant remains open.
+  \item For $\mathrm{DL}\mathbb A_R(c)$ with $c>0$, the natural mass is
+  $2+c$, as above.  Its optimality is not implied by the completion
+  theorem.
+\end{enumerate}
+Polyannuli and intersections of three or more arbitrary spherical
+disks are not automatic consequences: they introduce several kernels
+or fail to reduce to one annulus or one convex numerical-range
+problem.  Nor do the finite-dimensional higher-mass arguments pass to
+arbitrary Hilbert spaces without a separate stable reduction.
+
+\subsection{The matrix-valued obstruction and extremizers}
+
+The principal strengthening still outside the method is the uniform
+matrix-polynomial question: for every $m\geq1$ and every
 $\mathcal F=[f_{ij}]\in\mathbb M_m(\C[z])$, does one have
 \begin{equation}
   \lVert\mathcal F(A)\rVert
   \leq2\max_{z\in W(A)}\lVert\mathcal F(z)\rVert,
-  \qquad \mathcal F(A)=[f_{ij}(A)].
+  \qquad \mathcal F(A)=[f_{ij}(A)]?
   \label{eq:uniform-matrix-polynomial-extension}
 \end{equation}
-Here $\lVert\mathcal F(A)\rVert$ is the operator norm on $(\C^n)^m$,
-whereas $\lVert\mathcal F(z)\rVert$ is the operator norm on $\C^m$.
-The case $m=1$ is precisely the scalar theorem proved above;
-uniformity in $m$ is an additional operator-algebraic requirement.  The
-foundational disk similarity estimate is due to Okubo and Ando~%
-\cite{OkuboAndo1975}; its modern complete-spectral-set formulation and
-relation to numerical radius are discussed in~%
-\cite{DavidsonPaulsenWoerdeman2018}.  Uniform matrix-level spectral-set
-bounds are studied in~\cite{HartzMcCarthy2026}; the constant
-$1+\sqrt2$ at every matrix level follows from~%
-\cite{CrouzeixPalencia2017}, while sharp estimates for
-$\rho$-contractions with $1\leq\rho\leq2$ are developed in~%
-\cite{SchwenningerDeVriesRho2025}.  The extension is
-known with constant $2$ for weighted shift matrices~%
-\cite{CrouzeixGreenbaum2025}.  For block-valued inputs, the coefficients
-in the completion may occupy a larger operator algebra, so the
-cancellation in~\eqref{eq:theta-contribution} would require a genuinely
-operator-algebraic formulation.
+The case $m=1$ is Theorem~\ref{thm:main}; uniformity in $m$ is an
+additional operator-algebraic requirement.  At matrix level the
+correction occupies $\alg(B^*)\otimes\mathbb M_m$, so its diagonal
+entries are operator blocks and the scalar cancellation in
+\eqref{eq:theta-contribution} no longer yields the Gramian inequality.
+The foundational disk similarity estimate is due to Okubo and Ando~%
+\cite{OkuboAndo1975}; see also
+\cite{DavidsonPaulsenWoerdeman2018,HartzMcCarthy2026}.  The complete
+$1+\sqrt2$ bound follows from~\cite{CrouzeixPalencia2017}, and complete
+constant two is known for the weighted-shift family
+\cite{CrouzeixGreenbaum2025}.  Thus no complete constant-two,
+similarity, or normal-dilation conclusion is asserted here.
 
-The positive-real completion principle is independent of numerical
-ranges: it starts with a Carath\'eodory function whose resolvent defect
-lies in the adjoint algebra of an auxiliary simple-spectrum matrix
-sharing an eigenbasis with the matrix in the resolvent.  A direct
-infinite-dimensional extension of Theorem~\ref{thm:completion},
-based for example on spectral measures or Riesz bases, could reveal
-equality cases or uniform matrix-level functional-calculus structure.
-The main challenge is a stable functional-calculus formulation of the
-auxiliary-basis correction, valid beyond finite diagonal spectral
-models.
-Related questions for unbounded numerical ranges are studied in~%
-\cite{CrouzeixUnbounded2025}, and related abstract spectral-constant
-problems in~\cite{SchwenningerDeVries2024,BlazhkoEtAl2025}.
-
-Double-layer methods beyond numerical ranges were developed in~%
-\cite{CrouzeixGreenbaum2019}, while configuration-constant refinements
-were introduced in~\cite{MalmanEtAl2025}; see also~%
-\cite{SchwenningerDeVries2025} for a comparison of double-layer
-approaches.
-Annular double-layer kernels are studied in~\cite{JuryTsikalas2024},
-while~\cite{AglerLykovaYoung2025} develops a complementary annular
-realization and norm theory; elliptic domains admit structured dilation
-models~\cite{AglerLykovaYoung2024}.  Whenever a companion transform
-lands in a controlled adjoint algebra, the kernel-sampling argument may
-replace a triangle-inequality estimate and thereby offer a route to
-sharp constants for other geometric spectral sets.
-
-With the notation of the proof of Theorem~\ref{thm:completion},
-if $\lVert\widetilde T\rVert=2$ and $e\in\C^n$ satisfies
-$\lVert e\rVert_2=1$ and $\lVert\widetilde Te\rVert_2=2$, then
-\eqref{eq:Phat-bounds} and the first series in~\eqref{eq:two-gramians}
-imply
+Finally, specialize the proof of Theorem~\ref{thm:completion} to mass
+two.  If $\lVert\widetilde T\rVert=2$ and a unit vector $e$ satisfies
+$\lVert\widetilde Te\rVert_2=2$, then
+\eqref{eq:Phat-bounds} and~\eqref{eq:two-gramians} imply
 \[
   \widehat Pe=2e,
   \qquad \widetilde T^2e=0,
   \qquad \widehat P\widetilde Te=\widetilde Te.
 \]
-Analyzing these vector saturation conditions may classify extremal
-pairs $(A,p)$ and quantify stability near the nilpotent example~%
-\eqref{eq:sharp-example}.  Such a
-classification must allow the nonuniqueness phenomena found in~%
-\cite{Li2020}.
-
-Finally, O'Loughlin and Rani extend the Crouzeix--Palencia framework to
-scaled $q$-numerical ranges, $0<\lvert q\rvert\leq1$, and propose associated
-spectral-set problems~\cite{OLoughlinRani2026}.  These provide a natural
-testing ground for the conjectured sharp $q$-dependent refinement of the
-constant-$2$ bound.
+These saturation conditions may classify extremal pairs and quantify
+stability near~\eqref{eq:sharp-example}; any classification must allow
+the nonuniqueness phenomena in~\cite{Li2020}.
 
 \section*{AI-assistance disclosure}
 
 OpenAI ChatGPT contributed the idea of sampling the matrix Herglotz
-kernel at half the conjugate eigenvalues and adding the origin sample
-that cancels the adjoint-algebra correction's contribution; this
-appears in the proof of Theorem~\ref{thm:completion}, especially~%
+kernel at scaled conjugate eigenvalues, with scale $1/2$ in the
+mass-two application, and adding the origin sample that cancels the
+nonconstant adjoint-algebra correction's contribution.  This appears
+in the proof of Theorem~\ref{thm:completion}, especially~%
 \eqref{eq:eigenvalue-samples}--\eqref{eq:theta-contribution}.  It also
 assisted with exposition, bibliography, and typesetting.  The human
 author assumes full responsibility for the correctness of all

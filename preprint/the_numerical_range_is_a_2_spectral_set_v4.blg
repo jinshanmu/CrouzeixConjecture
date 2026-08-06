@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: the_numerical_range_is_a_2_spectral_set_v4.aux
 The style file: preprints-template/preprints_template_latex/Definitions/mdpi.bst
 Database file #1: the_numerical_range_is_a_2_spectral_set.bib
-You've used 37 entries,
+You've used 43 entries,
             2887 wiz_defined-function locations,
-            837 strings with 10856 characters,
-and the built_in function-call counts, 15530 in all, are:
-= -- 1491
-> -- 712
-< -- 26
-+ -- 315
-- -- 185
-* -- 1383
-:= -- 2313
-add.period$ -- 143
-call.type$ -- 37
-change.case$ -- 37
-chr.to.int$ -- 37
-cite$ -- 37
-duplicate$ -- 673
-empty$ -- 1295
-format.name$ -- 288
-if$ -- 3262
+            876 strings with 11719 characters,
+and the built_in function-call counts, 17329 in all, are:
+= -- 1660
+> -- 773
+< -- 28
++ -- 346
+- -- 202
+* -- 1536
+:= -- 2603
+add.period$ -- 165
+call.type$ -- 43
+change.case$ -- 43
+chr.to.int$ -- 43
+cite$ -- 43
+duplicate$ -- 756
+empty$ -- 1458
+format.name$ -- 312
+if$ -- 3616
 int.to.chr$ -- 1
-int.to.str$ -- 37
-missing$ -- 32
-newline$ -- 219
-num.names$ -- 113
-pop$ -- 267
+int.to.str$ -- 43
+missing$ -- 36
+newline$ -- 254
+num.names$ -- 129
+pop$ -- 295
 preamble$ -- 0
-purify$ -- 37
+purify$ -- 43
 quote$ -- 0
-skip$ -- 399
+skip$ -- 438
 stack$ -- 0
-substring$ -- 1136
-swap$ -- 146
-text.length$ -- 3
+substring$ -- 1264
+swap$ -- 155
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 259
+type$ -- 301
 warning$ -- 0
-while$ -- 135
+while$ -- 152
 width$ -- 0
-write$ -- 512
+write$ -- 590
