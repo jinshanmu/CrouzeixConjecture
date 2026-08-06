@@ -177,35 +177,25 @@ Chen, T.; Greenbaum, A.; Trogdon, T.
 \newblock {\em Math. Comp.} {\bf 2025}, {\em 94},~241--261.
 \newblock {\url{https://doi.org/10.1090/mcom/3963}}.
 
-\bibitem[Blazhko et~al.(2025)Blazhko, Homza, Schwenninger, de~Vries, and
-  Wojtylak]{BlazhkoEtAl2025}
-Blazhko, H.; Homza, D.; Schwenninger, F.L.; de~Vries, J.; Wojtylak, M.
-\newblock The algebraic numerical range as a spectral set in {Banach} algebras.
-\newblock {\em Canad. J. Math.} {\bf 2025}, pp. 1--25.
-\newblock {\url{https://doi.org/10.4153/S0008414X25000124}}.
+\bibitem[Schwenninger and de~Vries(2024)]{SchwenningerDeVries2024}
+Schwenninger, F.L.; de~Vries, J.
+\newblock On abstract spectral constants. In {\em Operator and Matrix Theory,
+  Function Spaces, and Applications}; Ptak, M.; Woerdeman, H.J.; Wojtylak, M.,
+  Eds.; Birkh{\"a}user/Springer: Cham,  2024; Vol. 295, {\em Operator Theory:
+  Advances and Applications}, pp. 335--350.
+\newblock {\url{https://doi.org/10.1007/978-3-031-50613-0_15}}.
 
-\bibitem[Crouzeix(2025)]{CrouzeixUnbounded2025}
-Crouzeix, M.
-\newblock Numerical ranges and spectral sets: the unbounded case.
-\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2509.19792}}.
+\bibitem[Okubo and Ando(1975)]{OkuboAndo1975}
+Okubo, K.; Ando, T.
+\newblock Constants related to operators of class {$C_\rho$}.
+\newblock {\em Manuscripta Math.} {\bf 1975}, {\em 16},~385--394.
+\newblock {\url{https://doi.org/10.1007/BF01323467}}.
 
-\bibitem[Badea et~al.(2018)Badea, Crouzeix, and Klaja]{BadeaCrouzeixKlaja2018}
-Badea, C.; Crouzeix, M.; Klaja, H.
-\newblock Spectral sets and operator radii.
-\newblock {\em Bull. Lond. Math. Soc.} {\bf 2018}, {\em 50},~986--996.
-\newblock {\url{https://doi.org/10.1112/blms.12191}}.
-
-\bibitem[Tsikalas(2022)]{Tsikalas2022}
-Tsikalas, G.
-\newblock A note on a spectral constant associated with an annulus.
-\newblock {\em Oper. Matrices} {\bf 2022}, {\em 16},~95--99.
-\newblock {\url{https://doi.org/10.7153/oam-2022-16-09}}.
-
-\bibitem[Crouzeix(2025)]{CrouzeixAnnuli2025}
-Crouzeix, M.
-\newblock Spectral estimates in the quantum annulus and in the numerical
-  annulus.
-\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2512.11813}}.
+\bibitem[Schwenninger and de~Vries(2025)]{SchwenningerDeVriesRho2025}
+Schwenninger, F.L.; de~Vries, J.
+\newblock A sharp bound for the functional calculus of {$\rho$}-contractions.
+\newblock {\em Proc. Amer. Math. Soc.} {\bf 2025}, {\em 153},~4759--4768.
+\newblock {\url{https://doi.org/10.1090/proc/17346}}.
 
 \bibitem[McCullough and Pascoe(2023)]{McCulloughPascoe2023}
 McCullough, S.; Pascoe, J.E.
@@ -218,6 +208,12 @@ Exel, R.; Loring, T.A.
 \newblock Finite-dimensional representations of free product {$C^*$}-algebras.
 \newblock {\em Internat. J. Math.} {\bf 1992}, {\em 3},~469--476.
 \newblock {\url{https://doi.org/10.1142/S0129167X92000217}}.
+
+\bibitem[Tsikalas(2022)]{Tsikalas2022}
+Tsikalas, G.
+\newblock A note on a spectral constant associated with an annulus.
+\newblock {\em Oper. Matrices} {\bf 2022}, {\em 16},~95--99.
+\newblock {\url{https://doi.org/10.7153/oam-2022-16-09}}.
 
 \bibitem[Jury and Tsikalas(2024)]{JuryTsikalas2024}
 Jury, M.T.; Tsikalas, G.
@@ -258,16 +254,34 @@ Badea, C.; Beckermann, B.; Crouzeix, M.
 \newblock {\em Commun. Pure Appl. Anal.} {\bf 2009}, {\em 8},~37--54.
 \newblock {\url{https://doi.org/10.3934/cpaa.2009.8.37}}.
 
+\bibitem[Blazhko et~al.(2025)Blazhko, Homza, Schwenninger, de~Vries, and
+  Wojtylak]{BlazhkoEtAl2025}
+Blazhko, H.; Homza, D.; Schwenninger, F.L.; de~Vries, J.; Wojtylak, M.
+\newblock The algebraic numerical range as a spectral set in {Banach} algebras.
+\newblock {\em Canad. J. Math.} {\bf 2025}, pp. 1--25.
+\newblock {\url{https://doi.org/10.4153/S0008414X25000124}}.
+
+\bibitem[Badea et~al.(2018)Badea, Crouzeix, and Klaja]{BadeaCrouzeixKlaja2018}
+Badea, C.; Crouzeix, M.; Klaja, H.
+\newblock Spectral sets and operator radii.
+\newblock {\em Bull. Lond. Math. Soc.} {\bf 2018}, {\em 50},~986--996.
+\newblock {\url{https://doi.org/10.1112/blms.12191}}.
+
 \bibitem[Tsikalas(2026)]{TsikalasMultiplyConnected2026}
 Tsikalas, G.
 \newblock Spectral estimates over multiply connected domains.
 \newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2607.10107}}.
 
-\bibitem[Okubo and Ando(1975)]{OkuboAndo1975}
-Okubo, K.; Ando, T.
-\newblock Constants related to operators of class {$C_\rho$}.
-\newblock {\em Manuscripta Math.} {\bf 1975}, {\em 16},~385--394.
-\newblock {\url{https://doi.org/10.1007/BF01323467}}.
+\bibitem[Crouzeix(2025{\natexlab{a}})]{CrouzeixAnnuli2025}
+Crouzeix, M.
+\newblock Spectral estimates in the quantum annulus and in the numerical
+  annulus.
+\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2512.11813}}.
+
+\bibitem[Crouzeix(2025{\natexlab{b}})]{CrouzeixUnbounded2025}
+Crouzeix, M.
+\newblock Numerical ranges and spectral sets: the unbounded case.
+\newblock Preprint, {\url{https://doi.org/10.48550/arXiv.2509.19792}}.
 
 \bibitem[Davidson et~al.(2018)Davidson, Paulsen, and
   Woerdeman]{DavidsonPaulsenWoerdeman2018}
