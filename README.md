@@ -23,6 +23,9 @@ This repository records a research workspace for a candidate proof of Crouzeix's
 - `LaTeX/main_problem.tex`: statement of the problem.
 - `crouzeix_conjecture_prompt.txt`: project provenance and original task
   specification.
+- `conversation-019f7059-public/`: privacy-filtered record of the Codex
+  proof-development conversation and all persisted subagent branches, including
+  the formal reasoning summaries that OpenAI exposes for review.
 
 ## Build
 
@@ -45,3 +48,7 @@ This builds the complete library and runs the exported-theorem axiom audit.
 ## AI assistance
 
 OpenAI ChatGPT contributed to proof development, manuscript preparation, and adversarial checking.
+The corresponding [public-review conversation record](conversation-019f7059-public/README.md)
+contains visible messages and formal reasoning summaries while excluding hidden
+reasoning blocks, platform instructions, credentials, and personal account
+identifiers.
